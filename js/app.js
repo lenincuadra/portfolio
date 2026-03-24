@@ -40,11 +40,6 @@
     if (el && value != null) el.setAttribute(attr, value);
   }
 
-  function setAll(selector, value) {
-    document.querySelectorAll(selector).forEach(el => {
-      if (value != null) el.textContent = value;
-    });
-  }
 
   function setAllAttr(selector, attr, value) {
     document.querySelectorAll(selector).forEach(el => {
@@ -57,13 +52,7 @@
   function renderSiteWide(content) {
     const { site } = content;
 
-    // Header logo
-    setAll('.site-header__logo', site.designerName);
-    setAllAttr('.site-header__logo', 'aria-label', site.designerName + ' — home');
-
     // Footer
-    setAll('.site-footer__brand', site.designerName);
-    setAll('.site-footer__role', site.role);
     setAllAttr('a[data-link="linkedin"]', 'href', site.linkedinUrl);
     const resumeUrl = resolveAssetUrl(
       typeof site.resumeUrl === 'object'
@@ -149,8 +138,7 @@
         return `
           <article class="case-card reveal${delay}">
             <a href="cases/case.html?slug=${c.slug}" class="case-card__image" aria-label="${c.card.title} — view case study">
-              <img src="" alt="${c.card.title}" loading="lazy" />
-              <span aria-hidden="true">[Hero Image]</span>
+              <img src="${c.images ? resolveAssetUrl(c.images.cover) : ''}" alt="${c.card.title}" loading="lazy" />
             </a>
             <div class="case-card__body">
               <div class="case-card__tags">${buildTags(c.card.tags)}</div>
@@ -219,6 +207,10 @@
     if (heroTags) heroTags.innerHTML = caseData.hero.tags.map(t => `<span class="case-hero__tag">${t}</span>`).join('');
     setText('case-title',   caseData.hero.title);
     setText('case-summary', caseData.hero.summary);
+    if (caseData.images) {
+      setAttr('case-hero-img', 'src', resolveAssetUrl(caseData.images.hero));
+      setAttr('case-hero-img', 'alt', caseData.hero.title);
+    }
 
     // Quick Scan
     setText('qs-role',     caseData.quickScan.role);
@@ -266,6 +258,12 @@
         </div>`).join('');
     }
 
+    // Process images
+    if (caseData.images) {
+      setAttr('process-img1', 'src', resolveAssetUrl(caseData.images.process1));
+      setAttr('process-img2', 'src', resolveAssetUrl(caseData.images.process2));
+    }
+
     // Key Decisions
     setText('decisions-heading', caseData.decisions.heading);
     const decisionsEl = document.getElementById('decisions-list');
@@ -276,6 +274,11 @@
           <h3 class="decision-block__title">${d.title}</h3>
           <p class="decision-block__body">${d.body}</p>
         </div>`).join('');
+    }
+
+    // Decisions image
+    if (caseData.images) {
+      setAttr('decisions-img', 'src', resolveAssetUrl(caseData.images.decisions));
     }
 
     // Impact
@@ -394,17 +397,34 @@
 
   // --- Theme & mobile nav (shared) -------------------------------------------
 
+  function updateFavicon(isDark) {
+    const color = isDark ? '#f0ede8' : '#1a1916';
+    const svg = '<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M25.0562 10.6851C26.2012 10.6851 27.2552 10.8419 28.2173 11.1548C29.1793 11.4676 30.0235 11.9248 30.7495 12.5269C31.4756 13.123 32.0597 13.8583 32.5024 14.7319C32.786 15.2914 32.998 15.9032 33.1387 16.5669C32.0171 17.0669 28.314 18.7451 28.314 18.7451C28.314 18.7451 28.3494 18.1471 28.314 17.7339C28.2785 17.3207 28.1842 16.9453 28.0308 16.6089C27.8833 16.2727 27.677 15.9836 27.4116 15.7417C27.1519 15.4938 26.8353 15.3042 26.4634 15.1743C26.0916 15.0387 25.6697 14.9712 25.1978 14.9712C24.3714 14.9712 23.6717 15.1714 23.0991 15.5728C22.5325 15.9741 22.1013 16.5497 21.8062 17.2993C21.5169 18.049 21.3726 18.9498 21.3726 20.0005C21.3726 21.1101 21.5198 22.04 21.8149 22.7896C22.1159 23.5331 22.5502 24.0934 23.1167 24.4712C23.6834 24.8431 24.3657 25.0298 25.1626 25.0298C25.617 25.0298 26.0243 24.973 26.3843 24.8608C26.7443 24.7428 27.0572 24.5743 27.3228 24.356C27.5882 24.1377 27.804 23.8756 27.9692 23.5688C28.1399 23.257 28.5134 22.0743 28.3149 21.2642L33.1704 23.4351C33.06 23.9166 32.8916 24.4043 32.6616 24.897C32.2898 25.6878 31.7613 26.4195 31.0767 27.0923C30.3978 27.7593 29.5567 28.2963 28.5532 28.7036C27.5498 29.1109 26.3842 29.3149 25.0562 29.3149C23.7751 29.3149 22.5393 29.2248 21.5171 28.6802C20.3657 28.0668 19.9389 27.399 19.8823 25.9712C19.8434 24.9883 19.8823 24.356 19.8823 24.356H17.4028C17.3865 24.3324 16.3082 22.7682 16.3081 20.0005C16.3081 17.2114 16.6979 16.2812 17.4771 14.8999C18.2562 13.5129 19.3063 12.4646 20.6284 11.7563C21.9507 11.0421 23.427 10.6851 25.0562 10.6851Z" fill="' + color + '"/><path d="M12.0171 12.0669V25.1001H19.0845V29.0669H6.82959V10.9331L12.0171 12.0669Z" fill="' + color + '"/></svg>';
+    const url = 'data:image/svg+xml,' + encodeURIComponent(svg);
+    let link = document.querySelector('link[rel="icon"]');
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.type = 'image/svg+xml';
+    link.href = url;
+  }
+
   function initTheme() {
     const html = document.documentElement;
     const toggle = document.getElementById('theme-toggle');
     const stored = localStorage.getItem('theme');
-    if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    const isDark = stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    if (isDark) {
       html.classList.add('theme-dark');
     }
+    updateFavicon(isDark);
     if (toggle) {
       toggle.addEventListener('click', () => {
         const dark = html.classList.toggle('theme-dark');
         localStorage.setItem('theme', dark ? 'dark' : 'light');
+        updateFavicon(dark);
       });
     }
   }

@@ -66,6 +66,14 @@ const PORTFOLIO_DATA = {
       {
         slug: "fintech-ecosystem",
 
+        images: {
+          cover:     "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
+          hero:      "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
+          process1:  "assets/images/fintech/1-3—web checkout/1-nx-wireframes.png",
+          process2:  "assets/images/fintech/2-3—Payment link/3-nx-proto-wireframes.gif",
+          decisions: "assets/images/fintech/3-3—Nshop/3-screens01.png",
+        },
+
         card: {
           tags:    ["Fintech", "Product Architecture", "Payments"],
           title:   "Zero-to-one: Connected Payment Ecosystem",

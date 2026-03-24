@@ -9,6 +9,29 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.3.0] — 2026-03-24
+
+### Added
+- SVG logo mark in header of both `index.html` and `cases/case.html`, replacing placeholder text
+- Favicon `<link>` tag in both pages pointing to `assets/logo/logo-lc.svg`
+- `updateFavicon()` in `app.js`: dynamically swaps favicon color on theme toggle (light/dark aware)
+- `images` object in fintech case data (`content.js`) with paths for cover, hero, process1, process2, and decisions screens
+- Case cards in homepage grid now render the cover image from `c.images.cover` instead of an empty `src`
+- Case hero, process, and decisions sections in `case.html` now render actual images from `caseData.images`
+
+### Changed
+- Logo anchor `aria-label` updated to "Lenin Cuadra — home" (both pages)
+- Footer copyright hardcoded to "Lenin Cuadra" in both pages — removed reliance on dynamic `site-footer__brand` injection
+- `renderSiteWide()` no longer sets logo text or footer brand/role (SVG logo handles identity)
+- `setAll()` helper removed from `app.js` (no longer needed)
+- Process and decisions image blocks in `case.html` changed from `<div>` placeholders to `<img>` elements with IDs
+
+### Removed
+- `site-footer__brand` and `site-footer__role` paragraph elements from footer in both pages
+- Placeholder spans inside case card images and case hero image block
+
+---
+
 ## [0.2.0] — 2026-03-24
 
 ### Fixed

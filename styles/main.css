@@ -224,6 +224,21 @@ button {
   color: var(--ink);
   letter-spacing: -0.01em;
   transition: color var(--dur-fast);
+  display: flex;
+  align-items: center;
+}
+.site-header__logo img,
+.site-header__logo-svg {
+  display: block;
+  height: 22px;
+  width: auto;
+}
+.site-header__logo-svg path {
+  fill: var(--ink);
+  transition: fill var(--dur-mid) var(--ease-out);
+}
+.site-header__logo:hover .site-header__logo-svg path {
+  fill: var(--accent);
 }
 .site-header__logo:hover {
   color: var(--accent);
