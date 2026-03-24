@@ -45,15 +45,14 @@
         <div class="site-header__controls">
           <!-- Language switch placeholder -->
           <div class="lang-switch" role="group" aria-label="Language selector">
-            <a
-              href="/portfolio/en/"
+            <button
               class="lang-switch__btn lang-switch__btn--active"
+              data-lang="en"
               aria-current="true"
-              lang="en"
             >
               EN
-            </a>
-            <a href="/portfolio/es/" class="lang-switch__btn" lang="es">ES</a>
+            </button>
+            <button class="lang-switch__btn" data-lang="es">ES</button>
           </div>
 
           <!-- Theme toggle -->
@@ -115,16 +114,16 @@
       <section class="hero" aria-labelledby="hero-name">
         <div class="hero__bg" aria-hidden="true"></div>
         <div class="container hero__inner">
-          <p class="hero__eyebrow">[Current availability status]</p>
+          <p class="hero__eyebrow" id="hero-eyebrow">[Current availability status]</p>
           <h1 class="hero__name" id="hero-name">
-            [First Name]
+            <span id="hero-first-name">[First Name]</span>
             <br />
-            <em>[Last Name]</em>
+            <em id="hero-last-name">[Last Name]</em>
           </h1>
-          <p class="hero__role">
+          <p class="hero__role" id="hero-role">
             [Role title — e.g. Product Designer & Systems Thinker]
           </p>
-          <p class="hero__summary">
+          <p class="hero__summary" id="hero-summary">
             [Two-sentence positioning statement. What you design, who you design
             for, and what makes your approach distinctive.]
           </p>
@@ -159,143 +158,7 @@
           </h2>
           <hr class="section__divider" />
 
-          <div class="case-grid">
-            <!-- Case 1 -->
-            <article class="case-card reveal">
-              <a
-                href="cases/fintech-ecosystem.html"
-                class="case-card__image"
-                aria-label="[Case 1 title] — view case study"
-              >
-                <img
-                  src=""
-                  alt="[Case 1 hero image description]"
-                  loading="lazy"
-                />
-                <!-- placeholder shown when no src -->
-                <span aria-hidden="true">[Hero Image]</span>
-              </a>
-              <div class="case-card__body">
-                <div class="case-card__tags">
-                  <span class="tag">[Industry]</span>
-                  <span class="tag">[Discipline]</span>
-                  <span class="tag">[Year]</span>
-                </div>
-                <h3 class="case-card__title">[Case 1 Title]</h3>
-                <p class="case-card__excerpt">
-                  [Short case summary — one or two sentences describing the
-                  problem and your role.]
-                </p>
-                <a href="cases/fintech-ecosystem.html" class="case-card__cta">
-                  Read Case Study
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    aria-hidden="true"
-                  >
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </a>
-              </div>
-            </article>
-
-            <!-- Case 2 -->
-            <article class="case-card reveal reveal-delay-1">
-              <a
-                href="cases/ecommerce-conversion.html"
-                class="case-card__image"
-                aria-label="[Case 2 title] — view case study"
-              >
-                <img
-                  src=""
-                  alt="[Case 2 hero image description]"
-                  loading="lazy"
-                />
-                <span aria-hidden="true">[Hero Image]</span>
-              </a>
-              <div class="case-card__body">
-                <div class="case-card__tags">
-                  <span class="tag">[Industry]</span>
-                  <span class="tag">[Discipline]</span>
-                  <span class="tag">[Year]</span>
-                </div>
-                <h3 class="case-card__title">[Case 2 Title]</h3>
-                <p class="case-card__excerpt">
-                  [Short case summary — one or two sentences describing the
-                  problem and your role.]
-                </p>
-                <a
-                  href="cases/ecommerce-conversion.html"
-                  class="case-card__cta"
-                >
-                  Read Case Study
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    aria-hidden="true"
-                  >
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </a>
-              </div>
-            </article>
-
-            <!-- Case 3 -->
-            <article class="case-card reveal reveal-delay-2">
-              <a
-                href="cases/telecom-legacy-refactor.html"
-                class="case-card__image"
-                aria-label="[Case 3 title] — view case study"
-              >
-                <img
-                  src=""
-                  alt="[Case 3 hero image description]"
-                  loading="lazy"
-                />
-                <span aria-hidden="true">[Hero Image]</span>
-              </a>
-              <div class="case-card__body">
-                <div class="case-card__tags">
-                  <span class="tag">[Industry]</span>
-                  <span class="tag">[Discipline]</span>
-                  <span class="tag">[Year]</span>
-                </div>
-                <h3 class="case-card__title">[Case 3 Title]</h3>
-                <p class="case-card__excerpt">
-                  [Short case summary — one or two sentences describing the
-                  problem and your role.]
-                </p>
-                <a
-                  href="cases/telecom-legacy-refactor.html"
-                  class="case-card__cta"
-                >
-                  Read Case Study
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    aria-hidden="true"
-                  >
-                    <line x1="5" y1="12" x2="19" y2="12" />
-                    <polyline points="12 5 19 12 12 19" />
-                  </svg>
-                </a>
-              </div>
-            </article>
-          </div>
+          <div class="case-grid" id="case-grid"></div>
         </div>
       </section>
 
@@ -322,26 +185,19 @@
                 [About section headline — e.g. I design systems that respect
                 people.]
               </h2>
-              <p>
+              <p id="about-p1">
                 [First paragraph — background, experience, and perspective on
                 design. Keep it personal and specific.]
               </p>
-              <p>
+              <p id="about-p2">
                 [Second paragraph — working style, tools, and what you value
                 most in collaborative work.]
               </p>
-              <p>
+              <p id="about-p3">
                 [Third paragraph — optional: personal note, interests, or what
                 you're exploring currently.]
               </p>
-              <div class="tag-group" style="margin-top: 2rem">
-                <span class="tag">[Skill / Tool]</span>
-                <span class="tag">[Skill / Tool]</span>
-                <span class="tag">[Skill / Tool]</span>
-                <span class="tag">[Skill / Tool]</span>
-                <span class="tag">[Skill / Tool]</span>
-                <span class="tag">[Skill / Tool]</span>
-              </div>
+              <div class="tag-group" id="about-skills" style="margin-top: 2rem"></div>
             </div>
           </div>
         </div>
@@ -362,17 +218,19 @@
           </h2>
           <p
             class="section__body"
+            id="contact-body"
             style="margin-inline: auto; margin-bottom: 2.5rem"
           >
             [Contact invitation — open to what kind of work, collaborations, or
             conversations.]
           </p>
           <div class="hero__actions" style="justify-content: center">
-            <a href="mailto:[email]" class="btn btn--primary">
+            <a href="mailto:" id="contact-email" class="btn btn--primary">
               [email placeholder]
             </a>
             <a
-              href="[linkedin-url]"
+              href=""
+              id="contact-linkedin"
               class="btn btn--secondary"
               target="_blank"
               rel="noopener noreferrer"
@@ -398,7 +256,8 @@
             <a href="#work" class="site-footer__link">Work</a>
             <a href="#about" class="site-footer__link">About</a>
             <a
-              href="[linkedin-url]"
+              href=""
+              data-link="linkedin"
               class="site-footer__link"
               target="_blank"
               rel="noopener noreferrer"
@@ -406,7 +265,8 @@
               LinkedIn
             </a>
             <a
-              href="[resume-url]"
+              href=""
+              data-link="resume"
               class="site-footer__link"
               target="_blank"
               rel="noopener noreferrer"
@@ -430,50 +290,6 @@
        SCRIPTS
        ====================================================== -->
     <script src="data/content.js"></script>
-    <script>
-      // Theme
-      const html = document.documentElement;
-      const toggle = document.getElementById("theme-toggle");
-      const stored = localStorage.getItem("theme");
-      if (
-        stored === "dark" ||
-        (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches)
-      ) {
-        html.classList.add("theme-dark");
-      }
-      toggle.addEventListener("click", () => {
-        const dark = html.classList.toggle("theme-dark");
-        localStorage.setItem("theme", dark ? "dark" : "light");
-      });
-
-      // Mobile nav
-      const navToggle = document.getElementById("nav-toggle");
-      const nav = document.getElementById("primary-nav");
-      navToggle.addEventListener("click", () => {
-        const open = nav.classList.toggle("is-open");
-        navToggle.setAttribute("aria-expanded", open);
-        navToggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
-      });
-
-      // Scroll reveal
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((e) => {
-            if (e.isIntersecting) {
-              e.target.classList.add("is-visible");
-              observer.unobserve(e.target);
-            }
-          });
-        },
-        { threshold: 0.08 },
-      );
-      document
-        .querySelectorAll(".reveal")
-        .forEach((el) => observer.observe(el));
-
-      // Footer year
-      document.getElementById("footer-year").textContent =
-        new Date().getFullYear();
-    </script>
+    <script src="js/app.js"></script>
   </body>
 </html>
