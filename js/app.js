@@ -111,6 +111,16 @@
     return tags.map(t => `<span class="tag">${t}</span>`).join('');
   }
 
+  function buildMetricCard(item, i) {
+    const delay = i > 0 ? ` reveal-delay-${i}` : '';
+    return `
+      <div class="metric-card reveal${delay}">
+        <p class="metric-card__value">${item.value}</p>
+        <p class="metric-card__label">${item.label}</p>
+        <p class="metric-card__note">${item.note}</p>
+      </div>`;
+  }
+
   // --- INDEX PAGE ------------------------------------------------------------
 
   function renderIndex(content) {
@@ -233,15 +243,7 @@
     setText('constraints-heading', caseData.constraints.heading);
     const constraintsGrid = document.getElementById('constraints-grid');
     if (constraintsGrid) {
-      constraintsGrid.innerHTML = caseData.constraints.items.map((item, i) => {
-        const delay = i > 0 ? ` reveal-delay-${i}` : '';
-        return `
-          <div class="metric-card reveal${delay}">
-            <p class="metric-card__value">${item.value}</p>
-            <p class="metric-card__label">${item.label}</p>
-            <p class="metric-card__note">${item.note}</p>
-          </div>`;
-      }).join('');
+      constraintsGrid.innerHTML = caseData.constraints.items.map(buildMetricCard).join('');
     }
 
     // Role
@@ -281,15 +283,7 @@
     setText('impact-statement',  caseData.impact.statement);
     const impactGrid = document.getElementById('impact-grid');
     if (impactGrid) {
-      impactGrid.innerHTML = caseData.impact.metrics.map((m, i) => {
-        const delay = i > 0 ? ` reveal-delay-${i}` : '';
-        return `
-          <div class="metric-card reveal${delay}">
-            <p class="metric-card__value">${m.value}</p>
-            <p class="metric-card__label">${m.label}</p>
-            <p class="metric-card__note">${m.note}</p>
-          </div>`;
-      }).join('');
+      impactGrid.innerHTML = caseData.impact.metrics.map(buildMetricCard).join('');
     }
 
     // Learnings
@@ -314,7 +308,7 @@
     }
 
     // Build TOC from data-toc-label sections
-    buildTOC();
+    buildTOC(getLang());
 
     // Re-observe reveal elements
     const observer = new IntersectionObserver(entries => {
@@ -327,7 +321,7 @@
 
   // --- Table of Contents ----------------------------------------------------
 
-  function buildTOC() {
+  function buildTOC(lang) {
     const sections = document.querySelectorAll('[data-toc-label]');
     if (!sections.length) return;
 
@@ -336,7 +330,7 @@
 
     const title = document.createElement('span');
     title.className = 'toc-nav__title';
-    title.textContent = 'Contents';
+    title.textContent = lang === 'es' ? 'Tabla de Contenido' : 'Table of Contents';
 
     const list = document.createElement('ul');
     list.className = 'toc-nav__list';
@@ -344,10 +338,23 @@
     sections.forEach(section => {
       const li = document.createElement('li');
       const a  = document.createElement('a');
-      a.className        = 'toc-nav__link';
-      a.href             = '#' + section.id;
-      a.textContent      = section.dataset.tocLabel;
+      a.className         = 'toc-nav__link';
+      a.href              = '#' + section.id;
       a.dataset.tocTarget = section.id;
+
+      const labelSpan = document.createElement('span');
+      labelSpan.className   = 'toc-nav__link-label';
+      labelSpan.textContent = section.dataset.tocLabel;
+      a.appendChild(labelSpan);
+
+      const h2 = section.querySelector('h2');
+      if (h2) {
+        const subtitleSpan = document.createElement('span');
+        subtitleSpan.className   = 'toc-nav__link-subtitle';
+        subtitleSpan.textContent = h2.textContent.trim();
+        a.appendChild(subtitleSpan);
+      }
+
       li.appendChild(a);
       list.appendChild(li);
     });
