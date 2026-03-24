@@ -134,22 +134,26 @@
       <section class="hero" aria-labelledby="hero-name">
         <div class="hero__bg" aria-hidden="true"></div>
         <div class="container hero__inner">
-          <p class="hero__eyebrow" id="hero-eyebrow">[Current availability status]</p>
-          <h1 class="hero__name" id="hero-name">
-            <span id="hero-first-name">[First Name]</span>
-            <br />
-            <em id="hero-last-name">[Last Name]</em>
-          </h1>
-          <p class="hero__role" id="hero-role">
-            [Role title — e.g. Product Designer & Systems Thinker]
-          </p>
-          <p class="hero__summary" id="hero-summary">
-            [Two-sentence positioning statement. What you design, who you design
-            for, and what makes your approach distinctive.]
-          </p>
-          <div class="hero__actions">
-            <a href="#work" class="btn btn--primary">View Work</a>
-            <a href="#about" class="btn btn--secondary">About Me</a>
+          <div class="hero__text">
+            <p class="hero__eyebrow" id="hero-eyebrow">[Current availability status]</p>
+            <h1 class="hero__name" id="hero-name">
+              <span id="hero-first-name">[First Name]</span>
+              <br />
+              <em id="hero-last-name">[Last Name]</em>
+            </h1>
+            <p class="hero__role" id="hero-role">
+              [Role title — e.g. Product Designer & Systems Thinker]
+            </p>
+            <p class="hero__summary" id="hero-summary">
+              [Two-sentence positioning statement. What you design, who you design
+              for, and what makes your approach distinctive.]
+            </p>
+            <div class="hero__actions">
+              <a href="#work" class="btn btn--primary">View Work</a>
+            </div>
+          </div>
+          <div class="hero__portrait" aria-hidden="true">
+            <img src="assets/images/profile-pic.jpeg" alt="Portrait of Lenin Cuadra" loading="eager" />
           </div>
         </div>
 
@@ -168,6 +172,29 @@
       </section>
 
       <!-- ======================================================
+         FEATURED CASE
+         ====================================================== -->
+      <section class="featured-case" id="featured-case" aria-labelledby="featured-case-title">
+        <div class="container">
+          <p class="section__label">Featured Work</p>
+          <div class="featured-case__inner">
+            <div class="featured-case__header">
+              <div class="featured-case__tags" id="fc-tags"></div>
+              <h2 class="featured-case__title" id="featured-case-title">[Featured case title]</h2>
+              <p class="featured-case__excerpt" id="fc-excerpt">[Featured case description]</p>
+            </div>
+            <div class="featured-case__screens" id="fc-screens"></div>
+            <a href="#" class="featured-case__cta" id="fc-cta">
+              Read Case Study
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ======================================================
          SELECTED WORK
          ====================================================== -->
       <section class="section" id="work" aria-labelledby="work-heading">
@@ -178,7 +205,19 @@
           </h2>
           <hr class="section__divider" />
 
-          <div class="case-grid" id="case-grid"></div>
+          <div class="case-grid case-grid--secondary" id="case-grid"></div>
+        </div>
+      </section>
+
+      <!-- ======================================================
+         CAPABILITIES
+         ====================================================== -->
+      <section class="section capabilities" id="capabilities" aria-labelledby="capabilities-heading">
+        <div class="container container--narrow">
+          <p class="section__label">Capabilities</p>
+          <h2 class="section__heading" id="capabilities-heading">What I bring to a product team.</h2>
+          <hr class="section__divider" />
+          <ul class="capabilities__list" id="capabilities-list"></ul>
         </div>
       </section>
 
@@ -205,19 +244,12 @@
                 [About section headline — e.g. I design systems that respect
                 people.]
               </h2>
-              <p id="about-p1">
-                [First paragraph — background, experience, and perspective on
-                design. Keep it personal and specific.]
-              </p>
-              <p id="about-p2">
-                [Second paragraph — working style, tools, and what you value
-                most in collaborative work.]
-              </p>
-              <p id="about-p3">
-                [Third paragraph — optional: personal note, interests, or what
-                you're exploring currently.]
+              <p id="about-excerpt">
+                [Short 2–3 sentence positioning statement about background and
+                how you work with product and engineering teams.]
               </p>
               <div class="tag-group" id="about-skills" style="margin-top: 2rem"></div>
+              <a href="#contact" class="about__cta">Get in touch →</a>
             </div>
           </div>
         </div>

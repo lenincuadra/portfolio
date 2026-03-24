@@ -9,6 +9,26 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.4.0] — 2026-03-24
+
+### Added
+- **Featured Case section** — new dominant section between hero and work grid, showcasing the fintech case with title, excerpt, 3 product screen thumbnails (Checkout / Payment Link / Dashboard), and a "Read Case Study →" CTA. Rendered from `content.js` via `featured: true` flag on the case object
+- `images.screens` array on the fintech case in `content.js` with paths and labels for each product surface
+- `home.capabilities` array in `content.js` with 5 capabilities entries
+- `home.about.homeExcerpt` field in `content.js` — short 2-sentence version used on the homepage About section
+- **Capabilities section** — new `<section class="capabilities">` between work and about, populated dynamically from `home.capabilities`
+- `renderIndex()` now renders featured case into `#featured-case`, capabilities into `#capabilities-list`, and uses `homeExcerpt` for the About summary
+- **Sticky Key Facts Bar** on case pages — `.quick-scan` is now `position: sticky; top: 64px`; collapses to a compact one-liner (`Role | Case title`) once the user scrolls past the case hero, driven by `IntersectionObserver` in `initFactsBar()`
+- Compact bar fields (`qs-compact-role`, `qs-compact-title`) populated in `renderCase()`
+
+### Changed
+- **Hero → 2-column layout** — text column (7fr) left, portrait column (5fr) right; stacks vertically on mobile with portrait above text. Portrait moved from About section to hero
+- **Work grid** — now shows only non-featured cases (ecommerce + telecom) in an explicit 2-column layout (`.case-grid--secondary`); fintech is excluded from the grid and shown in the featured section instead
+- **About section** on homepage condensed to a single short paragraph (`about-excerpt`) + skills tags + "Get in touch →" CTA; removed the 3-paragraph layout
+- `renderIndex()` skips the featured case when building the secondary case grid
+
+---
+
 ## [0.3.0] — 2026-03-24
 
 ### Added

@@ -92,25 +92,32 @@
         </div>
       </section>
 
-      <!-- 2. QUICK SCAN — not in TOC (metadata strip) -->
-      <section class="quick-scan" aria-label="Case overview">
-        <div class="quick-scan__grid">
-          <div class="quick-scan__cell">
-            <p class="quick-scan__cell-label">My Role</p>
-            <p class="quick-scan__cell-value" id="qs-role"></p>
+      <!-- 2. QUICK SCAN — sticky key facts bar -->
+      <section class="quick-scan" id="case-facts-bar" aria-label="Case overview">
+        <div class="quick-scan__full">
+          <div class="quick-scan__grid">
+            <div class="quick-scan__cell">
+              <p class="quick-scan__cell-label">My Role</p>
+              <p class="quick-scan__cell-value" id="qs-role"></p>
+            </div>
+            <div class="quick-scan__cell">
+              <p class="quick-scan__cell-label">Team</p>
+              <p class="quick-scan__cell-value" id="qs-team"></p>
+            </div>
+            <div class="quick-scan__cell">
+              <p class="quick-scan__cell-label">Timeline</p>
+              <p class="quick-scan__cell-value" id="qs-timeline"></p>
+            </div>
+            <div class="quick-scan__cell">
+              <p class="quick-scan__cell-label">Tools</p>
+              <p class="quick-scan__cell-value" id="qs-tools"></p>
+            </div>
           </div>
-          <div class="quick-scan__cell">
-            <p class="quick-scan__cell-label">Team</p>
-            <p class="quick-scan__cell-value" id="qs-team"></p>
-          </div>
-          <div class="quick-scan__cell">
-            <p class="quick-scan__cell-label">Timeline</p>
-            <p class="quick-scan__cell-value" id="qs-timeline"></p>
-          </div>
-          <div class="quick-scan__cell">
-            <p class="quick-scan__cell-label">Tools</p>
-            <p class="quick-scan__cell-value" id="qs-tools"></p>
-          </div>
+        </div>
+        <div class="quick-scan__compact" id="qs-compact" aria-hidden="true">
+          <span id="qs-compact-role"></span>
+          <span class="quick-scan__sep" aria-hidden="true">|</span>
+          <span id="qs-compact-title"></span>
         </div>
       </section>
 

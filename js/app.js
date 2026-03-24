@@ -130,10 +130,30 @@
     // Work
     setText('work-heading', home.work.heading);
 
-    // Case grid
+    // Featured case
+    const featured = cases.find(c => c.featured);
+    if (featured) {
+      const fcTags = document.getElementById('fc-tags');
+      if (fcTags) fcTags.innerHTML = buildTags(featured.card.tags);
+      setText('featured-case-title', featured.card.title);
+      setText('fc-excerpt', featured.card.excerpt);
+      const fcCta = document.getElementById('fc-cta');
+      if (fcCta) fcCta.href = 'cases/case.html?slug=' + featured.slug;
+      const fcScreens = document.getElementById('fc-screens');
+      if (fcScreens && featured.images && featured.images.screens) {
+        fcScreens.innerHTML = featured.images.screens.map(s => `
+          <div class="fc-screen">
+            <img src="${resolveAssetUrl(s.src)}" alt="${s.label}" loading="lazy" />
+            <p class="fc-screen__label">${s.label}</p>
+          </div>`).join('');
+      }
+    }
+
+    // Case grid — secondary cases only (non-featured)
+    const secondaryCases = cases.filter(c => !c.featured);
     const grid = document.getElementById('case-grid');
-    if (grid && cases.length) {
-      grid.innerHTML = cases.map((c, i) => {
+    if (grid && secondaryCases.length) {
+      grid.innerHTML = secondaryCases.map((c, i) => {
         const delay = i > 0 ? ` reveal-delay-${i}` : '';
         return `
           <article class="case-card reveal${delay}">
@@ -163,11 +183,15 @@
       grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     }
 
+    // Capabilities
+    const capList = document.getElementById('capabilities-list');
+    if (capList && home.capabilities) {
+      capList.innerHTML = home.capabilities.map(c => `<li class="capabilities__item">${c}</li>`).join('');
+    }
+
     // About
     setText('about-heading', home.about.heading);
-    if (home.about.paragraphs) {
-      home.about.paragraphs.forEach((p, i) => setText('about-p' + (i + 1), p));
-    }
+    setText('about-excerpt', home.about.homeExcerpt || (home.about.paragraphs && home.about.paragraphs[0]) || '');
     const skillsEl = document.getElementById('about-skills');
     if (skillsEl && home.about.skills) {
       skillsEl.innerHTML = home.about.skills.map(s => `<span class="tag">${s}</span>`).join('');
@@ -217,6 +241,9 @@
     setText('qs-team',     caseData.quickScan.team);
     setText('qs-timeline', caseData.quickScan.timeline);
     setText('qs-tools',    caseData.quickScan.tools);
+    // Compact bar
+    setText('qs-compact-role',  caseData.quickScan.role);
+    setText('qs-compact-title', caseData.hero.title);
 
     // Overview
     setText('overview-subheading', caseData.overview.subheading);
@@ -489,6 +516,20 @@
     return path.endsWith('index.html') || path.endsWith('/') || !path.includes('/cases/');
   }
 
+  function initFactsBar() {
+    const bar = document.getElementById('case-facts-bar');
+    if (!bar) return;
+    const hero = document.querySelector('.case-hero');
+    if (!hero) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      bar.classList.toggle('quick-scan--compact', !entry.isIntersecting);
+      bar.classList.toggle('quick-scan--scrolled', !entry.isIntersecting);
+    }, { threshold: 0, rootMargin: '-64px 0px 0px 0px' });
+
+    observer.observe(hero);
+  }
+
   function init() {
     initTheme();
     initMobileNav();
@@ -504,6 +545,7 @@
       initIndexNavSpy();
     } else {
       renderCase(content);
+      initFactsBar();
     }
   }
 

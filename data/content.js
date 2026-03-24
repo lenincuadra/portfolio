@@ -38,6 +38,7 @@ const PORTFOLIO_DATA = {
       },
       about: {
         heading:    "I design systems where user needs, technical constraints, and business goals align.",
+        homeExcerpt: "Product designer focused on complex systems, platforms, and flows. I work closely with engineering and product teams — turning technical constraints into coherent, scalable experiences.",
         paragraphs: [
           "I'm a product designer focused on complex systems, platforms, and flows where clarity and structure matter most. My work typically involves redesigning fragmented experiences into coherent, scalable solutions.",
           "I approach design through constraints. Instead of treating limitations as blockers, I use them to shape decisions early, ensuring what gets designed can actually be built and maintained over time.",
@@ -56,6 +57,13 @@ const PORTFOLIO_DATA = {
         heading: "Let's build something meaningful.",
         body:    "I'm open to product design roles, collaborations, and conversations around complex systems, platform design, and scalable experiences.",
       },
+      capabilities: [
+        "Zero-to-one product creation",
+        "Legacy system refactoring",
+        "Conversion and growth optimization",
+        "Design systems integration",
+        "UX research and usability validation",
+      ],
     },
 
     cases: [
@@ -64,7 +72,8 @@ const PORTFOLIO_DATA = {
       // CASE 1 — FINTECH / NARANJA X
       // -----------------------------------------------------------------------
       {
-        slug: "fintech-ecosystem",
+        slug:     "fintech-ecosystem",
+        featured: true,
 
         images: {
           cover:     "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
@@ -72,6 +81,11 @@ const PORTFOLIO_DATA = {
           process1:  "assets/images/fintech/1-3—web checkout/1-nx-wireframes.png",
           process2:  "assets/images/fintech/2-3—Payment link/3-nx-proto-wireframes.gif",
           decisions: "assets/images/fintech/3-3—Nshop/3-screens01.png",
+          screens: [
+            { src: "assets/images/fintech/1-3—web checkout/0-nx-portada.png",    label: "Web Checkout" },
+            { src: "assets/images/fintech/2-3—Payment link/0-nx-description.png", label: "Payment Link" },
+            { src: "assets/images/fintech/3-3—Nshop/3-screens01.png",            label: "Financial Dashboard" },
+          ],
         },
 
         card: {
