@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="" />
+  <title>Case Study</title>
+  <link rel="stylesheet" href="../styles/main.css" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- ======================================================
+       SITE HEADER
+       ====================================================== -->
+  <header class="site-header" role="banner">
+    <div class="site-header__inner">
+
+      <a href="../index.html" class="site-header__logo" aria-label="home"></a>
+
+      <nav class="site-header__nav" id="primary-nav" aria-label="Primary navigation">
+        <a href="../index.html#work"    class="site-header__nav-link site-header__nav-link--active">Work</a>
+        <a href="../index.html#about"   class="site-header__nav-link">About</a>
+        <a href="../index.html#contact" class="site-header__nav-link">Contact</a>
+      </nav>
+
+      <div class="site-header__controls">
+        <div class="lang-switch" role="group" aria-label="Language selector">
+          <button class="lang-switch__btn" data-lang="en" aria-current="true">EN</button>
+          <button class="lang-switch__btn" data-lang="es" aria-current="false">ES</button>
+        </div>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+          <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+          <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+        </button>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ======================================================
+       CASE LAYOUT: content column + TOC sidebar
+       ====================================================== -->
+  <div class="case-layout">
+
+    <main id="main-content" class="case-content">
+
+      <!-- 1. HERO — not in TOC (above the fold) -->
+      <section class="case-hero" aria-labelledby="case-title">
+        <div class="container">
+          <div class="case-hero__meta" id="case-hero-tags"></div>
+          <h1 class="case-hero__title" id="case-title"></h1>
+          <p class="case-hero__summary" id="case-summary"></p>
+          <div class="case-hero__image-wrap">
+            <img src="" alt="" loading="eager" />
+            <span aria-hidden="true">[Hero Image — 16:7]</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. QUICK SCAN — not in TOC (metadata strip) -->
+      <section class="quick-scan" aria-label="Case overview">
+        <div class="quick-scan__grid">
+          <div class="quick-scan__cell">
+            <p class="quick-scan__cell-label">My Role</p>
+            <p class="quick-scan__cell-value" id="qs-role"></p>
+          </div>
+          <div class="quick-scan__cell">
+            <p class="quick-scan__cell-label">Team</p>
+            <p class="quick-scan__cell-value" id="qs-team"></p>
+          </div>
+          <div class="quick-scan__cell">
+            <p class="quick-scan__cell-label">Timeline</p>
+            <p class="quick-scan__cell-value" id="qs-timeline"></p>
+          </div>
+          <div class="quick-scan__cell">
+            <p class="quick-scan__cell-label">Tools</p>
+            <p class="quick-scan__cell-value" id="qs-tools"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. OVERVIEW -->
+      <section id="section-overview" data-toc-label="Overview"
+               class="section" aria-labelledby="overview-heading">
+        <div class="container">
+          <p class="section__label">Overview</p>
+          <div class="grid-aside">
+            <div>
+              <h2 class="section__subheading" id="overview-heading">
+                <span id="overview-subheading"></span>
+              </h2>
+              <div class="tag-group" id="overview-tags" style="margin-bottom: 1.5rem"></div>
+            </div>
+            <div>
+              <p class="section__body" id="overview-body1"></p>
+              <hr class="section__divider" />
+              <p class="section__body" id="overview-body2"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. PROBLEM -->
+      <section id="section-problem" data-toc-label="Problem"
+               class="section section--alt" aria-labelledby="problem-heading">
+        <div class="container">
+          <p class="section__label">Problem</p>
+          <h2 class="section__heading" id="problem-heading"></h2>
+          <div class="grid-2" style="margin-top: 2.5rem">
+            <div>
+              <p class="section__body" id="problem-body"></p>
+            </div>
+            <div>
+              <div class="image-block image-block--wide reveal">
+                <div class="image-block__placeholder">[Problem context image or diagram]</div>
+              </div>
+            </div>
+          </div>
+          <div class="callout" style="margin-top: 3rem">
+            <p class="callout__quote" id="problem-quote"></p>
+            <p class="callout__attr"  id="problem-quote-attr"></p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. CONSTRAINTS -->
+      <section id="section-constraints" data-toc-label="Constraints"
+               class="section" aria-labelledby="constraints-heading">
+        <div class="container">
+          <p class="section__label">Constraints</p>
+          <h2 class="section__heading" id="constraints-heading"></h2>
+          <div class="grid-3" id="constraints-grid" style="margin-top: 2.5rem"></div>
+        </div>
+      </section>
+
+      <!-- 6. ROLE -->
+      <section id="section-role" data-toc-label="My Role"
+               class="section section--alt" aria-labelledby="role-heading">
+        <div class="container">
+          <p class="section__label">My Role</p>
+          <div class="grid-aside">
+            <div>
+              <h2 class="section__subheading" id="role-heading">
+                <span id="role-subheading"></span>
+              </h2>
+            </div>
+            <div>
+              <p class="section__body" id="role-body1"></p>
+              <hr class="section__divider" />
+              <p class="section__body" id="role-body2"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 7. PROCESS -->
+      <section id="section-process" data-toc-label="Process"
+               class="section" aria-labelledby="process-heading">
+        <div class="container">
+          <p class="section__label">Process</p>
+          <h2 class="section__heading" id="process-heading"></h2>
+          <hr class="section__divider" />
+          <div class="process-steps" id="process-steps" style="margin-top: 1rem"></div>
+          <div class="grid-2" style="margin-top: 3rem">
+            <div class="image-block image-block--wide reveal">
+              <div class="image-block__placeholder">[Process artefact — sketches, wireframes, journey maps]</div>
+            </div>
+            <div class="image-block image-block--wide reveal reveal-delay-1">
+              <div class="image-block__placeholder">[Process artefact — prototypes, testing sessions, affinity maps]</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 8. KEY DECISIONS -->
+      <section id="section-decisions" data-toc-label="Key Decisions"
+               class="section section--alt" aria-labelledby="decisions-heading">
+        <div class="container">
+          <p class="section__label">Key Decisions</p>
+          <h2 class="section__heading" id="decisions-heading"></h2>
+          <div id="decisions-list" style="margin-top: 2.5rem"></div>
+          <div class="image-block image-block--wide reveal" style="margin-top: 3rem">
+            <div class="image-block__placeholder">[Final design — high-fidelity screens or annotated prototype]</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 9. IMPACT -->
+      <section id="section-impact" data-toc-label="Impact"
+               class="section" aria-labelledby="impact-heading">
+        <div class="container">
+          <p class="section__label">Impact</p>
+          <h2 class="section__heading" id="impact-heading"></h2>
+          <div class="grid-4" id="impact-grid" style="margin-top: 2.5rem"></div>
+          <hr class="section__divider" style="margin-top: 3rem" />
+          <p class="section__body" id="impact-statement"></p>
+        </div>
+      </section>
+
+      <!-- 10. LEARNINGS -->
+      <section id="section-learnings" data-toc-label="Learnings"
+               class="section section--alt" aria-labelledby="learnings-heading">
+        <div class="container">
+          <p class="section__label">Learnings</p>
+          <h2 class="section__heading" id="learnings-heading"></h2>
+          <div class="grid-aside" style="margin-top: 2.5rem">
+            <div></div>
+            <div id="learnings-list"></div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- TOC Sidebar -->
+    <aside class="case-toc" aria-label="Table of contents">
+      <nav id="toc-nav"></nav>
+    </aside>
+
+  </div><!-- /.case-layout -->
+
+  <!-- ======================================================
+       CASE NAVIGATION (outside layout — full width)
+       ====================================================== -->
+  <nav class="case-navigation" aria-label="Case study navigation">
+    <div class="container">
+      <div class="case-navigation__inner">
+
+        <a id="case-nav-prev" href="#" class="case-nav-item case-nav-item--prev">
+          <span class="case-nav-item__dir">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="15 18 9 12 15 6"/>
+            </svg>
+            Previous
+          </span>
+          <span class="case-nav-item__title" id="case-nav-prev-title"></span>
+        </a>
+
+        <a href="../index.html#work" class="case-navigation__index-link">← All Work</a>
+
+        <a id="case-nav-next" href="#" class="case-nav-item case-nav-item--next">
+          <span class="case-nav-item__dir">
+            Next
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <polyline points="9 18 15 12 9 6"/>
+            </svg>
+          </span>
+          <span class="case-nav-item__title" id="case-nav-next-title"></span>
+        </a>
+
+      </div>
+    </div>
+  </nav>
+
+  <!-- ======================================================
+       SITE FOOTER
+       ====================================================== -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div>
+          <p class="site-footer__brand"></p>
+          <p class="site-footer__role"></p>
+        </div>
+        <nav class="site-footer__links" aria-label="Footer navigation">
+          <a href="../index.html#work"  class="site-footer__link">Work</a>
+          <a href="../index.html#about" class="site-footer__link">About</a>
+          <a data-link="linkedin" href="#" class="site-footer__link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a data-link="resume"   href="#" class="site-footer__link" target="_blank" rel="noopener noreferrer">Resume</a>
+        </nav>
+      </div>
+      <div class="site-footer__copy">
+        <span>© <span id="footer-year"></span> <span class="site-footer__brand"></span></span>
+        <span>Designed &amp; built with care.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../data/content.js"></script>
+  <script src="../js/app.js"></script>
+
+</body>
+</html>

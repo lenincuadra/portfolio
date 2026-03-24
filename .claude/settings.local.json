@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cp \"/Users/psh/Desktop/_desktop/PP/_L/VCV/CVs/Ready2Send/EN/Lenin_Cuadra__Product_UX_UI_Designer_CV.pdf\" /Users/psh/Desktop/new/portfolio/assets/cv/)",
+      "Bash(cp \"/Users/psh/Desktop/_desktop/PP/_L/VCV/CVs/Ready2Send/ES/Lenin_Cuadra__Product_UX_UI_Designer_CV_ES.pdf\" /Users/psh/Desktop/new/portfolio/assets/cv/)",
+      "Bash(node --check /Users/psh/Desktop/new/portfolio/data/content.js)",
+      "Bash(node --check /Users/psh/Desktop/new/portfolio/js/app.js)",
+      "Bash(git init:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ]
+  }
+}
