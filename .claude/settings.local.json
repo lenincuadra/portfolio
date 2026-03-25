@@ -9,7 +9,12 @@
       "Bash(git add:*)",
       "Bash(git commit:*)",
       "Bash(git remote:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(find /Users/psh/Desktop/new/portfolio -not -path */.git/* -not -path */.DS_Store -type f)",
+      "Bash(file /Users/psh/Desktop/new/portfolio/assets/images/fintech/3-3—Nshop/*.png /Users/psh/Desktop/new/portfolio/assets/images/fintech/3-3—Nshop/*.gif /Users/psh/Desktop/new/portfolio/assets/images/fintech/3-3—Nshop/*.jpg)",
+      "Bash(file /Users/psh/Desktop/new/portfolio/assets/images/*.jpeg)",
+      "Bash(git checkout:*)",
+      "Bash(git restore:*)"
     ]
   }
 }
