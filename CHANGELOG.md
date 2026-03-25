@@ -9,6 +9,25 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.5.0] — 2026-03-24
+
+### Added
+- **"Open to new opportunities" badge** — glassmorphism pill overlay positioned at the bottom of the hero portrait image; transparent white background with blur, green dot indicator, small-caps uppercase mono text, `4px 8px` padding
+- **Button icons** — inline SVG icons added to the left of each action button: arrow-down on "View Work", envelope on the email CTA, LinkedIn mark on the LinkedIn button
+- **Venn diagram** — replaces the About section portrait photo with an SVG three-circle diagram (User / Business / Tech) using transparent fills from the design token palette (`--accent`, `--accent-2`, teal)
+
+### Changed
+- **Hero eyebrow removed** — "Open to new opportunities" text above the name eliminated; availability is now communicated only via the portrait badge
+- **Button padding** — standardized to `0 8px` (sides only, no vertical padding)
+- **About skills** — "Conversion optimization" tag removed
+- **`contact-email` injection** — `app.js` now targets `#contact-email-label` span instead of the `<a>` element directly, preserving the envelope icon when `textContent` is set
+- **`hero-cta` injection** — `id="hero-cta"` moved to an inner `<span>` so JS text injection no longer destroys the arrow icon
+
+### Removed
+- About section portrait photo (`profile-pic.jpeg` reference in bio block)
+
+---
+
 ## [0.4.0] — 2026-03-24
 
 ### Added

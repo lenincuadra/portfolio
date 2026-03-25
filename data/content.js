@@ -24,6 +24,13 @@ const PORTFOLIO_DATA = {
       lang:          "en",
     },
 
+    ui: {
+      nav:    { work: "Work",     about: "About",   contact: "Contact" },
+      footer: { work: "Work",     about: "About",   linkedin: "LinkedIn", resume: "Resume", builtWith: "Designed & built with care." },
+      hero:   { cta: "View Work", scroll: "Scroll" },
+      case:   { readMore: "Read Case Study", featuredLabel: "Featured Work", gridLabel: "Selected Work" },
+    },
+
     home: {
       hero: {
         eyebrow:   "Open to new opportunities",
@@ -47,7 +54,6 @@ const PORTFOLIO_DATA = {
         skills: [
           "Zero-to-one product design",
           "Legacy system refactoring",
-          "Conversion optimization",
           "Design systems",
           "UX research & validation",
           "Product thinking",
@@ -490,6 +496,13 @@ const PORTFOLIO_DATA = {
         es: "assets/cv/Lenin_Cuadra__Product_UX_UI_Designer_CV_ES.pdf",
       },
       lang:          "es",
+    },
+
+    ui: {
+      nav:    { work: "Trabajos",    about: "Sobre mí", contact: "Contacto" },
+      footer: { work: "Trabajos",    about: "Sobre mí", linkedin: "LinkedIn", resume: "CV", builtWith: "Diseñado y construido con cuidado." },
+      hero:   { cta: "Ver trabajos", scroll: "Scroll" },
+      case:   { readMore: "Ver caso", featuredLabel: "Destacado", gridLabel: "Trabajos seleccionados" },
     },
 
     home: {

@@ -50,9 +50,9 @@
   // --- Site-wide elements (header/footer on every page) ----------------------
 
   function renderSiteWide(content) {
-    const { site } = content;
+    const { site, ui } = content;
 
-    // Footer
+    // Footer links (href)
     setAllAttr('a[data-link="linkedin"]', 'href', site.linkedinUrl);
     const resumeUrl = resolveAssetUrl(
       typeof site.resumeUrl === 'object'
@@ -67,6 +67,23 @@
     // Footer year
     const fy = document.getElementById('footer-year');
     if (fy) fy.textContent = new Date().getFullYear();
+
+    // UI strings (nav, footer labels)
+    if (ui) {
+      setText('nav-work',      ui.nav.work);
+      setText('nav-about',     ui.nav.about);
+      setText('nav-contact',   ui.nav.contact);
+      setText('footer-work',   ui.footer.work);
+      setText('footer-about',  ui.footer.about);
+      setText('footer-linkedin', ui.footer.linkedin);
+      setText('footer-resume', ui.footer.resume);
+      setText('footer-built',  ui.footer.builtWith);
+      setText('hero-cta',      ui.hero.cta);
+      setText('hero-scroll',   ui.hero.scroll);
+      setText('label-featured', ui.case.featuredLabel);
+      setText('label-grid',    ui.case.gridLabel);
+      setText('fc-cta-label',  ui.case.readMore);
+    }
   }
 
   // --- Language toggle -------------------------------------------------------
@@ -113,7 +130,8 @@
   // --- INDEX PAGE ------------------------------------------------------------
 
   function renderIndex(content) {
-    const { home, cases, site } = content;
+    const { home, cases, site, ui } = content;
+    const readMoreLabel = (ui && ui.case.readMore) || 'Read Case Study';
 
     // Meta
     document.title = site.designerName + ' — Product Designer';
@@ -165,7 +183,7 @@
               <h3 class="case-card__title">${c.card.title}</h3>
               <p class="case-card__excerpt">${c.card.excerpt}</p>
               <a href="cases/case.html?slug=${c.slug}" class="case-card__cta">
-                Read Case Study
+                ${readMoreLabel}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
                 </svg>
@@ -203,7 +221,8 @@
     const emailLink = document.getElementById('contact-email');
     if (emailLink) {
       emailLink.href = 'mailto:' + site.email;
-      emailLink.textContent = site.email;
+      const emailLabel = document.getElementById('contact-email-label');
+      if (emailLabel) emailLabel.textContent = site.email;
     }
     setAttr('contact-linkedin', 'href', site.linkedinUrl);
   }

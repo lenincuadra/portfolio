@@ -55,11 +55,10 @@
           <a
             href="#work"
             class="site-header__nav-link site-header__nav-link--active"
-          >
-            Work
-          </a>
-          <a href="#about" class="site-header__nav-link">About</a>
-          <a href="#contact" class="site-header__nav-link">Contact</a>
+            id="nav-work"
+          >Work</a>
+          <a href="#about" class="site-header__nav-link" id="nav-about">About</a>
+          <a href="#contact" class="site-header__nav-link" id="nav-contact">Contact</a>
         </nav>
 
         <div class="site-header__controls">
@@ -135,8 +134,7 @@
         <div class="hero__bg" aria-hidden="true"></div>
         <div class="container hero__inner">
           <div class="hero__text">
-            <p class="hero__eyebrow" id="hero-eyebrow">[Current availability status]</p>
-            <h1 class="hero__name" id="hero-name">
+<h1 class="hero__name" id="hero-name">
               <span id="hero-first-name">[First Name]</span>
               <br />
               <em id="hero-last-name">[Last Name]</em>
@@ -149,16 +147,23 @@
               for, and what makes your approach distinctive.]
             </p>
             <div class="hero__actions">
-              <a href="#work" class="btn btn--primary">View Work</a>
+              <a href="#work" class="btn btn--primary">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+                <span id="hero-cta">View Work</span>
+              </a>
             </div>
           </div>
           <div class="hero__portrait" aria-hidden="true">
             <img src="assets/images/profile-pic.jpeg" alt="Portrait of Lenin Cuadra" loading="eager" />
+            <div class="hero__availability-badge">
+              <span class="hero__availability-dot"></span>
+              <span>Open to new opportunities</span>
+            </div>
           </div>
         </div>
 
         <div class="hero__scroll-hint" aria-hidden="true">
-          <span>Scroll</span>
+          <span id="hero-scroll">Scroll</span>
           <svg
             viewBox="0 0 24 24"
             fill="none"
@@ -176,7 +181,7 @@
          ====================================================== -->
       <section class="featured-case" id="featured-case" aria-labelledby="featured-case-title">
         <div class="container">
-          <p class="section__label">Featured Work</p>
+          <p class="section__label" id="label-featured">Featured Work</p>
           <div class="featured-case__inner">
             <div class="featured-case__header">
               <div class="featured-case__tags" id="fc-tags"></div>
@@ -185,7 +190,7 @@
             </div>
             <div class="featured-case__screens" id="fc-screens"></div>
             <a href="#" class="featured-case__cta" id="fc-cta">
-              Read Case Study
+              <span id="fc-cta-label">Read Case Study</span>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                 <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
               </svg>
@@ -199,7 +204,7 @@
          ====================================================== -->
       <section class="section" id="work" aria-labelledby="work-heading">
         <div class="container">
-          <p class="section__label">Selected Work</p>
+          <p class="section__label" id="label-grid">Selected Work</p>
           <h2 class="section__heading" id="work-heading">
             [Work section headline]
           </h2>
@@ -232,11 +237,17 @@
         <div class="container">
           <div class="bio-block">
             <div
-              class="bio-block__portrait"
-              aria-label="Lenin Cuadra portrait"
+              class="bio-block__portrait bio-block__portrait--venn"
+              aria-label="Design practice diagram: intersection of User, Business, and Technology"
             >
-              <img src="assets/images/profile-pic.jpeg" alt="Portrait of Lenin Cuadra" loading="lazy" />
-              <span aria-hidden="true"></span>
+              <svg class="venn-diagram" viewBox="0 0 320 400" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" aria-hidden="true">
+                <circle cx="120" cy="150" r="98" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-opacity="0.55" stroke-width="1.5"/>
+                <circle cx="200" cy="150" r="98" fill="var(--accent-2)" fill-opacity="0.12" stroke="var(--accent-2)" stroke-opacity="0.55" stroke-width="1.5"/>
+                <circle cx="160" cy="225" r="98" fill="#2a7a5c" fill-opacity="0.12" stroke="#2a7a5c" stroke-opacity="0.55" stroke-width="1.5"/>
+                <text x="68" y="112" text-anchor="middle" font-size="13" font-weight="500" fill="var(--accent)" font-family="Instrument Sans, system-ui, sans-serif" letter-spacing="0.02em">User</text>
+                <text x="252" y="112" text-anchor="middle" font-size="13" font-weight="500" fill="var(--accent-2)" font-family="Instrument Sans, system-ui, sans-serif" letter-spacing="0.02em">Business</text>
+                <text x="160" y="308" text-anchor="middle" font-size="13" font-weight="500" fill="#2a7a5c" font-family="Instrument Sans, system-ui, sans-serif" letter-spacing="0.02em">Tech</text>
+              </svg>
             </div>
             <div class="bio-block__text">
               <p class="section__label">About</p>
@@ -278,7 +289,8 @@
           </p>
           <div class="hero__actions" style="justify-content: center">
             <a href="mailto:" id="contact-email" class="btn btn--primary">
-              [email placeholder]
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+              <span id="contact-email-label">[email placeholder]</span>
             </a>
             <a
               href=""
@@ -287,6 +299,7 @@
               target="_blank"
               rel="noopener noreferrer"
             >
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
               LinkedIn
             </a>
           </div>
@@ -303,26 +316,24 @@
           <div>
           </div>
           <nav class="site-footer__links" aria-label="Footer navigation">
-            <a href="#work" class="site-footer__link">Work</a>
-            <a href="#about" class="site-footer__link">About</a>
+            <a href="#work" class="site-footer__link" id="footer-work">Work</a>
+            <a href="#about" class="site-footer__link" id="footer-about">About</a>
             <a
               href=""
               data-link="linkedin"
               class="site-footer__link"
+              id="footer-linkedin"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              LinkedIn
-            </a>
+            >LinkedIn</a>
             <a
               href=""
               data-link="resume"
               class="site-footer__link"
+              id="footer-resume"
               target="_blank"
               rel="noopener noreferrer"
-            >
-              Resume
-            </a>
+            >Resume</a>
           </nav>
         </div>
         <div class="site-footer__copy">
@@ -331,7 +342,7 @@
             <span id="footer-year"></span>
             Lenin Cuadra
           </span>
-          <span>Designed &amp; built with care.</span>
+          <span id="footer-built">Designed &amp; built with care.</span>
         </div>
       </div>
     </footer>
