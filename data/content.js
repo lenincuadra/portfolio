@@ -58,6 +58,7 @@ const PORTFOLIO_DATA = {
           "UX research & validation",
           "Product thinking",
         ],
+        vennCenter: "Me",
       },
       contact: {
         heading: "Let's build something meaningful.",
@@ -88,9 +89,9 @@ const PORTFOLIO_DATA = {
           process2:  "assets/images/fintech/2-3—Payment link/3-nx-proto-wireframes.gif",
           decisions: "assets/images/fintech/3-3—Nshop/3-screens01.png",
           screens: [
-            { src: "assets/images/fintech/1-3—web checkout/0-nx-portada.png",    label: "Web Checkout" },
-            { src: "assets/images/fintech/2-3—Payment link/0-nx-description.png", label: "Payment Link" },
-            { src: "assets/images/fintech/3-3—Nshop/3-screens01.png",            label: "Financial Dashboard" },
+            { src: "assets/images/fintech/1-3—web checkout/6-nx-proto-demo.mp4",       poster: "assets/images/fintech/1-3—web checkout/0-nx-portada.png",    label: "Web Checkout" },
+            { src: "assets/images/fintech/2-3—Payment link/4-nx-Demo-payment-link.mp4", poster: "assets/images/fintech/2-3—Payment link/0-nx-description.png", label: "Payment Link" },
+            { src: "assets/images/fintech/3-3—Nshop/9-financial-dashboard.mp4",         poster: "assets/images/fintech/3-3—Nshop/3-screens01.png",             label: "Financial Dashboard" },
           ],
         },
 
@@ -531,6 +532,7 @@ const PORTFOLIO_DATA = {
           "Investigación y validación UX",
           "Pensamiento de producto",
         ],
+        vennCenter: "Yo",
       },
       contact: {
         heading: "Construyamos algo con sentido.",
@@ -544,7 +546,21 @@ const PORTFOLIO_DATA = {
       // CASO 1 — FINTECH / NARANJA X
       // -----------------------------------------------------------------------
       {
-        slug: "fintech-ecosystem",
+        slug:     "fintech-ecosystem",
+        featured: true,
+
+        images: {
+          cover:     "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
+          hero:      "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
+          process1:  "assets/images/fintech/1-3—web checkout/1-nx-wireframes.png",
+          process2:  "assets/images/fintech/2-3—Payment link/3-nx-proto-wireframes.gif",
+          decisions: "assets/images/fintech/3-3—Nshop/3-screens01.png",
+          screens: [
+            { src: "assets/images/fintech/1-3—web checkout/6-nx-proto-demo.mp4",       poster: "assets/images/fintech/1-3—web checkout/0-nx-portada.png",    label: "Web Checkout" },
+            { src: "assets/images/fintech/2-3—Payment link/4-nx-Demo-payment-link.mp4", poster: "assets/images/fintech/2-3—Payment link/0-nx-description.png", label: "Payment Link" },
+            { src: "assets/images/fintech/3-3—Nshop/9-financial-dashboard.mp4",         poster: "assets/images/fintech/3-3—Nshop/3-screens01.png",             label: "Financial Dashboard" },
+          ],
+        },
 
         card: {
           tags:    ["Fintech", "Arquitectura de Producto", "Pagos"],

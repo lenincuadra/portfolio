@@ -159,11 +159,14 @@
       if (fcCta) fcCta.href = 'cases/case.html?slug=' + featured.slug;
       const fcScreens = document.getElementById('fc-screens');
       if (fcScreens && featured.images && featured.images.screens) {
-        fcScreens.innerHTML = featured.images.screens.map(s => `
-          <div class="fc-screen">
-            <img src="${resolveAssetUrl(s.src)}" alt="${s.label}" loading="lazy" />
-            <p class="fc-screen__label">${s.label}</p>
-          </div>`).join('');
+        fcScreens.innerHTML = featured.images.screens.map(s => {
+          const url = resolveAssetUrl(s.src);
+          const isVideo = s.src.endsWith('.mp4') || s.src.endsWith('.webm');
+          const media = isVideo
+            ? `<video src="${url}" ${s.poster ? `poster="${resolveAssetUrl(s.poster)}"` : ''} autoplay loop muted playsinline></video>`
+            : `<img src="${url}" alt="${s.label}" loading="lazy" />`;
+          return `<div class="fc-screen">${media}<p class="fc-screen__label">${s.label}</p></div>`;
+        }).join('');
       }
     }
 
@@ -214,6 +217,9 @@
     if (skillsEl && home.about.skills) {
       skillsEl.innerHTML = home.about.skills.map(s => `<span class="tag">${s}</span>`).join('');
     }
+
+    // About — Venn center label
+    setText('venn-center-label', home.about.vennCenter || '');
 
     // Contact
     setText('contact-heading', home.contact.heading);
@@ -308,6 +314,32 @@
     if (caseData.images) {
       setAttr('process-img1', 'src', resolveAssetUrl(caseData.images.process1));
       setAttr('process-img2', 'src', resolveAssetUrl(caseData.images.process2));
+    }
+
+    // Demos (videos)
+    if (caseData.images && caseData.images.demos) {
+      const demosGrid = document.getElementById('demos-grid');
+      if (demosGrid) {
+        demosGrid.innerHTML = caseData.images.demos.map((d, i) => `
+          <figure class="demo-figure reveal${i > 0 ? ' reveal-delay-' + i : ''}">
+            <div class="image-block image-block--wide">
+              <video
+                src="${resolveAssetUrl(d.src)}"
+                ${d.poster ? `poster="${resolveAssetUrl(d.poster)}"` : ''}
+                autoplay loop muted playsinline controls
+                aria-label="${d.label}"
+              ></video>
+            </div>
+            ${d.label ? `<figcaption class="demo-figure__caption">${d.label}</figcaption>` : ''}
+          </figure>`).join('');
+        // Observe new reveal elements
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
+          });
+        }, { threshold: 0.05 });
+        demosGrid.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+      }
     }
 
     // Key Decisions
