@@ -85,6 +85,7 @@
         <div class="container">
           <div class="case-hero__meta" id="case-hero-tags"></div>
           <h1 class="case-hero__title" id="case-title"></h1>
+          <p class="section__label" style="margin-top: var(--sp-8); margin-bottom: var(--sp-3)">Overview</p>
           <p class="case-hero__summary" id="case-summary"></p>
           <div class="case-hero__image-wrap">
             <img id="case-hero-img" src="" alt="" loading="eager" />
@@ -104,7 +105,7 @@
               <p class="quick-scan__cell-label">Team</p>
               <p class="quick-scan__cell-value" id="qs-team"></p>
             </div>
-            <div class="quick-scan__cell">
+            <div class="quick-scan__cell" hidden>
               <p class="quick-scan__cell-label">Timeline</p>
               <p class="quick-scan__cell-value" id="qs-timeline"></p>
             </div>
@@ -117,47 +118,32 @@
         <div class="quick-scan__compact" id="qs-compact" aria-hidden="true">
           <span id="qs-compact-role"></span>
           <span class="quick-scan__sep" aria-hidden="true">|</span>
+          <span id="qs-compact-team"></span>
+          <span class="quick-scan__sep" aria-hidden="true">|</span>
           <span id="qs-compact-title"></span>
         </div>
       </section>
 
       <!-- 3. OVERVIEW -->
-      <section id="section-overview" data-toc-label="Overview"
+      <section id="section-overview" data-toc-label="Overview" data-toc-label-es="Descripción general"
                class="section" aria-labelledby="overview-heading">
         <div class="container">
-          <p class="section__label">Overview</p>
-          <div class="grid-aside">
-            <div>
-              <h2 class="section__subheading" id="overview-heading">
-                <span id="overview-subheading"></span>
-              </h2>
-              <div class="tag-group" id="overview-tags" style="margin-bottom: 1.5rem"></div>
-            </div>
-            <div>
-              <p class="section__body" id="overview-body1"></p>
-              <hr class="section__divider" />
-              <p class="section__body" id="overview-body2"></p>
-            </div>
-          </div>
+          <p class="section__label" data-label-es="Descripción general">Overview</p>
+          <h2 class="section__subheading" id="overview-heading" style="margin-bottom: 0.75rem">
+            <span id="overview-subheading"></span>
+          </h2>
+          <div class="tag-group" id="overview-tags" style="margin-bottom: 1.5rem"></div>
+          <div class="process-steps" id="overview-steps"></div>
         </div>
       </section>
 
       <!-- 4. PROBLEM -->
-      <section id="section-problem" data-toc-label="Problem"
-               class="section section--alt" aria-labelledby="problem-heading">
+      <section id="section-problem" data-toc-label="Problem" data-toc-label-es="Problema"
+               class="section" aria-labelledby="problem-heading">
         <div class="container">
-          <p class="section__label">Problem</p>
+          <p class="section__label" data-label-es="Problema">Problem</p>
           <h2 class="section__heading" id="problem-heading"></h2>
-          <div class="grid-2" style="margin-top: 2.5rem">
-            <div>
-              <p class="section__body" id="problem-body"></p>
-            </div>
-            <div>
-              <div class="image-block image-block--wide reveal">
-                <div class="image-block__placeholder">[Problem context image or diagram]</div>
-              </div>
-            </div>
-          </div>
+          <div class="process-steps" id="problem-steps" style="margin-top: 2.5rem"></div>
           <div class="callout" style="margin-top: 3rem">
             <p class="callout__quote" id="problem-quote"></p>
             <p class="callout__attr"  id="problem-quote-attr"></p>
@@ -166,40 +152,32 @@
       </section>
 
       <!-- 5. CONSTRAINTS -->
-      <section id="section-constraints" data-toc-label="Constraints"
+      <section id="section-constraints" data-toc-label="Constraints" data-toc-label-es="Limitantes"
                class="section" aria-labelledby="constraints-heading">
         <div class="container">
-          <p class="section__label">Constraints</p>
+          <p class="section__label" data-label-es="Limitantes">Constraints</p>
           <h2 class="section__heading" id="constraints-heading"></h2>
           <div class="grid-3" id="constraints-grid" style="margin-top: 2.5rem; gap: 1rem"></div>
         </div>
       </section>
 
       <!-- 6. ROLE -->
-      <section id="section-role" data-toc-label="My Role"
-               class="section section--alt" aria-labelledby="role-heading">
+      <section id="section-role" data-toc-label="My Role" data-toc-label-es="Mi Rol"
+               class="section" aria-labelledby="role-heading">
         <div class="container">
-          <p class="section__label">My Role</p>
-          <div class="grid-aside">
-            <div>
-              <h2 class="section__subheading" id="role-heading">
-                <span id="role-subheading"></span>
-              </h2>
-            </div>
-            <div>
-              <p class="section__body" id="role-body1"></p>
-              <hr class="section__divider" />
-              <p class="section__body" id="role-body2"></p>
-            </div>
-          </div>
+          <p class="section__label" data-label-es="Mi Rol">My Role</p>
+          <h2 class="section__subheading" id="role-heading" style="margin-bottom: 1.5rem">
+            <span id="role-subheading"></span>
+          </h2>
+          <div class="process-steps" id="role-steps"></div>
         </div>
       </section>
 
       <!-- 7. PROCESS -->
-      <section id="section-process" data-toc-label="Process"
+      <section id="section-process" data-toc-label="Process" data-toc-label-es="El proceso"
                class="section" aria-labelledby="process-heading">
         <div class="container">
-          <p class="section__label">Process</p>
+          <p class="section__label" data-label-es="El proceso">Process</p>
           <h2 class="section__heading" id="process-heading"></h2>
           <hr class="section__divider" />
           <div class="process-steps" id="process-steps" style="margin-top: 1rem"></div>
@@ -216,12 +194,12 @@
       </section>
 
       <!-- 8. KEY DECISIONS -->
-      <section id="section-decisions" data-toc-label="Key Decisions"
-               class="section section--alt" aria-labelledby="decisions-heading">
+      <section id="section-decisions" data-toc-label="Key Decisions" data-toc-label-es="Decisiones claves"
+               class="section" aria-labelledby="decisions-heading">
         <div class="container">
-          <p class="section__label">Key Decisions</p>
+          <p class="section__label" data-label-es="Decisiones claves">Key Decisions</p>
           <h2 class="section__heading" id="decisions-heading"></h2>
-          <div id="decisions-list" style="margin-top: 2.5rem"></div>
+          <div class="process-steps" id="decisions-list" style="margin-top: 2.5rem"></div>
           <div class="image-block image-block--wide reveal" style="margin-top: 3rem" id="decisions-img-wrap">
             <img id="decisions-img" src="" alt="" loading="lazy" />
           </div>
@@ -229,10 +207,10 @@
       </section>
 
       <!-- 9. IMPACT -->
-      <section id="section-impact" data-toc-label="Impact"
+      <section id="section-impact" data-toc-label="Impact" data-toc-label-es="Impacto"
                class="section" aria-labelledby="impact-heading">
         <div class="container">
-          <p class="section__label">Impact</p>
+          <p class="section__label" data-label-es="Impacto">Impact</p>
           <h2 class="section__heading" id="impact-heading"></h2>
           <div class="grid-4" id="impact-grid" style="margin-top: 2.5rem; gap: 1rem"></div>
           <hr class="section__divider" style="margin-top: 3rem" />
@@ -241,15 +219,12 @@
       </section>
 
       <!-- 10. LEARNINGS -->
-      <section id="section-learnings" data-toc-label="Learnings"
-               class="section section--alt" aria-labelledby="learnings-heading">
+      <section id="section-learnings" data-toc-label="Learnings" data-toc-label-es="Aprendizajes"
+               class="section" aria-labelledby="learnings-heading">
         <div class="container">
-          <p class="section__label">Learnings</p>
+          <p class="section__label" data-label-es="Aprendizajes">Learnings</p>
           <h2 class="section__heading" id="learnings-heading"></h2>
-          <div class="grid-aside" style="margin-top: 2.5rem">
-            <div></div>
-            <div id="learnings-list"></div>
-          </div>
+          <div class="process-steps" id="learnings-list" style="margin-top: 2.5rem"></div>
         </div>
       </section>
 

@@ -61,8 +61,8 @@ const PORTFOLIO_DATA = {
         vennCenter: "Me",
       },
       contact: {
-        heading: "Let's build something meaningful.",
-        body:    "I'm open to product design roles, collaborations, and conversations around complex systems, platform design, and scalable experiences.",
+        heading: "I'm open to product design roles...",
+        body:    "Collaborations, and conversations around complex systems, platform design, and scalable experiences.",
       },
       capabilities: [
         "Zero-to-one product creation",
@@ -96,7 +96,7 @@ const PORTFOLIO_DATA = {
         },
 
         card: {
-          tags:    ["Fintech", "Product Architecture", "Payments"],
+          tags:    ["Fintech", "Payments", "Product Architecture"],
           title:   "Zero-to-one: Connected Payment Ecosystem",
           excerpt: "Designed the first cohesive version of a three-product fintech ecosystem for Naranja X, enabling merchants to collect payments through embedded checkout, payment links and financial dashboards.",
         },
@@ -116,25 +116,25 @@ const PORTFOLIO_DATA = {
           role:     "Sole Product Designer across three product surfaces",
           team:     "Product Owner · Frontend Engineers · Backend Engineers",
           timeline: "6 months",
-          tools:    "Adobe XD · Scrum + Lean UX",
+          tools:    "Figma · Scrum + Lean UX",
         },
 
         overview: {
-          subheading: "A payment ecosystem built from scratch, balancing three competing forces.",
+          subheading: "A payment ecosystem built from scratch",
           tags:       ["Fintech", "Online Payments", "Zero-to-one"],
           body1:      "The project consisted of three connected product surfaces working together in a payment ecosystem: Web Checkout (buyer-facing payment interface), Payment Link (merchant tool for collecting payments), and NShops (financial dashboard for visibility and operations).",
           body2:      "As the sole design owner across the three products, I translated business requirements and technical constraints into a coherent product system — defining interaction models, aligning flows with backend realities, and ensuring operational logic, user clarity and business visibility coexisted.",
         },
 
         problem: {
-          heading:   "Three products, three sets of friction — all compounding each other.",
+          heading:   "Three products, three sets of friction",
           body:      "Web Checkout faced slow backend response times and severe UI customization limits imposed by Payment Gateway Lyra. Payment Link had single-attempt MVP logic: once a link expired after a failed payment, it was gone permanently. NShops had no centralized financial visibility and weak status communication — leaving merchants unable to understand the state of their operations.",
           quote:     "The challenge was not just UI. It was balancing Buyer Experience, Merchant Operations, and Business Visibility — simultaneously.",
           quoteAttr: "Design framing, project kickoff",
         },
 
         constraints: {
-          heading: "Real technical constraints, real design decisions.",
+          heading: "Real technical constraints",
           items: [
             { value: "CSS-only",      label: "Payment Gateway (Lyra) UI limits",   note: "No JavaScript access to the checkout interface — all customization through CSS alone." },
             { value: "Single-attempt", label: "Payment Link expiry logic",           note: "Links expired permanently after a failed payment — no recovery path for merchants." },
@@ -149,7 +149,7 @@ const PORTFOLIO_DATA = {
         },
 
         process: {
-          heading: "From paper to production in structure, not speed.",
+          heading: "From paper to production in structure",
           steps: [
             {
               phase: "Move Fast with Structure",
@@ -175,7 +175,7 @@ const PORTFOLIO_DATA = {
         },
 
         decisions: {
-          heading: "Decisions that shaped the system.",
+          heading: "Decisions that shaped the system",
           items: [
             {
               title: "Prioritize Happy Path definition before visual refinement",
@@ -193,7 +193,7 @@ const PORTFOLIO_DATA = {
         },
 
         impact: {
-          heading: "A payment ecosystem where none previously existed.",
+          heading: "A payment ecosystem where none previously existed",
           metrics: [
             { value: "3",          label: "Connected product surfaces launched", note: "Checkout · Payment Link · NShops" },
             { value: "5/7",        label: "Users completed Payment Link creation", note: "7-user usability study, Happy Path" },
@@ -204,7 +204,7 @@ const PORTFOLIO_DATA = {
         },
 
         learnings: {
-          heading: "What this case signals.",
+          heading: "What this case signals",
           items: [
             "Lead Designer: Strong execution under constraints with structured thinking — able to move fast without losing coherence across a complex system.",
             "Head of Product: Understands ecosystem impact and trade-offs — design decisions are evaluated based on how they balance multiple dimensions simultaneously.",
@@ -583,25 +583,25 @@ const PORTFOLIO_DATA = {
           role:     "Product Designer único en tres superficies de producto",
           team:     "Product Owner · Ingenieros Frontend · Ingenieros Backend",
           timeline: "6 meses",
-          tools:    "Adobe XD · Scrum + Lean UX",
+          tools:    "Figma · Scrum + Lean UX",
         },
 
         overview: {
-          subheading: "Un ecosistema de pagos construido desde cero, equilibrando tres fuerzas en competencia.",
+          subheading: "Un ecosistema de pagos construido desde cero",
           tags:       ["Fintech", "Pagos Online", "Zero-to-one"],
           body1:      "El proyecto consistió en tres superficies de producto conectadas que funcionaban juntas en un ecosistema de pagos: Web Checkout (interfaz de pago orientada al comprador), Payment Link (herramienta para comerciantes para cobrar pagos) y NShops (dashboard financiero para visibilidad y operaciones).",
           body2:      "Como único responsable de diseño en los tres productos, traduje los requisitos de negocio y las restricciones técnicas en un sistema de producto coherente — definiendo modelos de interacción, alineando flujos con las realidades del backend, y asegurando que la lógica operacional, la claridad para el usuario y la visibilidad del negocio coexistieran.",
         },
 
         problem: {
-          heading:   "Tres productos, tres fuentes de fricción — todas amplificándose entre sí.",
+          heading:   "Tres productos, tres fuentes de fricción",
           body:      "Web Checkout enfrentaba tiempos de respuesta lentos del backend y severas limitaciones de personalización de UI impuestas por el Payment Gateway Lyra. Payment Link tenía lógica MVP de intento único: una vez que el link expiraba tras un pago fallido, desaparecía permanentemente. NShops no tenía visibilidad financiera centralizada y una comunicación de estado débil — dejando a los comerciantes sin capacidad de entender el estado de sus operaciones.",
           quote:     "El desafío no era solo la UI. Era equilibrar la Experiencia del Comprador, las Operaciones del Comerciante y la Visibilidad del Negocio — simultáneamente.",
           quoteAttr: "Encuadre de diseño, kickoff del proyecto",
         },
 
         constraints: {
-          heading: "Restricciones técnicas reales, decisiones de diseño reales.",
+          heading: "Restricciones técnicas reales",
           items: [
             { value: "Solo CSS",       label: "Límites de UI del Payment Gateway (Lyra)", note: "Sin acceso a JavaScript en la interfaz de checkout — toda la personalización solo a través de CSS." },
             { value: "Intento único",  label: "Lógica de expiración del Payment Link",    note: "Los links expiraban permanentemente tras un pago fallido — sin ruta de recuperación para los comerciantes." },
@@ -616,7 +616,7 @@ const PORTFOLIO_DATA = {
         },
 
         process: {
-          heading: "Del papel a producción con estructura, no con velocidad.",
+          heading: "Del papel a producción con estructura",
           steps: [
             {
               phase: "Avanzar rápido con estructura",
@@ -642,7 +642,7 @@ const PORTFOLIO_DATA = {
         },
 
         decisions: {
-          heading: "Decisiones que moldearon el sistema.",
+          heading: "Decisiones que moldearon el sistema",
           items: [
             {
               title: "Priorizar la definición del Happy Path antes del refinamiento visual",
@@ -660,7 +660,7 @@ const PORTFOLIO_DATA = {
         },
 
         impact: {
-          heading: "Un ecosistema de pagos donde antes no existía ninguno.",
+          heading: "Un ecosistema de pagos donde antes no existía ninguno",
           metrics: [
             { value: "3",          label: "Superficies de producto conectadas lanzadas", note: "Checkout · Payment Link · NShops" },
             { value: "5/7",        label: "Usuarios completaron la creación del Payment Link", note: "Estudio de usabilidad con 7 usuarios, Happy Path" },
@@ -671,7 +671,7 @@ const PORTFOLIO_DATA = {
         },
 
         learnings: {
-          heading: "Lo que este caso señala.",
+          heading: "Lo que este caso señala",
           items: [
             "Lead Designer: Sólida ejecución bajo restricciones con pensamiento estructurado — capacidad de avanzar rápido sin perder coherencia en un sistema complejo.",
             "Head of Product: Comprende el impacto del ecosistema y los trade-offs — las decisiones de diseño se evalúan en función de cómo equilibran múltiples dimensiones simultáneamente.",

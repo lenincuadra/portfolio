@@ -9,6 +9,19 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.6.0] — 2026-03-26
+
+### Added
+- **Section label i18n** — all 8 section labels in `case.html` now carry `data-label-es` and `data-toc-label-es` attributes; `renderCase()` swaps them on load and `buildTOC()` picks the correct label per language (ES: Descripción general, Problema, Limitantes, Mi Rol, El proceso, Decisiones claves, Impacto, Aprendizajes)
+
+### Changed
+- **Case section headings (fintech, EN + ES)** — shortened to remove trailing clauses and periods: Overview, Problem, Constraints, Process, Key Decisions, Impact, Learnings headings all trimmed to their core statement
+- **Quick Scan grid** — Timeline cell hidden (`hidden` attribute); grid changed from `repeat(4, 1fr)` to `repeat(3, 1fr)` so My Role, Team, and Tools fill the full width
+- **Case content padding** — removed `padding-inline: var(--sp-8)` from `.case-content .container`; side padding is now `0`
+- **`section--alt` removed** — background alternation between sections eliminated; all sections now use only `class="section"`
+
+---
+
 ## [0.5.0] — 2026-03-24
 
 ### Added

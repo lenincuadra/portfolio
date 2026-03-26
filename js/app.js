@@ -47,6 +47,31 @@
     });
   }
 
+  function renderCellValue(id, value) {
+    const el = document.getElementById(id);
+    if (!el || value == null) return;
+    const parts = value.split(' · ').filter(Boolean);
+    if (parts.length > 1) {
+      el.innerHTML = '<ul class="quick-scan__list">' +
+        parts.map(p => `<li>${p}</li>`).join('') + '</ul>';
+    } else {
+      el.textContent = value;
+    }
+  }
+
+  function buildProcessStep(index, title, body) {
+    const num = String(index + 1).padStart(2, '0');
+    const titleHtml = title ? `<h3 class="process-step__title">${title}</h3>` : '';
+    return `
+      <div class="process-step reveal">
+        <span class="process-step__number" aria-hidden="true">${num}</span>
+        <div class="process-step__content">
+          ${titleHtml}
+          <p class="process-step__body">${body}</p>
+        </div>
+      </div>`;
+  }
+
   // --- Site-wide elements (header/footer on every page) ----------------------
 
   function renderSiteWide(content) {
@@ -246,6 +271,12 @@
     const caseData = content.cases.find(c => c.slug === slug);
     if (!caseData) { showCaseNotFound(); return; }
 
+    // Section labels (i18n)
+    const lang = getLang();
+    document.querySelectorAll('.section__label[data-label-es]').forEach(el => {
+      el.textContent = (lang === 'es') ? el.dataset.labelEs : (el.dataset.labelEn || el.textContent);
+    });
+
     // Meta
     document.title = caseData.meta.title;
     const metaDesc = document.querySelector('meta[name="description"]');
@@ -263,23 +294,30 @@
 
     // Quick Scan
     setText('qs-role',     caseData.quickScan.role);
-    setText('qs-team',     caseData.quickScan.team);
+    renderCellValue('qs-team',     caseData.quickScan.team);
     setText('qs-timeline', caseData.quickScan.timeline);
-    setText('qs-tools',    caseData.quickScan.tools);
+    renderCellValue('qs-tools',    caseData.quickScan.tools);
     // Compact bar
     setText('qs-compact-role',  caseData.quickScan.role);
+    setText('qs-compact-team',  caseData.quickScan.team);
     setText('qs-compact-title', caseData.hero.title);
 
     // Overview
     setText('overview-subheading', caseData.overview.subheading);
     const ovTags = document.getElementById('overview-tags');
     if (ovTags) ovTags.innerHTML = buildTags(caseData.overview.tags);
-    setText('overview-body1', caseData.overview.body1);
-    setText('overview-body2', caseData.overview.body2);
+    const overviewSteps = document.getElementById('overview-steps');
+    if (overviewSteps) {
+      overviewSteps.innerHTML = [caseData.overview.body1, caseData.overview.body2]
+        .map((body, i) => buildProcessStep(i, null, body)).join('');
+    }
 
     // Problem
     setText('problem-heading',   caseData.problem.heading);
-    setText('problem-body',      caseData.problem.body);
+    const problemSteps = document.getElementById('problem-steps');
+    if (problemSteps) {
+      problemSteps.innerHTML = buildProcessStep(0, null, caseData.problem.body);
+    }
     setText('problem-quote',     '"' + caseData.problem.quote + '"');
     setText('problem-quote-attr', caseData.problem.quoteAttr);
 
@@ -292,8 +330,11 @@
 
     // Role
     setText('role-subheading', caseData.role.subheading);
-    setText('role-body1',      caseData.role.body1);
-    setText('role-body2',      caseData.role.body2);
+    const roleSteps = document.getElementById('role-steps');
+    if (roleSteps) {
+      roleSteps.innerHTML = [caseData.role.body1, caseData.role.body2]
+        .map((body, i) => buildProcessStep(i, null, body)).join('');
+    }
 
     // Process
     setText('process-heading', caseData.process.heading);
@@ -346,12 +387,8 @@
     setText('decisions-heading', caseData.decisions.heading);
     const decisionsEl = document.getElementById('decisions-list');
     if (decisionsEl) {
-      decisionsEl.innerHTML = caseData.decisions.items.map((d, i) => `
-        <div class="decision-block reveal">
-          <p class="decision-block__number">Decision ${String(i + 1).padStart(2, '0')}</p>
-          <h3 class="decision-block__title">${d.title}</h3>
-          <p class="decision-block__body">${d.body}</p>
-        </div>`).join('');
+      decisionsEl.innerHTML = caseData.decisions.items
+        .map((d, i) => buildProcessStep(i, d.title, d.body)).join('');
     }
 
     // Decisions image
@@ -371,9 +408,8 @@
     setText('learnings-heading', caseData.learnings.heading);
     const learningsEl = document.getElementById('learnings-list');
     if (learningsEl) {
-      learningsEl.innerHTML = caseData.learnings.items.map(item =>
-        `<p class="section__body">${item}</p><hr class="section__divider" />`
-      ).join('');
+      learningsEl.innerHTML = caseData.learnings.items
+        .map((item, i) => buildProcessStep(i, null, item)).join('');
     }
 
     // Case Navigation
@@ -425,7 +461,7 @@
 
       const labelSpan = document.createElement('span');
       labelSpan.className   = 'toc-nav__link-label';
-      labelSpan.textContent = section.dataset.tocLabel;
+      labelSpan.textContent = (lang === 'es' && section.dataset.tocLabelEs) ? section.dataset.tocLabelEs : section.dataset.tocLabel;
       a.appendChild(labelSpan);
 
       const h2 = section.querySelector('h2');
