@@ -40,11 +40,19 @@
         </svg>
       </a>
 
-      <nav class="site-header__nav" id="primary-nav" aria-label="Primary navigation">
-        <a href="../index.html#work"    class="site-header__nav-link site-header__nav-link--active">Work</a>
-        <a href="../index.html#about"   class="site-header__nav-link">About</a>
-        <a href="../index.html#contact" class="site-header__nav-link">Contact</a>
-      </nav>
+      <div class="site-header__center">
+        <nav class="site-header__nav" id="primary-nav" aria-label="Primary navigation">
+          <a href="../index.html#work"    class="site-header__nav-link site-header__nav-link--active">Work</a>
+          <a href="../index.html#about"   class="site-header__nav-link">About</a>
+          <a href="../index.html#contact" class="site-header__nav-link">Contact</a>
+        </nav>
+
+        <div class="site-header__case-compact" id="site-header-compact" aria-hidden="true">
+          <span id="qs-compact-role"></span>
+          <span class="quick-scan__sep" aria-hidden="true">|</span>
+          <span id="qs-compact-title"></span>
+        </div>
+      </div>
 
       <div class="site-header__controls">
         <div class="lang-switch" role="group" aria-label="Language selector">
@@ -85,11 +93,6 @@
         <div class="container">
           <div class="case-hero__meta" id="case-hero-tags"></div>
           <h1 class="case-hero__title" id="case-title"></h1>
-          <p class="section__label" style="margin-top: var(--sp-8); margin-bottom: var(--sp-3)">Overview</p>
-          <p class="case-hero__summary" id="case-summary"></p>
-          <div class="case-hero__image-wrap">
-            <img id="case-hero-img" src="" alt="" loading="eager" />
-          </div>
         </div>
       </section>
 
@@ -115,13 +118,6 @@
             </div>
           </div>
         </div>
-        <div class="quick-scan__compact" id="qs-compact" aria-hidden="true">
-          <span id="qs-compact-role"></span>
-          <span class="quick-scan__sep" aria-hidden="true">|</span>
-          <span id="qs-compact-team"></span>
-          <span class="quick-scan__sep" aria-hidden="true">|</span>
-          <span id="qs-compact-title"></span>
-        </div>
       </section>
 
       <!-- 3. OVERVIEW -->
@@ -134,6 +130,9 @@
           </h2>
           <div class="tag-group" id="overview-tags" style="margin-bottom: 1.5rem"></div>
           <div class="process-steps" id="overview-steps"></div>
+          <div class="image-block image-block--wide reveal" id="overview-img-wrap" style="display:none; margin-top: 3rem">
+            <img id="overview-img" src="" alt="" loading="lazy" />
+          </div>
         </div>
       </section>
 
