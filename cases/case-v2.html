@@ -3,27 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="" />
-  <title>Case Study</title>
+  <title>Case V2 — E-commerce</title>
   <link rel="stylesheet" href="../styles/main.css" />
   <link rel="icon" href="../assets/logo/logo-lc-favicon.svg" type="image/svg+xml" />
+  <style>
+    .case-hero__title { font-weight: 700; }
+    img { display: block; margin-left: auto; margin-right: auto; }
+    .overview-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--col-gap, 2rem);
+      align-items: start;
+    }
+    .overview-layout img { margin-top: 0; width: 100%; }
+    @media (max-width: 768px) {
+      .overview-layout { grid-template-columns: 1fr; }
+    }
+    .process-steps--horizontal { display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap, 2rem); }
+    .process-steps--3col { grid-template-columns: 1fr 1fr 1fr; }
+    .process-steps--horizontal .process-step { padding-block: 0.5rem !important; grid-template-columns: 24px 1fr; gap: var(--sp-3); }
+    .process-steps--horizontal .process-step:last-child { border-bottom: 1px solid var(--border-subtle); }
+    @media (max-width: 768px) {
+      .process-steps--horizontal,
+      .process-steps--3col { grid-template-columns: 1fr; }
+      .process-steps--horizontal .process-step:last-child { border-bottom: none; }
+    }
+  </style>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- ======================================================
-       SITE HEADER
-       ====================================================== -->
+  <!-- SITE HEADER -->
   <header class="site-header" role="banner">
     <div class="site-header__inner">
-
       <a href="../index.html" class="site-header__logo" aria-label="Lenin Cuadra — home">
-        <svg
-          class="site-header__logo-svg"
-          width="160" height="26" viewBox="0 0 160 26"
-          fill="none" xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-        >
+        <svg class="site-header__logo-svg" width="160" height="26" viewBox="0 0 160 26" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
           <path d="M55.534 19.8843C54.5335 19.8843 53.67 19.6871 52.9435 19.2927C52.2211 18.8941 51.6648 18.3275 51.2746 17.5926C50.8885 16.8537 50.6954 15.9756 50.6954 14.9585C50.6954 13.9704 50.8905 13.1069 51.2808 12.3679C51.671 11.6248 52.2211 11.0477 52.931 10.6367C53.6409 10.2216 54.4775 10.014 55.4406 10.014C56.1215 10.014 56.7442 10.1199 57.3088 10.3316C57.8734 10.5433 58.3612 10.8568 58.7722 11.2719C59.1832 11.6871 59.5029 12.1998 59.7312 12.8101C59.9596 13.4162 60.0737 14.1116 60.0737 14.8962V15.6559H51.7603V13.8874H57.2403C57.2362 13.5636 57.1593 13.275 57.0099 13.0218C56.8604 12.7686 56.6549 12.5714 56.3934 12.4302C56.136 12.2849 55.8392 12.2122 55.5029 12.2122C55.1625 12.2122 54.8573 12.2891 54.5875 12.4427C54.3176 12.5921 54.1038 12.7976 53.9461 13.0592C53.7883 13.3166 53.7053 13.6092 53.697 13.9372V15.7369C53.697 16.1271 53.7738 16.4696 53.9274 16.7644C54.081 17.055 54.2989 17.2813 54.5812 17.4432C54.8636 17.6051 55.1998 17.686 55.5901 17.686C55.8599 17.686 56.1049 17.6487 56.3249 17.574C56.5449 17.4992 56.7338 17.3892 56.8916 17.2439C57.0493 17.0986 57.1677 16.9201 57.2465 16.7084L60.0426 16.7893C59.9263 17.4162 59.671 17.9621 59.2766 18.4271C58.8864 18.8879 58.3737 19.247 57.7385 19.5044C57.1033 19.7577 56.3685 19.8843 55.534 19.8843Z" fill="currentColor"/>
           <path d="M64.6741 14.2486V19.7037H61.629V10.1386H64.5247V11.8947H64.6306C64.8423 11.3093 65.2035 10.8505 65.7141 10.5184C66.2247 10.1821 66.8329 10.014 67.5387 10.014C68.2112 10.014 68.7945 10.1655 69.2886 10.4686C69.7868 10.7675 70.1728 11.1868 70.4468 11.7265C70.725 12.2621 70.862 12.8889 70.8578 13.6072V19.7037H67.8127V14.205C67.8169 13.6736 67.6819 13.2584 67.4079 12.9595C67.1381 12.6606 66.7624 12.5112 66.2808 12.5112C65.9611 12.5112 65.6788 12.5817 65.4339 12.7229C65.1931 12.8599 65.0063 13.0571 64.8734 13.3145C64.7447 13.5719 64.6783 13.8832 64.6741 14.2486Z" fill="currentColor"/>
           <path d="M72.7432 19.7037V10.1386H75.7883V19.7037H72.7432ZM74.2689 9.02387C73.8412 9.02387 73.4738 8.88272 73.1666 8.60042C72.8594 8.31396 72.7058 7.96938 72.7058 7.56668C72.7058 7.16814 72.8594 6.82771 73.1666 6.54541C73.4738 6.25895 73.8412 6.11572 74.2689 6.11572C74.7006 6.11572 75.068 6.25895 75.3711 6.54541C75.6783 6.82771 75.8319 7.16814 75.8319 7.56668C75.8319 7.96938 75.6783 8.31396 75.3711 8.60042C75.068 8.88272 74.7006 9.02387 74.2689 9.02387Z" fill="currentColor"/>
@@ -39,186 +52,224 @@
           <path d="M15.1875 5.38184V18.415H22.2549V22.3818H10V4.24805L15.1875 5.38184Z" fill="currentColor"/>
         </svg>
       </a>
-
       <div class="site-header__center">
-        <nav class="site-header__nav" id="primary-nav" aria-label="Primary navigation">
-          <a href="../index.html#work"    class="site-header__nav-link site-header__nav-link--active">Work</a>
-          <a href="../index.html#about"   class="site-header__nav-link">About</a>
+        <nav class="site-header__nav" aria-label="Primary navigation">
+          <a href="../index.html#work" class="site-header__nav-link site-header__nav-link--active">Work</a>
+          <a href="../index.html#about" class="site-header__nav-link">About</a>
           <a href="../index.html#contact" class="site-header__nav-link">Contact</a>
         </nav>
-
-        <div class="site-header__case-compact" id="site-header-compact" aria-hidden="true">
-          <span id="qs-compact-role"></span>
-          <span class="quick-scan__sep" aria-hidden="true">|</span>
-          <span id="qs-compact-title"></span>
-        </div>
       </div>
-
       <div class="site-header__controls">
         <div class="lang-switch" role="group" aria-label="Language selector">
-          <button class="lang-switch__btn" data-lang="en" aria-current="true">EN</button>
-          <button class="lang-switch__btn" data-lang="es" aria-current="false">ES</button>
+          <button class="lang-switch__btn" data-lang="en">EN</button>
+          <button class="lang-switch__btn" data-lang="es">ES</button>
         </div>
-
         <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
-          <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
-          </svg>
-          <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
-          </svg>
-        </button>
-
-        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav">
-          <span></span><span></span><span></span>
+          <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         </button>
       </div>
-
     </div>
   </header>
 
-  <!-- ======================================================
-       CASE LAYOUT: content column + TOC sidebar
-       ====================================================== -->
+  <!-- CASE LAYOUT: content + TOC sidebar -->
   <div class="case-layout">
 
     <main id="main-content" class="case-content">
 
-      <!-- 1. HERO — not in TOC (above the fold) -->
-      <section class="case-hero" id="case-facts-bar" aria-labelledby="case-title">
+      <!-- HERO -->
+      <section class="case-hero" aria-labelledby="case-title">
         <div class="container">
-          <div class="case-hero__meta" id="case-hero-tags"></div>
-          <h1 class="case-hero__title" id="case-title"></h1>
+          <div class="case-hero__meta">
+            <span class="case-hero__tag">E-commerce</span>
+            <span class="case-hero__tag">Conversion Optimization</span>
+            <span class="case-hero__tag">Montironi Automotive</span>
+          </div>
+          <h1 class="case-hero__title" id="case-title">221% Revenue Increase Driven Purely by UX Intervention (Q1).</h1>
         </div>
         <div class="quick-scan__full">
           <div class="quick-scan__grid">
             <div class="quick-scan__cell">
               <p class="quick-scan__cell-label">My Role</p>
-              <p class="quick-scan__cell-value" id="qs-role"></p>
+              <p class="quick-scan__cell-value">Product Designer — UX Redesign &amp; Channel Strategy</p>
             </div>
             <div class="quick-scan__cell">
               <p class="quick-scan__cell-label">Team</p>
-              <p class="quick-scan__cell-value" id="qs-team"></p>
-            </div>
-            <div class="quick-scan__cell" hidden>
-              <p class="quick-scan__cell-label">Timeline</p>
-              <p class="quick-scan__cell-value" id="qs-timeline"></p>
+              <p class="quick-scan__cell-value">Business stakeholders<br>Development team</p>
             </div>
             <div class="quick-scan__cell">
               <p class="quick-scan__cell-label">Tools</p>
-              <p class="quick-scan__cell-value" id="qs-tools"></p>
+              <p class="quick-scan__cell-value">UX redesign<br>Conversion analysis<br>Channel strategy</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- 3. OVERVIEW -->
-      <section id="section-overview" data-toc-label="Overview" data-toc-label-es="Descripción general"
-               class="section" aria-labelledby="overview-heading">
+      <!-- OVERVIEW -->
+      <section id="section-overview" data-toc-label="Overview" class="section" aria-labelledby="overview-heading">
         <div class="container">
-          <p class="section__label" data-label-es="Descripción general">Overview</p>
-          <h2 class="section__heading" id="overview-heading"></h2>
+          <p class="section__label">Overview</p>
+          <h2 class="section__heading" id="overview-heading">A conversion problem disguised as a sales problem.</h2>
           <hr class="section__divider" />
-          <div class="process-steps" id="overview-steps" style="margin-top: 1rem"></div>
-          <div class="image-block image-block--wide reveal" id="overview-img-wrap" style="display:none; margin-top: 3rem">
-            <img id="overview-img" src="" alt="" loading="lazy" />
-          </div>
-        </div>
-      </section>
-
-      <!-- 4. PROBLEM -->
-      <section id="section-problem" data-toc-label="Problem" data-toc-label-es="Problema"
-               class="section" aria-labelledby="problem-heading">
-        <div class="container">
-          <p class="section__label" data-label-es="Problema">Problem</p>
-          <h2 class="section__heading" id="problem-heading"></h2>
-          <div class="process-steps" id="problem-steps" style="margin-top: 2.5rem"></div>
-          <div class="callout" style="margin-top: 3rem">
-            <p class="callout__quote" id="problem-quote"></p>
-            <p class="callout__attr"  id="problem-quote-attr"></p>
-          </div>
-        </div>
-      </section>
-
-      <!-- 5. CONSTRAINTS -->
-      <section id="section-constraints" data-toc-label="Constraints" data-toc-label-es="Limitantes"
-               class="section" aria-labelledby="constraints-heading">
-        <div class="container">
-          <p class="section__label" data-label-es="Limitantes">Constraints</p>
-          <h2 class="section__heading" id="constraints-heading"></h2>
-          <div class="grid-3" id="constraints-grid" style="margin-top: 2.5rem; gap: 1rem"></div>
-        </div>
-      </section>
-
-      <!-- 6. ROLE -->
-      <section id="section-role" data-toc-label="My Role" data-toc-label-es="Mi Rol"
-               class="section" aria-labelledby="role-heading">
-        <div class="container">
-          <p class="section__label" data-label-es="Mi Rol">My Role</p>
-          <h2 class="section__heading" id="role-heading"></h2>
-          <hr class="section__divider" />
-          <div class="process-steps" id="role-steps" style="margin-top: 1rem"></div>
-        </div>
-      </section>
-
-      <!-- 7. PROCESS -->
-      <section id="section-process" data-toc-label="Process" data-toc-label-es="El proceso"
-               class="section" aria-labelledby="process-heading">
-        <div class="container">
-          <p class="section__label" data-label-es="El proceso">Process</p>
-          <h2 class="section__heading" id="process-heading"></h2>
-          <hr class="section__divider" />
-          <div class="process-steps" id="process-steps" style="margin-top: 1rem"></div>
-          <div class="grid-2" style="margin-top: 3rem">
-            <div class="image-block image-block--wide reveal" id="process-img1-wrap">
-              <img id="process-img1" src="" alt="" loading="lazy" />
+          <div class="overview-layout" style="margin-top: 1rem">
+            <div class="process-steps">
+              <div class="process-step">
+                <span class="process-step__number" aria-hidden="true">01</span>
+                <div class="process-step__content">
+                  <p class="process-step__body">Same quarter, one year apart</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <span class="process-step__number" aria-hidden="true">02</span>
+                <div class="process-step__content">
+                  <p class="process-step__body">No pricing or campaign changes</p>
+                </div>
+              </div>
+              <div class="process-step">
+                <span class="process-step__number" aria-hidden="true">03</span>
+                <div class="process-step__content">
+                  <p class="process-step__body">No external growth drivers</p>
+                </div>
+              </div>
             </div>
-            <div class="image-block image-block--wide reveal reveal-delay-1" id="process-img2-wrap">
-              <img id="process-img2" src="" alt="" loading="lazy" />
+            <img src="../assets/images/ecommerce/impact-chart.gif" alt="Q1 vs Q1 revenue impact chart" loading="lazy" />
+          </div>
+
+        </div>
+      </section>
+
+      <!-- SCOPE -->
+      <section id="section-scope" data-toc-label="Scope" class="section" aria-labelledby="scope-heading">
+        <div class="container">
+          <p class="section__label">Scope</p>
+          <h2 class="section__heading" id="scope-heading">Full website UX redesign + conversion channel strategy.</h2>
+          <hr class="section__divider" />
+          <div class="process-steps process-steps--horizontal" style="margin-top: 1rem">
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Automotive tire sales were underperforming due to a complex inquiry flow and high cognitive friction across the website.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">The objective was to improve conversion without altering pricing, campaigns or inventory strategy.</p>
+              </div>
             </div>
           </div>
-          <div id="demos-grid" style="margin-top: 3rem; display: flex; flex-direction: column; gap: var(--col-gap)"></div>
         </div>
-      </section>
-
-      <!-- 8. KEY DECISIONS -->
-      <section id="section-decisions" data-toc-label="Key Decisions" data-toc-label-es="Decisiones claves"
-               class="section" aria-labelledby="decisions-heading">
+      <!-- PROBLEM -->
+      <section id="section-problem" data-toc-label="Problem" class="section" aria-labelledby="problem-heading">
         <div class="container">
-          <p class="section__label" data-label-es="Decisiones claves">Key Decisions</p>
-          <h2 class="section__heading" id="decisions-heading"></h2>
+          <p class="section__label">Problem</p>
+          <h2 class="section__heading" id="problem-heading">Friction was hiding revenue.</h2>
           <hr class="section__divider" />
-          <div class="process-steps" id="decisions-list" style="margin-top: 1rem"></div>
-          <div class="image-block image-block--wide reveal" style="margin-top: 3rem" id="decisions-img-wrap">
-            <img id="decisions-img" src="" alt="" loading="lazy" />
+
+          <h3 class="section__subheading" style="margin-top: 1.5rem">The original inquiry flow:</h3>
+          <div class="process-steps process-steps--horizontal process-steps--3col" style="margin-top: 0.5rem">
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Required excessive cognitive effort.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Forced users through a rigid multi-step structure.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Relied exclusively on traditional web form submission.</p>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="section__subheading" style="margin-top: 2rem">Resulting in:</h3>
+          <div class="process-steps process-steps--horizontal process-steps--3col" style="margin-top: 0.5rem">
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">High drop-off during form completion.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Slow communication between buyers and the business.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Low conversion efficiency.</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <!-- 9. IMPACT -->
-      <section id="section-impact" data-toc-label="Impact" data-toc-label-es="Impacto"
-               class="section" aria-labelledby="impact-heading">
+      <!-- INTERVENTION -->
+      <section id="section-intervention" data-toc-label="Intervention" class="section" aria-labelledby="intervention-heading">
         <div class="container">
-          <p class="section__label" data-label-es="Impacto">Impact</p>
-          <h2 class="section__heading" id="impact-heading"></h2>
-          <div class="grid-4" id="impact-grid" style="margin-top: 2.5rem; gap: 1rem"></div>
-          <hr class="section__divider" style="margin-top: 3rem" />
-          <p class="section__body" id="impact-statement"></p>
-        </div>
-      </section>
-
-      <!-- 10. LEARNINGS -->
-      <section id="section-learnings" data-toc-label="Learnings" data-toc-label-es="Aprendizajes"
-               class="section" aria-labelledby="learnings-heading">
-        <div class="container">
-          <p class="section__label" data-label-es="Aprendizajes">Learnings</p>
-          <h2 class="section__heading" id="learnings-heading"></h2>
+          <p class="section__label">Intervention</p>
+          <h2 class="section__heading" id="intervention-heading">Simplify the path. Change the channel.</h2>
           <hr class="section__divider" />
-          <div class="process-steps" id="learnings-list" style="margin-top: 1rem"></div>
+
+          <h3 class="section__subheading" style="margin-top: 1.5rem">1. Cognitive Friction Reduction</h3>
+          <div class="process-steps process-steps--horizontal" style="margin-top: 0.5rem; grid-template-columns: repeat(2, 1fr)">
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Simplified the inquiry structure.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Reduced unnecessary inputs.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Improved information hierarchy and clarity.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Optimized form completion flow.</p>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="section__subheading" style="margin-top: 2rem">2. Channel Strategy Shift</h3>
+          <p class="section__body" style="margin-top: 0.75rem">Proposed and integrated WhatsApp as a high-intent communication channel during early market adoption.</p>
+          <h3 class="section__subheading" style="margin-top: 1.5rem">This allowed:</h3>
+          <div class="process-steps process-steps--horizontal process-steps--3col" style="margin-top: 0.5rem">
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Faster buyer-business interaction.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Reduced abandonment after initial interest.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Real-time clarification for complex tire specifications.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -229,65 +280,76 @@
       <nav id="toc-nav"></nav>
     </aside>
 
-  </div><!-- /.case-layout -->
+  </div>
 
-  <!-- ======================================================
-       CASE NAVIGATION (outside layout — full width)
-       ====================================================== -->
-  <nav class="case-navigation" aria-label="Case study navigation">
-    <div class="container">
-      <div class="case-navigation__inner">
+  <script>
+    const LANG_KEY = 'portfolio-lang';
 
-        <a id="case-nav-prev" href="#" class="case-nav-item case-nav-item--prev">
-          <span class="case-nav-item__dir">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <polyline points="15 18 9 12 15 6"/>
-            </svg>
-            Previous
-          </span>
-          <span class="case-nav-item__title" id="case-nav-prev-title"></span>
-        </a>
+    // Theme
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'dark') html.classList.add('theme-dark');
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+      const dark = html.classList.toggle('theme-dark');
+      localStorage.setItem('theme', dark ? 'dark' : 'light');
+    });
 
-        <a href="../index.html#work" class="case-navigation__index-link">← All Work</a>
+    // Language
+    function getLang() { return localStorage.getItem(LANG_KEY) || 'en'; }
+    function updateLangUI(lang) {
+      document.querySelectorAll('.lang-switch__btn').forEach(btn => {
+        btn.classList.toggle('lang-switch__btn--active', btn.dataset.lang === lang);
+        btn.setAttribute('aria-current', btn.dataset.lang === lang ? 'true' : 'false');
+      });
+    }
+    updateLangUI(getLang());
+    document.querySelectorAll('.lang-switch__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        localStorage.setItem(LANG_KEY, btn.dataset.lang);
+        updateLangUI(btn.dataset.lang);
+      });
+    });
 
-        <a id="case-nav-next" href="#" class="case-nav-item case-nav-item--next">
-          <span class="case-nav-item__dir">
-            Next
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-              <polyline points="9 18 15 12 9 6"/>
-            </svg>
-          </span>
-          <span class="case-nav-item__title" id="case-nav-next-title"></span>
-        </a>
+    // TOC builder
+    function buildTOC() {
+      const sections = document.querySelectorAll('[data-toc-label]');
+      const nav = document.getElementById('toc-nav');
+      if (!sections.length || !nav) return;
 
-      </div>
-    </div>
-  </nav>
+      const title = document.createElement('span');
+      title.className = 'toc-nav__title';
+      title.textContent = 'Table of Contents';
 
-  <!-- ======================================================
-       SITE FOOTER
-       ====================================================== -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="container">
-      <div class="site-footer__inner">
-        <div>
-        </div>
-        <nav class="site-footer__links" aria-label="Footer navigation">
-          <a href="../index.html#work"  class="site-footer__link">Work</a>
-          <a href="../index.html#about" class="site-footer__link">About</a>
-          <a data-link="linkedin" href="#" class="site-footer__link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a data-link="resume"   href="#" class="site-footer__link" target="_blank" rel="noopener noreferrer">Resume</a>
-        </nav>
-      </div>
-      <div class="site-footer__copy">
-        <span>© <span id="footer-year"></span> Lenin Cuadra</span>
-        <span>Designed &amp; built with care.</span>
-      </div>
-    </div>
-  </footer>
+      const list = document.createElement('ul');
+      list.className = 'toc-nav__list';
 
-  <script src="../data/content.js"></script>
-  <script src="../js/app.js"></script>
+      sections.forEach(section => {
+        const li = document.createElement('li');
+        const a  = document.createElement('a');
+        a.className = 'toc-nav__link';
+        a.href = '#' + section.id;
 
+        const labelSpan = document.createElement('span');
+        labelSpan.className = 'toc-nav__link-label';
+        labelSpan.textContent = section.dataset.tocLabel;
+        a.appendChild(labelSpan);
+
+        const h2 = section.querySelector('h2');
+        if (h2) {
+          const sub = document.createElement('span');
+          sub.className = 'toc-nav__link-subtitle';
+          sub.textContent = h2.textContent.trim();
+          a.appendChild(sub);
+        }
+
+        li.appendChild(a);
+        list.appendChild(li);
+      });
+
+      nav.appendChild(title);
+      nav.appendChild(list);
+    }
+
+    buildTOC();
+  </script>
 </body>
 </html>

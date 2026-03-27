@@ -84,7 +84,7 @@ const PORTFOLIO_DATA = {
 
         images: {
           cover:     "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
-          hero:      "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
+          hero:      "assets/images/telecom/portrait.png",
           process1:  "assets/images/fintech/1-3—web checkout/1-nx-wireframes.png",
           process2:  "assets/images/fintech/2-3—Payment link/3-nx-proto-wireframes.gif",
           decisions: "assets/images/fintech/3-3—Nshop/3-screens01.png",
@@ -224,6 +224,10 @@ const PORTFOLIO_DATA = {
       {
         slug: "ecommerce-conversion",
 
+        images: {
+          hero: "assets/images/telecom/portrait.png",
+        },
+
         card: {
           tags:    ["E-commerce", "Conversion", "UX Strategy"],
           title:   "221% Q1 Revenue Increase Driven Purely by UX Intervention",
@@ -352,6 +356,11 @@ const PORTFOLIO_DATA = {
       // -----------------------------------------------------------------------
       {
         slug: "telecom-legacy-refactor",
+
+        images: {
+          hero:          "assets/images/telecom/portrait.png",
+          overviewImage: "assets/images/telecom/mockup-multitasking.png",
+        },
 
         card: {
           tags:    ["Telecom", "Systems Design", "Design Systems"],
@@ -551,7 +560,7 @@ const PORTFOLIO_DATA = {
 
         images: {
           cover:     "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
-          hero:      "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
+          hero:      "assets/images/telecom/portrait.png",
           process1:  "assets/images/fintech/1-3—web checkout/1-nx-wireframes.png",
           process2:  "assets/images/fintech/2-3—Payment link/3-nx-proto-wireframes.gif",
           decisions: "assets/images/fintech/3-3—Nshop/3-screens01.png",
@@ -691,6 +700,10 @@ const PORTFOLIO_DATA = {
       {
         slug: "ecommerce-conversion",
 
+        images: {
+          hero: "assets/images/telecom/portrait.png",
+        },
+
         card: {
           tags:    ["E-commerce", "Conversión", "Estrategia UX"],
           title:   "Incremento del 221% en Ingresos Q1 Impulsado Únicamente por Intervención UX",
@@ -819,6 +832,11 @@ const PORTFOLIO_DATA = {
       // -----------------------------------------------------------------------
       {
         slug: "telecom-legacy-refactor",
+
+        images: {
+          hero:          "assets/images/telecom/portrait.png",
+          overviewImage: "assets/images/telecom/mockup-multitasking.png",
+        },
 
         card: {
           tags:    ["Telecom", "Diseño de Sistemas", "Design Systems"],

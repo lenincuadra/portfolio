@@ -59,13 +59,15 @@
     }
   }
 
-  function buildProcessStep(index, title, body) {
+  function buildProcessStep(index, title, body, phase) {
     const num = String(index + 1).padStart(2, '0');
+    const phaseHtml = phase ? `<p class="process-step__phase">${phase}</p>` : '';
     const titleHtml = title ? `<h3 class="process-step__title">${title}</h3>` : '';
     return `
       <div class="process-step reveal">
         <span class="process-step__number" aria-hidden="true">${num}</span>
         <div class="process-step__content">
+          ${phaseHtml}
           ${titleHtml}
           <p class="process-step__body">${body}</p>
         </div>
@@ -297,19 +299,33 @@
     renderCellValue('qs-team',     caseData.quickScan.team);
     setText('qs-timeline', caseData.quickScan.timeline);
     renderCellValue('qs-tools',    caseData.quickScan.tools);
-    // Compact bar
-    setText('qs-compact-role',  caseData.quickScan.role);
-    setText('qs-compact-team',  caseData.quickScan.team);
+    // Compact bar (in header)
+    const compactRole = document.getElementById('qs-compact-role');
+    if (compactRole) {
+      const parts = caseData.quickScan.role.split(' — ').filter(Boolean);
+      if (parts.length > 1) {
+        compactRole.innerHTML = '<ul class="quick-scan__list">' + parts.map(p => `<li>${p}</li>`).join('') + '</ul>';
+      } else {
+        compactRole.textContent = caseData.quickScan.role;
+      }
+    }
     setText('qs-compact-title', caseData.hero.title);
 
     // Overview
-    setText('overview-subheading', caseData.overview.subheading);
-    const ovTags = document.getElementById('overview-tags');
-    if (ovTags) ovTags.innerHTML = buildTags(caseData.overview.tags);
+    setText('overview-heading', caseData.overview.subheading);
+
     const overviewSteps = document.getElementById('overview-steps');
     if (overviewSteps) {
       overviewSteps.innerHTML = [caseData.overview.body1, caseData.overview.body2]
         .map((body, i) => buildProcessStep(i, null, body)).join('');
+    }
+    if (caseData.images && caseData.images.overviewImage) {
+      const ovImgWrap = document.getElementById('overview-img-wrap');
+      const ovImg     = document.getElementById('overview-img');
+      if (ovImgWrap && ovImg) {
+        ovImg.src = resolveAssetUrl(caseData.images.overviewImage);
+        ovImgWrap.style.display = '';
+      }
     }
 
     // Problem
@@ -329,7 +345,7 @@
     }
 
     // Role
-    setText('role-subheading', caseData.role.subheading);
+    setText('role-heading', caseData.role.subheading);
     const roleSteps = document.getElementById('role-steps');
     if (roleSteps) {
       roleSteps.innerHTML = [caseData.role.body1, caseData.role.body2]
@@ -604,14 +620,18 @@
   }
 
   function initFactsBar() {
-    const bar = document.getElementById('case-facts-bar');
-    if (!bar) return;
+    const bar     = document.getElementById('case-facts-bar');
+    const header  = document.querySelector('.site-header');
+    const compact = document.getElementById('site-header-compact');
+    if (!bar || !header) return;
     const hero = document.querySelector('.case-hero');
     if (!hero) return;
 
     const observer = new IntersectionObserver(([entry]) => {
-      bar.classList.toggle('quick-scan--compact', !entry.isIntersecting);
-      bar.classList.toggle('quick-scan--scrolled', !entry.isIntersecting);
+      const scrolled = !entry.isIntersecting;
+      bar.classList.toggle('quick-scan--compact', scrolled);
+      header.classList.toggle('site-header--case-scrolled', scrolled);
+      if (compact) compact.setAttribute('aria-hidden', scrolled ? 'false' : 'true');
     }, { threshold: 0, rootMargin: '-64px 0px 0px 0px' });
 
     observer.observe(hero);
