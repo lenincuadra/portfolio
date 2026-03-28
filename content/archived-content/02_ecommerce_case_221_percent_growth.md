@@ -54,6 +54,8 @@ Simplify the path. Change the channel.
 - Improved information hierarchy and clarity.
 - Optimized form completion flow.
 
+[IMAGE: wireframes.png] | [IMAGE: wireframe-MidFi]
+
 ### 2. Channel Strategy Shift
 
 Proposed and integrated WhatsApp as a high-intent communication channel during early market adoption.
@@ -78,11 +80,11 @@ This allowed:
 
 ### After
 
-[Insert screenshot of redesigned simplified flow]
-
 - Reduced input fields.
 - Clearer hierarchy and guidance.
 - Integrated WhatsApp high-intent entry point.
+
+[Insert screenshot of redesigned simplified flow]
 
 ---
 
