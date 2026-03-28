@@ -20,10 +20,13 @@
       border-radius: 8px;
       overflow: hidden;
       line-height: 0;
+      max-height: 432px;
     }
     .img-clip img {
       width: 100%;
       height: auto;
+      max-height: 432px;
+      object-fit: contain;
       display: block;
       margin: 0;
     }
@@ -40,8 +43,7 @@
     }
     .process-steps--horizontal { display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap, 2rem); }
     .process-steps--3col { grid-template-columns: 1fr 1fr 1fr; }
-    .process-steps--horizontal .process-step { padding-block: 0.5rem !important; grid-template-columns: 24px 1fr; gap: var(--sp-3); }
-    .process-steps--horizontal .process-step:last-child { border-bottom: 1px solid var(--border-subtle); }
+    .process-steps--horizontal .process-step { padding-block: 0.5rem !important; grid-template-columns: 24px 1fr; gap: var(--sp-3); border-bottom: none !important; }
     @media (max-width: 768px) {
       .process-steps--horizontal,
       .process-steps--3col { grid-template-columns: 1fr; }
@@ -303,6 +305,134 @@
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
                 <p class="process-step__body">Real-time clarification for complex tire specifications.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BEFORE / AFTER -->
+      <section id="section-before-after" data-toc-label="Before / After" class="section" aria-labelledby="before-after-heading">
+        <div class="container">
+          <p class="section__label">Before / After</p>
+          <h2 class="section__heading" id="before-after-heading">Before / After Comparison</h2>
+          <hr class="section__divider" />
+
+          <h3 class="section__subheading" style="margin-top: 1.5rem">Before</h3>
+          <div class="process-steps process-steps--horizontal process-steps--3col" style="margin-top: 1rem">
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">High cognitive load.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Multi-step rigid structure.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">No real-time communication channel.</p>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="section__subheading" style="margin-top: 2.5rem">After</h3>
+          <div class="process-steps process-steps--horizontal process-steps--3col" style="margin-top: 1rem">
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Reduced input fields.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Clearer hierarchy and guidance.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Integrated WhatsApp high-intent entry point.</p>
+              </div>
+            </div>
+          </div>
+          <div class="img-container" style="margin-top: 0.75rem">
+            <div class="img-clip">
+              <img src="../assets/images/ecommerce/mockup.png" alt="Redesigned simplified flow" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESULT -->
+      <section id="section-result" data-toc-label="Result" class="section" aria-labelledby="result-heading">
+        <div class="container">
+          <p class="section__label">Result</p>
+          <h2 class="section__heading" id="result-heading">Measured as Q1 vs Q1 year-over-year.</h2>
+          <hr class="section__divider" />
+          <div class="process-steps process-steps--horizontal process-steps--3col" style="margin-top: 1rem">
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">No pricing changes.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">No campaign changes.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">*</span>
+              <div class="process-step__content">
+                <p class="process-step__body">No external growth drivers.</p>
+              </div>
+            </div>
+          </div>
+          <p class="section__body" style="margin-top: 1.5rem">Impact driven exclusively by UX simplification and channel redesign.</p>
+          <div class="img-container" style="margin-top: 2rem">
+            <div class="img-clip">
+              <img src="../assets/images/ecommerce/impact-chart.gif" alt="Impact chart" loading="lazy" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- WHAT THIS DEMONSTRATES -->
+      <section id="section-learnings" data-toc-label="What This Demonstrates" class="section" aria-labelledby="learnings-heading">
+        <div class="container">
+          <p class="section__label">What This Demonstrates</p>
+          <h2 class="section__heading" id="learnings-heading">What This Demonstrates</h2>
+          <hr class="section__divider" />
+          <div class="process-steps" style="margin-top: 1rem">
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">01</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Ability to identify revenue bottlenecks.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">02</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Strategic thinking beyond interface design.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">03</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Execution focused on measurable business impact.</p>
+              </div>
+            </div>
+            <div class="process-step">
+              <span class="process-step__number" aria-hidden="true">04</span>
+              <div class="process-step__content">
+                <p class="process-step__body">Understanding of behavioral friction and conversion dynamics.</p>
               </div>
             </div>
           </div>

@@ -84,7 +84,7 @@ This allowed:
 - Clearer hierarchy and guidance.
 - Integrated WhatsApp high-intent entry point.
 
-[Insert screenshot of redesigned simplified flow]
+[IMAGE: mockup.png]
 
 ---
 
@@ -98,7 +98,7 @@ No external growth drivers.
 
 Impact driven exclusively by UX simplification and channel redesign.
 
----
+## [IMAGE: impact-chart.gif]
 
 ## What This Demonstrates
 
