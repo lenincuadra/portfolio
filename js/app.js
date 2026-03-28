@@ -110,6 +110,8 @@
       setText('label-featured', ui.case.featuredLabel);
       setText('label-grid',    ui.case.gridLabel);
       setText('fc-cta-label',  ui.case.readMore);
+      setText('label-about',   ui.nav.about);
+      setText('label-contact', ui.nav.contact);
     }
   }
 
