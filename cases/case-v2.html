@@ -300,6 +300,7 @@
     function setText(el, enText, esText) {
       el.dataset.en = enText ?? '';
       el.dataset.es = esText ?? enText ?? '';
+      el.textContent = getLang() === 'es' ? (esText ?? enText ?? '') : (enText ?? '');
     }
 
     function applyLang(lang) {
@@ -471,7 +472,7 @@
           const esHtml = (f.valueEs || f.valueEn || '').replace(/ · /g, '<br>');
           val.dataset.htmlEn = enHtml;
           val.dataset.htmlEs = esHtml;
-          val.innerHTML = enHtml;
+          val.innerHTML = getLang() === 'es' ? esHtml : enHtml;
         } else {
           setText(val, f.valueEn, f.valueEs);
         }
@@ -629,6 +630,9 @@
 
     // ─── Init ─────────────────────────────────────────────────────────────────
 
+    // Apply lang to static elements immediately (CTA, header, footer)
+    applyLang(getLang());
+
     const slug = getSlug();
     if (slug && typeof PORTFOLIO_DATA !== 'undefined') {
       const { enCase, esCase } = getCasePair(slug);
@@ -640,6 +644,7 @@
     }
 
     buildTOC();
+    // Re-apply to pick up TOC elements and any dynamic content
     applyLang(getLang());
 
     document.querySelectorAll('.lang-switch__btn').forEach(btn => {
