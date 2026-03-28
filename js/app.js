@@ -135,7 +135,14 @@
         const newLang = btn.dataset.lang;
         if (newLang === getLang()) return;
         setLang(newLang);
-        window.location.reload();
+        updateLangUI(newLang);
+        const content = getContent(newLang);
+        renderSiteWide(content);
+        if (isIndexPage()) {
+          renderIndex(content);
+        } else {
+          renderCase(content);
+        }
       });
     });
   }
