@@ -1,0 +1,313 @@
+# ══════════════════════════════════════════════════════
+# CASE STUDY SCHEMA — populates cases/case-v2.html template
+# ══════════════════════════════════════════════════════
+# Llena este archivo con el contenido del caso.
+# Cada campo tiene versión EN (inglés) y ES (español latino neutro).
+# Aplica los valores al HTML manualmente siguiendo CASES.md.
+#
+# TIPOS DE BLOQUE disponibles dentro de content[]:
+#   type: subheading   → <h3>  requiere: text { en, es }
+#   type: body         → <p>   requiere: text { en, es }
+#   type: steps        → lista requiere: variant (bullet|numbered), items[]
+#                               opcional: columns (1|2)
+#   type: image        → img   requiere: src, alt
+#                               opcional: loading (lazy|eager)
+#   type: gallery      → grid 2 imágenes  requiere: images[{ src, alt }]
+#
+# LAYOUTS de sección:
+#   (ninguno)          → stack vertical estándar
+#   layout: overview   → steps a la izquierda, imagen a la derecha
+# ══════════════════════════════════════════════════════
+
+meta:
+  page_title: "Case — E-commerce | Lenin Cuadra"
+  images_folder: "ecommerce"        # carpeta dentro de assets/images/
+
+tags:
+  - en: "E-commerce"
+    es: "E-commerce"
+  - en: "Conversion Optimization"
+    es: "Optimización de conversión"
+  - "Montironi Automotive"          # string simple = igual en ambos idiomas
+
+hero_title:
+  en: "221% Revenue Increase Driven Purely by UX Intervention (Q1)."
+  es: "221% de aumento en ventas impulsado exclusivamente por intervención UX (Q1)."
+
+quick_scan:
+  - label:
+      en: "My Role"
+      es: "Mi rol"
+    value:
+      en: "Product Designer — UX Redesign & Channel Strategy"
+      es: "Diseñador de producto — Rediseño UX & estrategia de canal"
+  - label:
+      en: "Team"
+      es: "Equipo"
+    value:
+      multiline: true               # usa <br> entre líneas — separador: |
+      en: "Business stakeholders|Development team"
+      es: "Stakeholders del negocio|Equipo de desarrollo"
+  - label:
+      en: "Tools"
+      es: "Herramientas"
+    value:
+      multiline: true
+      en: "UX redesign|Conversion analysis|Channel strategy"
+      es: "Rediseño UX|Análisis de conversión|Estrategia de canal"
+
+nav:
+  prev:
+    href: "./case-fintech.html"
+    title:
+      en: "Fintech Checkout Redesign"
+      es: "Rediseño de checkout fintech"
+    meta:
+      en: "Product Design"
+      es: "Diseño de producto"
+  next:
+    href: "./case-telecom.html"
+    title:
+      en: "Telecom Legacy Refactor"
+      es: "Refactorización legacy telecom"
+    meta:
+      en: "Systems Design"
+      es: "Diseño de sistemas"
+
+# ══════════════════════════════════════════════════════
+# SECTIONS — agregar o quitar secciones libremente
+# ══════════════════════════════════════════════════════
+
+sections:
+
+  - id: section-overview
+    toc_label:
+      en: "Overview"
+      es: "Panorama"
+    label:
+      en: "Overview"
+      es: "Panorama"
+    heading:
+      en: "A conversion problem disguised as a sales problem."
+      es: "Un problema de conversión disfrazado de problema de ventas."
+    layout: overview                # steps izquierda, imagen derecha
+    content:
+      - type: steps
+        variant: numbered
+        items:
+          - en: "Same quarter, one year apart"
+            es: "Mismo trimestre, un año de diferencia"
+          - en: "No pricing or campaign changes"
+            es: "Sin cambios de precios ni campañas"
+          - en: "No external growth drivers"
+            es: "Sin factores externos de crecimiento"
+      - type: image
+        src: "impact-chart.gif"
+        alt: "Q1 vs Q1 revenue impact chart"
+        loading: lazy
+
+  - id: section-scope
+    style: "padding-bottom: 0"
+    toc_label:
+      en: "Scope"
+      es: "Alcance"
+    label:
+      en: "Scope"
+      es: "Alcance"
+    heading:
+      en: "Full website UX redesign + conversion channel strategy."
+      es: "Rediseño UX completo del sitio + estrategia de canal de conversión."
+    content:
+      - type: steps
+        variant: bullet
+        items:
+          - en: "Automotive tire sales were underperforming due to a complex inquiry flow and high cognitive friction across the website."
+            es: "Las ventas de neumáticos estaban por debajo del potencial debido a un flujo de consulta complejo y alta fricción cognitiva en el sitio."
+          - en: "The objective was to improve conversion without altering pricing, campaigns or inventory strategy."
+            es: "El objetivo era mejorar la conversión sin modificar precios, campañas ni estrategia de inventario."
+
+  - id: section-problem
+    toc_label:
+      en: "Problem"
+      es: "Problema"
+    label:
+      en: "Problem"
+      es: "Problema"
+    heading:
+      en: "Friction was hiding revenue."
+      es: "La fricción estaba ocultando ingresos."
+    content:
+      - type: subheading
+        text:
+          en: "The original inquiry flow:"
+          es: "El flujo de consulta original:"
+      - type: steps
+        variant: bullet
+        items:
+          - en: "Required excessive cognitive effort."
+            es: "Exigía un esfuerzo cognitivo excesivo."
+          - en: "Forced users through a rigid multi-step structure."
+            es: "Forzaba a los usuarios a través de una estructura rígida de múltiples pasos."
+          - en: "Relied exclusively on traditional web form submission."
+            es: "Dependía exclusivamente del envío de formularios web tradicionales."
+      - type: subheading
+        text:
+          en: "Resulting in:"
+          es: "Lo que resultó en:"
+      - type: steps
+        variant: bullet
+        items:
+          - en: "High drop-off during form completion."
+            es: "Alta tasa de abandono durante el llenado del formulario."
+          - en: "Slow communication between buyers and the business."
+            es: "Comunicación lenta entre compradores y el negocio."
+          - en: "Low conversion efficiency."
+            es: "Baja eficiencia de conversión."
+
+  - id: section-intervention
+    toc_label:
+      en: "Intervention"
+      es: "Intervención"
+    label:
+      en: "Intervention"
+      es: "Intervención"
+    heading:
+      en: "Simplify the path. Change the channel."
+      es: "Simplificar el camino. Cambiar el canal."
+    content:
+      - type: subheading
+        text:
+          en: "1. Cognitive Friction Reduction"
+          es: "1. Reducción de fricción cognitiva"
+      - type: steps
+        variant: bullet
+        columns: 2                  # grid de 2 columnas → clase process-steps--2col
+        items:
+          - en: "Simplified the inquiry structure."
+            es: "Se simplificó la estructura de consulta."
+          - en: "Reduced unnecessary inputs."
+            es: "Se redujeron campos innecesarios."
+          - en: "Improved information hierarchy and clarity."
+            es: "Se mejoró la jerarquía de información y la claridad."
+          - en: "Optimized form completion flow."
+            es: "Se optimizó el flujo de llenado del formulario."
+      - type: gallery
+        images:
+          - src: "wireframes.png"
+            alt: "Wireframes"
+          - src: "wireframe-MidFi.png"
+            alt: "Mid-Fi wireframe"
+      - type: subheading
+        text:
+          en: "2. Channel Strategy Shift"
+          es: "2. Cambio de estrategia de canal"
+      - type: body
+        text:
+          en: "Proposed and integrated WhatsApp as a high-intent communication channel during early market adoption."
+          es: "Se propuso e integró WhatsApp como canal de comunicación de alta intención durante la adopción temprana del mercado."
+      - type: subheading
+        text:
+          en: "This allowed:"
+          es: "Esto permitió:"
+      - type: steps
+        variant: bullet
+        items:
+          - en: "Faster buyer-business interaction."
+            es: "Interacción más rápida entre compradores y el negocio."
+          - en: "Reduced abandonment after initial interest."
+            es: "Menor abandono después del interés inicial."
+          - en: "Real-time clarification for complex tire specifications."
+            es: "Aclaración en tiempo real para especificaciones técnicas complejas."
+
+  - id: section-before-after
+    toc_label:
+      en: "Before / After"
+      es: "Antes / Después"
+    label:
+      en: "Before / After"
+      es: "Antes / Después"
+    heading:
+      en: "Before / After Comparison"
+      es: "Comparación Antes / Después"
+    content:
+      - type: subheading
+        text:
+          en: "Before"
+          es: "Antes"
+      - type: steps
+        variant: bullet
+        items:
+          - en: "High cognitive load."
+            es: "Alta carga cognitiva."
+          - en: "Multi-step rigid structure."
+            es: "Estructura rígida de múltiples pasos."
+          - en: "No real-time communication channel."
+            es: "Sin canal de comunicación en tiempo real."
+      - type: subheading
+        text:
+          en: "After"
+          es: "Después"
+      - type: steps
+        variant: bullet
+        items:
+          - en: "Reduced input fields."
+            es: "Campos reducidos."
+          - en: "Clearer hierarchy and guidance."
+            es: "Jerarquía y orientación más claras."
+          - en: "Integrated WhatsApp high-intent entry point."
+            es: "Punto de entrada WhatsApp de alta intención integrado."
+      - type: image
+        src: "mockup.png"
+        alt: "Redesigned simplified flow"
+
+  - id: section-result
+    toc_label:
+      en: "Result"
+      es: "Resultado"
+    label:
+      en: "Result"
+      es: "Resultado"
+    heading:
+      en: "Measured as Q1 vs Q1 year-over-year."
+      es: "Medido como Q1 vs Q1 año a año."
+    content:
+      - type: steps
+        variant: bullet
+        items:
+          - en: "No pricing changes."
+            es: "Sin cambios de precios."
+          - en: "No campaign changes."
+            es: "Sin cambios de campañas."
+          - en: "No external growth drivers."
+            es: "Sin factores externos de crecimiento."
+      - type: subheading
+        text:
+          en: "Impact driven exclusively by UX simplification and channel redesign."
+          es: "Impacto generado exclusivamente por simplificación UX y rediseño del canal."
+      - type: image
+        src: "impact-chart.gif"
+        alt: "Impact chart"
+        loading: lazy
+
+  - id: section-learnings
+    toc_label:
+      en: "What This Demonstrates"
+      es: "Qué demuestra esto"
+    label:
+      en: "What This Demonstrates"
+      es: "Qué demuestra esto"
+    heading:
+      en: "What This Demonstrates"
+      es: "Qué demuestra esto"
+    content:
+      - type: steps
+        variant: numbered
+        items:
+          - en: "Ability to identify revenue bottlenecks."
+            es: "Capacidad para identificar cuellos de botella de ingresos."
+          - en: "Strategic thinking beyond interface design."
+            es: "Pensamiento estratégico más allá del diseño de interfaz."
+          - en: "Execution focused on measurable business impact."
+            es: "Ejecución enfocada en impacto de negocio medible."
+          - en: "Understanding of behavioral friction and conversion dynamics."
+            es: "Comprensión de la fricción conductual y las dinámicas de conversión."

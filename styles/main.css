@@ -447,9 +447,7 @@ html.theme-dark .icon-moon {
 .section {
   padding-block: clamp(4rem, 8vw, 7rem);
 }
-.section + .section {
-  border-top: 1px solid var(--border-subtle);
-}
+.section + .section {}
 .section__label {
   font-family: var(--font-mono);
   font-size: var(--text-md);
@@ -943,19 +941,9 @@ html.theme-dark .icon-moon {
 }
 .case-navigation__inner {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: var(--sp-8);
-}
-@media (max-width: 640px) {
-  .case-navigation__inner {
-    grid-template-columns: 1fr 1fr;
-    grid-template-areas: "prev next" "index index";
-  }
-  .case-navigation__index {
-    grid-area: index;
-    text-align: center;
-  }
 }
 .case-nav-item {
   display: flex;

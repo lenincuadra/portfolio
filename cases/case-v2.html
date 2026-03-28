@@ -105,10 +105,12 @@
     .process-steps--horizontal .process-step { padding-block: 0.5rem !important; grid-template-columns: 24px 1fr; gap: var(--sp-3); border-bottom: none !important; align-items: center; }
     .process-steps:not(.process-steps--horizontal) .process-step { align-items: center; }
     .process-step__number { padding: 0 !important; }
-    .process-step { padding-block: 24px !important; }
+    .process-step { padding-block: 16px !important; }
+    .process-steps--2col { display: grid; grid-template-columns: 1fr 1fr; gap: var(--col-gap, 2rem); }
     @media (max-width: 768px) {
       .process-steps--horizontal,
-      .process-steps--3col { grid-template-columns: 1fr; }
+      .process-steps--3col,
+      .process-steps--2col { grid-template-columns: 1fr; }
       .process-steps--horizontal .process-step:last-child { border-bottom: none; }
     }
     /* Case Navigation */
@@ -192,9 +194,9 @@
       </a>
       <div class="site-header__center">
         <nav class="site-header__nav" aria-label="Primary navigation">
-          <a href="../index.html#work" class="site-header__nav-link site-header__nav-link--active">Work</a>
-          <a href="../index.html#about" class="site-header__nav-link">About</a>
-          <a href="../index.html#contact" class="site-header__nav-link">Contact</a>
+          <a href="../index.html#work" class="site-header__nav-link site-header__nav-link--active"><span data-en="Work" data-es="Trabajo">Work</span></a>
+          <a href="../index.html#about" class="site-header__nav-link"><span data-en="About" data-es="Sobre mí">About</span></a>
+          <a href="../index.html#contact" class="site-header__nav-link"><span data-en="Contact" data-es="Contacto">Contact</span></a>
         </nav>
       </div>
       <div class="site-header__controls">
@@ -219,54 +221,53 @@
       <section class="case-hero" aria-labelledby="case-title">
         <div class="container">
           <div class="case-hero__meta">
-            <span class="case-hero__tag">E-commerce</span>
-            <span class="case-hero__tag">Conversion Optimization</span>
+            <span class="case-hero__tag" data-en="E-commerce" data-es="E-commerce">E-commerce</span>
+            <span class="case-hero__tag" data-en="Conversion Optimization" data-es="Optimización de conversión">Conversion Optimization</span>
             <span class="case-hero__tag">Montironi Automotive</span>
           </div>
-          <h1 class="case-hero__title" id="case-title">221% Revenue Increase Driven Purely by UX Intervention (Q1).</h1>
+          <h1 class="case-hero__title" id="case-title" data-en="221% Revenue Increase Driven Purely by UX Intervention (Q1)." data-es="221% de aumento en ventas impulsado exclusivamente por intervención UX (Q1).">221% Revenue Increase Driven Purely by UX Intervention (Q1).</h1>
         </div>
         <div class="quick-scan__full">
           <div class="quick-scan__grid">
             <div class="quick-scan__cell">
-              <p class="quick-scan__cell-label">My Role</p>
-              <p class="quick-scan__cell-value">Product Designer — UX Redesign &amp; Channel Strategy</p>
+              <p class="quick-scan__cell-label" data-en="My Role" data-es="Mi rol">My Role</p>
+              <p class="quick-scan__cell-value" data-en="Product Designer — UX Redesign &amp; Channel Strategy" data-es="Diseñador de producto — Rediseño UX &amp; estrategia de canal">Product Designer — UX Redesign &amp; Channel Strategy</p>
             </div>
             <div class="quick-scan__cell">
-              <p class="quick-scan__cell-label">Team</p>
-              <p class="quick-scan__cell-value">Business stakeholders<br>Development team</p>
+              <p class="quick-scan__cell-label" data-en="Team" data-es="Equipo">Team</p>
+              <p class="quick-scan__cell-value" data-html-en="Business stakeholders&lt;br&gt;Development team" data-html-es="Stakeholders del negocio&lt;br&gt;Equipo de desarrollo">Business stakeholders<br>Development team</p>
             </div>
             <div class="quick-scan__cell">
-              <p class="quick-scan__cell-label">Tools</p>
-              <p class="quick-scan__cell-value">UX redesign<br>Conversion analysis<br>Channel strategy</p>
+              <p class="quick-scan__cell-label" data-en="Tools" data-es="Herramientas">Tools</p>
+              <p class="quick-scan__cell-value" data-html-en="UX redesign&lt;br&gt;Conversion analysis&lt;br&gt;Channel strategy" data-html-es="Rediseño UX&lt;br&gt;Análisis de conversión&lt;br&gt;Estrategia de canal">UX redesign<br>Conversion analysis<br>Channel strategy</p>
             </div>
           </div>
         </div>
       </section>
 
       <!-- OVERVIEW -->
-      <section id="section-overview" data-toc-label="Overview" class="section" aria-labelledby="overview-heading">
+      <section id="section-overview" data-toc-label="Overview" data-toc-label-es="Panorama" class="section" aria-labelledby="overview-heading">
         <div class="container">
-          <p class="section__label">Overview</p>
-          <h2 class="section__heading" id="overview-heading">A conversion problem disguised as a sales problem.</h2>
-          <hr class="section__divider" />
+          <p class="section__label" data-en="Overview" data-es="Panorama">Overview</p>
+          <h2 class="section__heading" id="overview-heading" data-en="A conversion problem disguised as a sales problem." data-es="Un problema de conversión disfrazado de problema de ventas.">A conversion problem disguised as a sales problem.</h2>
           <div class="overview-layout" style="margin-top: 1rem">
             <div class="process-steps">
               <div class="process-step">
                 <span class="process-step__number" aria-hidden="true">01</span>
                 <div class="process-step__content">
-                  <p class="process-step__body">Same quarter, one year apart</p>
+                  <p class="process-step__body" data-en="Same quarter, one year apart" data-es="Mismo trimestre, un año de diferencia">Same quarter, one year apart</p>
                 </div>
               </div>
               <div class="process-step">
                 <span class="process-step__number" aria-hidden="true">02</span>
                 <div class="process-step__content">
-                  <p class="process-step__body">No pricing or campaign changes</p>
+                  <p class="process-step__body" data-en="No pricing or campaign changes" data-es="Sin cambios de precios ni campañas">No pricing or campaign changes</p>
                 </div>
               </div>
               <div class="process-step">
                 <span class="process-step__number" aria-hidden="true">03</span>
                 <div class="process-step__content">
-                  <p class="process-step__body">No external growth drivers</p>
+                  <p class="process-step__body" data-en="No external growth drivers" data-es="Sin factores externos de crecimiento">No external growth drivers</p>
                 </div>
               </div>
             </div>
@@ -281,74 +282,72 @@
       </section>
 
       <!-- SCOPE -->
-      <section id="section-scope" data-toc-label="Scope" class="section" aria-labelledby="scope-heading" style="padding-bottom: 0;">
+      <section id="section-scope" data-toc-label="Scope" data-toc-label-es="Alcance" class="section" aria-labelledby="scope-heading" style="padding-bottom: 0;">
         <div class="container">
-          <p class="section__label">Scope</p>
-          <h2 class="section__heading" id="scope-heading">Full website UX redesign + conversion channel strategy.</h2>
-          <hr class="section__divider" />
+          <p class="section__label" data-en="Scope" data-es="Alcance">Scope</p>
+          <h2 class="section__heading" id="scope-heading" data-en="Full website UX redesign + conversion channel strategy." data-es="Rediseño UX completo del sitio + estrategia de canal de conversión.">Full website UX redesign + conversion channel strategy.</h2>
           <div class="process-steps" style="margin-top: 1rem">
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Automotive tire sales were underperforming due to a complex inquiry flow and high cognitive friction across the website.</p>
+                <p class="process-step__body" data-en="Automotive tire sales were underperforming due to a complex inquiry flow and high cognitive friction across the website." data-es="Las ventas de neumáticos estaban por debajo del potencial debido a un flujo de consulta complejo y alta fricción cognitiva en el sitio.">Automotive tire sales were underperforming due to a complex inquiry flow and high cognitive friction across the website.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">The objective was to improve conversion without altering pricing, campaigns or inventory strategy.</p>
+                <p class="process-step__body" data-en="The objective was to improve conversion without altering pricing, campaigns or inventory strategy." data-es="El objetivo era mejorar la conversión sin modificar precios, campañas ni estrategia de inventario.">The objective was to improve conversion without altering pricing, campaigns or inventory strategy.</p>
               </div>
             </div>
           </div>
         </div>
       </section>
       <!-- PROBLEM -->
-      <section id="section-problem" data-toc-label="Problem" class="section" aria-labelledby="problem-heading">
+      <section id="section-problem" data-toc-label="Problem" data-toc-label-es="Problema" class="section" aria-labelledby="problem-heading">
         <div class="container">
-          <p class="section__label">Problem</p>
-          <h2 class="section__heading" id="problem-heading">Friction was hiding revenue.</h2>
-          <hr class="section__divider" />
+          <p class="section__label" data-en="Problem" data-es="Problema">Problem</p>
+          <h2 class="section__heading" id="problem-heading" data-en="Friction was hiding revenue." data-es="La fricción estaba ocultando ingresos.">Friction was hiding revenue.</h2>
 
-          <h3 class="section__subheading" style="margin-top: 1.5rem">The original inquiry flow:</h3>
+          <h3 class="section__subheading" style="margin-top: 1.5rem" data-en="The original inquiry flow:" data-es="El flujo de consulta original:">The original inquiry flow:</h3>
           <div class="process-steps" style="margin-top: 0.5rem">
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Required excessive cognitive effort.</p>
+                <p class="process-step__body" data-en="Required excessive cognitive effort." data-es="Exigía un esfuerzo cognitivo excesivo.">Required excessive cognitive effort.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Forced users through a rigid multi-step structure.</p>
+                <p class="process-step__body" data-en="Forced users through a rigid multi-step structure." data-es="Forzaba a los usuarios a través de una estructura rígida de múltiples pasos.">Forced users through a rigid multi-step structure.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Relied exclusively on traditional web form submission.</p>
+                <p class="process-step__body" data-en="Relied exclusively on traditional web form submission." data-es="Dependía exclusivamente del envío de formularios web tradicionales.">Relied exclusively on traditional web form submission.</p>
               </div>
             </div>
           </div>
 
-          <h3 class="section__subheading" style="margin-top: 2rem">Resulting in:</h3>
+          <h3 class="section__subheading" style="margin-top: 2rem" data-en="Resulting in:" data-es="Lo que resultó en:">Resulting in:</h3>
           <div class="process-steps" style="margin-top: 0.5rem">
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">High drop-off during form completion.</p>
+                <p class="process-step__body" data-en="High drop-off during form completion." data-es="Alta tasa de abandono durante el llenado del formulario.">High drop-off during form completion.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Slow communication between buyers and the business.</p>
+                <p class="process-step__body" data-en="Slow communication between buyers and the business." data-es="Comunicación lenta entre compradores y el negocio.">Slow communication between buyers and the business.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Low conversion efficiency.</p>
+                <p class="process-step__body" data-en="Low conversion efficiency." data-es="Baja eficiencia de conversión.">Low conversion efficiency.</p>
               </div>
             </div>
           </div>
@@ -356,36 +355,35 @@
       </section>
 
       <!-- INTERVENTION -->
-      <section id="section-intervention" data-toc-label="Intervention" class="section" aria-labelledby="intervention-heading">
+      <section id="section-intervention" data-toc-label="Intervention" data-toc-label-es="Intervención" class="section" aria-labelledby="intervention-heading">
         <div class="container">
-          <p class="section__label">Intervention</p>
-          <h2 class="section__heading" id="intervention-heading">Simplify the path. Change the channel.</h2>
-          <hr class="section__divider" />
+          <p class="section__label" data-en="Intervention" data-es="Intervención">Intervention</p>
+          <h2 class="section__heading" id="intervention-heading" data-en="Simplify the path. Change the channel." data-es="Simplificar el camino. Cambiar el canal.">Simplify the path. Change the channel.</h2>
 
-          <h3 class="section__subheading" style="margin-top: 1.5rem">1. Cognitive Friction Reduction</h3>
-          <div class="process-steps" style="margin-top: 0.5rem; grid-template-columns: repeat(2, 1fr)">
+          <h3 class="section__subheading" style="margin-top: 1.5rem" data-en="1. Cognitive Friction Reduction" data-es="1. Reducción de fricción cognitiva">1. Cognitive Friction Reduction</h3>
+          <div class="process-steps process-steps--2col" style="margin-top: 0.5rem">
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Simplified the inquiry structure.</p>
+                <p class="process-step__body" data-en="Simplified the inquiry structure." data-es="Se simplificó la estructura de consulta.">Simplified the inquiry structure.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Reduced unnecessary inputs.</p>
+                <p class="process-step__body" data-en="Reduced unnecessary inputs." data-es="Se redujeron campos innecesarios.">Reduced unnecessary inputs.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Improved information hierarchy and clarity.</p>
+                <p class="process-step__body" data-en="Improved information hierarchy and clarity." data-es="Se mejoró la jerarquía de información y la claridad.">Improved information hierarchy and clarity.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Optimized form completion flow.</p>
+                <p class="process-step__body" data-en="Optimized form completion flow." data-es="Se optimizó el flujo de llenado del formulario.">Optimized form completion flow.</p>
               </div>
             </div>
           </div>
@@ -403,26 +401,26 @@
             </div>
           </div>
 
-          <h3 class="section__subheading" style="margin-top: 2rem">2. Channel Strategy Shift</h3>
-          <p class="section__body" style="margin-top: 0.75rem">Proposed and integrated WhatsApp as a high-intent communication channel during early market adoption.</p>
-          <h3 class="section__subheading" style="margin-top: 1.5rem">This allowed:</h3>
+          <h3 class="section__subheading" style="margin-top: 2rem" data-en="2. Channel Strategy Shift" data-es="2. Cambio de estrategia de canal">2. Channel Strategy Shift</h3>
+          <p class="section__body" style="margin-top: 0.75rem" data-en="Proposed and integrated WhatsApp as a high-intent communication channel during early market adoption." data-es="Se propuso e integró WhatsApp como canal de comunicación de alta intención durante la adopción temprana del mercado.">Proposed and integrated WhatsApp as a high-intent communication channel during early market adoption.</p>
+          <h3 class="section__subheading" style="margin-top: 1.5rem" data-en="This allowed:" data-es="Esto permitió:">This allowed:</h3>
           <div class="process-steps" style="margin-top: 0.5rem">
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Faster buyer-business interaction.</p>
+                <p class="process-step__body" data-en="Faster buyer-business interaction." data-es="Interacción más rápida entre compradores y el negocio.">Faster buyer-business interaction.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Reduced abandonment after initial interest.</p>
+                <p class="process-step__body" data-en="Reduced abandonment after initial interest." data-es="Menor abandono después del interés inicial.">Reduced abandonment after initial interest.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Real-time clarification for complex tire specifications.</p>
+                <p class="process-step__body" data-en="Real-time clarification for complex tire specifications." data-es="Aclaración en tiempo real para especificaciones técnicas complejas.">Real-time clarification for complex tire specifications.</p>
               </div>
             </div>
           </div>
@@ -430,52 +428,51 @@
       </section>
 
       <!-- BEFORE / AFTER -->
-      <section id="section-before-after" data-toc-label="Before / After" class="section" aria-labelledby="before-after-heading">
+      <section id="section-before-after" data-toc-label="Before / After" data-toc-label-es="Antes / Después" class="section" aria-labelledby="before-after-heading">
         <div class="container">
-          <p class="section__label">Before / After</p>
-          <h2 class="section__heading" id="before-after-heading">Before / After Comparison</h2>
-          <hr class="section__divider" />
+          <p class="section__label" data-en="Before / After" data-es="Antes / Después">Before / After</p>
+          <h2 class="section__heading" id="before-after-heading" data-en="Before / After Comparison" data-es="Comparación Antes / Después">Before / After Comparison</h2>
 
-          <h3 class="section__subheading" style="margin-top: 1.5rem">Before</h3>
+          <h3 class="section__subheading" style="margin-top: 1.5rem" data-en="Before" data-es="Antes">Before</h3>
           <div class="process-steps" style="margin-top: 1rem">
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">High cognitive load.</p>
+                <p class="process-step__body" data-en="High cognitive load." data-es="Alta carga cognitiva.">High cognitive load.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Multi-step rigid structure.</p>
+                <p class="process-step__body" data-en="Multi-step rigid structure." data-es="Estructura rígida de múltiples pasos.">Multi-step rigid structure.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">No real-time communication channel.</p>
+                <p class="process-step__body" data-en="No real-time communication channel." data-es="Sin canal de comunicación en tiempo real.">No real-time communication channel.</p>
               </div>
             </div>
           </div>
 
-          <h3 class="section__subheading" style="margin-top: 2.5rem">After</h3>
+          <h3 class="section__subheading" style="margin-top: 2.5rem" data-en="After" data-es="Después">After</h3>
           <div class="process-steps" style="margin-top: 1rem">
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Reduced input fields.</p>
+                <p class="process-step__body" data-en="Reduced input fields." data-es="Campos reducidos.">Reduced input fields.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Clearer hierarchy and guidance.</p>
+                <p class="process-step__body" data-en="Clearer hierarchy and guidance." data-es="Jerarquía y orientación más claras.">Clearer hierarchy and guidance.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">Integrated WhatsApp high-intent entry point.</p>
+                <p class="process-step__body" data-en="Integrated WhatsApp high-intent entry point." data-es="Punto de entrada WhatsApp de alta intención integrado.">Integrated WhatsApp high-intent entry point.</p>
               </div>
             </div>
           </div>
@@ -488,31 +485,31 @@
       </section>
 
       <!-- RESULT -->
-      <section id="section-result" data-toc-label="Result" class="section" aria-labelledby="result-heading">
+      <section id="section-result" data-toc-label="Result" data-toc-label-es="Resultado" class="section" aria-labelledby="result-heading">
         <div class="container">
-          <p class="section__label">Result</p>
-          <h2 class="section__heading" id="result-heading">Measured as Q1 vs Q1 year-over-year.</h2>
+          <p class="section__label" data-en="Result" data-es="Resultado">Result</p>
+          <h2 class="section__heading" id="result-heading" data-en="Measured as Q1 vs Q1 year-over-year." data-es="Medido como Q1 vs Q1 año a año.">Measured as Q1 vs Q1 year-over-year.</h2>
           <div class="process-steps" style="margin-top: 1rem">
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">No pricing changes.</p>
+                <p class="process-step__body" data-en="No pricing changes." data-es="Sin cambios de precios.">No pricing changes.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">No campaign changes.</p>
+                <p class="process-step__body" data-en="No campaign changes." data-es="Sin cambios de campañas.">No campaign changes.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
               <div class="process-step__content">
-                <p class="process-step__body">No external growth drivers.</p>
+                <p class="process-step__body" data-en="No external growth drivers." data-es="Sin factores externos de crecimiento.">No external growth drivers.</p>
               </div>
             </div>
           </div>
-          <h3 class="section__subheading" style="margin-top: 1.5rem">Impact driven exclusively by UX simplification and channel redesign.</h3>
+          <h3 class="section__subheading" style="margin-top: 1.5rem" data-en="Impact driven exclusively by UX simplification and channel redesign." data-es="Impacto generado exclusivamente por simplificación UX y rediseño del canal.">Impact driven exclusively by UX simplification and channel redesign.</h3>
           <div class="img-container" style="margin-top: 2rem">
             <div class="img-clip">
               <img src="../assets/images/ecommerce/impact-chart.gif" alt="Impact chart" loading="lazy" />
@@ -522,34 +519,33 @@
       </section>
 
       <!-- WHAT THIS DEMONSTRATES -->
-      <section id="section-learnings" data-toc-label="What This Demonstrates" class="section" aria-labelledby="learnings-heading">
+      <section id="section-learnings" data-toc-label="What This Demonstrates" data-toc-label-es="Qué demuestra esto" class="section" aria-labelledby="learnings-heading">
         <div class="container">
-          <p class="section__label">What This Demonstrates</p>
-          <h2 class="section__heading" id="learnings-heading">What This Demonstrates</h2>
-          <hr class="section__divider" />
+          <p class="section__label" data-en="What This Demonstrates" data-es="Qué demuestra esto">What This Demonstrates</p>
+          <h2 class="section__heading" id="learnings-heading" data-en="What This Demonstrates" data-es="Qué demuestra esto">What This Demonstrates</h2>
           <div class="process-steps" style="margin-top: 1rem">
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">01</span>
               <div class="process-step__content">
-                <p class="process-step__body">Ability to identify revenue bottlenecks.</p>
+                <p class="process-step__body" data-en="Ability to identify revenue bottlenecks." data-es="Capacidad para identificar cuellos de botella de ingresos.">Ability to identify revenue bottlenecks.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">02</span>
               <div class="process-step__content">
-                <p class="process-step__body">Strategic thinking beyond interface design.</p>
+                <p class="process-step__body" data-en="Strategic thinking beyond interface design." data-es="Pensamiento estratégico más allá del diseño de interfaz.">Strategic thinking beyond interface design.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">03</span>
               <div class="process-step__content">
-                <p class="process-step__body">Execution focused on measurable business impact.</p>
+                <p class="process-step__body" data-en="Execution focused on measurable business impact." data-es="Ejecución enfocada en impacto de negocio medible.">Execution focused on measurable business impact.</p>
               </div>
             </div>
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">04</span>
               <div class="process-step__content">
-                <p class="process-step__body">Understanding of behavioral friction and conversion dynamics.</p>
+                <p class="process-step__body" data-en="Understanding of behavioral friction and conversion dynamics." data-es="Comprensión de la fricción conductual y las dinámicas de conversión.">Understanding of behavioral friction and conversion dynamics.</p>
               </div>
             </div>
           </div>
@@ -561,16 +557,16 @@
         <div class="case-section__content">
           <div class="case-cta">
             <p style="font-size: var(--text-lg, 1.125rem); color: var(--ink-2); margin: 0 0 1.5rem;">
-              <span data-en="If this kind of thinking is what you're looking for, I'm available to talk." data-es="Si este tipo de pensamiento es lo que buscás, estoy disponible para hablar.">If this kind of thinking is what you're looking for, I'm available to talk.</span>
+              <span data-en="If this kind of thinking is what you're looking for, I'm available to talk." data-es="Si este tipo de pensamiento es lo que buscas, estoy disponible para hablar.">If this kind of thinking is what you're looking for, I'm available to talk.</span>
             </p>
             <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
-              <button class="case-cta__option" id="cta-copy-email">
+              <button class="case-cta__option" id="cta-copy-email" aria-label="Copy email address">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
                 <span data-en="Copy Email" data-es="Copiar email">Copy Email</span>
               </button>
               <a href="https://www.linkedin.com/in/lenincuadra/" target="_blank" rel="noopener noreferrer" class="case-cta__option">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.27V1.73C24 .77 23.21 0 22.22 0z"/></svg>
-                <span data-en="DM me on LinkedIn" data-es="Escribime por LinkedIn">DM me on LinkedIn</span>
+                <span data-en="DM me on LinkedIn" data-es="Escríbeme por LinkedIn">DM me on LinkedIn</span>
               </a>
             </div>
           </div>
@@ -619,15 +615,15 @@
       <div class="site-footer__inner">
         <div></div>
         <nav class="site-footer__links" aria-label="Footer navigation">
-          <a href="../index.html#work" class="site-footer__link">Work</a>
-          <a href="../index.html#about" class="site-footer__link">About</a>
+          <a href="../index.html#work" class="site-footer__link"><span data-en="Work" data-es="Trabajo">Work</span></a>
+          <a href="../index.html#about" class="site-footer__link"><span data-en="About" data-es="Sobre mí">About</span></a>
           <a href="https://www.linkedin.com/in/lenincuadra/" class="site-footer__link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="#" class="site-footer__link" target="_blank" rel="noopener noreferrer">Resume</a>
+          <a href="#" class="site-footer__link" target="_blank" rel="noopener noreferrer"><span data-en="Resume" data-es="Currículum">Resume</span></a>
         </nav>
       </div>
       <div class="site-footer__copy">
         <span>© <span id="footer-year"></span> Lenin Cuadra</span>
-        <span>Designed &amp; built with care.</span>
+        <span data-en="Designed &amp; built with care." data-es="Diseñado y construido con cuidado.">Designed &amp; built with care.</span>
       </div>
     </div>
   </footer>
@@ -654,14 +650,12 @@
         const text = el.dataset[lang];
         if (text !== undefined) el.textContent = text;
       });
-    }
-    applyLang(getLang());
-    document.querySelectorAll('.lang-switch__btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        localStorage.setItem(LANG_KEY, btn.dataset.lang);
-        applyLang(btn.dataset.lang);
+      document.querySelectorAll('[data-html-en]').forEach(el => {
+        const key = 'html' + lang.charAt(0).toUpperCase() + lang.slice(1);
+        const html = el.dataset[key];
+        if (html !== undefined) el.innerHTML = html;
       });
-    });
+    }
 
     // TOC builder
     function buildTOC() {
@@ -671,7 +665,8 @@
 
       const title = document.createElement('span');
       title.className = 'toc-nav__title';
-      title.textContent = 'Table of Contents';
+      title.dataset.en = 'Table of Contents';
+      title.dataset.es = 'Tabla de contenidos';
 
       const list = document.createElement('ul');
       list.className = 'toc-nav__list';
@@ -684,14 +679,20 @@
 
         const labelSpan = document.createElement('span');
         labelSpan.className = 'toc-nav__link-label';
-        labelSpan.textContent = section.dataset.tocLabel;
+        labelSpan.dataset.en = section.dataset.tocLabel;
+        labelSpan.dataset.es = section.dataset.tocLabelEs || section.dataset.tocLabel;
         a.appendChild(labelSpan);
 
         const h2 = section.querySelector('h2');
         if (h2) {
           const sub = document.createElement('span');
           sub.className = 'toc-nav__link-subtitle';
-          sub.textContent = h2.textContent.trim();
+          if (h2.dataset.en) {
+            sub.dataset.en = h2.dataset.en;
+            sub.dataset.es = h2.dataset.es || h2.dataset.en;
+          } else {
+            sub.textContent = h2.textContent.trim();
+          }
           a.appendChild(sub);
         }
 
@@ -704,6 +705,13 @@
     }
 
     buildTOC();
+    applyLang(getLang());
+    document.querySelectorAll('.lang-switch__btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        localStorage.setItem(LANG_KEY, btn.dataset.lang);
+        applyLang(btn.dataset.lang);
+      });
+    });
 
     // Footer year
     const yearEl = document.getElementById('footer-year');
