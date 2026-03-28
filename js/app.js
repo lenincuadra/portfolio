@@ -183,7 +183,7 @@
       setText('featured-case-title', featured.card.title);
       setText('fc-excerpt', featured.card.excerpt);
       const fcCta = document.getElementById('fc-cta');
-      if (fcCta) fcCta.href = 'cases/case.html?slug=' + featured.slug;
+      if (fcCta) fcCta.href = 'cases/case-v2.html?slug=' + featured.slug;
       const fcScreens = document.getElementById('fc-screens');
       if (fcScreens && featured.images && featured.images.screens) {
         fcScreens.innerHTML = featured.images.screens.map(s => {
@@ -205,14 +205,14 @@
         const delay = i > 0 ? ` reveal-delay-${i}` : '';
         return `
           <article class="case-card reveal${delay}">
-            <a href="cases/case.html?slug=${c.slug}" class="case-card__image" aria-label="${c.card.title} — view case study">
+            <a href="cases/case-v2.html?slug=${c.slug}" class="case-card__image" aria-label="${c.card.title} — view case study">
               <img src="${c.images ? resolveAssetUrl(c.images.cover) : ''}" alt="${c.card.title}" loading="lazy" />
             </a>
             <div class="case-card__body">
               <div class="case-card__tags">${buildTags(c.card.tags)}</div>
               <h3 class="case-card__title">${c.card.title}</h3>
               <p class="case-card__excerpt">${c.card.excerpt}</p>
-              <a href="cases/case.html?slug=${c.slug}" class="case-card__cta">
+              <a href="cases/case-v2.html?slug=${c.slug}" class="case-card__cta">
                 ${readMoreLabel}
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                   <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>

@@ -212,6 +212,71 @@ const PORTFOLIO_DATA = {
           ],
         },
 
+        sections: [
+          {
+            id: 'section-overview', tocLabel: 'Overview', label: 'Overview',
+            heading: 'A payment ecosystem built from scratch.',
+            content: [
+              { type: 'body', text: 'The project consisted of three connected product surfaces: Web Checkout (buyer-facing payment interface), Payment Link (merchant tool for collecting payments), and NShops (financial dashboard for visibility and operations).' },
+              { type: 'body', text: 'As the sole design owner across the three products, I translated business requirements and technical constraints into a coherent product system — defining interaction models, aligning flows with backend realities, and ensuring operational logic, user clarity and business visibility coexisted.' },
+            ],
+          },
+          {
+            id: 'section-problem', tocLabel: 'Problem', label: 'Problem',
+            heading: 'Three products, three sets of friction.',
+            content: [
+              { type: 'body', text: 'Web Checkout faced slow backend response times and severe UI customization limits imposed by Payment Gateway Lyra. Payment Link had single-attempt MVP logic: once a link expired after a failed payment, it was gone permanently. NShops had no centralized financial visibility — leaving merchants unable to understand the state of their operations.' },
+            ],
+          },
+          {
+            id: 'section-process', tocLabel: 'Process', label: 'Process',
+            heading: 'From paper to production in structure.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Paper → Mid-Fi → Hi-Fi in under 3 days — defined Happy Path early to align engineering, prioritizing functional clarity over surface polish.',
+                'Rebuilding within a CSS-only gateway — Payment Gateway (Lyra) allowed only CSS customization. Rebuilt the non-branded card flow entirely within those limits.',
+                'Detecting cascading friction — identified Payment Link expiration creating operational friction. Solution: Duplicate Payment Link, enabling faster recovery after failed payments.',
+                '7-user usability test — 5/7 users completed Payment Link creation. 3/7 completed payment confirmation. Core insight: status communication across surfaces was unclear.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-decisions', tocLabel: 'Decisions', label: 'Decisions',
+            heading: 'Decisions that shaped the system.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Prioritize Happy Path definition before visual refinement — engineering alignment needed a clear functional flow first, allowing frontend and backend to move in parallel.',
+                'Design within CSS-only gateway constraints — mapped what was possible and rebuilt the non-branded card flow accordingly. Maintained momentum without delay.',
+                'Introduce Duplicate Payment Link as a structural fix — framed as a systemic recovery mechanism, not a convenience feature, accelerating stakeholder buy-in.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-impact', tocLabel: 'Impact', label: 'Impact',
+            heading: 'A payment ecosystem where none previously existed.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                '3 connected product surfaces launched: Checkout · Payment Link · NShops',
+                '5/7 users completed Payment Link creation — 7-user usability study, Happy Path',
+                '3/7 users completed payment confirmation — identified status ambiguity as key friction',
+                'Zero → One: first connected payment ecosystem at Naranja X',
+              ]},
+              { type: 'subheading', text: 'After launch, Duplicate Payment Link eliminated full manual recreation after payment failure — reducing systemic friction and increasing operational coherence.' },
+            ],
+          },
+          {
+            id: 'section-learnings', tocLabel: 'What This Demonstrates', label: 'What This Demonstrates',
+            heading: 'What This Demonstrates.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Strong execution under constraints — able to move fast without losing coherence across a complex system.',
+                'Ecosystem impact thinking — design decisions evaluated based on how they balance multiple dimensions simultaneously.',
+                'Business-aware product ownership — from zero-to-one creation to post-launch structural optimization.',
+              ]},
+            ],
+          },
+        ],
+
         nav: {
           prev: { slug: "telecom-legacy-refactor", title: "Telecom Legacy Platform Refactor" },
           next: { slug: "ecommerce-conversion",    title: "221% Q1 Revenue: E-commerce Conversion" },
@@ -344,6 +409,120 @@ const PORTFOLIO_DATA = {
             "Execution focused on measurable business impact: when the only variable is UX, results are attribution-clear.",
           ],
         },
+
+        sections: [
+          {
+            id: 'section-overview', tocLabel: 'Overview', label: 'Overview',
+            heading: 'A conversion problem disguised as a sales problem.',
+            layout: 'overview',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Same quarter, one year apart',
+                'No pricing or campaign changes',
+                'No external growth drivers',
+              ]},
+              { type: 'image', src: 'assets/images/ecommerce/impact-chart.gif', alt: 'Q1 vs Q1 revenue impact chart', loading: 'lazy' },
+            ],
+          },
+          {
+            id: 'section-scope', tocLabel: 'Scope', label: 'Scope',
+            heading: 'Full website UX redesign + conversion channel strategy.',
+            style: 'padding-bottom: 0',
+            content: [
+              { type: 'steps', variant: 'bullet', items: [
+                'Automotive tire sales were underperforming due to a complex inquiry flow and high cognitive friction across the website.',
+                'The objective was to improve conversion without altering pricing, campaigns or inventory strategy.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-problem', tocLabel: 'Problem', label: 'Problem',
+            heading: 'Friction was hiding revenue.',
+            content: [
+              { type: 'subheading', text: 'The original inquiry flow:' },
+              { type: 'steps', variant: 'bullet', items: [
+                'Required excessive cognitive effort.',
+                'Forced users through a rigid multi-step structure.',
+                'Relied exclusively on traditional web form submission.',
+              ]},
+              { type: 'subheading', text: 'Resulting in:' },
+              { type: 'steps', variant: 'bullet', items: [
+                'High drop-off during form completion.',
+                'Slow communication between buyers and the business.',
+                'Low conversion efficiency.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-intervention', tocLabel: 'Intervention', label: 'Intervention',
+            heading: 'Simplify the path. Change the channel.',
+            content: [
+              { type: 'subheading', text: '1. Cognitive Friction Reduction' },
+              { type: 'steps', variant: 'bullet', columns: 2, items: [
+                'Simplified the inquiry structure.',
+                'Reduced unnecessary inputs.',
+                'Improved information hierarchy and clarity.',
+                'Optimized form completion flow.',
+              ]},
+              { type: 'gallery', images: [
+                { src: 'assets/images/ecommerce/wireframes.png', alt: 'Wireframes' },
+                { src: 'assets/images/ecommerce/wireframe-MidFi.png', alt: 'Mid-Fi wireframe' },
+              ]},
+              { type: 'subheading', text: '2. Channel Strategy Shift' },
+              { type: 'body', text: 'Proposed and integrated WhatsApp as a high-intent communication channel during early market adoption.' },
+              { type: 'subheading', text: 'This allowed:' },
+              { type: 'steps', variant: 'bullet', items: [
+                'Faster buyer-business interaction.',
+                'Reduced abandonment after initial interest.',
+                'Real-time clarification for complex tire specifications.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-before-after', tocLabel: 'Before / After', label: 'Before / After',
+            heading: 'Before / After Comparison.',
+            content: [
+              { type: 'subheading', text: 'Before' },
+              { type: 'steps', variant: 'bullet', items: [
+                'High cognitive load.',
+                'Multi-step rigid structure.',
+                'No real-time communication channel.',
+              ]},
+              { type: 'subheading', text: 'After' },
+              { type: 'steps', variant: 'bullet', items: [
+                'Reduced input fields.',
+                'Clearer hierarchy and guidance.',
+                'Integrated WhatsApp high-intent entry point.',
+              ]},
+              { type: 'image', src: 'assets/images/ecommerce/mockup.png', alt: 'Redesigned simplified flow' },
+            ],
+          },
+          {
+            id: 'section-result', tocLabel: 'Result', label: 'Result',
+            heading: 'Measured as Q1 vs Q1 year-over-year.',
+            content: [
+              { type: 'steps', variant: 'bullet', items: [
+                'No pricing changes.',
+                'No campaign changes.',
+                'No external growth drivers.',
+              ]},
+              { type: 'subheading', text: 'Impact driven exclusively by UX simplification and channel redesign.' },
+              { type: 'image', src: 'assets/images/ecommerce/impact-chart.gif', alt: 'Impact chart', loading: 'lazy' },
+            ],
+          },
+          {
+            id: 'section-learnings', tocLabel: 'What This Demonstrates', label: 'What This Demonstrates',
+            heading: 'What This Demonstrates.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Ability to identify revenue bottlenecks.',
+                'Strategic thinking beyond interface design.',
+                'Execution focused on measurable business impact.',
+                'Understanding of behavioral friction and conversion dynamics.',
+              ]},
+            ],
+          },
+        ],
 
         nav: {
           prev: { slug: "fintech-ecosystem",      title: "Zero-to-one: Connected Payment Ecosystem" },
@@ -479,6 +658,82 @@ const PORTFOLIO_DATA = {
             "Leadership in high-risk, full-version refactoring initiatives: coordinating design and engineering decisions across a complex transition without incremental releases.",
           ],
         },
+
+        sections: [
+          {
+            id: 'section-overview', tocLabel: 'Overview', label: 'Overview',
+            heading: 'A platform that had outgrown its original architecture.',
+            layout: 'overview',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'A live telecom application in production with real users',
+                'Accumulated structural debt: fragmented IA, inconsistent navigation, iconography issues',
+                'Full v1 → v2 transition without incremental public releases',
+              ]},
+              { type: 'image', src: 'assets/images/telecom/mockup-multitasking.png', alt: 'Telecom platform overview' },
+            ],
+          },
+          {
+            id: 'section-problem', tocLabel: 'Problem', label: 'Problem',
+            heading: 'The system required users to guess, not recognize.',
+            content: [
+              { type: 'steps', variant: 'bullet', items: [
+                'Poorly structured information hierarchy.',
+                'Navigation that required users to guess rather than recognize.',
+                'Iconography inconsistencies that reduced comprehension.',
+                'Divergence from the newly adopted Design System used across other company products.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-process', tocLabel: 'Process', label: 'Process',
+            heading: 'Restructure first. Standardize second. Validate third.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Full IA reorganization v1 → v2 — redefined the navigation model, clarified grouping logic, and established explicit module separation to eliminate the guess-rather-than-recognize pattern.',
+                'Applying corporate Design System standards — standardized components, interaction patterns, and iconography. Alignment with the broader product ecosystem reduced the learning curve.',
+                'Standardizing iconography for recognition — adopted Design System iconography, improving recognition rates and aligning the product with the broader company ecosystem.',
+                'Usability testing to confirm structural improvements — validated the refactor: increased task success rates, improved navigation clarity, better icon comprehension.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-decisions', tocLabel: 'Decisions', label: 'Decisions',
+            heading: 'The structural choices behind the refactor.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Full v1 → v2 transition instead of incremental updates — incremental updates to a structurally broken system would create a hybrid architecture harder to maintain. A full version transition produced a coherent result.',
+                'Adopt the corporate Design System, not a local visual fix — required deeper IA restructuring but produced ecosystem consistency and reduced future maintenance overhead.',
+                'Prioritize navigation clarity over feature parity — explicit decisions about primary navigation vs. nested content, based on task frequency and user mental models, not legacy placement.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-impact', tocLabel: 'Impact', label: 'Impact',
+            heading: 'Structural clarity in a live, complex system.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                '↑ Task success rates — validated by usability testing post-launch',
+                '↑ Navigation clarity — users recognized paths instead of guessing',
+                '↑ Icon comprehension — Design System iconography outperformed legacy set',
+                'v2 — complete IA restructure without incremental releases',
+              ]},
+              { type: 'subheading', text: 'Structural design interventions in live systems can deliver measurable UX improvement without requiring a product rebuild.' },
+            ],
+          },
+          {
+            id: 'section-learnings', tocLabel: 'What This Demonstrates', label: 'What This Demonstrates',
+            heading: 'What This Demonstrates.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Ability to intervene in legacy systems without disrupting live operations — structural refactoring is a design discipline, not just a development one.',
+                'Structural thinking in complex, constraint-driven environments: the architecture itself was the problem, and the architecture had to be the solution.',
+                'Strategic application of Design Systems beyond visual consistency — adoption here was an architectural decision that reduced cognitive debt across the product ecosystem.',
+                'Leadership in high-risk, full-version refactoring: coordinating design and engineering decisions across a complex transition without incremental releases.',
+              ]},
+            ],
+          },
+        ],
 
         nav: {
           prev: { slug: "ecommerce-conversion", title: "221% Q1 Revenue: E-commerce Conversion" },
@@ -688,6 +943,71 @@ const PORTFOLIO_DATA = {
           ],
         },
 
+        sections: [
+          {
+            id: 'section-overview', tocLabel: 'Panorama', label: 'Panorama',
+            heading: 'Un ecosistema de pagos construido desde cero.',
+            content: [
+              { type: 'body', text: 'El proyecto consistió en tres superficies de producto conectadas: Web Checkout (interfaz de pago orientada al comprador), Payment Link (herramienta para comerciantes) y NShops (dashboard financiero para visibilidad y operaciones).' },
+              { type: 'body', text: 'Como único responsable de diseño en los tres productos, traduje los requisitos de negocio y las restricciones técnicas en un sistema de producto coherente — definiendo modelos de interacción, alineando flujos con las realidades del backend, y asegurando que la lógica operacional, la claridad para el usuario y la visibilidad del negocio coexistieran.' },
+            ],
+          },
+          {
+            id: 'section-problem', tocLabel: 'Problema', label: 'Problema',
+            heading: 'Tres productos, tres fuentes de fricción.',
+            content: [
+              { type: 'body', text: 'Web Checkout enfrentaba tiempos de respuesta lentos y severas limitaciones de UI impuestas por el Payment Gateway Lyra. Payment Link tenía lógica de intento único: una vez que el link expiraba tras un pago fallido, desaparecía permanentemente. NShops no tenía visibilidad financiera centralizada — dejando a los comerciantes sin capacidad de entender el estado de sus operaciones.' },
+            ],
+          },
+          {
+            id: 'section-process', tocLabel: 'Proceso', label: 'Proceso',
+            heading: 'Del papel a producción con estructura.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Papel → Mid-Fi → Hi-Fi en menos de 3 días — definí el Happy Path temprano para alinear con ingeniería, priorizando la claridad funcional sobre el pulido visual.',
+                'Reconstruyendo dentro de un gateway solo con CSS — el Payment Gateway (Lyra) solo permitía personalización CSS. Reconstruí el flujo de tarjeta sin marca dentro de esos límites.',
+                'Detectando fricción en cascada — identifiqué que la expiración del Payment Link creaba fricción operacional en cascada. Solución: Duplicar Payment Link.',
+                'Test de usabilidad con 7 usuarios — 5/7 completaron la creación del Payment Link. 3/7 completaron la confirmación de pago. Insight clave: la comunicación de estado era poco clara.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-decisions', tocLabel: 'Decisiones', label: 'Decisiones',
+            heading: 'Decisiones que moldearon el sistema.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Priorizar la definición del Happy Path antes del refinamiento visual — la alineación con ingeniería necesitaba primero un flujo funcional claro, permitiendo que frontend y backend avanzaran en paralelo.',
+                'Diseñar dentro de las restricciones de solo CSS — mapeé lo posible dentro de los límites de solo CSS y reconstruí el flujo sin marca, manteniendo el impulso sin demoras.',
+                'Introducir Duplicar Payment Link como solución estructural — enmarcado como mecanismo de recuperación sistémica, no como conveniencia, acelerando la aprobación de stakeholders.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-impact', tocLabel: 'Impacto', label: 'Impacto',
+            heading: 'Un ecosistema de pagos donde antes no existía ninguno.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                '3 superficies de producto conectadas lanzadas: Checkout · Payment Link · NShops',
+                '5/7 usuarios completaron la creación del Payment Link — estudio de usabilidad con 7 usuarios',
+                '3/7 usuarios completaron la confirmación de pago — identificó la ambigüedad de estado como fricción clave',
+                'Cero → Uno: primer ecosistema de pagos conectado en Naranja X',
+              ]},
+              { type: 'subheading', text: 'Tras el lanzamiento, Duplicar Payment Link eliminó la recreación manual completa tras un pago fallido — reduciendo la fricción sistémica y aumentando la coherencia operacional.' },
+            ],
+          },
+          {
+            id: 'section-learnings', tocLabel: 'Qué demuestra esto', label: 'Qué demuestra esto',
+            heading: 'Qué demuestra esto.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Sólida ejecución bajo restricciones — capacidad de avanzar rápido sin perder coherencia en un sistema complejo.',
+                'Pensamiento de impacto en el ecosistema — las decisiones de diseño se evalúan según cómo equilibran múltiples dimensiones simultáneamente.',
+                'Liderazgo de producto con consciencia de negocio — desde la creación zero-to-one hasta la optimización estructural post-lanzamiento.',
+              ]},
+            ],
+          },
+        ],
+
         nav: {
           prev: { slug: "telecom-legacy-refactor", title: "Refactoring de Plataforma Telecom Legada" },
           next: { slug: "ecommerce-conversion",    title: "221% Q1 en Ingresos: Conversión E-commerce" },
@@ -820,6 +1140,120 @@ const PORTFOLIO_DATA = {
             "Ejecución enfocada en impacto de negocio medible: cuando la única variable es el UX, los resultados tienen atribución clara.",
           ],
         },
+
+        sections: [
+          {
+            id: 'section-overview', tocLabel: 'Panorama', label: 'Panorama',
+            heading: 'Un problema de conversión disfrazado de problema de ventas.',
+            layout: 'overview',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Mismo trimestre, un año de diferencia',
+                'Sin cambios de precios ni campañas',
+                'Sin factores externos de crecimiento',
+              ]},
+              { type: 'image', src: 'assets/images/ecommerce/impact-chart.gif', alt: 'Gráfico de impacto Q1 vs Q1', loading: 'lazy' },
+            ],
+          },
+          {
+            id: 'section-scope', tocLabel: 'Alcance', label: 'Alcance',
+            heading: 'Rediseño UX completo del sitio + estrategia de canal de conversión.',
+            style: 'padding-bottom: 0',
+            content: [
+              { type: 'steps', variant: 'bullet', items: [
+                'Las ventas de neumáticos tenían bajo rendimiento por un flujo de consulta complejo y alta fricción cognitiva en el sitio.',
+                'El objetivo era mejorar la conversión sin modificar precios, campañas ni estrategia de inventario.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-problem', tocLabel: 'Problema', label: 'Problema',
+            heading: 'La fricción estaba ocultando ingresos.',
+            content: [
+              { type: 'subheading', text: 'El flujo de consulta original:' },
+              { type: 'steps', variant: 'bullet', items: [
+                'Exigía un esfuerzo cognitivo excesivo.',
+                'Forzaba a los usuarios a través de una estructura rígida de múltiples pasos.',
+                'Dependía exclusivamente del envío de formularios web tradicionales.',
+              ]},
+              { type: 'subheading', text: 'Lo que resultó en:' },
+              { type: 'steps', variant: 'bullet', items: [
+                'Alta tasa de abandono durante el llenado del formulario.',
+                'Comunicación lenta entre compradores y el negocio.',
+                'Baja eficiencia de conversión.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-intervention', tocLabel: 'Intervención', label: 'Intervención',
+            heading: 'Simplificar el camino. Cambiar el canal.',
+            content: [
+              { type: 'subheading', text: '1. Reducción de fricción cognitiva' },
+              { type: 'steps', variant: 'bullet', columns: 2, items: [
+                'Se simplificó la estructura de consulta.',
+                'Se redujeron campos innecesarios.',
+                'Se mejoró la jerarquía de información y la claridad.',
+                'Se optimizó el flujo de llenado del formulario.',
+              ]},
+              { type: 'gallery', images: [
+                { src: 'assets/images/ecommerce/wireframes.png', alt: 'Wireframes' },
+                { src: 'assets/images/ecommerce/wireframe-MidFi.png', alt: 'Wireframe Mid-Fi' },
+              ]},
+              { type: 'subheading', text: '2. Cambio de estrategia de canal' },
+              { type: 'body', text: 'Se propuso e integró WhatsApp como canal de comunicación de alta intención durante la adopción temprana del mercado.' },
+              { type: 'subheading', text: 'Esto permitió:' },
+              { type: 'steps', variant: 'bullet', items: [
+                'Interacción más rápida entre compradores y el negocio.',
+                'Menor abandono después del interés inicial.',
+                'Aclaración en tiempo real para especificaciones técnicas complejas.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-before-after', tocLabel: 'Antes / Después', label: 'Antes / Después',
+            heading: 'Comparación Antes / Después.',
+            content: [
+              { type: 'subheading', text: 'Antes' },
+              { type: 'steps', variant: 'bullet', items: [
+                'Alta carga cognitiva.',
+                'Estructura rígida de múltiples pasos.',
+                'Sin canal de comunicación en tiempo real.',
+              ]},
+              { type: 'subheading', text: 'Después' },
+              { type: 'steps', variant: 'bullet', items: [
+                'Campos reducidos.',
+                'Jerarquía y orientación más claras.',
+                'Punto de entrada WhatsApp de alta intención integrado.',
+              ]},
+              { type: 'image', src: 'assets/images/ecommerce/mockup.png', alt: 'Flujo simplificado rediseñado' },
+            ],
+          },
+          {
+            id: 'section-result', tocLabel: 'Resultado', label: 'Resultado',
+            heading: 'Medido como Q1 vs Q1 año a año.',
+            content: [
+              { type: 'steps', variant: 'bullet', items: [
+                'Sin cambios de precios.',
+                'Sin cambios de campañas.',
+                'Sin factores externos de crecimiento.',
+              ]},
+              { type: 'subheading', text: 'Impacto generado exclusivamente por simplificación UX y rediseño del canal.' },
+              { type: 'image', src: 'assets/images/ecommerce/impact-chart.gif', alt: 'Gráfico de impacto', loading: 'lazy' },
+            ],
+          },
+          {
+            id: 'section-learnings', tocLabel: 'Qué demuestra esto', label: 'Qué demuestra esto',
+            heading: 'Qué demuestra esto.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Capacidad para identificar cuellos de botella de ingresos.',
+                'Pensamiento estratégico más allá del diseño de interfaz.',
+                'Ejecución enfocada en impacto de negocio medible.',
+                'Comprensión de la fricción conductual y las dinámicas de conversión.',
+              ]},
+            ],
+          },
+        ],
 
         nav: {
           prev: { slug: "fintech-ecosystem",       title: "De cero a uno: Ecosistema de Pagos Conectado" },
@@ -955,6 +1389,82 @@ const PORTFOLIO_DATA = {
             "Liderazgo en iniciativas de refactoring de versión completa de alto riesgo: coordinando decisiones de diseño e ingeniería a lo largo de una transición compleja sin lanzamientos incrementales.",
           ],
         },
+
+        sections: [
+          {
+            id: 'section-overview', tocLabel: 'Panorama', label: 'Panorama',
+            heading: 'Una plataforma que había superado su arquitectura original.',
+            layout: 'overview',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Una aplicación telecom en producción con usuarios reales',
+                'Deuda estructural acumulada: IA fragmentada, navegación inconsistente, problemas de iconografía',
+                'Transición completa v1 → v2 sin lanzamientos públicos incrementales',
+              ]},
+              { type: 'image', src: 'assets/images/telecom/mockup-multitasking.png', alt: 'Panorama de la plataforma telecom' },
+            ],
+          },
+          {
+            id: 'section-problem', tocLabel: 'Problema', label: 'Problema',
+            heading: 'El sistema obligaba a los usuarios a adivinar, no a reconocer.',
+            content: [
+              { type: 'steps', variant: 'bullet', items: [
+                'Jerarquía de información mal estructurada.',
+                'Navegación que obligaba a los usuarios a adivinar en lugar de reconocer.',
+                'Inconsistencias de iconografía que reducían la comprensión.',
+                'Divergencia del nuevo Design System adoptado en otros productos de la empresa.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-process', tocLabel: 'Proceso', label: 'Proceso',
+            heading: 'Reestructurar primero. Estandarizar después. Validar al final.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Reorganización completa de IA v1 → v2 — se redefinió el modelo de navegación, se clarificó la lógica de agrupamiento y se estableció separación explícita de módulos para eliminar el patrón adivinar-en-lugar-de-reconocer.',
+                'Aplicación de estándares del Design System corporativo — componentes, patrones de interacción e iconografía estandarizados. La alineación con el ecosistema de producto redujo la curva de aprendizaje.',
+                'Estandarización de iconografía para el reconocimiento — se adoptó la iconografía del Design System, mejorando las tasas de reconocimiento y alineando el producto con el ecosistema de la empresa.',
+                'Testing de usabilidad para confirmar las mejoras estructurales — se validó el refactoring: mayor tasa de éxito en tareas, mejor claridad de navegación, mayor comprensión de iconos.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-decisions', tocLabel: 'Decisiones', label: 'Decisiones',
+            heading: 'Las decisiones estructurales detrás del refactoring.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Transición completa v1 → v2 en lugar de actualizaciones incrementales — las actualizaciones incrementales a un sistema roto habrían creado una arquitectura híbrida más difícil de mantener. Una transición completa produjo un resultado coherente.',
+                'Adoptar el Design System corporativo, no una solución visual local — requirió una reestructuración de IA más profunda, pero produjo consistencia en el ecosistema y redujo la sobrecarga de mantenimiento futuro.',
+                'Priorizar la claridad de navegación por encima de la paridad de funcionalidades — decisiones explícitas sobre navegación principal vs. contenido anidado, basadas en la frecuencia de tareas y los modelos mentales del usuario, no en la ubicación legada.',
+              ]},
+            ],
+          },
+          {
+            id: 'section-impact', tocLabel: 'Impacto', label: 'Impacto',
+            heading: 'Claridad estructural en un sistema vivo y complejo.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                '↑ Tasas de éxito de tareas — validado por testing de usabilidad post-lanzamiento',
+                '↑ Claridad de navegación — los usuarios reconocían los caminos en lugar de adivinar',
+                '↑ Comprensión de iconos — la iconografía del Design System superó al conjunto legado',
+                'v2 — reestructuración completa de IA sin lanzamientos incrementales',
+              ]},
+              { type: 'subheading', text: 'Las intervenciones de diseño estructural en sistemas en vivo pueden generar mejoras UX medibles sin requerir una reconstrucción del producto.' },
+            ],
+          },
+          {
+            id: 'section-learnings', tocLabel: 'Qué demuestra esto', label: 'Qué demuestra esto',
+            heading: 'Qué demuestra esto.',
+            content: [
+              { type: 'steps', variant: 'numbered', items: [
+                'Capacidad de intervenir en sistemas legados sin interrumpir las operaciones en vivo — el refactoring estructural es una disciplina de diseño, no solo de desarrollo.',
+                'Pensamiento estructural en entornos complejos y con restricciones: la arquitectura en sí era el problema, y la arquitectura tenía que ser la solución.',
+                'Aplicación estratégica de Design Systems más allá de la consistencia visual — la adopción aquí fue una decisión arquitectónica que redujo la deuda cognitiva en el ecosistema de producto.',
+                'Liderazgo en refactoring de versión completa de alto riesgo: coordinando decisiones de diseño e ingeniería en una transición compleja sin lanzamientos incrementales.',
+              ]},
+            ],
+          },
+        ],
 
         nav: {
           prev: { slug: "ecommerce-conversion", title: "221% Q1 en Ingresos: Conversión E-commerce" },
