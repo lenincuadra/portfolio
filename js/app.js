@@ -231,10 +231,11 @@
       grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     }
 
-    // Capabilities
+    // Capabilities (fallback to EN if ES missing)
     const capList = document.getElementById('capabilities-list');
-    if (capList && home.capabilities) {
-      capList.innerHTML = home.capabilities.map(c => `<li class="capabilities__item">${c}</li>`).join('');
+    const caps = home.capabilities || PORTFOLIO_DATA.en.home.capabilities;
+    if (capList && caps) {
+      capList.innerHTML = caps.map(c => `<li class="capabilities__item">${c}</li>`).join('');
     }
 
     // About

@@ -802,6 +802,13 @@ const PORTFOLIO_DATA = {
         heading: "Construyamos algo con sentido.",
         body:    "Estoy abierto a roles de product design, colaboraciones y conversaciones sobre sistemas complejos, diseño de plataformas y experiencias escalables.",
       },
+      capabilities: [
+        "Creación de producto zero-to-one",
+        "Refactorización de sistemas legacy",
+        "Optimización de conversión y crecimiento",
+        "Integración de design systems",
+        "Investigación y validación de usabilidad UX",
+      ],
     },
 
     cases: [
