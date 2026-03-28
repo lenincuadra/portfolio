@@ -23,6 +23,50 @@
       outline: 2px solid var(--accent);
       outline-offset: 2px;
     }
+    .case-cta__option {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 16px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: var(--font-body);
+      font-size: var(--text-sm, 0.875rem);
+      font-weight: 500;
+      color: var(--ink);
+      text-decoration: none;
+      transition: background var(--dur-fast, 150ms), border-color var(--dur-fast, 150ms);
+    }
+    .case-cta__option:hover {
+      background: color-mix(in srgb, var(--ink) 6%, transparent);
+      border-color: var(--ink-3);
+    }
+    .case-cta__option:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+    .copy-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: var(--ink);
+      color: var(--bg);
+      font-size: var(--text-sm, 0.875rem);
+      font-weight: 500;
+      padding: 8px 16px;
+      border-radius: 100px;
+      opacity: 0;
+      transition: opacity 200ms, transform 200ms;
+      pointer-events: none;
+      z-index: 100;
+    }
+    .copy-toast--visible {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
     img { display: block; margin-left: auto; margin-right: auto; }
     .img-container {
       border-radius: 16px;
@@ -66,6 +110,61 @@
       .process-steps--horizontal,
       .process-steps--3col { grid-template-columns: 1fr; }
       .process-steps--horizontal .process-step:last-child { border-bottom: none; }
+    }
+    /* Case Navigation */
+    .case-nav {
+      border-top: 1px solid var(--border);
+    }
+    .case-nav__inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .case-nav__item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: var(--sp-8, 2rem) var(--sp-6, 1.5rem);
+      text-decoration: none;
+      color: var(--ink);
+      transition: background var(--dur-fast, 150ms);
+    }
+    .case-nav__item:hover {
+      background: color-mix(in srgb, var(--ink) 4%, transparent);
+    }
+    .case-nav__item--next {
+      text-align: right;
+      border-left: 1px solid var(--border);
+    }
+    .case-nav__label {
+      font-size: var(--text-xs, 0.75rem);
+      font-weight: 500;
+      color: var(--ink-3);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .case-nav__item--next .case-nav__label {
+      justify-content: flex-end;
+    }
+    .case-nav__title {
+      font-size: var(--text-base, 1rem);
+      font-weight: 600;
+      color: var(--ink);
+    }
+    .case-nav__meta {
+      font-size: var(--text-sm, 0.875rem);
+      color: var(--ink-2);
+    }
+    @media (max-width: 600px) {
+      .case-nav__inner { grid-template-columns: 1fr; }
+      .case-nav__item--next {
+        text-align: left;
+        border-left: none;
+        border-top: 1px solid var(--border);
+      }
+      .case-nav__item--next .case-nav__label { justify-content: flex-start; }
     }
   </style>
 </head>
@@ -182,7 +281,7 @@
       </section>
 
       <!-- SCOPE -->
-      <section id="section-scope" data-toc-label="Scope" class="section" aria-labelledby="scope-heading">
+      <section id="section-scope" data-toc-label="Scope" class="section" aria-labelledby="scope-heading" style="padding-bottom: 0;">
         <div class="container">
           <p class="section__label">Scope</p>
           <h2 class="section__heading" id="scope-heading">Full website UX redesign + conversion channel strategy.</h2>
@@ -202,6 +301,7 @@
             </div>
           </div>
         </div>
+      </section>
       <!-- PROBLEM -->
       <section id="section-problem" data-toc-label="Problem" class="section" aria-labelledby="problem-heading">
         <div class="container">
@@ -392,7 +492,6 @@
         <div class="container">
           <p class="section__label">Result</p>
           <h2 class="section__heading" id="result-heading">Measured as Q1 vs Q1 year-over-year.</h2>
-          <hr class="section__divider" />
           <div class="process-steps" style="margin-top: 1rem">
             <div class="process-step">
               <span class="process-step__number" aria-hidden="true">*</span>
@@ -461,12 +560,22 @@
       <section class="case-section" id="cta">
         <div class="case-section__content">
           <div class="case-cta">
-            <p style="font-size: var(--text-lg, 1.125rem); color: var(--ink-2); margin: 0;">
-              <span data-en="If this kind of thinking is what you're looking for —" data-es="Si este tipo de pensamiento es lo que buscás —">If this kind of thinking is what you're looking for —</span>
-              <a href="https://www.linkedin.com/in/lenincuadra/" target="_blank" rel="noopener noreferrer" style="color: var(--accent); font-weight: 500; text-decoration: none; white-space: nowrap; margin-left: 0.25em;">
-                <span data-en="Let's talk →" data-es="Hablemos →">Let's talk →</span>
-              </a>
+            <p style="font-size: var(--text-lg, 1.125rem); color: var(--ink-2); margin: 0 0 1.5rem;">
+              <span data-en="If this kind of thinking is what you're looking for, I'm available to talk." data-es="Si este tipo de pensamiento es lo que buscás, estoy disponible para hablar.">If this kind of thinking is what you're looking for, I'm available to talk.</span>
             </p>
+            <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+              <button class="case-cta__option" id="cta-copy-email">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span data-en="Copy Email" data-es="Copiar email">Copy Email</span>
+              </button>
+              <a href="https://www.linkedin.com/in/lenincuadra/" target="_blank" rel="noopener noreferrer" class="case-cta__option">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.27V1.73C24 .77 23.21 0 22.22 0z"/></svg>
+                <span data-en="DM me on LinkedIn" data-es="Escribime por LinkedIn">DM me on LinkedIn</span>
+              </a>
+            </div>
+          </div>
+          <div class="copy-toast" id="copy-toast" role="status" aria-live="polite">
+            <span data-en="Email copied!" data-es="¡Email copiado!">Email copied!</span>
           </div>
         </div>
       </section>
@@ -481,23 +590,24 @@
   </div>
 
   <!-- CASE NAVIGATION -->
-  <nav class="case-navigation" aria-label="Case study navigation">
+  <nav class="case-nav" aria-label="Case studies navigation">
     <div class="container">
-      <div class="case-navigation__inner">
-        <a href="case.html?slug=fintech-ecosystem" class="case-nav-item case-nav-item--prev">
-          <span class="case-nav-item__dir">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-            Previous
+      <div class="case-nav__inner">
+        <a href="./case-fintech.html" class="case-nav__item case-nav__item--prev">
+          <span class="case-nav__label">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+            <span data-en="Previous" data-es="Anterior">Previous</span>
           </span>
-          <span class="case-nav-item__title">Zero-to-one: Connected Payment Ecosystem</span>
+          <span class="case-nav__title" data-en="Fintech Checkout Redesign" data-es="Rediseño de checkout fintech">Fintech Checkout Redesign</span>
+          <span class="case-nav__meta" data-en="Product Design" data-es="Diseño de producto">Product Design</span>
         </a>
-        <a href="../index.html#work" class="case-navigation__index-link">← All Work</a>
-        <a href="case.html?slug=telecom-legacy-refactor" class="case-nav-item case-nav-item--next">
-          <span class="case-nav-item__dir">
-            Next
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+        <a href="./case-telecom.html" class="case-nav__item case-nav__item--next">
+          <span class="case-nav__label">
+            <span data-en="Next" data-es="Siguiente">Next</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
           </span>
-          <span class="case-nav-item__title">Telecom Legacy Platform Refactor</span>
+          <span class="case-nav__title" data-en="Telecom Legacy Refactor" data-es="Refactorización legacy telecom">Telecom Legacy Refactor</span>
+          <span class="case-nav__meta" data-en="Systems Design" data-es="Diseño de sistemas">Systems Design</span>
         </a>
       </div>
     </div>
@@ -598,6 +708,19 @@
     // Footer year
     const yearEl = document.getElementById('footer-year');
     if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+    // CTA — copy email
+    const ctaCopyBtn = document.getElementById('cta-copy-email');
+    const copyToast  = document.getElementById('copy-toast');
+    let toastTimer;
+
+    ctaCopyBtn.addEventListener('click', () => {
+      navigator.clipboard.writeText('leninxperience@gmail.com').then(() => {
+        copyToast.classList.add('copy-toast--visible');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(() => copyToast.classList.remove('copy-toast--visible'), 2500);
+      });
+    });
   </script>
 </body>
 </html>
