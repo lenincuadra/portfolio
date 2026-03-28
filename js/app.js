@@ -231,12 +231,6 @@
       grid.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     }
 
-    // Capabilities (fallback to EN if ES missing)
-    const capList = document.getElementById('capabilities-list');
-    const caps = home.capabilities || PORTFOLIO_DATA.en.home.capabilities;
-    if (capList && caps) {
-      capList.innerHTML = caps.map(c => `<li class="capabilities__item">${c}</li>`).join('');
-    }
 
     // About
     setText('about-heading', home.about.heading);
