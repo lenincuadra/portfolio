@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design System — Lenin Cuadra Portfolio</title>
+  <!-- Tokens, fuentes y estilos base del proyecto — fuente de la verdad -->
+  <link rel="stylesheet" href="styles/main.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    // tailwind.config — copiá este bloque a cualquier página del proyecto
+    // para tener todos los tokens disponibles como clases de Tailwind
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            accent: { DEFAULT: '#c8602a', dim: '#e8845a', pale: '#f5e0d5' },
+            'accent2': { DEFAULT: '#2a5c8f', light: '#5b8fbf' },
+            bg: { DEFAULT: '#f5f3ef', alt: '#eceae5', card: '#ffffff' },
+            surface: '#dedbd4',
+            border: '#d3d0c9',
+            ink: { DEFAULT: '#1a1916', 2: '#3d3b36', 3: '#706d65', 4: '#9c9991' },
+            success: '#2d7a4f',
+            warning: '#b87820',
+            danger: '#c0392b',
+          },
+          fontFamily: {
+            display: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            sans: ['"Instrument Sans"', 'system-ui', 'sans-serif'],
+            mono: ['"DM Mono"', '"Courier New"', 'monospace'],
+          },
+          borderRadius: { sm: '3px', md: '8px', lg: '16px', xl: '24px' },
+          boxShadow: {
+            sm: '0 1px 3px rgba(26,25,22,0.06), 0 1px 2px rgba(26,25,22,0.04)',
+            md: '0 4px 16px rgba(26,25,22,0.08), 0 2px 6px rgba(26,25,22,0.05)',
+            lg: '0 12px 40px rgba(26,25,22,0.1), 0 4px 12px rgba(26,25,22,0.06)',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    /* Los tokens vienen de main.css — no se duplican aquí */
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--ink); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+
+    /* Sidebar sticky — se queda fija mientras scrolleás el contenido */
+    .sidebar { position: sticky; top: 1.5rem; height: calc(100vh - 3rem); overflow-y: auto; }
+    .sidebar::-webkit-scrollbar { width: 3px; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+    /* scroll-margin-top: evita que el header sticky tape los títulos de sección */
+    section[id] { scroll-margin-top: 2rem; }
+
+    /* swatch: el cuadrado de preview de color */
+    .swatch { width: 100%; height: 60px; border-radius: 6px; border: 1px solid rgba(26,25,22,0.08); }
+
+    /* token-label: etiqueta de variable CSS o clase Tailwind */
+    .token-label {
+      font-family: var(--font-mono); font-size: 0.6875rem;
+      color: var(--ink-3); background: var(--bg-alt);
+      padding: 2px 6px; border-radius: 3px; border: 1px solid var(--border-subtle);
+      display: inline-block;
+    }
+
+    /* spacing-bar: barra del visual ruler de espaciado */
+    .sp-bar { background: var(--accent-pale); border-left: 3px solid var(--accent); height: 18px; min-width: 2px; }
+
+    /* nav-link: links de la sidebar */
+    .nav-link {
+      display: block; padding: 7px 12px; border-radius: 6px;
+      font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;
+      transition: background 150ms, color 150ms;
+    }
+    .nav-link:hover, .nav-link.active { background: var(--accent-pale); color: var(--accent); }
+
+    /* btn base styles */
+    .btn { border: none; border-radius: 3px; cursor: pointer; font-family: var(--font-body); font-weight: 500; transition: opacity 150ms; }
+    .btn:hover { opacity: 0.85; }
+    .btn:disabled { cursor: not-allowed; opacity: 0.5; }
+    .btn-sm { padding: 6px 14px; font-size: 0.6875rem; }
+    .btn-md { padding: 10px 20px; font-size: 0.8125rem; }
+    .btn-lg { padding: 14px 28px; font-size: 1rem; }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-secondary { background: var(--accent-2); color: #fff; }
+    .btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
+    .btn-ghost { background: var(--bg-alt); color: var(--ink-2); border: 1px solid var(--border); }
+
+    /* input base */
+    .field {
+      width: 100%; max-width: 360px; padding: 10px 14px;
+      border: 1.5px solid var(--border); border-radius: 3px;
+      font-size: 0.8125rem; font-family: var(--font-body);
+      color: var(--ink); background: var(--bg); outline: none;
+    }
+    .field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-pale); }
+    .field--error { border-color: #c0392b; background: #fef2f2; }
+    .field:disabled { background: var(--surface); color: var(--ink-4); cursor: not-allowed; border-color: var(--border-subtle); }
+
+    /* card base */
+    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 1px 3px rgba(26,25,22,0.06); }
+
+    /* badge base */
+    .badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 9999px; font-size: 0.6875rem; font-weight: 500; font-family: var(--font-body); }
+    .badge-sq { border-radius: 3px; font-family: var(--font-mono); }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header style="background: var(--bg-card); border-bottom: 1px solid var(--border);" class="px-8 py-8">
+  <div style="max-width: 1200px; margin: 0 auto;">
+    <h1 style="font-family: var(--font-display); font-size: 2.25rem; font-weight: 400; line-height: 1.1;">Design System</h1>
+    <p style="color: var(--ink-3); font-size: 0.8125rem; margin-top: 4px;">Lenin Cuadra Portfolio · Tokens, componentes y guía de estilo</p>
+  </div>
+</header>
+
+<!-- LAYOUT -->
+<div style="max-width: 1200px; margin: 0 auto; display: flex; gap: 2rem; padding: 2rem 2rem;">
+
+  <!-- SIDEBAR (desktop) -->
+  <aside class="sidebar" style="width: 200px; flex-shrink: 0; display: none;" id="sidebar">
+    <nav>
+      <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--ink-4); margin-bottom: 12px; padding: 0 12px;">Secciones</p>
+      <ul style="list-style: none; padding: 0; margin: 0;">
+        <li><a href="#colors"     class="nav-link">Colores</a></li>
+        <li><a href="#typography" class="nav-link">Tipografía</a></li>
+        <li><a href="#spacing"    class="nav-link">Espaciado</a></li>
+        <li><a href="#buttons"    class="nav-link">Botones</a></li>
+        <li><a href="#inputs"     class="nav-link">Inputs</a></li>
+        <li><a href="#cards"      class="nav-link">Cards</a></li>
+        <li><a href="#badges"     class="nav-link">Badges</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main style="flex: 1; min-width: 0;">
+
+    <!-- Mobile nav pills -->
+    <div id="mobile-nav" style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2rem;">
+      <a href="#colors"     style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Colores</a>
+      <a href="#typography" style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Tipografía</a>
+      <a href="#spacing"    style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Espaciado</a>
+      <a href="#buttons"    style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Botones</a>
+      <a href="#inputs"     style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Inputs</a>
+      <a href="#cards"      style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Cards</a>
+      <a href="#badges"     style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Badges</a>
+    </div>
+
+    <!-- ── COLORES ─────────────────────────────────── -->
+    <section id="colors" style="margin-bottom: 4rem;">
+      <h2 style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 24px;">Colores</h2>
+
+      <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Marca</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; margin-bottom: 2rem;">
+        <div><div class="swatch" style="background:#c8602a;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Accent</p><p style="font-size:0.6875rem;color:var(--ink-3);">#c8602a</p><span class="token-label">--accent</span></div>
+        <div><div class="swatch" style="background:#e8845a;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Accent Dim</p><p style="font-size:0.6875rem;color:var(--ink-3);">#e8845a</p><span class="token-label">--accent-dim</span></div>
+        <div><div class="swatch" style="background:#f5e0d5;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Accent Pale</p><p style="font-size:0.6875rem;color:var(--ink-3);">#f5e0d5</p><span class="token-label">--accent-pale</span></div>
+        <div><div class="swatch" style="background:#2a5c8f;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Accent 2</p><p style="font-size:0.6875rem;color:var(--ink-3);">#2a5c8f</p><span class="token-label">--accent-2</span></div>
+      </div>
+
+      <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Neutros — Light Mode</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; margin-bottom: 2rem;">
+        <div><div class="swatch" style="background:#f5f3ef;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Background</p><p style="font-size:0.6875rem;color:var(--ink-3);">#f5f3ef</p><span class="token-label">--bg</span></div>
+        <div><div class="swatch" style="background:#eceae5;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">BG Alt</p><p style="font-size:0.6875rem;color:var(--ink-3);">#eceae5</p><span class="token-label">--bg-alt</span></div>
+        <div><div class="swatch" style="background:#fff;border:1px solid #d3d0c9;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">BG Card</p><p style="font-size:0.6875rem;color:var(--ink-3);">#ffffff</p><span class="token-label">--bg-card</span></div>
+        <div><div class="swatch" style="background:#dedbd4;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Surface</p><p style="font-size:0.6875rem;color:var(--ink-3);">#dedbd4</p><span class="token-label">--surface</span></div>
+        <div><div class="swatch" style="background:#d3d0c9;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Border</p><p style="font-size:0.6875rem;color:var(--ink-3);">#d3d0c9</p><span class="token-label">--border</span></div>
+      </div>
+
+      <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Texto (Ink)</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; margin-bottom: 2rem;">
+        <div><div class="swatch" style="background:#1a1916;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Ink</p><p style="font-size:0.6875rem;color:var(--ink-3);">#1a1916</p><span class="token-label">--ink</span></div>
+        <div><div class="swatch" style="background:#3d3b36;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Ink 2</p><p style="font-size:0.6875rem;color:var(--ink-3);">#3d3b36</p><span class="token-label">--ink-2</span></div>
+        <div><div class="swatch" style="background:#706d65;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Ink 3</p><p style="font-size:0.6875rem;color:var(--ink-3);">#706d65</p><span class="token-label">--ink-3</span></div>
+        <div><div class="swatch" style="background:#9c9991;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Ink 4</p><p style="font-size:0.6875rem;color:var(--ink-3);">#9c9991</p><span class="token-label">--ink-4</span></div>
+      </div>
+
+      <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Dark Mode</p>
+      <div style="background:#141311; border-radius:12px; padding:24px; display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:16px; margin-bottom:2rem;">
+        <div><div style="height:48px;border-radius:6px;background:#141311;border:1px solid #383530;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;color:#f0ede8;">BG Dark</p><p style="font-size:0.6875rem;color:#8c8880;">#141311</p></div>
+        <div><div style="height:48px;border-radius:6px;background:#211f1c;border:1px solid #383530;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;color:#f0ede8;">BG Card</p><p style="font-size:0.6875rem;color:#8c8880;">#211f1c</p></div>
+        <div><div style="height:48px;border-radius:6px;background:#e07848;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;color:#f0ede8;">Accent</p><p style="font-size:0.6875rem;color:#8c8880;">#e07848</p></div>
+        <div><div style="height:48px;border-radius:6px;background:#5b8fbf;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;color:#f0ede8;">Accent-2</p><p style="font-size:0.6875rem;color:#8c8880;">#5b8fbf</p></div>
+      </div>
+
+      <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Semánticos</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px;">
+        <div><div class="swatch" style="background:#2d7a4f;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Success</p><p style="font-size:0.6875rem;color:var(--ink-3);">#2d7a4f</p></div>
+        <div><div class="swatch" style="background:#b87820;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Warning</p><p style="font-size:0.6875rem;color:var(--ink-3);">#b87820</p></div>
+        <div><div class="swatch" style="background:#c0392b;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Danger</p><p style="font-size:0.6875rem;color:var(--ink-3);">#c0392b</p></div>
+      </div>
+    </section>
+
+    <!-- ── TIPOGRAFÍA ──────────────────────────────── -->
+    <section id="typography" style="margin-bottom: 4rem;">
+      <h2 style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 24px;">Tipografía</h2>
+
+      <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Familias</p>
+      <div style="display: grid; gap: 12px; margin-bottom: 2rem;">
+        <div class="card" style="padding: 24px;">
+          <span class="token-label">--font-display</span>
+          <p style="font-family: 'Cormorant Garamond', Georgia, serif; font-size: 2rem; font-weight: 400; margin-top: 12px; line-height: 1.1;">Cormorant Garamond</p>
+          <p style="font-family: 'Cormorant Garamond', Georgia, serif; font-style: italic; color: var(--ink-3); margin-top: 4px;">Títulos, quotes y texto editorial</p>
+        </div>
+        <div class="card" style="padding: 24px;">
+          <span class="token-label">--font-body</span>
+          <p style="font-family: 'Instrument Sans', system-ui, sans-serif; font-size: 1.375rem; margin-top: 12px;">Instrument Sans</p>
+          <p style="font-family: 'Instrument Sans', system-ui, sans-serif; color: var(--ink-3); font-size: 0.9rem; font-weight: 300; margin-top: 4px;">Cuerpo, UI, labels — limpio y legible a cualquier tamaño</p>
+        </div>
+        <div class="card" style="padding: 24px;">
+          <span class="token-label">--font-mono</span>
+          <p style="font-family: 'DM Mono', monospace; font-size: 1.125rem; margin-top: 12px;">DM Mono</p>
+          <p style="font-family: 'DM Mono', monospace; color: var(--ink-3); font-size: 0.8rem; font-weight: 300; margin-top: 4px;">Código, tokens, datos técnicos y etiquetas</p>
+        </div>
+      </div>
+
+      <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Escala de tamaños</p>
+      <!-- Cada fila muestra el texto en su propio tamaño — evaluá de un vistazo el ritmo -->
+      <div class="card" style="overflow: hidden;">
+        <div style="display:flex;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border-subtle);gap:16px;"><span class="token-label" style="min-width:90px;text-align:right;">5xl · 5.5rem</span><span style="font-family:var(--font-display);font-size:5.5rem;line-height:1;color:var(--ink);">Aa</span></div>
+        <div style="display:flex;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border-subtle);gap:16px;"><span class="token-label" style="min-width:90px;text-align:right;">4xl · 4rem</span><span style="font-family:var(--font-display);font-size:4rem;line-height:1;color:var(--ink);">Hero title</span></div>
+        <div style="display:flex;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border-subtle);gap:16px;"><span class="token-label" style="min-width:90px;text-align:right;">3xl · 3rem</span><span style="font-family:var(--font-display);font-size:3rem;line-height:1.2;color:var(--ink);">Sección</span></div>
+        <div style="display:flex;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border-subtle);gap:16px;"><span class="token-label" style="min-width:90px;text-align:right;">2xl · 2.25rem</span><span style="font-size:2.25rem;line-height:1.2;color:var(--ink);">Subsección</span></div>
+        <div style="display:flex;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border-subtle);gap:16px;"><span class="token-label" style="min-width:90px;text-align:right;">xl · 1.75rem</span><span style="font-size:1.75rem;line-height:1.3;color:var(--ink);">Card heading</span></div>
+        <div style="display:flex;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border-subtle);gap:16px;"><span class="token-label" style="min-width:90px;text-align:right;">lg · 1.375rem</span><span style="font-size:1.375rem;line-height:1.4;color:var(--ink);">Intro paragraph</span></div>
+        <div style="display:flex;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border-subtle);gap:16px;"><span class="token-label" style="min-width:90px;text-align:right;">md · 1.125rem</span><span style="font-size:1.125rem;line-height:1.5;color:var(--ink);">Texto secundario</span></div>
+        <div style="display:flex;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border-subtle);gap:16px;"><span class="token-label" style="min-width:90px;text-align:right;">base · 1rem</span><span style="font-size:1rem;line-height:1.65;color:var(--ink);">Cuerpo principal — el default del body</span></div>
+        <div style="display:flex;align-items:center;padding:14px 24px;border-bottom:1px solid var(--border-subtle);gap:16px;"><span class="token-label" style="min-width:90px;text-align:right;">sm · 0.8125rem</span><span style="font-size:0.8125rem;line-height:1.5;color:var(--ink);">Labels, nav links, metadata</span></div>
+        <div style="display:flex;align-items:center;padding:14px 24px;gap:16px;"><span class="token-label" style="min-width:90px;text-align:right;">xs · 0.6875rem</span><span style="font-size:0.6875rem;line-height:1.4;color:var(--ink);">Captions, tokens, etiquetas técnicas</span></div>
+      </div>
+    </section>
+
+    <!-- ── ESPACIADO ───────────────────────────────── -->
+    <section id="spacing" style="margin-bottom: 4rem;">
+      <h2 style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 24px;">Espaciado</h2>
+
+      <div class="card" style="padding: 24px; display: flex; flex-direction: column; gap: 10px; margin-bottom: 2rem;">
+        <!-- Las barras crecen proporcionalmente — se ve el ritmo del sistema de un vistazo -->
+        <div style="display:flex;align-items:center;gap:16px;"><span class="token-label" style="min-width:55px;text-align:right;">--sp-1</span><div class="sp-bar" style="width:0.25rem;"></div><span style="font-size:0.6875rem;color:var(--ink-4);font-family:var(--font-mono);">0.25rem · 4px</span></div>
+        <div style="display:flex;align-items:center;gap:16px;"><span class="token-label" style="min-width:55px;text-align:right;">--sp-2</span><div class="sp-bar" style="width:0.5rem;"></div><span style="font-size:0.6875rem;color:var(--ink-4);font-family:var(--font-mono);">0.5rem · 8px</span></div>
+        <div style="display:flex;align-items:center;gap:16px;"><span class="token-label" style="min-width:55px;text-align:right;">--sp-3</span><div class="sp-bar" style="width:0.75rem;"></div><span style="font-size:0.6875rem;color:var(--ink-4);font-family:var(--font-mono);">0.75rem · 12px</span></div>
+        <div style="display:flex;align-items:center;gap:16px;"><span class="token-label" style="min-width:55px;text-align:right;">--sp-4</span><div class="sp-bar" style="width:1rem;"></div><span style="font-size:0.6875rem;color:var(--ink-4);font-family:var(--font-mono);">1rem · 16px</span></div>
+        <div style="display:flex;align-items:center;gap:16px;"><span class="token-label" style="min-width:55px;text-align:right;">--sp-5</span><div class="sp-bar" style="width:1.25rem;"></div><span style="font-size:0.6875rem;color:var(--ink-4);font-family:var(--font-mono);">1.25rem · 20px</span></div>
+        <div style="display:flex;align-items:center;gap:16px;"><span class="token-label" style="min-width:55px;text-align:right;">--sp-6</span><div class="sp-bar" style="width:1.5rem;"></div><span style="font-size:0.6875rem;color:var(--ink-4);font-family:var(--font-mono);">1.5rem · 24px</span></div>
+        <div style="display:flex;align-items:center;gap:16px;"><span class="token-label" style="min-width:55px;text-align:right;">--sp-8</span><div class="sp-bar" style="width:2rem;"></div><span style="font-size:0.6875rem;color:var(--ink-4);font-family:var(--font-mono);">2rem · 32px</span></div>
+        <div style="display:flex;align-items:center;gap:16px;"><span class="token-label" style="min-width:55px;text-align:right;">--sp-10</span><div class="sp-bar" style="width:2.5rem;"></div><span style="font-size:0.6875rem;color:var(--ink-4);font-family:var(--font-mono);">2.5rem · 40px</span></div>
+        <div style="display:flex;align-items:center;gap:16px;"><span class="token-label" style="min-width:55px;text-align:right;">--sp-12</span><div class="sp-bar" style="width:3rem;"></div><span style="font-size:0.6875rem;color:var(--ink-4);font-family:var(--font-mono);">3rem · 48px</span></div>
+        <div style="display:flex;align-items:center;gap:16px;"><span class="token-label" style="min-width:55px;text-align:right;">--sp-16</span><div class="sp-bar" style="width:4rem;"></div><span style="font-size:0.6875rem;color:var(--ink-4);font-family:var(--font-mono);">4rem · 64px</span></div>
+        <div style="display:flex;align-items:center;gap:16px;"><span class="token-label" style="min-width:55px;text-align:right;">--sp-20</span><div class="sp-bar" style="width:5rem;"></div><span style="font-size:0.6875rem;color:var(--ink-4);font-family:var(--font-mono);">5rem · 80px</span></div>
+        <div style="display:flex;align-items:center;gap:16px;"><span class="token-label" style="min-width:55px;text-align:right;">--sp-24</span><div class="sp-bar" style="width:6rem;"></div><span style="font-size:0.6875rem;color:var(--ink-4);font-family:var(--font-mono);">6rem · 96px</span></div>
+      </div>
+
+      <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Border Radius</p>
+      <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-end;">
+        <div style="text-align:center;"><div style="width:72px;height:72px;background:var(--accent-pale);border:2px solid var(--accent);border-radius:3px;margin:0 auto 8px;"></div><span class="token-label">--r-sm</span><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:4px;">3px</p></div>
+        <div style="text-align:center;"><div style="width:72px;height:72px;background:var(--accent-pale);border:2px solid var(--accent);border-radius:8px;margin:0 auto 8px;"></div><span class="token-label">--r-md</span><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:4px;">8px</p></div>
+        <div style="text-align:center;"><div style="width:72px;height:72px;background:var(--accent-pale);border:2px solid var(--accent);border-radius:16px;margin:0 auto 8px;"></div><span class="token-label">--r-lg</span><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:4px;">16px</p></div>
+        <div style="text-align:center;"><div style="width:72px;height:72px;background:var(--accent-pale);border:2px solid var(--accent);border-radius:24px;margin:0 auto 8px;"></div><span class="token-label">--r-xl</span><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:4px;">24px</p></div>
+        <div style="text-align:center;"><div style="width:72px;height:72px;background:var(--accent-pale);border:2px solid var(--accent);border-radius:9999px;margin:0 auto 8px;"></div><span class="token-label">full</span><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:4px;">9999px</p></div>
+      </div>
+    </section>
+
+    <!-- ── BOTONES ─────────────────────────────────── -->
+    <section id="buttons" style="margin-bottom: 4rem;">
+      <h2 style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 24px;">Botones</h2>
+
+      <!-- Cada variante tiene sm/md/lg — así se ven las proporciones juntas -->
+      <div style="display: grid; gap: 12px;">
+
+        <div class="card" style="padding: 24px;">
+          <p class="token-label" style="margin-bottom: 16px;">.btn--primary · background: --accent</p>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+            <div style="text-align:center;"><button class="btn btn-primary btn-sm">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">sm</p></div>
+            <div style="text-align:center;"><button class="btn btn-primary btn-md">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">md</p></div>
+            <div style="text-align:center;"><button class="btn btn-primary btn-lg">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">lg</p></div>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 24px;">
+          <p class="token-label" style="margin-bottom: 16px;">.btn--secondary · background: --accent-2</p>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+            <div style="text-align:center;"><button class="btn btn-secondary btn-sm">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">sm</p></div>
+            <div style="text-align:center;"><button class="btn btn-secondary btn-md">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">md</p></div>
+            <div style="text-align:center;"><button class="btn btn-secondary btn-lg">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">lg</p></div>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 24px;">
+          <p class="token-label" style="margin-bottom: 16px;">.btn--outline · border: --accent</p>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+            <div style="text-align:center;"><button class="btn btn-outline btn-sm">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">sm</p></div>
+            <div style="text-align:center;"><button class="btn btn-outline btn-md">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">md</p></div>
+            <div style="text-align:center;"><button class="btn btn-outline btn-lg">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">lg</p></div>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 24px;">
+          <p class="token-label" style="margin-bottom: 16px;">.btn--ghost · background: --bg-alt</p>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+            <div style="text-align:center;"><button class="btn btn-ghost btn-sm">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">sm</p></div>
+            <div style="text-align:center;"><button class="btn btn-ghost btn-md">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">md</p></div>
+            <div style="text-align:center;"><button class="btn btn-ghost btn-lg">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">lg</p></div>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 24px;">
+          <p class="token-label" style="margin-bottom: 16px;">Estados especiales</p>
+          <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+            <div style="text-align:center;"><button class="btn btn-primary btn-md" disabled>Disabled</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">disabled</p></div>
+            <div style="text-align:center;">
+              <button class="btn btn-primary btn-md" style="display:flex;align-items:center;gap:8px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                Confirmar
+              </button>
+              <p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">icon + label</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── INPUTS ──────────────────────────────────── -->
+    <section id="inputs" style="margin-bottom: 4rem;">
+      <h2 style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 24px;">Inputs</h2>
+
+      <div class="card" style="padding: 24px; display: grid; gap: 20px;">
+
+        <div>
+          <label style="display:block;font-size:0.8125rem;font-weight:500;color:var(--ink-2);margin-bottom:6px;">Normal</label>
+          <input type="text" class="field" placeholder="Placeholder..." />
+          <span class="token-label" style="margin-top:6px;">border: --border · bg: --bg</span>
+        </div>
+
+        <!-- :focus simulado — mostramos el ring de var(--accent-pale) -->
+        <div>
+          <label style="display:block;font-size:0.8125rem;font-weight:500;color:var(--ink-2);margin-bottom:6px;">Focus</label>
+          <input type="text" class="field" value="Texto activo..." style="border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-pale);" />
+          <span class="token-label" style="margin-top:6px;">border: --accent · ring: --accent-pale</span>
+        </div>
+
+        <div>
+          <label style="display:block;font-size:0.8125rem;font-weight:500;color:var(--ink-2);margin-bottom:6px;">Error</label>
+          <input type="text" class="field field--error" value="invalid@" />
+          <p style="font-size:0.6875rem;color:#c0392b;margin-top:5px;">Este campo es requerido</p>
+        </div>
+
+        <div>
+          <label style="display:block;font-size:0.8125rem;font-weight:500;color:var(--ink-4);margin-bottom:6px;">Disabled</label>
+          <input type="text" class="field" disabled value="No editable" />
+        </div>
+
+        <div>
+          <label style="display:block;font-size:0.8125rem;font-weight:500;color:var(--ink-2);margin-bottom:6px;">Select</label>
+          <select class="field" style="max-width:360px;">
+            <option>Elegí una opción</option>
+            <option>Opción A</option>
+            <option>Opción B</option>
+          </select>
+        </div>
+
+        <div>
+          <label style="display:block;font-size:0.8125rem;font-weight:500;color:var(--ink-2);margin-bottom:6px;">Textarea</label>
+          <textarea class="field" rows="3" placeholder="Escribí aquí..." style="max-width:360px;resize:vertical;line-height:1.65;"></textarea>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── CARDS ───────────────────────────────────── -->
+    <section id="cards" style="margin-bottom: 4rem;">
+      <h2 style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 24px;">Cards</h2>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 24px;">
+
+        <!-- Básica — estructura mínima: bg-card + border + shadow-sm -->
+        <div>
+          <span class="token-label" style="margin-bottom:10px;">Básica</span>
+          <div class="card" style="padding:24px;margin-top:10px;">
+            <p style="font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-4);font-family:var(--font-mono);margin-bottom:8px;">Categoría</p>
+            <h3 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;margin-bottom:8px;">Título de la card</h3>
+            <p style="font-size:0.8125rem;color:var(--ink-3);line-height:1.6;">Descripción breve, máximo 2-3 líneas para mantener la jerarquía visual.</p>
+          </div>
+        </div>
+
+        <!-- Con imagen — aspect-ratio 16:9 + overflow hidden en la card -->
+        <div>
+          <span class="token-label" style="margin-bottom:10px;">Con imagen</span>
+          <div class="card" style="overflow:hidden;margin-top:10px;">
+            <div style="aspect-ratio:16/9;background:linear-gradient(135deg,var(--accent-pale) 0%,var(--surface) 100%);display:flex;align-items:center;justify-content:center;">
+              <span style="font-size:0.8125rem;color:var(--ink-4);font-family:var(--font-mono);">imagen 16:9</span>
+            </div>
+            <div style="padding:20px;">
+              <h3 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;margin-bottom:8px;">Título del proyecto</h3>
+              <p style="font-size:0.8125rem;color:var(--ink-3);line-height:1.6;">Brief del caso de estudio.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Con acciones — footer con border-top para separar CTAs -->
+        <div>
+          <span class="token-label" style="margin-bottom:10px;">Con acciones</span>
+          <div class="card" style="padding:24px;display:flex;flex-direction:column;gap:16px;margin-top:10px;">
+            <div>
+              <p style="font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-4);font-family:var(--font-mono);margin-bottom:8px;">UX Design</p>
+              <h3 style="font-family:var(--font-display);font-size:1.375rem;font-weight:400;margin-bottom:8px;">Case Study Title</h3>
+              <p style="font-size:0.8125rem;color:var(--ink-3);line-height:1.6;">Impacto del proyecto en métricas clave.</p>
+            </div>
+            <div style="border-top:1px solid var(--border-subtle);padding-top:16px;display:flex;gap:10px;">
+              <button class="btn btn-primary btn-sm">Ver caso</button>
+              <button class="btn btn-ghost btn-sm">Compartir</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ── BADGES ──────────────────────────────────── -->
+    <section id="badges" style="margin-bottom: 4rem;">
+      <h2 style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 24px;">Badges</h2>
+
+      <div class="card" style="padding: 24px;">
+        <p style="font-family:var(--font-mono);font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-4);margin-bottom:14px;">Pill — border-radius: 9999px</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px;align-items:center;">
+          <span class="badge" style="background:var(--surface);color:var(--ink-2);border:1px solid var(--border);">Default</span>
+          <span class="badge" style="background:var(--accent-pale);color:var(--accent);border:1px solid rgba(200,96,42,0.2);">Primary</span>
+          <span class="badge" style="background:#dce9f5;color:var(--accent-2);border:1px solid rgba(42,92,143,0.2);">Secondary</span>
+          <span class="badge" style="background:#dcf0e6;color:#2d7a4f;border:1px solid rgba(45,122,79,0.2);">Success</span>
+          <span class="badge" style="background:#fef3dc;color:#b87820;border:1px solid rgba(184,120,32,0.2);">Warning</span>
+          <span class="badge" style="background:#fde8e6;color:#c0392b;border:1px solid rgba(192,57,43,0.2);">Danger</span>
+        </div>
+
+        <p style="font-family:var(--font-mono);font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-4);margin-bottom:14px;">Square — border-radius: 3px · font-mono</p>
+        <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+          <span class="badge badge-sq" style="background:var(--surface);color:var(--ink-2);">v2.4.1</span>
+          <span class="badge badge-sq" style="background:var(--accent-pale);color:var(--accent);">NEW</span>
+          <span class="badge badge-sq" style="background:#dcf0e6;color:#2d7a4f;">LIVE</span>
+          <span class="badge badge-sq" style="background:#fef3dc;color:#b87820;">BETA</span>
+          <span class="badge badge-sq" style="background:#fde8e6;color:#c0392b;">DEPRECATED</span>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid var(--border);margin-top:2rem;padding:2rem;">
+  <div style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+    <p style="font-size:0.8125rem;color:var(--ink-4);font-family:var(--font-mono);">Design System — Lenin Cuadra Portfolio</p>
+    <p style="font-size:0.6875rem;color:var(--ink-4);font-family:var(--font-mono);">Generado el 10 de abril de 2026</p>
+  </div>
+  <!-- Tip: cómo reutilizar los tokens en otros archivos del proyecto -->
+  <div style="max-width:1200px;margin:16px auto 0;padding:14px 18px;background:var(--accent-pale);border-left:3px solid var(--accent);border-radius:0 6px 6px 0;">
+    <p style="font-size:0.8125rem;color:var(--ink-2);">
+      <strong>Tip:</strong> Copiá el bloque <code style="font-family:var(--font-mono);font-size:0.75rem;background:rgba(200,96,42,0.12);padding:2px 5px;border-radius:3px;">tailwind.config</code> del <code style="font-family:var(--font-mono);font-size:0.75rem;background:rgba(200,96,42,0.12);padding:2px 5px;border-radius:3px;">&lt;script&gt;</code> de este archivo a cualquier página del proyecto para tener todos los tokens como clases de Tailwind.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // Mostrar sidebar en desktop, pills en mobile
+  function updateNav() {
+    const sidebar = document.getElementById('sidebar');
+    const mobileNav = document.getElementById('mobile-nav');
+    if (window.innerWidth >= 768) {
+      sidebar.style.display = 'block';
+      mobileNav.style.display = 'none';
+    } else {
+      sidebar.style.display = 'none';
+      mobileNav.style.display = 'flex';
+    }
+  }
+  updateNav();
+  window.addEventListener('resize', updateNav);
+
+  // IntersectionObserver: resalta el link activo al scrollear
+  // Más eficiente que un scroll event listener clásico
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks = document.querySelectorAll('#sidebar a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          if (link.getAttribute('href') === '#' + id) {
+            link.classList.add('active');
+          } else {
+            link.classList.remove('active');
+          }
+        });
+      }
+    });
+  }, { rootMargin: '-10% 0px -80% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>

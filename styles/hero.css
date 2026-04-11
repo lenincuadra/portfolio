@@ -1,0 +1,166 @@
+/* ============================================================
+   HERO — Index hero · 2-col layout · Availability badge
+   ============================================================ */
+
+/* ---- HERO (INDEX) ---- */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: 64px;
+  position: relative;
+  overflow: hidden;
+}
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    radial-gradient(
+      ellipse 80% 60% at 70% 50%,
+      color-mix(in srgb, var(--accent) 6%, transparent),
+      transparent
+    ),
+    radial-gradient(
+      ellipse 60% 80% at 20% 80%,
+      color-mix(in srgb, var(--accent-2) 4%, transparent),
+      transparent
+    );
+}
+.hero__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+.hero__eyebrow {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: 300;
+  color: var(--ink-3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: var(--sp-6);
+}
+.hero__name {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 9vw, var(--text-5xl));
+  font-weight: 300;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: var(--sp-3);
+}
+.hero__name em {
+  font-style: italic;
+  color: var(--accent);
+}
+.hero__role {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-xl), 3.5vw, var(--text-3xl));
+  font-weight: 300;
+  font-style: italic;
+  color: var(--ink-3);
+  margin-bottom: var(--sp-10);
+}
+.hero__summary {
+  font-size: var(--text-md);
+  line-height: 1.7;
+  color: var(--ink-2);
+  max-width: 52ch;
+  margin-bottom: var(--sp-12);
+  font-weight: 300;
+}
+.hero__actions {
+  display: flex;
+  gap: var(--sp-4);
+  flex-wrap: wrap;
+}
+.hero__scroll-hint {
+  position: absolute;
+  bottom: var(--sp-8);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--sp-2);
+  color: var(--ink-4);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  animation: scroll-pulse 2.5s ease-in-out infinite;
+}
+.hero__scroll-hint svg {
+  width: 20px;
+  height: 20px;
+}
+@keyframes scroll-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    opacity: 0.9;
+    transform: translateX(-50%) translateY(6px);
+  }
+}
+
+/* ---- HERO 2-COLUMN ---- */
+.hero__inner {
+  display: grid;
+  grid-template-columns: 7fr 5fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: center;
+}
+.hero__portrait {
+  position: relative;
+}
+.hero__portrait img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  border-radius: var(--r-lg);
+  box-shadow: 0 24px 64px color-mix(in srgb, var(--ink) 12%, transparent);
+}
+.hero__availability-badge {
+  position: absolute;
+  bottom: var(--sp-5);
+  left: 50%;
+  transform: translateX(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+  padding: 4px 8px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--r-xl);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-variant: small-caps;
+  text-transform: uppercase;
+  font-weight: 400;
+  color: #fff;
+  white-space: nowrap;
+  letter-spacing: 0.08em;
+}
+.hero__availability-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4ade80;
+  flex-shrink: 0;
+}
+@media (max-width: 768px) {
+  .hero__inner {
+    grid-template-columns: 1fr;
+  }
+  .hero__portrait {
+    order: -1;
+    max-width: 260px;
+    margin-inline: auto;
+  }
+}

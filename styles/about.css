@@ -1,0 +1,71 @@
+/* ============================================================
+   ABOUT — Bio block · Venn diagram · About CTA
+   ============================================================ */
+
+/* ---- BIO BLOCK ---- */
+.bio-block {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: center;
+}
+@media (max-width: 768px) {
+  .bio-block {
+    grid-template-columns: 1fr;
+  }
+}
+.bio-block__portrait {
+  width: 100%;
+  aspect-ratio: 4/5;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--ink-4);
+}
+.bio-block__portrait img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.bio-block__portrait--venn {
+  background: transparent;
+  overflow: visible;
+  padding: var(--sp-4);
+}
+.venn-diagram {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.venn-center-label {
+  fill: var(--ink);
+}
+.bio-block__text h2 {
+  font-family: var(--font-display);
+  font-size: clamp(var(--text-2xl), 3.5vw, var(--text-4xl));
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--ink);
+  margin-bottom: var(--sp-6);
+}
+.bio-block__text p {
+  font-size: var(--text-md);
+  line-height: 1.75;
+  color: var(--ink-2);
+  margin-bottom: var(--sp-5);
+}
+
+/* ---- ABOUT CTA ---- */
+.about__cta {
+  display: inline-block;
+  margin-top: var(--sp-6);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--accent);
+}
