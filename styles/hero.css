@@ -70,6 +70,10 @@
   margin-bottom: var(--sp-12);
   font-weight: 300;
 }
+.hero__text {
+  display: flex;
+  flex-direction: column;
+}
 .hero__actions {
   display: flex;
   gap: var(--sp-4);

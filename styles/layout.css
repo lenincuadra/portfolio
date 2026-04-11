@@ -87,3 +87,6 @@
   margin-block: var(--sp-8);
   border: none;
 }
+.section--alt {
+  background: var(--bg-alt);
+}

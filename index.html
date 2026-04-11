@@ -142,7 +142,7 @@
             <p class="hero__role" id="hero-role"></p>
             <p class="hero__summary" id="hero-summary"></p>
             <div class="hero__actions">
-              <a href="#featured-case" class="btn btn--primary">
+              <a href="#featured-case" class="btn btn--primary btn--md">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
                 <span id="hero-cta">View Work</span>
               </a>
@@ -212,16 +212,10 @@
          ====================================================== -->
       <section class="section capabilities" id="capabilities" aria-labelledby="capabilities-heading">
         <div class="container container--narrow">
-          <p class="section__label">Capabilities</p>
-          <h2 class="section__heading" id="capabilities-heading">What I bring to a product team.</h2>
+          <p class="section__label" id="capabilities-label"></p>
+          <h2 class="section__heading" id="capabilities-heading"></h2>
           <hr class="section__divider" />
-          <ul class="capabilities__list">
-            <li class="capabilities__item">Zero-to-one product creation</li>
-            <li class="capabilities__item">Legacy system refactoring</li>
-            <li class="capabilities__item">Conversion and growth optimization</li>
-            <li class="capabilities__item">Design systems integration</li>
-            <li class="capabilities__item">UX research and usability validation</li>
-          </ul>
+          <ul class="capabilities__list" id="capabilities-list"></ul>
         </div>
       </section>
 
@@ -278,14 +272,14 @@
             style="margin-inline: auto; margin-bottom: 2.5rem"
           ></p>
           <div class="hero__actions" style="justify-content: center">
-            <a href="mailto:" id="contact-email" class="btn btn--primary">
+            <button id="contact-email" class="btn btn--primary btn--md" type="button">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
               <span id="contact-email-label"></span>
-            </a>
+            </button>
             <a
               href=""
               id="contact-linkedin"
-              class="btn btn--secondary"
+              class="btn btn--secondary btn--md"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -296,6 +290,10 @@
         </div>
       </section>
     </main>
+
+    <div class="copy-toast" id="copy-toast" role="status" aria-live="polite">
+      <span data-en="Email copied!" data-es="¡Email copiado!">Email copied!</span>
+    </div>
 
     <!-- ======================================================
        SITE FOOTER
@@ -324,6 +322,11 @@
               target="_blank"
               rel="noopener noreferrer"
             >Resume</a>
+            <button
+              type="button"
+              class="site-footer__link"
+              id="footer-email"
+            >Email</button>
           </nav>
         </div>
         <div class="site-footer__copy">

@@ -97,6 +97,37 @@ button {
   letter-spacing: 0.06em;
 }
 
+/* ---- FORM FIELD ---- */
+.field {
+  width: 100%;
+  max-width: 360px;
+  padding: 10px 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--r-sm);
+  font-size: var(--text-sm);
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--bg);
+  outline: none;
+  transition:
+    border-color var(--dur-fast),
+    box-shadow var(--dur-fast);
+}
+.field:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-pale);
+}
+.field--error {
+  border-color: #c0392b;
+  background: #fef2f2;
+}
+.field:disabled {
+  background: var(--surface);
+  color: var(--ink-4);
+  cursor: not-allowed;
+  border-color: var(--border-subtle);
+}
+
 /* ---- PRINT ---- */
 @media print {
   .site-header,

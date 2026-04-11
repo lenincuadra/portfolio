@@ -74,35 +74,7 @@
     }
     .nav-link:hover, .nav-link.active { background: var(--accent-pale); color: var(--accent); }
 
-    /* btn base styles */
-    .btn { border: none; border-radius: 3px; cursor: pointer; font-family: var(--font-body); font-weight: 500; transition: opacity 150ms; }
-    .btn:hover { opacity: 0.85; }
-    .btn:disabled { cursor: not-allowed; opacity: 0.5; }
-    .btn-sm { padding: 6px 14px; font-size: 0.6875rem; }
-    .btn-md { padding: 10px 20px; font-size: 0.8125rem; }
-    .btn-lg { padding: 14px 28px; font-size: 1rem; }
-    .btn-primary { background: var(--accent); color: #fff; }
-    .btn-secondary { background: var(--accent-2); color: #fff; }
-    .btn-outline { background: transparent; color: var(--accent); border: 1.5px solid var(--accent); }
-    .btn-ghost { background: var(--bg-alt); color: var(--ink-2); border: 1px solid var(--border); }
-
-    /* input base */
-    .field {
-      width: 100%; max-width: 360px; padding: 10px 14px;
-      border: 1.5px solid var(--border); border-radius: 3px;
-      font-size: 0.8125rem; font-family: var(--font-body);
-      color: var(--ink); background: var(--bg); outline: none;
-    }
-    .field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-pale); }
-    .field--error { border-color: #c0392b; background: #fef2f2; }
-    .field:disabled { background: var(--surface); color: var(--ink-4); cursor: not-allowed; border-color: var(--border-subtle); }
-
-    /* card base */
-    .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px; box-shadow: 0 1px 3px rgba(26,25,22,0.06); }
-
-    /* badge base */
-    .badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 9999px; font-size: 0.6875rem; font-weight: 500; font-family: var(--font-body); }
-    .badge-sq { border-radius: 3px; font-family: var(--font-mono); }
+    /* .btn, .card, .field, .badge — definidos en styles/buttons.css, cards.css y base.css */
   </style>
 </head>
 <body>
@@ -126,10 +98,12 @@
         <li><a href="#colors"     class="nav-link">Colores</a></li>
         <li><a href="#typography" class="nav-link">Tipografía</a></li>
         <li><a href="#spacing"    class="nav-link">Espaciado</a></li>
+        <li><a href="#layout"     class="nav-link">Layout</a></li>
         <li><a href="#buttons"    class="nav-link">Botones</a></li>
         <li><a href="#inputs"     class="nav-link">Inputs</a></li>
         <li><a href="#cards"      class="nav-link">Cards</a></li>
         <li><a href="#badges"     class="nav-link">Badges</a></li>
+        <li><a href="#utilities"  class="nav-link">Utilidades</a></li>
       </ul>
     </nav>
   </aside>
@@ -142,10 +116,12 @@
       <a href="#colors"     style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Colores</a>
       <a href="#typography" style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Tipografía</a>
       <a href="#spacing"    style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Espaciado</a>
+      <a href="#layout"     style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Layout</a>
       <a href="#buttons"    style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Botones</a>
       <a href="#inputs"     style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Inputs</a>
       <a href="#cards"      style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Cards</a>
       <a href="#badges"     style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Badges</a>
+      <a href="#utilities"  style="padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none;">Utilidades</a>
     </div>
 
     <!-- ── COLORES ─────────────────────────────────── -->
@@ -154,35 +130,37 @@
 
       <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Marca</p>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; margin-bottom: 2rem;">
-        <div><div class="swatch" style="background:#c8602a;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Accent</p><p style="font-size:0.6875rem;color:var(--ink-3);">#c8602a</p><span class="token-label">--accent</span></div>
-        <div><div class="swatch" style="background:#e8845a;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Accent Dim</p><p style="font-size:0.6875rem;color:var(--ink-3);">#e8845a</p><span class="token-label">--accent-dim</span></div>
-        <div><div class="swatch" style="background:#f5e0d5;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Accent Pale</p><p style="font-size:0.6875rem;color:var(--ink-3);">#f5e0d5</p><span class="token-label">--accent-pale</span></div>
-        <div><div class="swatch" style="background:#2a5c8f;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Accent 2</p><p style="font-size:0.6875rem;color:var(--ink-3);">#2a5c8f</p><span class="token-label">--accent-2</span></div>
+        <div><div class="swatch" style="background:var(--accent);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Accent</p><p class="token-hex" data-token="--accent" style="font-size:0.6875rem;color:var(--ink-3);"></p><span class="token-label">--accent</span></div>
+        <div><div class="swatch" style="background:var(--accent-dim);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Accent Dim</p><p class="token-hex" data-token="--accent-dim" style="font-size:0.6875rem;color:var(--ink-3);"></p><span class="token-label">--accent-dim</span></div>
+        <div><div class="swatch" style="background:var(--accent-pale);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Accent Pale</p><p class="token-hex" data-token="--accent-pale" style="font-size:0.6875rem;color:var(--ink-3);"></p><span class="token-label">--accent-pale</span></div>
+        <div><div class="swatch" style="background:var(--accent-2);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Accent 2</p><p class="token-hex" data-token="--accent-2" style="font-size:0.6875rem;color:var(--ink-3);"></p><span class="token-label">--accent-2</span></div>
       </div>
 
       <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Neutros — Light Mode</p>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; margin-bottom: 2rem;">
-        <div><div class="swatch" style="background:#f5f3ef;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Background</p><p style="font-size:0.6875rem;color:var(--ink-3);">#f5f3ef</p><span class="token-label">--bg</span></div>
-        <div><div class="swatch" style="background:#eceae5;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">BG Alt</p><p style="font-size:0.6875rem;color:var(--ink-3);">#eceae5</p><span class="token-label">--bg-alt</span></div>
-        <div><div class="swatch" style="background:#fff;border:1px solid #d3d0c9;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">BG Card</p><p style="font-size:0.6875rem;color:var(--ink-3);">#ffffff</p><span class="token-label">--bg-card</span></div>
-        <div><div class="swatch" style="background:#dedbd4;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Surface</p><p style="font-size:0.6875rem;color:var(--ink-3);">#dedbd4</p><span class="token-label">--surface</span></div>
-        <div><div class="swatch" style="background:#d3d0c9;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Border</p><p style="font-size:0.6875rem;color:var(--ink-3);">#d3d0c9</p><span class="token-label">--border</span></div>
+        <div><div class="swatch" style="background:var(--bg);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Background</p><p class="token-hex" data-token="--bg" style="font-size:0.6875rem;color:var(--ink-3);"></p><span class="token-label">--bg</span></div>
+        <div><div class="swatch" style="background:var(--bg-alt);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">BG Alt</p><p class="token-hex" data-token="--bg-alt" style="font-size:0.6875rem;color:var(--ink-3);"></p><span class="token-label">--bg-alt</span></div>
+        <div><div class="swatch" style="background:var(--bg-card);border:1px solid var(--border);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">BG Card</p><p class="token-hex" data-token="--bg-card" style="font-size:0.6875rem;color:var(--ink-3);"></p><span class="token-label">--bg-card</span></div>
+        <div><div class="swatch" style="background:var(--surface);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Surface</p><p class="token-hex" data-token="--surface" style="font-size:0.6875rem;color:var(--ink-3);"></p><span class="token-label">--surface</span></div>
+        <div><div class="swatch" style="background:var(--border);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Border</p><p class="token-hex" data-token="--border" style="font-size:0.6875rem;color:var(--ink-3);"></p><span class="token-label">--border</span></div>
       </div>
 
       <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Texto (Ink)</p>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; margin-bottom: 2rem;">
-        <div><div class="swatch" style="background:#1a1916;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Ink</p><p style="font-size:0.6875rem;color:var(--ink-3);">#1a1916</p><span class="token-label">--ink</span></div>
-        <div><div class="swatch" style="background:#3d3b36;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Ink 2</p><p style="font-size:0.6875rem;color:var(--ink-3);">#3d3b36</p><span class="token-label">--ink-2</span></div>
-        <div><div class="swatch" style="background:#706d65;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Ink 3</p><p style="font-size:0.6875rem;color:var(--ink-3);">#706d65</p><span class="token-label">--ink-3</span></div>
-        <div><div class="swatch" style="background:#9c9991;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Ink 4</p><p style="font-size:0.6875rem;color:var(--ink-3);">#9c9991</p><span class="token-label">--ink-4</span></div>
+        <div><div class="swatch" style="background:var(--ink);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Ink</p><p class="token-hex" data-token="--ink" style="font-size:0.6875rem;color:var(--ink-3);"></p><span class="token-label">--ink</span></div>
+        <div><div class="swatch" style="background:var(--ink-2);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Ink 2</p><p class="token-hex" data-token="--ink-2" style="font-size:0.6875rem;color:var(--ink-3);"></p><span class="token-label">--ink-2</span></div>
+        <div><div class="swatch" style="background:var(--ink-3);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Ink 3</p><p class="token-hex" data-token="--ink-3" style="font-size:0.6875rem;color:var(--ink-3);"></p><span class="token-label">--ink-3</span></div>
+        <div><div class="swatch" style="background:var(--ink-4);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;">Ink 4</p><p class="token-hex" data-token="--ink-4" style="font-size:0.6875rem;color:var(--ink-3);"></p><span class="token-label">--ink-4</span></div>
       </div>
 
       <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Dark Mode</p>
-      <div style="background:#141311; border-radius:12px; padding:24px; display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:16px; margin-bottom:2rem;">
-        <div><div style="height:48px;border-radius:6px;background:#141311;border:1px solid #383530;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;color:#f0ede8;">BG Dark</p><p style="font-size:0.6875rem;color:#8c8880;">#141311</p></div>
-        <div><div style="height:48px;border-radius:6px;background:#211f1c;border:1px solid #383530;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;color:#f0ede8;">BG Card</p><p style="font-size:0.6875rem;color:#8c8880;">#211f1c</p></div>
-        <div><div style="height:48px;border-radius:6px;background:#e07848;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;color:#f0ede8;">Accent</p><p style="font-size:0.6875rem;color:#8c8880;">#e07848</p></div>
-        <div><div style="height:48px;border-radius:6px;background:#5b8fbf;"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;color:#f0ede8;">Accent-2</p><p style="font-size:0.6875rem;color:#8c8880;">#5b8fbf</p></div>
+      <!-- .preview-dark activa los tokens de dark mode en este contenedor
+           sin afectar el resto de la página -->
+      <div class="preview-dark" style="border-radius:12px; padding:24px; display:grid; grid-template-columns:repeat(auto-fill,minmax(130px,1fr)); gap:16px; margin-bottom:2rem; background:var(--bg);">
+        <div><div style="height:48px;border-radius:6px;background:var(--bg);border:1px solid var(--border);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;color:var(--ink);">BG Dark</p><p class="token-hex" data-token="--bg" style="font-size:0.6875rem;color:var(--ink-3);"></p></div>
+        <div><div style="height:48px;border-radius:6px;background:var(--bg-card);border:1px solid var(--border);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;color:var(--ink);">BG Card</p><p class="token-hex" data-token="--bg-card" style="font-size:0.6875rem;color:var(--ink-3);"></p></div>
+        <div><div style="height:48px;border-radius:6px;background:var(--accent);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;color:var(--ink);">Accent</p><p class="token-hex" data-token="--accent" style="font-size:0.6875rem;color:var(--ink-3);"></p></div>
+        <div><div style="height:48px;border-radius:6px;background:var(--accent-2);"></div><p style="font-size:0.8125rem;font-weight:500;margin-top:8px;color:var(--ink);">Accent-2</p><p class="token-hex" data-token="--accent-2" style="font-size:0.6875rem;color:var(--ink-3);"></p></div>
       </div>
 
       <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Semánticos</p>
@@ -262,6 +240,63 @@
       </div>
     </section>
 
+    <!-- ── LAYOUT ──────────────────────────────────── -->
+    <section id="layout" style="margin-bottom: 4rem;">
+      <h2 style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 24px;">Layout</h2>
+
+      <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Container</p>
+      <div class="card" style="padding: 24px; margin-bottom: 12px;">
+        <span class="token-label" style="margin-bottom: 12px; display: block;">.container · max-width: --max-w (1200px)</span>
+        <div style="background: var(--accent-pale); border: 1px dashed var(--accent); border-radius: var(--r-sm); padding: 12px; text-align: center; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--accent);">.container</div>
+      </div>
+      <div class="card" style="padding: 24px; margin-bottom: 2rem;">
+        <span class="token-label" style="margin-bottom: 12px; display: block;">.container--narrow · max-width: --max-w-text (720px)</span>
+        <div style="max-width: 720px; background: var(--accent-pale); border: 1px dashed var(--accent); border-radius: var(--r-sm); padding: 12px; text-align: center; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--accent);">.container--narrow</div>
+      </div>
+
+      <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Grids</p>
+      <div style="display: grid; gap: 12px; margin-bottom: 2rem;">
+        <div class="card" style="padding: 24px;">
+          <span class="token-label" style="margin-bottom: 12px; display: block;">.grid-2</span>
+          <div class="grid-2" style="gap: 12px;">
+            <div style="background: var(--accent-pale); padding: 14px; border-radius: var(--r-sm); text-align: center; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--accent);">1</div>
+            <div style="background: var(--accent-pale); padding: 14px; border-radius: var(--r-sm); text-align: center; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--accent);">2</div>
+          </div>
+        </div>
+        <div class="card" style="padding: 24px;">
+          <span class="token-label" style="margin-bottom: 12px; display: block;">.grid-3</span>
+          <div class="grid-3" style="gap: 12px;">
+            <div style="background: var(--accent-pale); padding: 14px; border-radius: var(--r-sm); text-align: center; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--accent);">1</div>
+            <div style="background: var(--accent-pale); padding: 14px; border-radius: var(--r-sm); text-align: center; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--accent);">2</div>
+            <div style="background: var(--accent-pale); padding: 14px; border-radius: var(--r-sm); text-align: center; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--accent);">3</div>
+          </div>
+        </div>
+        <div class="card" style="padding: 24px;">
+          <span class="token-label" style="margin-bottom: 12px; display: block;">.grid-aside · 280px + 1fr</span>
+          <div class="grid-aside" style="gap: 12px;">
+            <div style="background: var(--surface); padding: 14px; border-radius: var(--r-sm); text-align: center; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--ink-3);">aside</div>
+            <div style="background: var(--accent-pale); padding: 14px; border-radius: var(--r-sm); text-align: center; font-family: var(--font-mono); font-size: 0.6875rem; color: var(--accent);">main</div>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Section typography</p>
+      <div class="card" style="padding: 32px;">
+        <p class="section__label">Label de sección</p>
+        <h2 class="section__heading">Encabezado principal</h2>
+        <p class="section__subheading">Subencabezado en itálica</p>
+        <p class="section__body">Cuerpo de sección — max-width: 65ch, font-size: --text-md, line-height: 1.75.</p>
+        <hr class="section__divider">
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px;">
+          <span class="token-label">.section__label</span>
+          <span class="token-label">.section__heading</span>
+          <span class="token-label">.section__subheading</span>
+          <span class="token-label">.section__body</span>
+          <span class="token-label">.section__divider</span>
+        </div>
+      </div>
+    </section>
+
     <!-- ── BOTONES ─────────────────────────────────── -->
     <section id="buttons" style="margin-bottom: 4rem;">
       <h2 style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 24px;">Botones</h2>
@@ -272,45 +307,34 @@
         <div class="card" style="padding: 24px;">
           <p class="token-label" style="margin-bottom: 16px;">.btn--primary · background: --accent</p>
           <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
-            <div style="text-align:center;"><button class="btn btn-primary btn-sm">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">sm</p></div>
-            <div style="text-align:center;"><button class="btn btn-primary btn-md">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">md</p></div>
-            <div style="text-align:center;"><button class="btn btn-primary btn-lg">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">lg</p></div>
+            <div style="text-align:center;"><button class="btn btn--primary btn--sm">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">sm</p></div>
+            <div style="text-align:center;"><button class="btn btn--primary btn--md">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">md</p></div>
+            <div style="text-align:center;"><button class="btn btn--primary btn--lg">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">lg</p></div>
           </div>
         </div>
 
         <div class="card" style="padding: 24px;">
-          <p class="token-label" style="margin-bottom: 16px;">.btn--secondary · background: --accent-2</p>
+          <p class="token-label" style="margin-bottom: 16px;">.btn--secondary · border: --border</p>
           <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
-            <div style="text-align:center;"><button class="btn btn-secondary btn-sm">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">sm</p></div>
-            <div style="text-align:center;"><button class="btn btn-secondary btn-md">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">md</p></div>
-            <div style="text-align:center;"><button class="btn btn-secondary btn-lg">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">lg</p></div>
+            <div style="text-align:center;"><button class="btn btn--secondary btn--sm">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">sm</p></div>
+            <div style="text-align:center;"><button class="btn btn--secondary btn--md">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">md</p></div>
+            <div style="text-align:center;"><button class="btn btn--secondary btn--lg">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">lg</p></div>
           </div>
         </div>
 
         <div class="card" style="padding: 24px;">
-          <p class="token-label" style="margin-bottom: 16px;">.btn--outline · border: --accent</p>
+          <p class="token-label" style="margin-bottom: 16px;">.btn--ghost · color: --ink-3 · sin padding</p>
           <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
-            <div style="text-align:center;"><button class="btn btn-outline btn-sm">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">sm</p></div>
-            <div style="text-align:center;"><button class="btn btn-outline btn-md">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">md</p></div>
-            <div style="text-align:center;"><button class="btn btn-outline btn-lg">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">lg</p></div>
-          </div>
-        </div>
-
-        <div class="card" style="padding: 24px;">
-          <p class="token-label" style="margin-bottom: 16px;">.btn--ghost · background: --bg-alt</p>
-          <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
-            <div style="text-align:center;"><button class="btn btn-ghost btn-sm">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">sm</p></div>
-            <div style="text-align:center;"><button class="btn btn-ghost btn-md">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">md</p></div>
-            <div style="text-align:center;"><button class="btn btn-ghost btn-lg">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">lg</p></div>
+            <div style="text-align:center;"><button class="btn btn--ghost">Label</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">ghost</p></div>
           </div>
         </div>
 
         <div class="card" style="padding: 24px;">
           <p class="token-label" style="margin-bottom: 16px;">Estados especiales</p>
           <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
-            <div style="text-align:center;"><button class="btn btn-primary btn-md" disabled>Disabled</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">disabled</p></div>
+            <div style="text-align:center;"><button class="btn btn--primary btn--md" disabled>Disabled</button><p style="font-size:0.6875rem;color:var(--ink-4);margin-top:6px;font-family:var(--font-mono);">disabled</p></div>
             <div style="text-align:center;">
-              <button class="btn btn-primary btn-md" style="display:flex;align-items:center;gap:8px;">
+              <button class="btn btn--primary btn--md">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
                 Confirmar
               </button>
@@ -373,6 +397,26 @@
     <section id="cards" style="margin-bottom: 4rem;">
       <h2 style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 24px;">Cards</h2>
 
+      <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Case Card — componente principal del portfolio</p>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; margin-bottom: 2rem;">
+        <div class="case-card">
+          <div class="case-card__image">imagen 16:10</div>
+          <div class="case-card__body">
+            <div class="case-card__tags">
+              <span class="badge badge--ghost">UX Design</span>
+              <span class="badge badge--ghost">Strategy</span>
+            </div>
+            <h3 class="case-card__title">Título del caso de estudio</h3>
+            <p class="case-card__excerpt">Descripción breve del impacto y proceso del proyecto en dos o tres líneas.</p>
+            <a href="#" class="case-card__cta">
+              Ver caso
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-4); margin-bottom: 14px;">Card genérica — wrapper de contenido</p>
       <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 24px;">
 
         <!-- Básica — estructura mínima: bg-card + border + shadow-sm -->
@@ -409,8 +453,8 @@
               <p style="font-size:0.8125rem;color:var(--ink-3);line-height:1.6;">Impacto del proyecto en métricas clave.</p>
             </div>
             <div style="border-top:1px solid var(--border-subtle);padding-top:16px;display:flex;gap:10px;">
-              <button class="btn btn-primary btn-sm">Ver caso</button>
-              <button class="btn btn-ghost btn-sm">Compartir</button>
+              <button class="btn btn--primary btn--sm">Ver caso</button>
+              <button class="btn btn--ghost">Compartir</button>
             </div>
           </div>
         </div>
@@ -441,6 +485,49 @@
           <span class="badge badge-sq" style="background:#fef3dc;color:#b87820;">BETA</span>
           <span class="badge badge-sq" style="background:#fde8e6;color:#c0392b;">DEPRECATED</span>
         </div>
+
+        <p style="font-family:var(--font-mono);font-size:0.6875rem;text-transform:uppercase;letter-spacing:0.08em;color:var(--ink-4);margin-top:24px;margin-bottom:14px;">Ghost — .badge--ghost · tags y skills</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;align-items:center;">
+          <span class="badge badge--ghost">UX Design</span>
+          <span class="badge badge--ghost">Strategy</span>
+          <span class="badge badge--ghost">Research</span>
+          <span class="badge badge--ghost">Fintech</span>
+          <span class="badge badge--ghost">Mobile</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── UTILIDADES ───────────────────────────────── -->
+    <section id="utilities" style="margin-bottom: 4rem;">
+      <h2 style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 24px;">Utilidades</h2>
+
+      <div style="display: grid; gap: 12px;">
+
+        <div class="card" style="padding: 24px;">
+          <p class="token-label" style="margin-bottom: 16px;">.reveal · .reveal.is-visible — animación de entrada</p>
+          <div style="display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start;">
+            <div>
+              <p style="font-size: 0.6875rem; color: var(--ink-4); font-family: var(--font-mono); margin-bottom: 8px;">sin .is-visible (oculto)</p>
+              <div class="reveal" style="background: var(--surface); padding: 16px 24px; border-radius: var(--r-sm); font-size: 0.8125rem; color: var(--ink-3);">opacity: 0 · translateY(24px)</div>
+            </div>
+            <div>
+              <p style="font-size: 0.6875rem; color: var(--ink-4); font-family: var(--font-mono); margin-bottom: 8px;">con .is-visible (visible)</p>
+              <div class="reveal is-visible" style="background: var(--accent-pale); padding: 16px 24px; border-radius: var(--r-sm); font-size: 0.8125rem; color: var(--accent);">opacity: 1 · translateY(0)</div>
+            </div>
+          </div>
+          <div style="margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap;">
+            <span class="token-label">.reveal-delay-1 · 100ms</span>
+            <span class="token-label">.reveal-delay-2 · 200ms</span>
+            <span class="token-label">.reveal-delay-3 · 300ms</span>
+            <span class="token-label">.reveal-delay-4 · 400ms</span>
+          </div>
+        </div>
+
+        <div class="card" style="padding: 24px;">
+          <p class="token-label" style="margin-bottom: 16px;">.placeholder-block — placeholder de contenido pendiente</p>
+          <div class="placeholder-block">imagen pendiente · 16:9</div>
+        </div>
+
       </div>
     </section>
 
@@ -498,6 +585,30 @@
   }, { rootMargin: '-10% 0px -80% 0px' });
 
   sections.forEach(s => observer.observe(s));
+
+  // Lee los valores computados de CSS variables y los muestra como hex.
+  // Corre en window.load para asegurarse que todos los @import del CSS
+  // están aplicados antes de leer getComputedStyle.
+  function rgbToHex(rgb) {
+    const parts = rgb.match(/[\d.]+/g);
+    if (!parts || parts.length < 3) return rgb.trim();
+    return '#' + parts.slice(0, 3).map(n => Math.round(Number(n)).toString(16).padStart(2, '0')).join('');
+  }
+
+  function renderTokenHex() {
+    document.querySelectorAll('.token-hex[data-token]').forEach(el => {
+      const token = el.getAttribute('data-token');
+      // Leer desde el elemento mismo — así hereda el contexto correcto:
+      // si está dentro de .preview-dark lee los tokens del dark mode,
+      // si está en el root lee los tokens del light mode.
+      const raw = getComputedStyle(el).getPropertyValue(token).trim();
+      if (!raw) return;
+      el.textContent = raw.startsWith('rgb') ? rgbToHex(raw) : raw;
+    });
+  }
+
+  // window.load garantiza que todos los @import del CSS estén resueltos
+  window.addEventListener('load', renderTokenHex);
 </script>
 
 </body>

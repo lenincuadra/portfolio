@@ -104,6 +104,7 @@
       setText('footer-about',  ui.footer.about);
       setText('footer-linkedin', ui.footer.linkedin);
       setText('footer-resume', ui.footer.resume);
+      setText('footer-email',  ui.footer.email);
       setText('footer-built',  ui.footer.builtWith);
       setText('hero-cta',      ui.hero.cta);
       setText('hero-scroll',   ui.hero.scroll);
@@ -113,6 +114,43 @@
       setText('label-about',   ui.nav.about);
       setText('label-contact', ui.nav.contact);
     }
+
+  }
+
+  // --- Footer actions (runs once on init) ------------------------------------
+
+  function initFooterActions() {
+    // Copy email to clipboard
+    const footerEmailBtn = document.getElementById('footer-email');
+    const copyToast      = document.getElementById('copy-toast');
+    if (footerEmailBtn && copyToast) {
+      let toastTimer;
+      footerEmailBtn.addEventListener('click', () => {
+        const { site } = getContent(getLang());
+        navigator.clipboard.writeText(site.email).then(() => {
+          const lang = getLang();
+          const span = copyToast.querySelector('[data-en]');
+          if (span) span.textContent = lang === 'es' ? span.dataset.es : span.dataset.en;
+          copyToast.classList.add('copy-toast--visible');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => copyToast.classList.remove('copy-toast--visible'), 2500);
+        });
+      });
+    }
+
+    // Open CV in new tab (avoids href="" initial state issues)
+    document.querySelectorAll('a[data-link="resume"]').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const { site } = getContent(getLang());
+        const resumeUrl = resolveAssetUrl(
+          typeof site.resumeUrl === 'object'
+            ? (site.resumeUrl[getLang()] || site.resumeUrl.en)
+            : site.resumeUrl
+        );
+        if (resumeUrl) window.open(resumeUrl, '_blank', 'noopener,noreferrer');
+      });
+    });
   }
 
   // --- Language toggle -------------------------------------------------------
@@ -150,7 +188,7 @@
   // --- Tag helpers ------------------------------------------------------------
 
   function buildTags(tags) {
-    return tags.map(t => `<span class="tag">${t}</span>`).join('');
+    return tags.map(t => `<span class="badge badge--ghost">${t}</span>`).join('');
   }
 
   function buildMetricCard(item, i) {
@@ -183,6 +221,16 @@
 
     // Work
     setText('work-heading', home.work.heading);
+
+    // Capabilities
+    if (home.capabilities) {
+      setText('capabilities-label',   home.capabilities.label);
+      setText('capabilities-heading', home.capabilities.heading);
+      const capList = document.getElementById('capabilities-list');
+      if (capList) {
+        capList.innerHTML = home.capabilities.items.map(item => `<li class="capabilities__item">${item}</li>`).join('');
+      }
+    }
 
     // Featured case
     const featured = cases.find(c => c.featured);
@@ -246,7 +294,7 @@
     setText('about-excerpt', home.about.homeExcerpt || (home.about.paragraphs && home.about.paragraphs[0]) || '');
     const skillsEl = document.getElementById('about-skills');
     if (skillsEl && home.about.skills) {
-      skillsEl.innerHTML = home.about.skills.map(s => `<span class="tag">${s}</span>`).join('');
+      skillsEl.innerHTML = home.about.skills.map(s => `<span class="badge badge--ghost">${s}</span>`).join('');
     }
 
     // About — Venn center label
@@ -255,11 +303,24 @@
     // Contact
     setText('contact-heading', home.contact.heading);
     setText('contact-body',    home.contact.body);
-    const emailLink = document.getElementById('contact-email');
-    if (emailLink) {
-      emailLink.href = 'mailto:' + site.email;
+    const emailBtn = document.getElementById('contact-email');
+    if (emailBtn) {
       const emailLabel = document.getElementById('contact-email-label');
       if (emailLabel) emailLabel.textContent = site.email;
+
+      const copyToast = document.getElementById('copy-toast');
+      let toastTimer;
+      emailBtn.addEventListener('click', () => {
+        navigator.clipboard.writeText(site.email).then(() => {
+          if (!copyToast) return;
+          const lang = getLang();
+          const span = copyToast.querySelector('[data-en]');
+          if (span) span.textContent = lang === 'es' ? span.dataset.es : span.dataset.en;
+          copyToast.classList.add('copy-toast--visible');
+          clearTimeout(toastTimer);
+          toastTimer = setTimeout(() => copyToast.classList.remove('copy-toast--visible'), 2500);
+        });
+      });
     }
     setAttr('contact-linkedin', 'href', site.linkedinUrl);
   }
@@ -645,6 +706,7 @@
     initTheme();
     initMobileNav();
     initLangToggle();
+    initFooterActions();
 
     const lang    = getLang();
     const content = getContent(lang);
