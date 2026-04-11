@@ -267,21 +267,26 @@
   <!-- ======================================================
        SITE FOOTER
        ====================================================== -->
+  <div class="copy-toast" id="copy-toast" role="status" aria-live="polite">
+    <span data-en="Email copied!" data-es="¡Email copiado!">Email copied!</span>
+  </div>
+
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="site-footer__inner">
         <div>
         </div>
         <nav class="site-footer__links" aria-label="Footer navigation">
-          <a href="../index.html#featured-case"  class="site-footer__link">Work</a>
-          <a href="../index.html#about" class="site-footer__link">About</a>
-          <a data-link="linkedin" href="#" class="site-footer__link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a data-link="resume"   href="#" class="site-footer__link" target="_blank" rel="noopener noreferrer">Resume</a>
+          <a href="../index.html#featured-case" class="site-footer__link" id="footer-work">Work</a>
+          <a href="../index.html#about" class="site-footer__link" id="footer-about">About</a>
+          <a data-link="linkedin" href="#" class="site-footer__link" id="footer-linkedin" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a data-link="resume" href="#" class="site-footer__link" id="footer-resume" target="_blank" rel="noopener noreferrer">Resume</a>
+          <button type="button" class="site-footer__link" id="footer-email">Email</button>
         </nav>
       </div>
       <div class="site-footer__copy">
         <span>© <span id="footer-year"></span> Lenin Cuadra</span>
-        <span>Designed &amp; built with care.</span>
+        <span id="footer-built">Designed &amp; built with care.</span>
       </div>
     </div>
   </footer>

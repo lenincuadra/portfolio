@@ -96,7 +96,7 @@ No pricing changes.
 No campaign changes.
 No external growth drivers.
 
-Impact driven exclusively by UX simplification and channel redesign.
+###Impact driven exclusively by UX simplification and channel redesign.
 
 ## [IMAGE: impact-chart.gif]
 
