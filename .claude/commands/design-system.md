@@ -1,3 +1,7 @@
+---
+model: claude-sonnet-4-6
+---
+
 # Design System Generator
 
 Generás un design system completo con documentación interactiva tipo styleguide usando Tailwind CSS.
