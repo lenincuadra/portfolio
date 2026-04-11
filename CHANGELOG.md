@@ -9,6 +9,48 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.9.0] — 2026-04-11
+
+### Added
+- **Toast component in styleguide** — nueva sección `#toast` con demo interactiva (trigger button + timer 2.5 s), estados default/visible como referencia estática, y token labels. El elemento `#sg-toast` se inyecta en el DOM global del styleguide igual que en producción
+- Entradas de nav (sidebar desktop + mobile pills) para la sección Toast
+
+### Changed
+- **`styles/tokens.css`** — tokens actualizados
+- **`cases/case.html`** — ajustes de contenido y markup
+- **`data/content.js`** — actualización de datos de casos
+
+### Removed
+- `content/01_fintech_case_refinamiento.md`, `content/02_ecommerce_case_221_percent_growth.md`, `content/03_telecom_case_legacy_refactor.md` — archivos de contenido en markdown eliminados; el contenido vive en `data/content.js`
+
+---
+
+## [0.8.0] — 2026-04-11
+
+### Added
+- **i18n en labels de About y Contact** — secciones del homepage ahora cambian de idioma al instante sin recargar la página
+
+### Changed
+- **Language switch — re-render instantáneo** — reemplaza el `window.location.reload()` anterior; el cambio de idioma ahora re-renderiza el contenido en memoria vía `renderIndex()` / `renderCase()`
+- **About section** — eliminado texto placeholder restante en `index.html`
+
+---
+
+## [0.7.0] — 2026-04-11
+
+### Added
+- **`styleguide.html`** — design system interactivo con secciones: Colores, Tipografía, Espaciado, Layout, Botones, Inputs, Cards, Badges, Utilidades. Muestra tokens reales del proyecto, estados de componentes y token labels
+- **CSS componentizado** — `styles/main.css` dividido en archivos por dominio: `tokens.css`, `base.css`, `header.css`, `hero.css`, `featured.css`, `cards.css`, `about.css`, `footer.css`, `buttons.css`, `layout.css`, `case.css`
+- **`.claude/commands/design-system.md`** — instrucciones para Claude sobre cómo mantener el styleguide en sync con el CSS real
+- **`CLAUDE.md`** — reglas del proyecto: el styleguide debe reflejar siempre el CSS real, nunca duplicar estilos inline
+
+### Changed
+- **`styles/main.css`** — reducido a archivo de entrada que importa los archivos de componente
+- **`app.js`** — ajustes menores de soporte al design system
+- **Styleguide sincronizado** — clases, tokens y componentes corregidos para coincidir exactamente con el CSS real
+
+---
+
 ## [0.6.0] — 2026-03-26
 
 ### Added
