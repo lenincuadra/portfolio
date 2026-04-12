@@ -9,6 +9,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.9.1] — 2026-04-12
+
+### Added
+- **`/changelog` skill** — comando que analiza commits pendientes desde la última versión, determina semver, y genera una entrada en `CHANGELOG.md` con formato Keep a Changelog. Corre con Haiku (tarea mecánica, bajo riesgo)
+- **`/design-system` skill** — modelo fijado a Sonnet explícitamente via frontmatter; no depende del modelo de la sesión activa
+
+---
+
 ## [0.9.0] — 2026-04-11
 
 ### Added
