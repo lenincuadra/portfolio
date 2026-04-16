@@ -116,10 +116,15 @@ button {
 .field:focus {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-pale);
+  outline: 2px solid transparent;
+}
+.field:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
 }
 .field--error {
-  border-color: #c0392b;
-  background: #fef2f2;
+  border-color: var(--color-danger);
+  background: var(--color-danger-bg);
 }
 .field:disabled {
   background: var(--surface);

@@ -475,6 +475,7 @@ const PORTFOLIO_DATA = {
         slug: "ecommerce-conversion",
 
         images: {
+          cover: "assets/images/ecommerce/mockup.png",
           hero: "assets/images/telecom/portrait.png",
         },
 
@@ -625,7 +626,7 @@ const PORTFOLIO_DATA = {
             },
           ],
           statement:
-            "Impact was driven exclusively by UX simplification and channel redesign. The 221% Q1 revenue increase was measured year-over-year with no pricing changes, no campaign changes, and no external growth drivers.",
+            "The 221% Q1 revenue increase is attribution-clean: same quarter, one year apart, with UX as the only variable changed. No pricing adjustments, no campaigns, no external growth levers.",
         },
 
         learnings: {
@@ -798,14 +799,14 @@ const PORTFOLIO_DATA = {
                 type: "steps",
                 variant: "bullet",
                 items: [
-                  "No pricing changes.",
-                  "No campaign changes.",
-                  "No external growth drivers.",
+                  "Same quarter, one year apart — identical market conditions.",
+                  "UX intervention was the only variable changed.",
+                  "Attribution is clean: no confounding factors introduced.",
                 ],
               },
               {
                 type: "subheading",
-                text: "Impact driven exclusively by UX simplification and channel redesign.",
+                text: "221% revenue growth driven exclusively by UX simplification and channel redesign.",
               },
               {
                 type: "image",
@@ -854,6 +855,7 @@ const PORTFOLIO_DATA = {
         slug: "telecom-legacy-refactor",
 
         images: {
+          cover: "assets/images/telecom/mockup-multitasking.png",
           hero: "assets/images/telecom/portrait.png",
           overviewImage: "assets/images/telecom/mockup-multitasking.png",
         },
@@ -1670,6 +1672,7 @@ const PORTFOLIO_DATA = {
         slug: "ecommerce-conversion",
 
         images: {
+          cover: "assets/images/ecommerce/mockup.png",
           hero: "assets/images/telecom/portrait.png",
         },
 
@@ -1831,7 +1834,7 @@ const PORTFOLIO_DATA = {
             },
           ],
           statement:
-            "El impacto fue impulsado exclusivamente por la simplificación UX y el rediseño del canal. El incremento del 221% en ingresos Q1 se midió interanualmente sin cambios de precios, sin cambios de campaña, y sin factores de crecimiento externos.",
+            "El incremento del 221% en ingresos Q1 tiene atribución limpia: mismo trimestre, un año de diferencia, con el UX como única variable modificada. Sin ajustes de precio, sin campañas, sin palancas externas de crecimiento.",
         },
 
         learnings: {
@@ -2009,14 +2012,14 @@ const PORTFOLIO_DATA = {
                 type: "steps",
                 variant: "bullet",
                 items: [
-                  "Sin cambios de precios.",
-                  "Sin cambios de campañas.",
-                  "Sin factores externos de crecimiento.",
+                  "Mismo trimestre, un año de diferencia — condiciones de mercado idénticas.",
+                  "La intervención UX fue la única variable modificada.",
+                  "Atribución limpia: sin factores externos que confundan el resultado.",
                 ],
               },
               {
                 type: "subheading",
-                text: "Impacto generado exclusivamente por simplificación UX y rediseño del canal.",
+                text: "221% de crecimiento en ingresos generado exclusivamente por simplificación UX y rediseño del canal.",
               },
               {
                 type: "image",
@@ -2065,6 +2068,7 @@ const PORTFOLIO_DATA = {
         slug: "telecom-legacy-refactor",
 
         images: {
+          cover: "assets/images/telecom/mockup-multitasking.png",
           hero: "assets/images/telecom/portrait.png",
           overviewImage: "assets/images/telecom/mockup-multitasking.png",
         },

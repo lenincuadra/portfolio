@@ -212,6 +212,15 @@
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute('content', site.designerName + ' — Product Designer portfolio.');
 
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    const twTitle = document.querySelector('meta[name="twitter:title"]');
+    const twDesc = document.querySelector('meta[name="twitter:description"]');
+    if (ogTitle) ogTitle.setAttribute('content', site.designerName + ' — Product Designer');
+    if (ogDesc) ogDesc.setAttribute('content', site.designerName + ' — Product Designer portfolio.');
+    if (twTitle) twTitle.setAttribute('content', site.designerName + ' — Product Designer');
+    if (twDesc) twDesc.setAttribute('content', site.designerName + ' — Product Designer portfolio.');
+
     // Hero
     setText('hero-eyebrow',    home.hero.eyebrow);
     setText('hero-first-name', home.hero.firstName);
@@ -263,7 +272,7 @@
         return `
           <article class="case-card reveal${delay}">
             <a href="cases/case-v2.html?slug=${c.slug}" class="case-card__image" aria-label="${c.card.title} — view case study">
-              <img src="${c.images ? resolveAssetUrl(c.images.cover) : ''}" alt="${c.card.title}" loading="lazy" />
+              <img src="${c.images ? resolveAssetUrl(c.images.cover) : ''}" alt="" loading="lazy" />
             </a>
             <div class="case-card__body">
               <div class="case-card__tags">${buildTags(c.card.tags)}</div>
@@ -349,6 +358,15 @@
     const metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute('content', caseData.meta.description);
 
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    const ogDesc = document.querySelector('meta[property="og:description"]');
+    const twTitle = document.querySelector('meta[name="twitter:title"]');
+    const twDesc = document.querySelector('meta[name="twitter:description"]');
+    if (ogTitle) ogTitle.setAttribute('content', caseData.meta.title);
+    if (ogDesc) ogDesc.setAttribute('content', caseData.meta.description);
+    if (twTitle) twTitle.setAttribute('content', caseData.meta.title);
+    if (twDesc) twDesc.setAttribute('content', caseData.meta.description);
+
     // Hero
     const heroTags = document.getElementById('case-hero-tags');
     if (heroTags) heroTags.innerHTML = caseData.hero.tags.map(t => `<span class="case-hero__tag">${t}</span>`).join('');
@@ -389,6 +407,7 @@
       const ovImg     = document.getElementById('overview-img');
       if (ovImgWrap && ovImg) {
         ovImg.src = resolveAssetUrl(caseData.images.overviewImage);
+        ovImg.alt = caseData.overview.subheading || caseData.hero.title + ' — overview';
         ovImgWrap.style.display = '';
       }
     }
@@ -435,7 +454,9 @@
     // Process images
     if (caseData.images) {
       setAttr('process-img1', 'src', resolveAssetUrl(caseData.images.process1));
+      setAttr('process-img1', 'alt', caseData.hero.title + ' — design process');
       setAttr('process-img2', 'src', resolveAssetUrl(caseData.images.process2));
+      setAttr('process-img2', 'alt', caseData.hero.title + ' — design process');
     }
 
     // Demos (videos)
@@ -475,6 +496,7 @@
     // Decisions image
     if (caseData.images) {
       setAttr('decisions-img', 'src', resolveAssetUrl(caseData.images.decisions));
+      setAttr('decisions-img', 'alt', caseData.decisions.heading || caseData.hero.title + ' — key design decisions');
     }
 
     // Impact

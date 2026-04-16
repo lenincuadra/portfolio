@@ -5,9 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content=""
+      content="Product designer specializing in zero-to-one fintech ecosystems, legacy system refactoring, and conversion optimization. 5+ years of experience."
     />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Lenin Cuadra — Product Designer" />
+    <meta property="og:description" content="Product designer specializing in zero-to-one fintech ecosystems, legacy system refactoring, and conversion optimization. 5+ years of experience." />
+    <meta property="og:image" content="assets/images/profile-pic.jpeg" />
+    <meta property="og:url" content="" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Lenin Cuadra — Product Designer" />
+    <meta name="twitter:description" content="Product designer specializing in zero-to-one fintech ecosystems, legacy system refactoring, and conversion optimization." />
+    <meta name="twitter:image" content="assets/images/profile-pic.jpeg" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Person",
+          "name": "Lenin Cuadra",
+          "jobTitle": "Product Designer",
+          "description": "Product designer specializing in zero-to-one fintech ecosystems, legacy system refactoring, and conversion optimization.",
+          "url": "",
+          "image": "assets/images/profile-pic.jpeg"
+        },
+        {
+          "@type": "WebSite",
+          "name": "Lenin Cuadra — Product Designer",
+          "url": "",
+          "description": "Product design portfolio showcasing work in fintech ecosystems, conversion optimization, and legacy system design."
+        }
+      ]
+    }
+    </script>
+
     <title>Lenin Cuadra — Product Designer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="styles/main.css" />
     <link rel="canonical" href="/portfolio/en/" />
     <link rel="icon" href="assets/logo/logo-lc-favicon.svg" type="image/svg+xml" />
@@ -71,7 +110,7 @@
             >
               EN
             </button>
-            <button class="lang-switch__btn" data-lang="es">ES</button>
+            <button class="lang-switch__btn" data-lang="es" aria-current="false">ES</button>
           </div>
 
           <!-- Theme toggle -->
@@ -149,7 +188,7 @@
             </div>
           </div>
           <div class="hero__portrait" aria-hidden="true">
-            <img src="assets/images/profile-pic.jpeg" alt="Portrait of Lenin Cuadra" loading="eager" />
+            <img src="assets/images/profile-pic.jpeg" alt="Portrait of Lenin Cuadra" loading="eager" width="800" height="800" />
             <div class="hero__availability-badge">
               <span class="hero__availability-dot"></span>
               <span>Open to new opportunities</span>
@@ -343,7 +382,7 @@
     <!-- ======================================================
        SCRIPTS
        ====================================================== -->
-    <script src="data/content.js"></script>
-    <script src="js/app.js"></script>
+    <script src="data/content.js" defer></script>
+    <script src="js/app.js" defer></script>
   </body>
 </html>

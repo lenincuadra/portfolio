@@ -12,7 +12,6 @@
       type="image/svg+xml"
     />
 
-    <script src="https://cdn.tailwindcss.com"></script>
     <script>
       // tailwind.config — copiá este bloque a cualquier página del proyecto
       // para tener todos los tokens disponibles como clases de Tailwind
@@ -36,7 +35,7 @@
               danger: "#c0392b",
             },
             fontFamily: {
-              display: ['"Cormorant Garamond"', "Georgia", "serif"],
+              display: ['"Instrument Sans"', "system-ui", "sans-serif"],
               sans: ['"Instrument Sans"', "system-ui", "sans-serif"],
               mono: ['"DM Mono"', '"Courier New"', "monospace"],
             },
@@ -813,20 +812,18 @@
             <div class="card" style="padding: 24px">
               <span class="token-label">--font-display</span>
               <p
+                data-font-var="--font-display"
                 style="
-                  font-family: &quot;Cormorant Garamond&quot;, Georgia, serif;
+                  font-family: var(--font-display);
                   font-size: 2rem;
                   font-weight: 400;
                   margin-top: 12px;
                   line-height: 1.1;
                 "
-              >
-                Cormorant Garamond
-              </p>
+              ></p>
               <p
                 style="
-                  font-family: &quot;Cormorant Garamond&quot;, Georgia, serif;
-                  font-style: italic;
+                  font-family: var(--font-display);
                   color: var(--ink-3);
                   margin-top: 4px;
                 "
@@ -837,19 +834,16 @@
             <div class="card" style="padding: 24px">
               <span class="token-label">--font-body</span>
               <p
+                data-font-var="--font-body"
                 style="
-                  font-family:
-                    &quot;Instrument Sans&quot;, system-ui, sans-serif;
+                  font-family: var(--font-body);
                   font-size: 1.375rem;
                   margin-top: 12px;
                 "
-              >
-                Instrument Sans
-              </p>
+              ></p>
               <p
                 style="
-                  font-family:
-                    &quot;Instrument Sans&quot;, system-ui, sans-serif;
+                  font-family: var(--font-body);
                   color: var(--ink-3);
                   font-size: 0.9rem;
                   font-weight: 300;
@@ -862,17 +856,16 @@
             <div class="card" style="padding: 24px">
               <span class="token-label">--font-mono</span>
               <p
+                data-font-var="--font-mono"
                 style="
-                  font-family: &quot;DM Mono&quot;, monospace;
+                  font-family: var(--font-mono);
                   font-size: 1.125rem;
                   margin-top: 12px;
                 "
-              >
-                DM Mono
-              </p>
+              ></p>
               <p
                 style="
-                  font-family: &quot;DM Mono&quot;, monospace;
+                  font-family: var(--font-mono);
                   color: var(--ink-3);
                   font-size: 0.8rem;
                   font-weight: 300;
@@ -2846,6 +2839,17 @@
       // window.load garantiza que todos los @import del CSS estén resueltos
       window.addEventListener("load", renderTokenHex);
     </script>
+
+  <!-- Font token labels — lee el valor computado del CSS var y lo muestra como texto -->
+  <script>
+    document.querySelectorAll('[data-font-var]').forEach(el => {
+      const value = getComputedStyle(document.documentElement)
+        .getPropertyValue(el.dataset.fontVar)
+        .trim();
+      // Extrae solo el primer nombre de la lista (ej. "Instrument Sans" de '"Instrument Sans", system-ui, sans-serif')
+      el.textContent = value.replace(/^["']?([^"',]+)["']?.*$/, '$1').trim();
+    });
+  </script>
 
   <!-- Toast global — necesario para el demo interactivo de la sección Toast -->
   <div class="copy-toast" id="sg-toast" role="status" aria-live="polite">
