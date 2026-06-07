@@ -39,6 +39,14 @@
     });
   }
 
+  // Si go.html ya trackeó esta sesión, no volver a disparar
+  try {
+    if (sessionStorage.getItem("portfolio_tracked")) {
+      sessionStorage.removeItem("portfolio_tracked");
+      return;
+    }
+  } catch (e) {}
+
   var company = getParam("ref");
   if (!company) company = "direct";
   if (company === "me") return;

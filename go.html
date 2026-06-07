@@ -59,6 +59,9 @@
     });
   } catch (e) {}
 
+  // Marcar sesión como ya trackeada para que tracker.js no dispare de nuevo
+  try { sessionStorage.setItem("portfolio_tracked", "1"); } catch (e) {}
+
   // Redirigir al portfolio limpio
   window.location.replace(DEST);
 })();
