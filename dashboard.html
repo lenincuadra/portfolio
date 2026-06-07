@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio Tracker — Lenin Cuadra</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #F9FAFB;
+      color: #111827;
+      min-height: 100vh;
+      padding: 2rem 1.5rem;
+    }
+
+    .container { max-width: 760px; margin: 0 auto; }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 2rem;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    header h1 { font-size: 1.25rem; font-weight: 600; }
+    header p  { font-size: 0.8rem; color: #6B7280; margin-top: 2px; }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .stat {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 10px;
+      padding: 1rem 1.25rem;
+    }
+
+    .stat-label { font-size: 0.75rem; color: #6B7280; margin-bottom: 4px; }
+    .stat-value { font-size: 1.6rem; font-weight: 600; color: #111827; }
+
+    .controls {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .controls input {
+      flex: 1;
+      min-width: 160px;
+      padding: 8px 12px;
+      font-size: 0.85rem;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      background: #fff;
+      outline: none;
+    }
+
+    .controls input:focus { border-color: #1A56DB; }
+
+    .btn {
+      padding: 8px 14px;
+      font-size: 0.8rem;
+      border: 1px solid #E5E7EB;
+      border-radius: 8px;
+      background: #fff;
+      cursor: pointer;
+      color: #374151;
+      white-space: nowrap;
+    }
+
+    .btn:hover { background: #F3F4F6; }
+    .btn-danger { color: #DC2626; border-color: #FECACA; }
+    .btn-danger:hover { background: #FEF2F2; }
+
+    .table-wrap {
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+
+    thead th {
+      text-align: left;
+      padding: 10px 16px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #6B7280;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: #F9FAFB;
+      border-bottom: 1px solid #E5E7EB;
+    }
+
+    tbody tr { border-bottom: 1px solid #F3F4F6; }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: #F9FAFB; }
+
+    td { padding: 10px 16px; color: #374151; vertical-align: middle; }
+
+    .company-badge {
+      display: inline-block;
+      padding: 2px 10px;
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .empty {
+      text-align: center;
+      padding: 3rem 1rem;
+      color: #9CA3AF;
+      font-size: 0.9rem;
+    }
+
+    .link-section {
+      margin-top: 2rem;
+      background: #fff;
+      border: 1px solid #E5E7EB;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+    }
+
+    .link-section h2 {
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      color: #374151;
+    }
+
+    .link-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 8px;
+      align-items: center;
+    }
+
+    .link-row input[type="text"] {
+      flex: 1;
+      padding: 7px 10px;
+      font-size: 0.8rem;
+      border: 1px solid #E5E7EB;
+      border-radius: 7px;
+      background: #F9FAFB;
+      color: #374151;
+    }
+
+    .link-input-company {
+      width: 140px;
+      padding: 7px 10px;
+      font-size: 0.8rem;
+      border: 1px solid #E5E7EB;
+      border-radius: 7px;
+      outline: none;
+    }
+
+    .link-input-company:focus { border-color: #1A56DB; }
+
+    .copied { color: #059669; font-size: 0.75rem; display: none; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <div>
+      <h1>Portfolio Tracker</h1>
+      <p>Lenin Cuadra — visitas por empresa</p>
+    </div>
+    <button class="btn btn-danger" onclick="clearAll()">Borrar todo</button>
+  </header>
+
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-label">Total visitas</div>
+      <div class="stat-value" id="stat-total">0</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Empresas únicas</div>
+      <div class="stat-value" id="stat-unique">0</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Última visita</div>
+      <div class="stat-value" style="font-size:1rem; padding-top:4px;" id="stat-last">—</div>
+    </div>
+  </div>
+
+  <div class="controls">
+    <input type="text" id="search" placeholder="Filtrar por empresa..." oninput="render()">
+    <button class="btn" onclick="exportCSV()">Exportar CSV</button>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Empresa</th>
+          <th>Fecha y hora</th>
+          <th>Ubicación</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+  </div>
+
+  <div class="link-section">
+    <h2>Generador de links de tracking</h2>
+    <div class="link-row">
+      <input class="link-input-company" type="text" id="company-input" placeholder="ej: acme123" oninput="generateLink()">
+      <input type="text" id="generated-link" readonly placeholder="Tu link aparecerá acá">
+      <button class="btn" onclick="copyLink()">Copiar</button>
+      <span class="copied" id="copied-msg">¡Copiado!</span>
+    </div>
+    <p style="font-size:0.75rem; color:#9CA3AF; margin-top:4px;">
+      Usá un slug corto sin espacios. Ej: <strong>google</strong>, <strong>stripe-2026</strong>, <strong>figma-apply</strong>
+    </p>
+  </div>
+
+</div>
+
+<script>
+  var STORAGE_KEY = "portfolio_visits";
+  var PORTFOLIO_URL = "https://lenincuadra.github.io/portfolio/"; // ← cambiá esto
+
+  function getVisits() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); } catch(e) { return []; }
+  }
+
+  function render() {
+    var visits = getVisits();
+    var q = document.getElementById("search").value.toLowerCase();
+    var filtered = q ? visits.filter(function(v){ return v.company.toLowerCase().includes(q); }) : visits;
+
+    var unique = [...new Set(visits.map(function(v){ return v.company; }))].length;
+    document.getElementById("stat-total").textContent  = visits.length;
+    document.getElementById("stat-unique").textContent = unique;
+    document.getElementById("stat-last").textContent   = visits.length ? visits[0].company : "—";
+
+    var tbody = document.getElementById("tbody");
+    if (!filtered.length) {
+      tbody.innerHTML = '<tr><td colspan="4" class="empty">No hay visitas registradas todavía.</td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = filtered.map(function(v, i) {
+      return '<tr>' +
+        '<td style="color:#9CA3AF">' + (i + 1) + '</td>' +
+        '<td><span class="company-badge">' + v.company + '</span></td>' +
+        '<td>' + v.timestamp + '</td>' +
+        '<td>' + v.location + '</td>' +
+        '</tr>';
+    }).join("");
+  }
+
+  function clearAll() {
+    if (confirm("¿Borrar todo el historial de visitas?")) {
+      localStorage.removeItem(STORAGE_KEY);
+      render();
+    }
+  }
+
+  function exportCSV() {
+    var visits = getVisits();
+    if (!visits.length) return alert("No hay visitas para exportar.");
+    var rows = [["Empresa","Fecha y hora","Ubicación"]].concat(
+      visits.map(function(v){ return [v.company, v.timestamp, v.location]; })
+    );
+    var csv = rows.map(function(r){ return r.map(function(c){ return '"'+c+'"'; }).join(","); }).join("\n");
+    var a = document.createElement("a");
+    a.href = "data:text/csv;charset=utf-8," + encodeURIComponent(csv);
+    a.download = "portfolio-visits.csv";
+    a.click();
+  }
+
+  function generateLink() {
+    var company = document.getElementById("company-input").value.trim()
+      .toLowerCase().replace(/\s+/g, "-");
+    var link = company ? PORTFOLIO_URL + "?ref=" + company : "";
+    document.getElementById("generated-link").value = link;
+  }
+
+  function copyLink() {
+    var link = document.getElementById("generated-link").value;
+    if (!link) return;
+    navigator.clipboard.writeText(link).then(function() {
+      var msg = document.getElementById("copied-msg");
+      msg.style.display = "inline";
+      setTimeout(function(){ msg.style.display = "none"; }, 2000);
+    });
+  }
+
+  render();
+</script>
+</body>
+</html>
