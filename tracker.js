@@ -48,7 +48,7 @@
   } catch (e) {}
 
   var company = getParam("ref");
-  if (!company) company = "direct";
+  if (!company) company = "organic";
   if (company === "me") return;
 
   var timestamp = new Date().toLocaleString("es-AR", {
