@@ -288,7 +288,7 @@
   function generateLink() {
     var company = document.getElementById("company-input").value.trim()
       .toLowerCase().replace(/\s+/g, "-");
-    var link = company ? PORTFOLIO_URL + "?ref=" + company : "";
+    var link = company ? PORTFOLIO_URL + "go.html?ref=" + company : "";
     document.getElementById("generated-link").value = link;
   }
 

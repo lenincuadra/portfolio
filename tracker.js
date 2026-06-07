@@ -40,7 +40,8 @@
   }
 
   var company = getParam("ref");
-  if (!company) return;
+  if (!company) company = "direct";
+  if (company === "me") return;
 
   var timestamp = new Date().toLocaleString("es-AR", {
     timeZone: "America/Argentina/Cordoba",

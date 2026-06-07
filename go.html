@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Redirecting…</title>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+</head>
+<body>
+<script>
+(async function () {
+  var SERVICE_ID  = "service_r954pt9";
+  var TEMPLATE_ID = "template_fhi5v77";
+  var PUBLIC_KEY  = "zdniFfke6xnYC8I4e";
+  var TO_EMAIL    = "leninxperience@gmail.com";
+  var STORAGE_KEY = "portfolio_visits";
+  var DEST        = "https://lenincuadra.github.io/portfolio/";
+
+  var company = new URLSearchParams(window.location.search).get("ref") || "";
+
+  // Visita propia — redirigir sin trackear
+  if (company === "me") {
+    window.location.replace(DEST);
+    return;
+  }
+
+  // Sin ref — registrar como "direct"
+  if (!company) company = "direct";
+
+  var timestamp = new Date().toLocaleString("es-AR", {
+    timeZone: "America/Argentina/Cordoba",
+    day: "2-digit", month: "2-digit", year: "numeric",
+    hour: "2-digit", minute: "2-digit"
+  });
+
+  // Geolocalización — fallback silencioso si falla
+  var location = "Ubicación desconocida";
+  try {
+    var res = await fetch("https://ipapi.co/json/");
+    var d   = await res.json();
+    location = (d.city || "") + ", " + (d.country_name || "");
+  } catch (e) {}
+
+  // Guardar en localStorage
+  try {
+    var visits = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+    visits.unshift({ company: company, timestamp: timestamp, location: location });
+    if (visits.length > 200) visits = visits.slice(0, 200);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(visits));
+  } catch (e) {}
+
+  // Enviar email — fallback silencioso si falla
+  try {
+    emailjs.init(PUBLIC_KEY);
+    await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
+      to_email:  TO_EMAIL,
+      company:   company,
+      timestamp: timestamp,
+      location:  location
+    });
+  } catch (e) {}
+
+  // Redirigir al portfolio limpio
+  window.location.replace(DEST);
+})();
+</script>
+</body>
+</html>
