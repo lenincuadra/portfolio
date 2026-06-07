@@ -56,7 +56,7 @@ const PORTFOLIO_DATA = {
       },
       about: {
         heading:
-          "I design systems where user needs, technical constraints, and business goals align.",
+          "I design products where user needs, technical constraints, and business goals align.",
         homeExcerpt:
           "Product designer focused on complex systems, platforms, and flows. I work closely with engineering and product teams — turning technical constraints into coherent, scalable experiences.",
         paragraphs: [
@@ -1254,7 +1254,7 @@ const PORTFOLIO_DATA = {
       },
       about: {
         heading:
-          "Diseño sistemas donde las necesidades del usuario, las restricciones técnicas y los objetivos de negocio se alinean.",
+          "Diseño productos donde las necesidades del usuario, las restricciones técnicas y los objetivos de negocio se alinean.",
         paragraphs: [
           "Soy product designer especializado en sistemas complejos, plataformas y flujos donde la claridad y la estructura son lo que más importa. Mi trabajo típicamente implica rediseñar experiencias fragmentadas en soluciones coherentes y escalables.",
           "Abordo el diseño a través de las restricciones. En lugar de tratar las limitaciones como bloqueos, las uso para dar forma a las decisiones temprano, asegurando que lo que se diseña pueda construirse y mantenerse en el tiempo.",

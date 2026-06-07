@@ -14,7 +14,8 @@
       "Bash(file /Users/psh/Desktop/new/portfolio/assets/images/fintech/3-3—Nshop/*.png /Users/psh/Desktop/new/portfolio/assets/images/fintech/3-3—Nshop/*.gif /Users/psh/Desktop/new/portfolio/assets/images/fintech/3-3—Nshop/*.jpg)",
       "Bash(file /Users/psh/Desktop/new/portfolio/assets/images/*.jpeg)",
       "Bash(git checkout:*)",
-      "Bash(git restore:*)"
+      "Bash(git restore:*)",
+      "Bash(claude --enable-auto-mode --help)"
     ]
   }
 }

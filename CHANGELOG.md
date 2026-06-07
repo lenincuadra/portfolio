@@ -9,6 +9,40 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ---
 
+## [0.10.0] — 2026-04-16
+
+### Added
+- **Open Graph tags** — `og:type`, `og:title`, `og:description`, `og:image`, `og:url` en `index.html`, `case.html` y `case-v2.html`; actualizados dinámicamente en `renderIndex` y `renderCase`
+- **Twitter Card tags** — `twitter:card`, `twitter:title`, `twitter:description`, `twitter:image` en todas las páginas
+- **JSON-LD structured data** — schema `Person` + `WebSite` en `index.html`
+- **`robots.txt`** — permite crawling general, apunta a `sitemap.xml`
+- **`sitemap.xml`** — index (priority 1.0) + 3 case studies (priority 0.9)
+- **Semantic color tokens** — `--color-success`, `--color-warning`, `--color-danger`, `--color-danger-bg` en `:root` y `html.theme-dark`
+- **Font-weight tokens** — `--fw-light`, `--fw-normal`, `--fw-medium`, `--fw-bold`
+- **`:focus-visible` styles** — outline `2px solid var(--accent)` en `.theme-toggle`, `.nav-toggle` y `.field`
+
+### Changed
+- **Meta descriptions** — rellenas en `index.html`, `case.html` y `case-v2.html` (estaban vacías)
+- **`<link rel="preconnect">`** — agregado para `fonts.googleapis.com` y `fonts.gstatic.com` en todas las páginas HTML
+- **Profile picture** — `width="800" height="800"` agregados para eliminar CLS
+- **Scripts** — `defer` añadido a `content.js` y `app.js`
+- **`.hero__scroll-hint`** — `will-change: transform, opacity` para optimizar la animación continua
+- **`.hero__availability-badge`** — `backdrop-filter` envuelto en `@supports`
+- **`.hero__availability-dot`** — reemplaza `#4ade80` por `var(--color-success)`
+- **`.field--error`** — usa `var(--color-danger)` / `var(--color-danger-bg)` en lugar de hex hardcodeados
+- **Header nav transition** — `180ms` hardcodeado reemplazado por `var(--dur-fast)`
+- **`aria-current="false"`** — agregado al botón ES del lang switch en todos los archivos HTML
+- **Case study images alt text** — seteado dinámicamente en JS para overview, process (×2) y decisions
+- **Case card cover images** — `alt=""` (decorativas; el link padre ya tiene `aria-label`)
+
+### Removed
+- **Tailwind CDN** — `<script src="https://cdn.tailwindcss.com">` eliminado de `styleguide.html`
+
+### References
+- PageSpeed baseline (mobile): https://pagespeed.web.dev/analysis/https-lenincuadra-github-io-portfolio-index-html/1o3qz6hoy0?form_factor=mobile
+
+---
+
 ## [0.9.1] — 2026-04-12
 
 ### Added
