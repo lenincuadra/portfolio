@@ -16,20 +16,15 @@
   grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: var(--col-gap);
 }
-/* Secondary grid always 2 columns */
 .case-grid--secondary {
-  grid-template-columns: repeat(2, 1fr);
-}
-@media (max-width: 768px) {
-  .case-grid--secondary {
-    grid-template-columns: 1fr;
-  }
+  grid-template-columns: 1fr;
 }
 
 /* ---- CASE CARD ---- */
 .case-card {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  height: 256px;
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--r-lg);
@@ -45,8 +40,9 @@
   transform: translateY(-4px);
 }
 .case-card__image {
-  width: 100%;
-  aspect-ratio: 16/10;
+  width: 380px;
+  flex-shrink: 0;
+  aspect-ratio: unset;
   background: var(--surface);
   overflow: hidden;
   display: flex;
@@ -61,6 +57,7 @@
   height: 100%;
   object-fit: cover;
   transition: transform var(--dur-slow) var(--ease-out);
+  display: block;
 }
 .case-card:hover .case-card__image img {
   transform: scale(1.04);
@@ -103,4 +100,15 @@
 }
 .case-card:hover .case-card__cta {
   gap: var(--sp-3);
+}
+
+@media (max-width: 768px) {
+  .case-card {
+    flex-direction: column;
+    height: auto;
+  }
+  .case-card__image {
+    width: 100%;
+    aspect-ratio: 16/10;
+  }
 }
