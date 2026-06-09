@@ -241,6 +241,8 @@
             return `<figure><img src="../${enItem.src}" alt="${enItem.alt || ''}" loading="${enItem.loading || 'lazy'}" onerror="this.parentElement.replaceWith(Object.assign(document.createElement('div'),{className:'img-placeholder',innerHTML:'<span>${enItem.alt || enItem.src}</span>'}))" /></figure>`;
           case 'gallery':
             return `<div>${(enItem.images || []).map(img => `<img src="../${img.src}" alt="${img.alt || ''}" loading="lazy" />`).join('')}</div>`;
+          case 'link':
+            return `<p><a href="${enItem.href}" target="_blank" rel="noopener noreferrer">${t(enItem.text, esItem?.text)}</a></p>`;
           default:
             return '';
         }

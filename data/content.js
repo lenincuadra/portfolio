@@ -48,11 +48,11 @@ const PORTFOLIO_DATA = {
     "home": {
       "hero": {
         "eyebrow": "Open to new opportunities",
+        "contactCta": "Get in touch!",
         "firstName": "Lenin",
         "lastName": "Cuadra",
         "role": "Product Designer · 6 years of experience",
-        "tags": ["Systems Design", "Product Architecture", "Design Systems", "Conversion", "Fintech"],
-        "summary": "From zero-to-one fintech ecosystems to 221% conversion growth and AI-assisted design-to-code — I build complex products at the intersection of user needs, business goals, and technical constraints."
+        "tagExclude": ["Fintech", "Telecom", "E-commerce", "Payments"]
       },
       "work": {
         "heading": "Selected work focused on systems, clarity, and measurable outcomes."
@@ -100,6 +100,7 @@ const PORTFOLIO_DATA = {
           "slug": "no-handoff",
           "template": "v3",
           "featured": false,
+          "heroTagWeight": 3,
           "images": {
             "cover": "assets/images/no-handoff/cover.png",
             "screens": [
@@ -290,6 +291,162 @@ const PORTFOLIO_DATA = {
               "title": "Telecom Legacy Platform Refactor"
             },
             "next": {
+              "slug": "figma-webp-export",
+              "title": "77 Minutes to Fix a 1-Hour Recurring Problem"
+            }
+          }
+        },
+
+        // ---------------------------------------------------------------------
+        // CASE 1 — FIGMA PLUGIN / WEBP EXPORT
+        // ---------------------------------------------------------------------
+        {
+          "slug": "figma-webp-export",
+          "template": "v3",
+          "featured": false,
+          "images": {
+            "cover": "assets/images/figma-webp-export/cover.png",
+            "screens": []
+          },
+          "card": {
+            "tags": ["Vibe Coding", "Figma Plugin", "AI-Accelerated Workflows"],
+            "title": "77 Minutes to Fix a 1-Hour Recurring Problem",
+            "excerpt": "A designer asked. I said I could fix it. 77 minutes later, what used to take an hour takes under a minute — and it's free for everyone."
+          },
+          "meta": {
+            "title": "77 Minutes to Fix a 1-Hour Recurring Problem · Lenin Cuadra",
+            "description": "Figma doesn't export .webp natively, and every plugin that does sits behind a paywall. I built a free batch export plugin using nothing but Claude.ai — in 77 minutes. It's now published on the Figma Community and available to any designer."
+          },
+          "hero": {
+            "title": "77 Minutes to Fix a 1-Hour Recurring Problem",
+            "subtitle": "A free, vibe-coded .webp export plugin for Figma — built with Claude.ai"
+          },
+          "quickScan": {
+            "role": "Product Designer",
+            "team": "Solo",
+            "timeline": "77 minutes",
+            "tools": "Claude.ai · Figma Plugin API"
+          },
+          "sections": [
+            {
+              "id": "section-overview-image",
+              "content": [
+                {
+                  "type": "image",
+                  "src": "assets/images/figma-webp-export/hero.png",
+                  "alt": "Plugin running in Figma, UI visible with multiple images selected",
+                  "loading": "lazy"
+                }
+              ]
+            },
+            {
+              "id": "section-overview",
+              "tocLabel": "Overview",
+              "label": "Overview",
+              "h3": "A friction that costs an hour per delivery.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "Exporting images to .webp is a routine part of design-to-dev handoff. Figma doesn't support it natively, and every plugin that does hides behind a paywall. The workaround was manual: export as jpg or png, convert one by one in an external tool. A small friction that adds up fast — and affects every designer delivering to dev, regardless of project or team."
+                }
+              ]
+            },
+            {
+              "id": "section-problem",
+              "tocLabel": "Problem",
+              "label": "Problem",
+              "h3": "Every existing solution either costs money or costs time.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "With 20 or 50 credits per plan, paid plugins disappear fast. Export 10 images, make a few adjustments, re-export, and you're out. And the manual workaround isn't free either: a single export takes around 5 minutes. For 12 images across three viewports — desktop, tablet, mobile — that's a full hour. That hour belongs to the designer or it falls on the developer. Either way, someone pays for a problem that shouldn't exist."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/figma-webp-export/before-after.png",
+                  "alt": "Before/after — manual step-by-step flow vs. the plugin in one step",
+                  "loading": "lazy"
+                }
+              ]
+            },
+            {
+              "id": "section-process",
+              "tocLabel": "Process",
+              "label": "Process",
+              "h3": "One conversation with Claude.ai. No prior plugin development experience.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "A designer on our agency side raised the problem. I told her I could build a plugin to fix it. Using Claude.ai and nothing but vibe coding, I built and tested it locally in 77 minutes — running it in Figma's Developer Mode while iterating. I also added a Spanish/English language toggle — I work for a US client but my agency is based in Argentina, and designers on both sides needed to use it without friction."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/figma-webp-export/claude-process.png",
+                  "alt": "Claude.ai — build process screen, token usage visible",
+                  "loading": "lazy"
+                }
+              ]
+            },
+            {
+              "id": "section-result",
+              "tocLabel": "Result",
+              "label": "Result",
+              "h3": "What used to take an hour now takes under a minute.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "Batch export to .webp with resolution control, published on the Figma Community. I submitted it after testing locally; it cleared review in 3 days and is now free for everyone."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/figma-webp-export/plugin-in-use.png",
+                  "alt": "Plugin in use — export in progress or side-by-side comparison",
+                  "loading": "lazy"
+                }
+              ]
+            },
+            {
+              "id": "section-impact",
+              "tocLabel": "Impact",
+              "label": "Impact",
+              "h3": "A fix that works across teams, projects, and delivery cadences.",
+              "content": [
+                {
+                  "type": "steps",
+                  "variant": "bullet",
+                  "items": [
+                    "Designers ship faster — No more manual conversion loops or credit counting.",
+                    "Dev handoff is cleaner — Files arrive in the format the team actually needs.",
+                    "It scales to any project size — 6 images or 12, the time cost is the same: under a minute.",
+                    "Free, permanently — No paywall, no plan upgrades, no credits."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "section-status",
+              "tocLabel": "Status",
+              "label": "Status",
+              "h3": "Published and available to the whole team — and to any Figma user via the Community.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "The designer who raised the problem is the primary user. The client team uses it as needed."
+                },
+                {
+                  "type": "link",
+                  "href": "https://www.figma.com/community/plugin/1644736186405569289",
+                  "text": "View on Figma Community →"
+                }
+              ]
+            }
+          ],
+          "nav": {
+            "prev": {
+              "slug": "no-handoff",
+              "title": "No Handoff: Closing the Design-Dev Gap"
+            },
+            "next": {
               "slug": "fintech-ecosystem",
               "title": "Zero-to-one: Connected Payment Ecosystem"
             }
@@ -297,7 +454,7 @@ const PORTFOLIO_DATA = {
         },
 
         // ---------------------------------------------------------------------
-        // CASE 1 — FINTECH / NARANJA X
+        // CASE 2 — FINTECH / NARANJA X
         // ---------------------------------------------------------------------
         {
           "slug": "fintech-ecosystem",
@@ -1069,11 +1226,11 @@ const PORTFOLIO_DATA = {
     "home": {
       "hero": {
         "eyebrow": "Abierto a nuevas oportunidades",
+        "contactCta": "¡Hablemos!",
         "firstName": "Lenin",
         "lastName": "Cuadra",
         "role": "Product Designer · 6 años de experiencia",
-        "tags": ["Diseño de Sistemas", "Arquitectura de Producto", "Design Systems", "Conversión", "Fintech"],
-        "summary": "Desde ecosistemas fintech de cero a uno hasta un crecimiento de conversión del 221% — diseño productos complejos en la intersección de las necesidades del usuario, los objetivos del negocio y las restricciones técnicas."
+        "tagExclude": ["Fintech", "Telecom", "E-commerce", "Pagos"]
       },
       "work": {
         "heading": "Trabajo seleccionado enfocado en sistemas, claridad y resultados medibles."
@@ -1120,6 +1277,7 @@ const PORTFOLIO_DATA = {
           "slug": "no-handoff",
           "template": "v3",
           "featured": false,
+          "heroTagWeight": 3,
           "images": {
             "cover": "assets/images/no-handoff/cover.png",
             "screens": [
@@ -1310,6 +1468,162 @@ const PORTFOLIO_DATA = {
               "title": "Telecom Legacy Platform Refactor"
             },
             "next": {
+              "slug": "figma-webp-export",
+              "title": "77 Minutes to Fix a 1-Hour Recurring Problem"
+            }
+          }
+        },
+
+        // ---------------------------------------------------------------------
+        // CASO 1 — FIGMA PLUGIN / WEBP EXPORT
+        // ---------------------------------------------------------------------
+        {
+          "slug": "figma-webp-export",
+          "template": "v3",
+          "featured": false,
+          "images": {
+            "cover": "assets/images/figma-webp-export/cover.png",
+            "screens": []
+          },
+          "card": {
+            "tags": ["Vibe Coding", "Figma Plugin", "AI-Accelerated Workflows"],
+            "title": "77 Minutes to Fix a 1-Hour Recurring Problem",
+            "excerpt": "Una diseñadora lo pidió. Dije que podía resolverlo. 77 minutos después, lo que tardaba una hora tarda menos de un minuto — y es gratis para todos."
+          },
+          "meta": {
+            "title": "77 Minutes to Fix a 1-Hour Recurring Problem · Lenin Cuadra",
+            "description": "Figma no exporta .webp de forma nativa, y cada plugin que lo hace está detrás de un muro de pago. Construí un plugin de exportación por lotes usando solo Claude.ai — en 77 minutos. Está publicado en la Figma Community y disponible para cualquier diseñador."
+          },
+          "hero": {
+            "title": "77 Minutes to Fix a 1-Hour Recurring Problem",
+            "subtitle": "Un plugin gratuito de exportación .webp para Figma — creado con Claude.ai"
+          },
+          "quickScan": {
+            "role": "Product Designer",
+            "team": "Solo",
+            "timeline": "77 minutos",
+            "tools": "Claude.ai · Figma Plugin API"
+          },
+          "sections": [
+            {
+              "id": "section-overview-image",
+              "content": [
+                {
+                  "type": "image",
+                  "src": "assets/images/figma-webp-export/hero.png",
+                  "alt": "Plugin corriendo en Figma, UI visible con varias imágenes seleccionadas",
+                  "loading": "lazy"
+                }
+              ]
+            },
+            {
+              "id": "section-overview",
+              "tocLabel": "Visión general",
+              "label": "Visión general",
+              "h3": "Una fricción que cuesta una hora por entrega.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "Exportar imágenes a .webp es una parte rutinaria del handoff de diseño a desarrollo. Figma no lo soporta de forma nativa, y cada plugin que lo hace está detrás de un muro de pago. El workaround era manual: exportar como jpg o png, convertir uno por uno en una herramienta externa. Una fricción pequeña que se acumula rápido — y afecta a todo diseñador que entrega a desarrollo, sin importar el proyecto o el equipo."
+                }
+              ]
+            },
+            {
+              "id": "section-problem",
+              "tocLabel": "Problema",
+              "label": "Problema",
+              "h3": "Cada solución existente cuesta dinero o cuesta tiempo.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "Con 20 o 50 créditos por plan, los plugins de pago se agotan rápido. Exportá 10 imágenes, hacé algunos ajustes, volvé a exportar, y se terminaron. Y el workaround manual tampoco es gratis: una sola exportación tarda alrededor de 5 minutos. Para 12 imágenes en tres viewports — desktop, tablet, mobile — es una hora completa. Esa hora la paga el diseñador o cae sobre el desarrollador. De cualquier forma, alguien paga por un problema que no debería existir."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/figma-webp-export/before-after.png",
+                  "alt": "Antes/después — flujo manual paso a paso vs. el plugin en un paso",
+                  "loading": "lazy"
+                }
+              ]
+            },
+            {
+              "id": "section-process",
+              "tocLabel": "Proceso",
+              "label": "Proceso",
+              "h3": "Una conversación con Claude.ai. Sin experiencia previa en desarrollo de plugins.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "Una diseñadora del lado de la agencia planteó el problema. Le dije que podía construir un plugin para resolverlo. Usando Claude.ai y nada más que vibe coding, lo construí y probé localmente en 77 minutos — ejecutándolo en el Developer Mode de Figma mientras iteraba. También agregué un toggle de idioma español/inglés — trabajo para un cliente de EE.UU. pero mi agencia está en Argentina, y los diseñadores de ambos lados necesitaban usarlo sin fricción."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/figma-webp-export/claude-process.png",
+                  "alt": "Claude.ai — pantalla del proceso de construcción, consumo de tokens visible",
+                  "loading": "lazy"
+                }
+              ]
+            },
+            {
+              "id": "section-result",
+              "tocLabel": "Resultado",
+              "label": "Resultado",
+              "h3": "Lo que antes tardaba una hora ahora tarda menos de un minuto.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "Exportación por lotes a .webp con control de resolución, publicado en la Figma Community. Lo envié tras probarlo localmente; pasó la revisión en 3 días y ahora es gratis para todos."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/figma-webp-export/plugin-in-use.png",
+                  "alt": "Plugin en uso — exportación en progreso o comparación lado a lado",
+                  "loading": "lazy"
+                }
+              ]
+            },
+            {
+              "id": "section-impact",
+              "tocLabel": "Impacto",
+              "label": "Impacto",
+              "h3": "Una solución que funciona para cualquier equipo, proyecto y cadencia de entrega.",
+              "content": [
+                {
+                  "type": "steps",
+                  "variant": "bullet",
+                  "items": [
+                    "Los diseñadores entregan más rápido — Sin más loops de conversión manual ni conteo de créditos.",
+                    "El handoff a desarrollo es más limpio — Los archivos llegan en el formato que el equipo realmente necesita.",
+                    "Escala a cualquier tamaño de proyecto — 6 imágenes o 12, el costo de tiempo es el mismo: menos de un minuto.",
+                    "Gratis, permanentemente — Sin muro de pago, sin actualizaciones de plan, sin créditos."
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "section-status",
+              "tocLabel": "Estado",
+              "label": "Estado",
+              "h3": "Publicado y disponible para todo el equipo — y para cualquier usuario de Figma via la Community.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "La diseñadora que planteó el problema es la usuaria principal. El equipo del cliente lo usa según necesidad."
+                },
+                {
+                  "type": "link",
+                  "href": "https://www.figma.com/community/plugin/1644736186405569289",
+                  "text": "Ver en la Figma Community →"
+                }
+              ]
+            }
+          ],
+          "nav": {
+            "prev": {
+              "slug": "no-handoff",
+              "title": "No Handoff: Closing the Design-Dev Gap"
+            },
+            "next": {
               "slug": "fintech-ecosystem",
               "title": "Zero-to-one: Connected Payment Ecosystem"
             }
@@ -1317,7 +1631,7 @@ const PORTFOLIO_DATA = {
         },
 
         // ---------------------------------------------------------------------
-        // CASO 1 — FINTECH / NARANJA X
+        // CASO 2 — FINTECH / NARANJA X
         // ---------------------------------------------------------------------
         {
           "slug": "fintech-ecosystem",
