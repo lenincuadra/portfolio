@@ -9,11 +9,11 @@
   align-items: center;
   padding-top: 64px;
   position: relative;
-  overflow: hidden;
 }
 .hero__bg {
   position: absolute;
   inset: 0;
+  overflow: hidden;
   z-index: 0;
   background:
     radial-gradient(
@@ -43,20 +43,20 @@
 }
 .hero__name {
   font-family: var(--font-display);
-  font-size: clamp(3rem, 9vw, var(--text-5xl));
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
   font-weight: 300;
-  line-height: 1.05;
-  letter-spacing: -0.03em;
-  color: var(--ink);
+  line-height: 1.2;
+  letter-spacing: 0.01em;
+  color: var(--ink-3);
   margin-bottom: var(--sp-3);
 }
 .hero__name em {
   font-style: italic;
-  color: var(--accent);
+  color: var(--ink-2);
 }
 .hero__role {
   font-family: var(--font-display);
-  font-size: clamp(var(--text-xl), 3.5vw, var(--text-3xl));
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
   font-weight: 300;
   font-style: italic;
   color: var(--ink-3);
@@ -119,6 +119,9 @@
   gap: clamp(3rem, 6vw, 6rem);
   align-items: center;
 }
+.hero__tags {
+  margin-bottom: var(--sp-6);
+}
 .hero__portrait {
   position: relative;
 }
@@ -129,11 +132,103 @@
   border-radius: var(--r-lg);
   box-shadow: 0 24px 64px color-mix(in srgb, var(--ink) 12%, transparent);
 }
-.hero__availability-badge {
+
+/* ---- HERO VENN ---- */
+.hero__portrait--venn {
+  overflow: visible;
+}
+.hero__venn-wrap {
+  position: relative;
+  width: 100%;
+}
+.hero__venn-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.hero__venn-photo {
   position: absolute;
-  bottom: var(--sp-5);
+  width: 42%;
+  aspect-ratio: 1;
+  top: 45%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 15%, transparent);
+}
+.hero__venn-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* Badge positioned inside the venn-wrap, below the circles */
+.hero__portrait--venn .hero__availability-badge {
+  position: absolute;
+  bottom: 6%;
   left: 50%;
   transform: translateX(-50%);
+}
+
+/* ---- GET IN TOUCH DROPDOWN ---- */
+.hero__contact-wrap {
+  position: relative;
+}
+.hero__contact-dropdown {
+  position: absolute;
+  top: calc(100% + var(--sp-2));
+  left: 0;
+  min-width: 200px;
+  background: var(--surface-raised, var(--surface));
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  padding: var(--sp-2);
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--ink) 12%, transparent);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.hero__contact-dropdown[hidden] {
+  display: none;
+}
+.hero__contact-option {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: var(--r-sm);
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--font-body);
+  transition: background var(--dur-fast), color var(--dur-fast);
+  white-space: nowrap;
+  width: 100%;
+  text-align: left;
+}
+.hero__contact-option:hover {
+  background: var(--surface-hover, color-mix(in srgb, var(--ink) 5%, transparent));
+  color: var(--ink);
+}
+.hero__contact-option-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+.hero__contact-option-sublabel {
+  font-size: var(--text-xs);
+  color: var(--ink-4);
+  font-weight: 400;
+}
+
+.hero__availability-badge {
   display: inline-flex;
   align-items: center;
   gap: var(--sp-2);
@@ -161,6 +256,20 @@
   background: var(--color-success);
   flex-shrink: 0;
 }
+/* ---- CONTACT CTA GROUP ---- */
+/* Primary spans full group width; 2 secondary split that same width below */
+.contact__cta-group {
+  display: inline-grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.contact__cta-group .btn {
+  justify-content: center;
+}
+#contact-email {
+  grid-column: 1 / -1;
+}
+
 @media (max-width: 768px) {
   .hero__inner {
     grid-template-columns: 1fr;
@@ -170,4 +279,24 @@
     max-width: 260px;
     margin-inline: auto;
   }
+  .hero__scroll-hint {
+    display: none;
+  }
+  .hero__actions {
+    flex-direction: column;
+  }
+  .hero__actions .btn,
+  .hero__actions .hero__contact-wrap {
+    width: 100%;
+  }
+  .hero__actions .hero__contact-wrap .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .hero__contact-dropdown {
+    left: 0;
+    right: 0;
+    min-width: unset;
+  }
 }
+

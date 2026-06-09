@@ -49,6 +49,28 @@
   color: var(--ink);
 }
 
+/* ---- COPY TAG (chip inside a button, e.g. contact email) ---- */
+.btn__copy-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: var(--r-sm);
+  background: rgba(255, 255, 255, 0.18);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background var(--dur-fast);
+}
+.btn--primary:hover .btn__copy-tag {
+  background: rgba(255, 255, 255, 0.28);
+}
+/* Mobile: the email button opens the mail app, so the Copy chip is irrelevant */
+@media (max-width: 768px) {
+  .btn__copy-tag { display: none; }
+}
+
 /* ---- SIZE MODIFIERS ---- */
 .btn--sm { padding: 6px 14px;  font-size: var(--text-xs); }
 .btn--md { padding: 10px 20px; font-size: var(--text-sm); }

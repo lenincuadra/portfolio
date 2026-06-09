@@ -45,6 +45,7 @@
 /* ---- SECTION BASE ---- */
 .section {
   padding-block: clamp(4rem, 8vw, 7rem);
+  scroll-margin-top: 80px;
 }
 .section + .section {}
 .section__label {

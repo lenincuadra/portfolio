@@ -419,11 +419,18 @@
       const esNav = esCase?.nav;
       let navHtml = '';
 
+      function navCaseUrl(slug) {
+        const all = PORTFOLIO_DATA.en.cases || [];
+        const target = all.find(c => c.slug === slug);
+        const tpl = target?.template === 'v3' ? 'case-v3' : 'case-v2';
+        return `${tpl}.html?slug=${slug}`;
+      }
+
       if (enNav.prev) {
         const enT = escHtml(enNav.prev.title || '');
         const esT = escHtml(esNav?.prev?.title || enNav.prev.title || '');
         navHtml += `
-          <a href="case-v2.html?slug=${enNav.prev.slug}" class="case-nav__item case-nav__item--prev">
+          <a href="${navCaseUrl(enNav.prev.slug)}" class="case-nav__item case-nav__item--prev">
             <span class="case-nav__label">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
               <span data-en="Previous" data-es="Anterior">Previous</span>
@@ -436,7 +443,7 @@
         const enT = escHtml(enNav.next.title || '');
         const esT = escHtml(esNav?.next?.title || enNav.next.title || '');
         navHtml += `
-          <a href="case-v2.html?slug=${enNav.next.slug}" class="case-nav__item case-nav__item--next">
+          <a href="${navCaseUrl(enNav.next.slug)}" class="case-nav__item case-nav__item--next">
             <span class="case-nav__label">
               <span data-en="Next" data-es="Siguiente">Next</span>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
@@ -488,6 +495,17 @@
           a.appendChild(sub);
         }
 
+        a.addEventListener('click', e => {
+          e.preventDefault();
+          const target = document.getElementById(section.id);
+          if (!target) return;
+          const header = document.querySelector('.site-header');
+          const offset = header ? header.offsetHeight + 16 : 80;
+          const top = target.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: 'smooth' });
+          history.pushState(null, '', '#' + section.id);
+        });
+
         li.appendChild(a);
         list.appendChild(li);
       });
@@ -503,6 +521,9 @@
 
     const slug = getSlug();
     if (slug && typeof PORTFOLIO_DATA !== 'undefined') {
+      const _c = (PORTFOLIO_DATA.en.cases || []).find(c => c.slug === slug);
+      if (_c?.template === 'v3') { location.replace('case-v3.html?slug=' + slug); }
+
       const { enCase, esCase } = getCasePair(slug);
       if (enCase) {
         renderHero(enCase, esCase);

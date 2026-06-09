@@ -39,6 +39,10 @@
     });
   }
 
+  // No trackear en entornos locales
+  var hostname = window.location.hostname;
+  if (hostname === "localhost" || hostname === "127.0.0.1" || hostname === "") return;
+
   // Si go.html ya trackeó esta sesión, no volver a disparar
   try {
     if (sessionStorage.getItem("portfolio_tracked")) {

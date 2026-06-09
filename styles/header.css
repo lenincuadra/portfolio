@@ -81,12 +81,22 @@
   gap: var(--sp-8);
 }
 .site-header__nav-link {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-1);
   font-size: var(--text-sm);
   font-weight: 400;
   color: var(--ink-3);
   letter-spacing: 0.02em;
   transition: color var(--dur-fast);
   position: relative;
+}
+button.site-header__nav-link {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  font-family: var(--font-body);
 }
 .site-header__nav-link::after {
   content: "";
