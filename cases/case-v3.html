@@ -192,8 +192,9 @@
 
     const slug  = new URLSearchParams(location.search).get('slug');
     const lang  = getLang();
-    const cases = PORTFOLIO_DATA[lang]?.cases || PORTFOLIO_DATA.en.cases;
-    const c     = cases.find(x => x.slug === slug);
+    const cEn   = (PORTFOLIO_DATA.en?.cases || []).find(x => x.slug === slug);
+    const cEs   = (PORTFOLIO_DATA.es?.cases || []).find(x => x.slug === slug) || cEn;
+    const c     = lang === 'es' ? cEs : cEn;
 
     if (!c) {
       document.getElementById('case-v3-content').textContent = 'Case not found: ' + slug;
@@ -206,50 +207,66 @@
       document.getElementById('og-desc').content    = c.meta?.description || '';
       document.getElementById('tw-title').content   = c.meta?.title || '';
 
-      // Content type renderers
-      function renderItem(item) {
-        switch (item.type) {
+      // Bilingual text wrapper — always emits data-en + data-es so applyLang() can update
+      function t(enVal, esVal) {
+        const en  = String(enVal  ?? '').replace(/"/g, '&quot;');
+        const es  = String(esVal != null ? esVal : (enVal ?? '')).replace(/"/g, '&quot;');
+        const cur = lang === 'es' ? (esVal != null ? esVal : enVal) : enVal;
+        return `<span data-en="${en}" data-es="${es}">${cur ?? ''}</span>`;
+      }
+
+      // Content type renderers — take both en and es versions of each item
+      function renderItem(enItem, esItem) {
+        switch (enItem.type) {
           case 'body':
-            return `<p>${item.text}</p>`;
+            return `<p>${t(enItem.text, esItem?.text)}</p>`;
           case 'quote':
-            return `<blockquote><p>${item.text}</p>${item.attr ? `<cite>${item.attr}</cite>` : ''}</blockquote>`;
+            return `<blockquote><p>${t(enItem.text, esItem?.text)}</p>${enItem.attr ? `<cite>${t(enItem.attr, esItem?.attr)}</cite>` : ''}</blockquote>`;
           case 'steps':
-            if (item.variant === 'numbered') {
-              return `<ol>${item.items.map(i => `<li>${i}</li>`).join('')}</ol>`;
+            if (enItem.variant === 'numbered') {
+              return `<ol>${(enItem.items || []).map((it, k) => `<li>${t(it, esItem?.items?.[k])}</li>`).join('')}</ol>`;
             }
-            // bullet: label — description → <ul><li><h4>label</h4><p>desc</p></li></ul>
-            return '<ul>' + item.items.map(i => {
-              const sep = i.indexOf(' — ');
-              return sep === -1
-                ? `<li><p>${i}</p></li>`
-                : `<li><h4>${i.slice(0, sep)}</h4><p>${i.slice(sep + 3)}</p></li>`;
+            // bullet: "label — description" → <ul><li><h4>label</h4><p>desc</p></li></ul>
+            return '<ul>' + (enItem.items || []).map((it, k) => {
+              const esIt  = esItem?.items?.[k] ?? it;
+              const sep   = it.indexOf(' — ');
+              const esSep = esIt.indexOf(' — ');
+              if (sep === -1) return `<li><p>${t(it, esIt)}</p></li>`;
+              const enLabel = it.slice(0, sep),   enDesc = it.slice(sep + 3);
+              const esLabel = esSep === -1 ? esIt : esIt.slice(0, esSep);
+              const esDesc  = esSep === -1 ? ''   : esIt.slice(esSep + 3);
+              return `<li><h4>${t(enLabel, esLabel)}</h4><p>${t(enDesc, esDesc)}</p></li>`;
             }).join('') + '</ul>';
           case 'image':
-            return `<figure><img src="../${item.src}" alt="${item.alt || ''}" loading="${item.loading || 'lazy'}" onerror="this.parentElement.replaceWith(Object.assign(document.createElement('div'),{className:'img-placeholder',innerHTML:'<span>${item.alt || item.src}</span>'}))" /></figure>`;
+            return `<figure><img src="../${enItem.src}" alt="${enItem.alt || ''}" loading="${enItem.loading || 'lazy'}" onerror="this.parentElement.replaceWith(Object.assign(document.createElement('div'),{className:'img-placeholder',innerHTML:'<span>${enItem.alt || enItem.src}</span>'}))" /></figure>`;
           case 'gallery':
-            return `<div>${item.images.map(img => `<img src="../${img.src}" alt="${img.alt || ''}" loading="lazy" />`).join('')}</div>`;
+            return `<div>${(enItem.images || []).map(img => `<img src="../${img.src}" alt="${img.alt || ''}" loading="lazy" />`).join('')}</div>`;
           default:
             return '';
         }
       }
 
       // Group consecutive subheading+body pairs into an ordered or unordered list
-      function renderContent(items) {
+      function renderContent(enItems, esItems) {
         const out = [];
         let i = 0;
-        while (i < items.length) {
-          if (items[i].type === 'subheading') {
+        while (i < enItems.length) {
+          if (enItems[i].type === 'subheading') {
             const pairs = [];
-            while (i < items.length && items[i].type === 'subheading') {
-              const label = items[i++].text;
-              const body  = (i < items.length && items[i].type === 'body') ? items[i++].text : '';
-              pairs.push({ label, body });
+            while (i < enItems.length && enItems[i].type === 'subheading') {
+              const enLbl = enItems[i].text, esLbl = esItems?.[i]?.text;
+              i++;
+              const enBody = (i < enItems.length && enItems[i].type === 'body') ? enItems[i].text   : '';
+              const esBody = (i < enItems.length && esItems?.[i]?.type === 'body') ? esItems[i]?.text : undefined;
+              if (enBody) i++;
+              pairs.push({ enLbl, esLbl, enBody, esBody });
             }
-            const isOrdered = /^\d+[.)]\s/.test(pairs[0]?.label || '');
+            const isOrdered = /^\d+[.)]\s/.test(pairs[0]?.enLbl || '');
             const tag = isOrdered ? 'ol' : 'ul';
-            out.push(`<${tag}>${pairs.map(p => `<li><h4>${p.label}</h4>${p.body ? `<p>${p.body}</p>` : ''}</li>`).join('')}</${tag}>`);
+            out.push(`<${tag}>${pairs.map(p => `<li><h4>${t(p.enLbl, p.esLbl)}</h4>${p.enBody ? `<p>${t(p.enBody, p.esBody)}</p>` : ''}</li>`).join('')}</${tag}>`);
           } else {
-            out.push(renderItem(items[i++]));
+            out.push(renderItem(enItems[i], esItems?.[i]));
+            i++;
           }
         }
         return out.join('');
@@ -271,21 +288,25 @@
         const words = text.trim().split(/\s+/).filter(w => w.length > 0).length;
         return Math.max(1, Math.ceil(words / 200));
       }
-      const readMins = calcReadingTime(c.sections);
-      const readingTimeHTML = `<p><span class="case-hero__tag" data-en="${readMins} min read" data-es="${readMins} min de lectura">${readMins} min read</span></p>`;
+      const readMins = calcReadingTime(cEn.sections);
+      const readingTimeHTML = `<p><span class="case-hero__tag" data-en="${readMins} min read" data-es="${readMins} min de lectura">${lang === 'es' ? readMins + ' min de lectura' : readMins + ' min read'}</span></p>`;
 
       // Hero
-      const hero    = c.hero || {};
-      let html      = `<h1>${hero.title || ''}</h1>`;
-      if (hero.subtitle) html += `<h2>${hero.subtitle}</h2>`;
+      const heroEn = cEn.hero || {}, heroEs = cEs.hero || {};
+      let html = `<h1>${t(heroEn.title, heroEs.title)}</h1>`;
+      if (heroEn.subtitle) html += `<h2>${t(heroEn.subtitle, heroEs.subtitle)}</h2>`;
       html += readingTimeHTML;
 
       // Sections
-      html += (c.sections || []).map(s => {
-        const sLabel  = s.label   ? `<p class="section__label">${s.label}</p>` : '';
-        const sH3     = s.h3     ? `<h3>${s.h3}</h3>` : '';
-        const body    = renderContent(s.content || []);
-        return `<section id="${s.id}" data-toc-label="${s.tocLabel || ''}">${sLabel}${sH3}${body}</section>`;
+      html += (cEn.sections || []).map((s, idx) => {
+        const esS    = cEs.sections?.[idx];
+        const sLabel = s.label    ? `<p class="section__label">${t(s.label, esS?.label)}</p>` : '';
+        const sH3    = s.h3       ? `<h3>${t(s.h3, esS?.h3)}</h3>` : '';
+        const body   = renderContent(s.content || [], esS?.content);
+        const enToc  = (s.tocLabel  || '').replace(/"/g, '&quot;');
+        const esToc  = (esS?.tocLabel || s.tocLabel || '').replace(/"/g, '&quot;');
+        const curToc = lang === 'es' ? (esS?.tocLabel || s.tocLabel || '') : (s.tocLabel || '');
+        return `<section id="${s.id}" data-toc-label="${curToc}" data-toc-label-en="${enToc}" data-toc-label-es="${esToc}">${sLabel}${sH3}${body}</section>`;
       }).join('<hr>');
 
       // CTA
@@ -347,14 +368,23 @@
 
           const labelSpan = document.createElement('span');
           labelSpan.className = 'toc-nav__link-label';
-          labelSpan.textContent = section.dataset.tocLabel;
+          labelSpan.dataset.en = section.dataset.tocLabelEn || section.dataset.tocLabel;
+          labelSpan.dataset.es = section.dataset.tocLabelEs || section.dataset.tocLabel;
+          labelSpan.textContent = getLang() === 'es' ? labelSpan.dataset.es : labelSpan.dataset.en;
           a.appendChild(labelSpan);
 
           const h3El = section.querySelector('h3');
           if (h3El) {
+            const h3Span = h3El.querySelector('[data-en]');
             const sub = document.createElement('span');
             sub.className = 'toc-nav__link-subtitle';
-            sub.textContent = h3El.textContent.trim();
+            if (h3Span) {
+              sub.dataset.en = h3Span.dataset.en;
+              sub.dataset.es = h3Span.dataset.es;
+              sub.textContent = getLang() === 'es' ? h3Span.dataset.es : h3Span.dataset.en;
+            } else {
+              sub.textContent = h3El.textContent.trim();
+            }
             a.appendChild(sub);
           }
 

@@ -50,8 +50,9 @@ const PORTFOLIO_DATA = {
         "eyebrow": "Open to new opportunities",
         "firstName": "Lenin",
         "lastName": "Cuadra",
-        "role": "Product Designer with 5 years of experience",
-        "summary": "I design product systems that work at the intersection of business strategy, technical constraints and user behavior. From zero-to-one fintech ecosystems to 221% conversion growth — my work turns operational complexity into coherent, measurable outcomes."
+        "role": "Product Designer · 6 years of experience",
+        "tags": ["Systems Design", "Product Architecture", "Design Systems", "Conversion", "Fintech"],
+        "summary": "From zero-to-one fintech ecosystems to 221% conversion growth and AI-assisted design-to-code — I build complex products at the intersection of user needs, business goals, and technical constraints."
       },
       "work": {
         "heading": "Selected work focused on systems, clarity, and measurable outcomes."
@@ -302,6 +303,7 @@ const PORTFOLIO_DATA = {
           "slug": "fintech-ecosystem",
           "images": {
             "cover": "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
+            "video": "assets/images/fintech/1-3—web checkout/6-nx-proto-demo.mp4",
             "hero": "assets/images/telecom/portrait.png",
             "process1": "assets/images/fintech/1-3—web checkout/1-nx-wireframes.png",
             "process2": "assets/images/fintech/2-3—Payment link/3-nx-proto-wireframes.gif",
@@ -807,7 +809,7 @@ const PORTFOLIO_DATA = {
           "slug": "telecom-legacy-refactor",
           "images": {
             "cover": "assets/images/telecom/after-poster.png",
-            "video": "assets/images/telecom/before-after.mp4",
+            "video": "assets/images/telecom/before-after.webm",
             "hero": "assets/images/telecom/portrait.png",
             "overviewImage": "assets/images/telecom/mockup-multitasking.png"
           },
@@ -1069,8 +1071,9 @@ const PORTFOLIO_DATA = {
         "eyebrow": "Abierto a nuevas oportunidades",
         "firstName": "Lenin",
         "lastName": "Cuadra",
-        "role": "Product Designer with 5 years of experience",
-        "summary": "Diseño sistemas de producto que operan en la intersección de la estrategia de negocio, las restricciones técnicas y el comportamiento del usuario. Desde ecosistemas fintech de cero a uno hasta un crecimiento de conversión del 221% — mi trabajo convierte la complejidad operacional en resultados coherentes y medibles."
+        "role": "Product Designer · 6 años de experiencia",
+        "tags": ["Diseño de Sistemas", "Arquitectura de Producto", "Design Systems", "Conversión", "Fintech"],
+        "summary": "Desde ecosistemas fintech de cero a uno hasta un crecimiento de conversión del 221% — diseño productos complejos en la intersección de las necesidades del usuario, los objetivos del negocio y las restricciones técnicas."
       },
       "work": {
         "heading": "Trabajo seleccionado enfocado en sistemas, claridad y resultados medibles."
@@ -1123,12 +1126,12 @@ const PORTFOLIO_DATA = {
               {
                 "src": "assets/images/no-handoff/screen-app.png",
                 "poster": "assets/images/no-handoff/screen-app.png",
-                "label": "Running App"
+                "label": "App en ejecución"
               },
               {
                 "src": "assets/images/no-handoff/screen-library.png",
                 "poster": "assets/images/no-handoff/screen-library.png",
-                "label": "Component Library"
+                "label": "Librería de componentes"
               },
               {
                 "src": "assets/images/no-handoff/screen-side-by-side.png",
@@ -1139,23 +1142,25 @@ const PORTFOLIO_DATA = {
           },
           "card": {
             "tags": [
-              "TODO"
+              "Claude Code",
+              "Figma MCP",
+              "Design-to-Code"
             ],
             "title": "No Handoff: Closing the Design-Dev Gap",
-            "excerpt": "TODO"
+            "excerpt": "Encontré la forma de tener código funcional en 2 días, no reemplazando el proceso, sino corrigiendo cómo me comunicaba con la IA. El resultado desbloqueó 4 capacidades que el equipo de diseño no tenía antes."
           },
           "meta": {
             "title": "No Handoff: Closing the Design-Dev Gap · Lenin Cuadra",
-            "description": "TODO"
+            "description": "Encontré la forma de tener código funcional en 2 días, no reemplazando el proceso, sino corrigiendo cómo me comunicaba con la IA. El resultado desbloqueó 4 capacidades que el equipo de diseño no tenía antes."
           },
           "hero": {
             "title": "No Handoff: Closing the Design-Dev Gap",
-            "subtitle": "Built with Claude Code + Figma MCP"
+            "subtitle": "Creado con Claude Code + Figma MCP"
           },
           "quickScan": {
             "role": "TODO",
             "team": "TODO",
-            "timeline": "2 days",
+            "timeline": "2 días",
             "tools": "Claude Code · Figma MCP"
           },
           "sections": [
@@ -1165,136 +1170,136 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "image",
                   "src": "assets/images/no-handoff/hero.png",
-                  "alt": "App running in browser, full flow visible",
+                  "alt": "App corriendo en el browser, flujo completo visible",
                   "loading": "lazy"
                 }
               ]
             },
             {
               "id": "section-overview",
-              "tocLabel": "Overview",
-              "label": "Overview",
-              "heading": "Overview",
-              "h3": "Our standard delivery at PSH takes 2 weeks",
+              "tocLabel": "Visión general",
+              "label": "Visión general",
+              "heading": "Visión general",
+              "h3": "Nuestra entrega estándar en PSH toma 2 semanas",
               "layout": "overview",
               "content": [
                 {
                   "type": "body",
-                  "text": "Design in Figma, document redlines, hand off to developers, iterate with QA. What I built in 2 days was built on top of that process — the Figma work made it possible."
+                  "text": "Diseñar en Figma, documentar redlines, hacer handoff a los desarrolladores, iterar con QA. Lo que construí en 2 días se apoyó en ese proceso — el trabajo en Figma lo hizo posible."
                 }
               ]
             },
             {
               "id": "section-problem",
-              "tocLabel": "Problem",
-              "label": "Problem",
-              "heading": "The problem",
-              "h3": "Every time I tried to generate code from Figma designs, the AI hallucinated.",
+              "tocLabel": "Problema",
+              "label": "Problema",
+              "heading": "El problema",
+              "h3": "Cada vez que intentaba generar código desde diseños de Figma, la IA alucinaba.",
               "content": [
                 {
                   "type": "body",
-                  "text": "One wrong component propagates to every screen that uses it — the output looks close, but it's not trustworthy enough to show anyone."
+                  "text": "Un componente equivocado se propaga a cada pantalla que lo usa — el resultado se ve parecido, pero no es lo suficientemente confiable para mostrárselo a alguien."
                 },
                 {
                   "type": "image",
                   "src": "assets/images/no-handoff/before-after.png",
-                  "alt": "Before/after — failed AI attempt vs clean component output",
+                  "alt": "Antes/después — intento fallido de IA vs output limpio de componentes",
                   "loading": "lazy"
                 }
               ]
             },
             {
               "id": "section-decisions",
-              "tocLabel": "Decisions",
-              "label": "Decisions",
-              "heading": "Three decisions that made it work.",
-              "h3": "The decisions that made it work.",
+              "tocLabel": "Decisiones",
+              "label": "Decisiones",
+              "heading": "Las tres decisiones que lo hicieron funcionar.",
+              "h3": "Tres restricciones que eliminaron las alucinaciones.",
               "content": [
                 {
                   "type": "subheading",
-                  "text": "1. Reduce scope"
+                  "text": "1. Reducir el alcance"
                 },
                 {
                   "type": "body",
-                  "text": "Only the components this MVP needed — not the full design system. One project, one scope, reusable later."
+                  "text": "Solo los componentes que necesitaba este MVP — no el design system completo. Un proyecto, un alcance, reutilizable después."
                 },
                 {
                   "type": "subheading",
-                  "text": "2. Build the library first"
+                  "text": "2. Construir la librería primero"
                 },
                 {
                   "type": "body",
-                  "text": "Component by component via Figma MCP: \"Replicate this with all its states.\" No guessing from memory."
+                  "text": "Componente por componente vía Figma MCP: \"Replica esto con todos sus estados.\" Sin adivinar de memoria."
                 },
                 {
                   "type": "subheading",
-                  "text": "3. Build a reference table"
+                  "text": "3. Construir una tabla de referencia"
                 },
                 {
                   "type": "body",
-                  "text": "A .md file with every component and its Figma link. I instructed Claude to check the original automatically if something looked off — no resharing links manually."
+                  "text": "Un archivo .md con cada componente y su enlace de Figma. Le instruí a Claude para que revisara el original automáticamente si algo parecía mal — sin reenviar links manualmente."
                 },
                 {
                   "type": "image",
                   "src": "assets/images/no-handoff/vscode-library.png",
-                  "alt": "VS Code — component library structure and reference .md file",
+                  "alt": "VS Code — estructura de la librería de componentes y archivo .md de referencia",
                   "loading": "lazy"
                 }
               ]
             },
             {
               "id": "section-result",
-              "tocLabel": "Result",
-              "label": "Result",
-              "heading": "The result",
-              "h3": "The output was indistinguishable from the real product",
+              "tocLabel": "Resultado",
+              "label": "Resultado",
+              "heading": "El resultado",
+              "h3": "El resultado era indistinguible del producto real",
               "content": [
                 {
                   "type": "steps",
                   "variant": "bullet",
                   "items": [
-                    "Layout and flows matched Figma at 100%",
-                    "Filters, states, and interactions all worked as designed",
-                    "Mocked data, real behavior"
+                    "Layout y flujos coincidían con Figma al 100%",
+                    "Filtros, estados e interacciones funcionaban tal como se diseñaron",
+                    "Datos simulados, comportamiento real"
                   ]
                 },
                 {
                   "type": "image",
                   "src": "assets/images/no-handoff/side-by-side.png",
-                  "alt": "Side by side — Figma screen vs running app",
+                  "alt": "Comparación — pantalla de Figma vs app en ejecución",
                   "loading": "lazy"
                 }
               ]
             },
             {
               "id": "section-unlocks",
-              "tocLabel": "The Value That Brings",
-              "label": "The Value That Brings",
-              "heading": "The value that brings.",
-              "h3": "4 use case deliverables that bring more value to the Design Team",
+              "tocLabel": "Impacto",
+              "label": "Impacto",
+              "heading": "El impacto",
+              "h3": "4 casos de uso que el equipo no tenía antes.",
               "content": [
                 {
                   "type": "steps",
                   "variant": "bullet",
                   "items": [
-                    "User testing — real component behavior, real accessibility issues surface",
-                    "Stakeholder presentations — live app fidelity instead of a click-through prototype",
-                    "Sales demos — production look & feel, easy to update",
-                    "Potential end of handoff — design delivers components to dev directly"
+                    "User testing — comportamiento real de componentes, problemas reales de accesibilidad a la vista",
+                    "Presentaciones a stakeholders — fidelidad de app en vivo en lugar de un prototipo clickeable",
+                    "Sales demos — look & feel de producción, fácil de actualizar",
+                    "Potencial fin del handoff — diseño entrega componentes directamente a desarrollo"
                   ]
                 }
               ]
             },
             {
               "id": "section-status",
-              "tocLabel": "Status",
-              "label": "Status",
-              "heading": "Status.",
-              "h3": "Scaling the new design process",
+              "tocLabel": "Estado",
+              "label": "Estado",
+              "heading": "Estado.",
+              "h3": "Escalando el nuevo proceso de diseño",
               "content": [
                 {
                   "type": "body",
-                  "text": "I demoed this to my Design Manager, who took it to the CPO. The response: move forward with a shared GitHub repo and Storybook. A meeting with the Product Manager is next to define how."
+                  "text": "Le hice una demo a mi Design Manager, quien la llevó al CPO. La respuesta: avanzar con un repositorio compartido en GitHub y Storybook. Una reunión con el Product Manager es el siguiente paso para definir cómo."
                 }
               ]
             }
@@ -1318,6 +1323,7 @@ const PORTFOLIO_DATA = {
           "slug": "fintech-ecosystem",
           "images": {
             "cover": "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
+            "video": "assets/images/fintech/1-3—web checkout/6-nx-proto-demo.mp4",
             "hero": "assets/images/telecom/portrait.png",
             "process1": "assets/images/fintech/1-3—web checkout/1-nx-wireframes.png",
             "process2": "assets/images/fintech/2-3—Payment link/3-nx-proto-wireframes.gif",
@@ -1823,7 +1829,7 @@ const PORTFOLIO_DATA = {
           "slug": "telecom-legacy-refactor",
           "images": {
             "cover": "assets/images/telecom/after-poster.png",
-            "video": "assets/images/telecom/before-after.mp4",
+            "video": "assets/images/telecom/before-after.webm",
             "hero": "assets/images/telecom/portrait.png",
             "overviewImage": "assets/images/telecom/mockup-multitasking.png"
           },
