@@ -222,6 +222,40 @@
             </div>
           </div>
           <div class="hero__portrait hero__portrait--venn">
+            <!-- Duotono no destructivo: filtro SVG aplicado por CSS sobre el <img>.
+                 Colores (flood-color) y fuerza (flood-opacity) se controlan con
+                 tokens en styles/hero.css. La imagen fuente no se modifica. -->
+            <svg class="hero__duotone-defs" aria-hidden="true" focusable="false">
+              <filter id="duotone" color-interpolation-filters="sRGB">
+                <!-- 1· luminancia de la foto → canal alfa (RGB a negro) -->
+                <feColorMatrix type="matrix"
+                  values="0 0 0 0 0
+                          0 0 0 0 0
+                          0 0 0 0 0
+                          0.2126 0.7152 0.0722 0 0"
+                  result="lum"/>
+                <!-- 2· alfa invertido (para mapear las sombras) -->
+                <feComponentTransfer in="lum" result="lumInv">
+                  <feFuncA type="table" tableValues="1 0"/>
+                </feComponentTransfer>
+                <!-- 3· color de luces, recortado por la luminancia -->
+                <feFlood class="duo-flood-hi" result="hiFlood"/>
+                <feComposite in="hiFlood" in2="lum" operator="in" result="hi"/>
+                <!-- 4· color de sombras, recortado por la luminancia invertida -->
+                <feFlood class="duo-flood-sh" result="shFlood"/>
+                <feComposite in="shFlood" in2="lumInv" operator="in" result="sh"/>
+                <!-- 5· duotono = suma lineal sombras + luces -->
+                <feComposite in="sh" in2="hi" operator="arithmetic"
+                  k1="0" k2="1" k3="1" k4="0" result="duo"/>
+                <!-- 6· mezcla con la foto original según --duo-strength -->
+                <feFlood class="duo-flood-strength" flood-color="#fff" result="strengthFlood"/>
+                <feComposite in="duo" in2="strengthFlood" operator="in" result="duoFaded"/>
+                <feMerge>
+                  <feMergeNode in="SourceGraphic"/>
+                  <feMergeNode in="duoFaded"/>
+                </feMerge>
+              </filter>
+            </svg>
             <div class="hero__venn-wrap" aria-hidden="true">
               <svg class="hero__venn-svg" viewBox="0 0 320 400" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
                 <circle cx="120" cy="150" r="98" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-opacity="0.55" stroke-width="1.5"/>

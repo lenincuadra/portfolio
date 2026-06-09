@@ -43,10 +43,9 @@
 }
 .hero__name {
   font-family: var(--font-display);
-  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
   font-weight: 300;
-  line-height: 1.2;
-  letter-spacing: 0.01em;
+  font-style: italic;
   color: var(--ink-3);
   margin-bottom: var(--sp-3);
 }
@@ -56,9 +55,10 @@
 }
 .hero__role {
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
   font-weight: 300;
-  font-style: italic;
+  line-height: 1.2;
+  letter-spacing: 0.01em;
   color: var(--ink-3);
   margin-bottom: var(--sp-10);
 }
@@ -163,6 +163,31 @@
   height: 100%;
   object-fit: cover;
   object-position: center top;
+}
+
+/* ---- HERO VENN · DUOTONO (no destructivo, vía filtro SVG sobre el <img>) ----
+   El <filter id="duotone"> vive en index.html (feColorMatrix + feComponentTransfer
+   + feFlood): remapea la luminancia de la foto entre dos colores → duotono nítido
+   y lineal, sin la compresión de screen/multiply. TODO se controla con tokens,
+   sin tocar el archivo de imagen:
+     · colores → flood-color de las feFlood (sombras / luces)
+     · fuerza  → flood-opacity (--duo-strength)
+   --duo-strength: 0 = foto original exacta · 1 = duotono pleno. */
+.hero__duotone-defs {
+  position: absolute;
+  width: 0;
+  height: 0;
+  --duo-shadow: var(--accent);   /* sombras → violeta de la paleta (User, #7c4abf) */
+  --duo-highlight: #f4ede2;      /* luces → off-white tibio (NUNCA verde)          */
+  --duo-strength: 1;             /* 0 = foto original · 1 = duotono pleno          */
+}
+.hero__duotone-defs .duo-flood-sh { flood-color: var(--duo-shadow); }
+.hero__duotone-defs .duo-flood-hi { flood-color: var(--duo-highlight); }
+.hero__duotone-defs .duo-flood-strength { flood-opacity: var(--duo-strength); }
+
+/* El filtro va solo sobre la imagen; el recorte circular del contenedor no cambia */
+.hero__venn-photo img {
+  filter: url(#duotone);
 }
 
 /* Badge positioned inside the venn-wrap, below the circles */
