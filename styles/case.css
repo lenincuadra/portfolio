@@ -754,6 +754,26 @@
   }
 }
 
+/* ---- INLINE LINK ---- */
+.case-link {
+  color: inherit;
+  text-decoration: none;
+  position: relative;
+}
+.case-link::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--border);
+  transition: background var(--dur-mid) var(--ease-out);
+}
+.case-link:hover::after {
+  background: var(--accent);
+}
+
 /* ---- COPY TOAST ---- */
 .copy-toast {
   position: fixed;

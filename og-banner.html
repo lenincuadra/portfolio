@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LinkedIn Banner — Lenin Cuadra</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=Instrument+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #141311;
+      --border: #383530;
+      --ink: #f0ede8;
+      --ink-3: #8c8880;
+      --ink-4: #5c5a55;
+      --accent-dim: #a97ad4;
+      --font-display: "Instrument Sans", system-ui, sans-serif;
+      --font-mono: "DM Mono", "Courier New", monospace;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0e0d0b;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px;
+      font-family: var(--font-display);
+    }
+
+    /* ---- canvas 1584 × 396 ---- */
+    .canvas {
+      width: 1584px;
+      height: 396px;
+      background: var(--bg);
+      position: relative;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    /* Radial glow — centered in the canvas */
+    .canvas::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 130% at 50% 50%, color-mix(in srgb, #7c4abf 9%, transparent), transparent),
+        radial-gradient(ellipse 30% 70% at 15% 90%, color-mix(in srgb, #3d2a8f 6%, transparent), transparent);
+      z-index: 0;
+    }
+
+    /* ---- Logo — top-left, clear of profile photo overlap zone ---- */
+    .logo-wrap {
+      position: absolute;
+      top: 36px;
+      left: 60px;
+      z-index: 3;
+    }
+    .logo-svg path { fill: var(--ink); }
+
+    /* ---- Main: centered in canvas, content left-aligned ---- */
+    .main {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Content block: sizes to widest child, children left-aligned */
+    .content {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+
+    .name {
+      font-family: var(--font-display);
+      font-size: 64px;
+      font-weight: 300;
+      line-height: 1;
+      letter-spacing: -0.035em;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .name em {
+      font-style: italic;
+      color: var(--accent-dim);
+    }
+
+    /* Role — font-size set by JS to align with last tag's right edge */
+    .role {
+      font-family: var(--font-display);
+      font-weight: 300;
+      font-style: italic;
+      color: var(--ink-3);
+      letter-spacing: 0.005em;
+      white-space: nowrap;
+      font-size: 16px;
+    }
+
+    /* Tags row */
+    .tags {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 15px;
+      border-radius: 9999px;
+      border: 1px solid var(--border);
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+      font-weight: 400;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="canvas">
+
+    <!-- Logo — top-left, above the profile photo safe zone -->
+    <div class="logo-wrap">
+      <svg class="logo-svg" width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M26.9509 7.19434C28.5251 7.19435 29.974 7.41002 31.2967 7.84009C32.6192 8.27017 33.7798 8.89871 34.7778 9.72633C35.776 10.5459 36.579 11.5567 37.1876 12.7578C37.5774 13.5269 37.869 14.3679 38.0624 15.2804C36.5204 15.9677 31.4296 18.2749 31.4296 18.2749C31.4296 18.2749 31.4783 17.4527 31.4296 16.8847C31.3809 16.3166 31.2512 15.8006 31.0402 15.3381C30.8375 14.8759 30.5539 14.4785 30.1891 14.1459C29.832 13.8051 29.3967 13.5444 28.8855 13.3659C28.3744 13.1794 27.7944 13.0867 27.1456 13.0867C26.0095 13.0867 25.0476 13.3619 24.2605 13.9137C23.4815 14.4654 22.8887 15.2567 22.483 16.2872C22.0854 17.3178 21.8869 18.5562 21.8869 20.0007C21.887 21.526 22.0894 22.8044 22.4951 23.8349C22.9089 24.8571 23.5059 25.6274 24.2847 26.1467C25.0637 26.658 26.0017 26.9147 27.0972 26.9147C27.7219 26.9146 28.2819 26.8365 28.7767 26.6824C29.2716 26.5201 29.7018 26.2885 30.0669 25.9883C30.4318 25.6882 30.7285 25.3279 30.9557 24.9062C31.1903 24.4775 31.7038 22.8516 31.4309 21.7379L38.1059 24.7223C37.9542 25.3843 37.7226 26.0547 37.4065 26.7321C36.8953 27.8192 36.1687 28.8251 35.2276 29.7501C34.2944 30.667 33.138 31.4053 31.7585 31.9652C30.379 32.5251 28.7766 32.8056 26.9509 32.8056C25.1898 32.8056 23.4909 32.6817 22.0856 31.933C20.5027 31.0897 19.916 30.1718 19.8382 28.2088C19.7847 26.8576 19.8382 25.9883 19.8382 25.9883H16.4296C16.4071 25.9559 14.9247 23.8055 14.9246 20.0007C14.9246 16.1664 15.4604 14.8875 16.5316 12.9887C17.6027 11.0819 19.0464 9.64081 20.8639 8.66708C22.6816 7.68518 24.7112 7.19434 26.9509 7.19434Z"/>
+        <path d="M9.02554 9.09401V27.0113H18.7414V32.4646H1.89406V7.53534L9.02554 9.09401Z"/>
+      </svg>
+    </div>
+
+    <!-- Vertical content block, centered in canvas -->
+    <div class="main">
+      <div class="content">
+        <div class="name">Lenin <em>Cuadra</em></div>
+        <div class="role">Senior Product Designer · AI Adoption Lead</div>
+<div class="tags">
+          <span class="tag">Claude Code</span>
+          <span class="tag">Figma MCP</span>
+          <span class="tag">Design Systems</span>
+          <span class="tag">B2B SaaS</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    document.fonts.ready.then(() => {
+      const tags = document.querySelector('.tags');
+      const role = document.querySelector('.role');
+      const target = tags.getBoundingClientRect().width;
+      let size = 16;
+      while (role.getBoundingClientRect().width < target && size < 80) {
+        size += 0.25;
+        role.style.fontSize = size + 'px';
+      }
+    });
+  </script>
+</body>
+</html>

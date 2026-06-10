@@ -26,10 +26,7 @@
     #case-v3-content li + li { margin-top: var(--sp-5); }
     #case-v3-content hr { border: none; border-top: 1px solid var(--border-subtle); margin-top: 3rem; margin-bottom: 0; }
     #case-v3-content h1 + h2 + p { margin-top: var(--sp-4); }
-    .img-placeholder { width: 662px; height: 372px; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; margin-block: var(--sp-6); margin-inline: auto; cursor: zoom-in; }
-    .img-placeholder span { font-size: var(--text-sm); color: var(--text-tertiary); text-align: center; padding: var(--sp-4); }
-    #case-v3-content figure { margin-block: var(--sp-6); text-align: center; }
-    #case-v3-content figure img { max-width: 662px; height: 372px; object-fit: cover; border-radius: var(--r-md); cursor: zoom-in; }
+    #case-v3-content .image-block { cursor: zoom-in; margin-block: var(--sp-6); }
     /* Lightbox */
     #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
     #lightbox.is-open { display: flex; }
@@ -237,12 +234,14 @@
               const esDesc  = esSep === -1 ? ''   : esIt.slice(esSep + 3);
               return `<li><h4>${t(enLabel, esLabel)}</h4><p>${t(enDesc, esDesc)}</p></li>`;
             }).join('') + '</ul>';
-          case 'image':
-            return `<figure><img src="../${enItem.src}" alt="${enItem.alt || ''}" loading="${enItem.loading || 'lazy'}" onerror="this.parentElement.replaceWith(Object.assign(document.createElement('div'),{className:'img-placeholder',innerHTML:'<span>${enItem.alt || enItem.src}</span>'}))" /></figure>`;
+          case 'image': {
+            const safeAlt = (enItem.alt || '').replace(/"/g, '&quot;');
+            return `<div class="image-block image-block--wide" data-ph="${safeAlt}"><img src="../${enItem.src}" alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="var b=this.closest('.image-block');b.innerHTML='<div class=&quot;image-block__placeholder&quot;>'+(b.dataset.ph||'')+'</div>'" /></div>`;
+          }
           case 'gallery':
             return `<div>${(enItem.images || []).map(img => `<img src="../${img.src}" alt="${img.alt || ''}" loading="lazy" />`).join('')}</div>`;
           case 'link':
-            return `<p><a href="${enItem.href}" target="_blank" rel="noopener noreferrer">${t(enItem.text, esItem?.text)}</a></p>`;
+            return `<p><a class="case-link" href="${enItem.href}" target="_blank" rel="noopener noreferrer">${t(enItem.text, esItem?.text)}</a></p>`;
           default:
             return '';
         }
@@ -478,8 +477,8 @@
       }
 
       document.getElementById('case-v3-content').addEventListener('click', e => {
-        const img = e.target.closest('figure img');
-        const ph  = e.target.closest('.img-placeholder');
+        const img = e.target.closest('.image-block img');
+        const ph  = e.target.closest('.image-block__placeholder');
         if (img) openLightbox(img);
         else if (ph) openLightbox(ph);
       });

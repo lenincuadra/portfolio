@@ -48,11 +48,10 @@ const PORTFOLIO_DATA = {
     "home": {
       "hero": {
         "eyebrow": "Open to new opportunities",
-        "contactCta": "Get in touch!",
+        "contactCta": "Get in touch",
         "firstName": "Lenin",
         "lastName": "Cuadra",
-        "role": "Product Designer · 6 years of experience",
-        "tagExclude": ["Fintech", "Telecom", "E-commerce", "Payments"]
+        "role": "Senior Product Designer · AI Adoption Lead"
       },
       "work": {
         "heading": "Selected work focused on systems, clarity, and measurable outcomes."
@@ -100,7 +99,6 @@ const PORTFOLIO_DATA = {
           "slug": "no-handoff",
           "template": "v3",
           "featured": false,
-          "heroTagWeight": 3,
           "images": {
             "cover": "assets/images/no-handoff/cover.png",
             "screens": [
@@ -429,9 +427,15 @@ const PORTFOLIO_DATA = {
               "label": "Status",
               "h3": "Published and available to the whole team — and to any Figma user via the Community.",
               "content": [
+                { "type": "subheading", "text": "Published and available to the whole team" },
+                { "type": "body", "text": "and to any Figma user via the Community." },
+                { "type": "subheading", "text": "The designer who raised the problem is the primary user." },
+                { "type": "body", "text": "The client team and I use it as needed." },
                 {
-                  "type": "body",
-                  "text": "The designer who raised the problem is the primary user. The client team uses it as needed."
+                  "type": "image",
+                  "src": "assets/images/figma-webp-export/figma-community.png",
+                  "alt": "Plugin's Figma Community page — listing with cover, description and install button",
+                  "loading": "lazy"
                 },
                 {
                   "type": "link",
@@ -1226,11 +1230,10 @@ const PORTFOLIO_DATA = {
     "home": {
       "hero": {
         "eyebrow": "Abierto a nuevas oportunidades",
-        "contactCta": "¡Hablemos!",
+        "contactCta": "Hablemos",
         "firstName": "Lenin",
         "lastName": "Cuadra",
-        "role": "Product Designer · 6 años de experiencia",
-        "tagExclude": ["Fintech", "Telecom", "E-commerce", "Pagos"]
+        "role": "Senior Product Designer · Líder de Adopción de IA"
       },
       "work": {
         "heading": "Trabajo seleccionado enfocado en sistemas, claridad y resultados medibles."
@@ -1277,7 +1280,6 @@ const PORTFOLIO_DATA = {
           "slug": "no-handoff",
           "template": "v3",
           "featured": false,
-          "heroTagWeight": 3,
           "images": {
             "cover": "assets/images/no-handoff/cover.png",
             "screens": [
@@ -1606,9 +1608,15 @@ const PORTFOLIO_DATA = {
               "label": "Estado",
               "h3": "Publicado y disponible para todo el equipo — y para cualquier usuario de Figma via la Community.",
               "content": [
+                { "type": "subheading", "text": "Publicado y disponible para todo el equipo" },
+                { "type": "body", "text": "y para cualquier usuario de Figma via la Community." },
+                { "type": "subheading", "text": "La diseñadora que planteó el problema es la usuaria principal." },
+                { "type": "body", "text": "El equipo del cliente y yo lo usamos según necesidad." },
                 {
-                  "type": "body",
-                  "text": "La diseñadora que planteó el problema es la usuaria principal. El equipo del cliente lo usa según necesidad."
+                  "type": "image",
+                  "src": "assets/images/figma-webp-export/figma-community.png",
+                  "alt": "Página del plugin en la Figma Community — listado con portada, descripción y botón de instalación",
+                  "loading": "lazy"
                 },
                 {
                   "type": "link",

@@ -203,126 +203,6 @@
     return tags.map(t => `<span class="badge badge--ghost">${t}</span>`).join('');
   }
 
-  function buildHeroSummary(cases, lang, tagExclude) {
-    // --- Tag scoring (same as hero tags) ---
-    const excSet = new Set(tagExclude || []);
-    const freq = {};
-    cases.forEach(c => {
-      const w = c.heroTagWeight ?? 1;
-      (c.card?.tags || []).forEach(t => {
-        if (!excSet.has(t)) freq[t] = (freq[t] || 0) + w;
-      });
-    });
-    const sorted    = Object.entries(freq).sort((a, b) => b[1] - a[1]);
-    const maxScore  = sorted[0]?.[1] || 1;
-    const tier1Tags = sorted.filter(([, s]) => s >= maxScore).map(([t]) => t);
-    const t1        = tier1Tags.slice(0, 2).join(lang === 'es' ? ' y ' : ' and ');
-
-    // --- Outcome extraction ---
-    // Each extractor: { type, baseImpact, match(text) → phrase | null }
-    // Final score = baseImpact × case.heroTagWeight → ensures AI-case outcomes rank high
-    const EXTRACTORS = [
-      {
-        type: 'capability',
-        baseImpact: 4,
-        match: (text) => {
-          const m = text.match(/(\d+)\s+capabilities?\b/i);
-          if (!m) return null;
-          return lang === 'es'
-            ? `desbloqueando ${m[1]} nuevas capacidades de diseño`
-            : `unlocking ${m[1]} new design capabilities`;
-        },
-      },
-      {
-        type: 'metric',
-        baseImpact: 5,
-        match: (text) => {
-          const m = text.match(/\b(\d+%)\b/);
-          if (!m) return null;
-          return lang === 'es'
-            ? `generando un ${m[1]} de crecimiento`
-            : `driving ${m[1]} revenue growth`;
-        },
-      },
-      {
-        type: 'zero_to_one',
-        baseImpact: 3,
-        match: (text) => {
-          if (!/zero.to.one|first cohesive/i.test(text)) return null;
-          return lang === 'es'
-            ? 'creando ecosistemas de cero a uno'
-            : 'building zero-to-one product ecosystems';
-        },
-      },
-      {
-        type: 'speed',
-        baseImpact: 2,
-        match: (text) => {
-          const m = text.match(/code\s+in\s+(\d+\s*days?)/i);
-          if (!m) return null;
-          return lang === 'es'
-            ? `enviando código en ${m[1]}`
-            : `shipping code in ${m[1]}`;
-        },
-      },
-      {
-        type: 'structural',
-        baseImpact: 1,
-        match: (text) => {
-          if (!/fragmented[^.]+coherent|coherent v\d/i.test(text)) return null;
-          return lang === 'es'
-            ? 'refactorizando plataformas con claridad estructural'
-            : 'refactoring platforms for structural clarity';
-        },
-      },
-    ];
-
-    // Collect best phrase per outcome type across all cases.
-    // Score = baseImpact × heroTagWeight — same priority logic as tags.
-    // Also track whether the outcome came from a boosted (AI) case or a client case.
-    const byType = {};
-    cases.forEach(c => {
-      const w    = c.heroTagWeight ?? 1;
-      const text = [c.card?.title || '', c.card?.excerpt || ''].join(' ');
-      EXTRACTORS.forEach(ex => {
-        if (byType[ex.type]) return;
-        const phrase = ex.match(text);
-        if (phrase) byType[ex.type] = { phrase, score: ex.baseImpact * w, boosted: w > 1 };
-      });
-    });
-
-    const allOutcomes = Object.values(byType).sort((a, b) => b.score - a.score);
-
-    // Split by source: boosted-case outcomes → "from" side; client outcomes → "to" side.
-    // This makes clear the outcomes come from different projects, not one single case.
-    const fromGroup = allOutcomes.filter(o => o.boosted).slice(0, 2).map(o => o.phrase);
-    const toGroup   = allOutcomes.filter(o => !o.boosted).slice(0, 2).map(o => o.phrase);
-
-    if (!fromGroup.length && !toGroup.length) {
-      return lang === 'es'
-        ? `Uso ${t1} para diseñar sistemas de producto donde el usuario, el negocio y la tecnología se alinean.`
-        : `I use ${t1} to design product systems where user needs, business goals, and technology align.`;
-    }
-
-    const join = (arr, lang) => {
-      const and = lang === 'es' ? 'y' : 'and';
-      return arr.length > 1 ? `${arr.slice(0, -1).join(', ')} ${and} ${arr[arr.length - 1]}` : arr[0];
-    };
-
-    // If we have both groups, use "from X, to Y" to signal different contexts.
-    if (fromGroup.length && toGroup.length) {
-      return lang === 'es'
-        ? `Uso ${t1} para diseñar sistemas de producto — desde ${join(fromGroup, lang)}, hasta ${join(toGroup, lang)}.`
-        : `I use ${t1} to design product systems — from ${join(fromGroup, lang)}, to ${join(toGroup, lang)}.`;
-    }
-
-    // Fallback: single group
-    const all = [...fromGroup, ...toGroup];
-    return lang === 'es'
-      ? `Uso ${t1} para diseñar sistemas de producto — ${join(all, lang)}.`
-      : `I use ${t1} to design product systems — ${join(all, lang)}.`;
-  }
-
   function buildMetricCard(item, i) {
     const delay = i > 0 ? ` reveal-delay-${i}` : '';
     return `
@@ -368,21 +248,8 @@
         el.textContent = lang === 'es' ? el.dataset.es : el.dataset.en;
       });
     }
-    const heroTagsEl = document.getElementById('hero-tags');
-    if (heroTagsEl) {
-      const excluded = new Set(home.hero.tagExclude || []);
-      const freq = {};
-      cases.forEach(c => {
-        const w = c.heroTagWeight ?? 1;
-        (c.card?.tags || []).forEach(t => {
-          if (!excluded.has(t)) freq[t] = (freq[t] || 0) + w;
-        });
-      });
-      const topTags = Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 4).map(([t]) => t);
-      heroTagsEl.innerHTML = buildTags(topTags);
-    }
-    const heroSummaryEl = document.getElementById('hero-summary');
-    if (heroSummaryEl) heroSummaryEl.textContent = buildHeroSummary(cases, getLang(), home.hero.tagExclude);
+    // Hero tags and summary are hardcoded in index.html (static, language-handled
+    // via data-en/data-es above). Future automation will live in hero.js.
 
     // Work
     setText('work-heading', home.work.heading);
