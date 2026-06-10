@@ -173,21 +173,30 @@
      · colores → flood-color de las feFlood (sombras / luces)
      · fuerza  → flood-opacity (--duo-strength)
    --duo-strength: 0 = foto original exacta · 1 = duotono pleno. */
+/* Tokens en el ancestro común (.hero__portrait--venn) → los heredan tanto las
+   feFlood del filtro como la <img> (para el contrast()). Duotono de alto
+   contraste estilo "Forceful": púrpura profundo en sombras → naranja vivo en luces. */
+.hero__portrait--venn {
+  /* Endpoints con tokens del Venn (tokens.css): sombras = indigo Business,
+     luces = verde Tech. Alto contraste para la intensidad tipo reference. */
+  --duo-shadow: color-mix(in srgb, var(--accent-2) 88%, #000);    /* sombras → indigo Business (--accent-2), hue vivo */
+  --duo-highlight: color-mix(in srgb, var(--accent-3) 66%, #fff); /* luces → verde Tech (--accent-3), hue vivo  */
+  --duo-strength: 1;         /* 0 = foto original · 1 = duotono pleno */
+  --duo-contrast: 1.4;       /* contraste de la foto ANTES del duotono → más punch */
+}
 .hero__duotone-defs {
   position: absolute;
   width: 0;
   height: 0;
-  --duo-shadow: var(--accent);   /* sombras → violeta de la paleta (User, #7c4abf) */
-  --duo-highlight: #f4ede2;      /* luces → off-white tibio (NUNCA verde)          */
-  --duo-strength: 1;             /* 0 = foto original · 1 = duotono pleno          */
 }
 .hero__duotone-defs .duo-flood-sh { flood-color: var(--duo-shadow); }
 .hero__duotone-defs .duo-flood-hi { flood-color: var(--duo-highlight); }
 .hero__duotone-defs .duo-flood-strength { flood-opacity: var(--duo-strength); }
 
-/* El filtro va solo sobre la imagen; el recorte circular del contenedor no cambia */
+/* contrast() actúa antes que el duotono (amplía el rango); url(#duotone) remapea.
+   El filtro va solo sobre la imagen; el recorte circular del contenedor no cambia. */
 .hero__venn-photo img {
-  filter: url(#duotone);
+  filter: contrast(var(--duo-contrast)) url(#duotone);
 }
 
 /* Badge positioned inside the venn-wrap, below the circles */

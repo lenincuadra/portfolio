@@ -19,6 +19,7 @@
   --accent-dim: #a97ad4;
   --accent-pale: #ede0f7;
   --accent-2: #3d2a8f;
+  --accent-3: #2a7a5c;
   --color-success: #2d7a4f;
   --color-warning: #b87820;
   --color-danger: #c0392b;
@@ -89,6 +90,7 @@ html.theme-dark,
   --accent-dim: #a97ad4;
   --accent-pale: #ede0f7;
   --accent-2: #3d2a8f;
+  --accent-3: #2a7a5c;
   --color-success: #2d7a4f;
   --color-warning: #b87820;
   --color-danger: #c0392b;
