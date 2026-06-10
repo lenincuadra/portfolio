@@ -190,8 +190,27 @@
               <span id="hero-first-name"></span> <em id="hero-last-name"></em>
             </h1>
             <p class="hero__role" id="hero-role"></p>
-            <div class="tag-group hero__tags" id="hero-tags"></div>
-            <p class="hero__summary" id="hero-summary"></p>
+            <div class="tag-group hero__tags" id="hero-tags">
+              <span class="badge badge--ghost">Design-to-Code</span>
+              <span class="badge badge--ghost">Design Systems</span>
+              <span class="badge badge--ghost">0→1 Products</span>
+              <span class="badge badge--ghost">AI Adoption</span>
+            </div>
+            <div class="hero__summary" id="hero-summary">
+              <p
+                class="hero__summary-lead"
+                data-en="I design products that move business metrics, and lead design teams into AI-powered workflows that ship faster."
+                data-es="Diseño productos que mueven métricas de negocio, y llevo a equipos de diseño hacia flujos con IA que entregan más rápido."
+              >I design products that move business metrics, and lead design teams into AI-powered workflows that ship faster.</p>
+              <!-- Reemplazada en runtime por hero.js (lee cases.json, elige 2
+                   pruebas featured por carga). Este texto es el fallback estático
+                   si cases.json falla o queda vacío. -->
+              <p
+                class="hero__summary-recent"
+                data-en="Highlights: +300% feature subscriptions after a flow redesign · a week of dev work compressed into 2 days."
+                data-es="Highlights: +300% en suscripciones de una funcionalidad tras un rediseño de flujo · una semana de desarrollo comprimida en 2 días."
+              >Highlights: +300% feature subscriptions after a flow redesign · a week of dev work compressed into 2 days.</p>
+            </div>
             <div class="hero__actions">
               <a href="#work" class="btn btn--primary btn--md">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
@@ -199,7 +218,7 @@
               </a>
               <div class="hero__contact-wrap">
                 <button class="btn btn--secondary btn--md" id="hero-contact-btn" type="button" aria-haspopup="true" aria-expanded="false">
-                  <span id="hero-contact-cta">Get in touch!</span>
+                  <span id="hero-contact-cta">Get in touch</span>
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
                 <div class="hero__contact-dropdown" id="hero-contact-dropdown" hidden>
@@ -268,9 +287,16 @@
               <div class="hero__venn-photo">
                 <img src="assets/images/profile-pic.jpeg" alt="" loading="eager" />
               </div>
-              <div class="hero__availability-badge">
-                <span class="hero__availability-dot"></span>
-                <span id="hero-eyebrow">Open to new opportunities</span>
+              <div class="hero__availability">
+                <div class="hero__availability-badge">
+                  <span class="hero__availability-dot"></span>
+                  <span id="hero-eyebrow">Open to new opportunities</span>
+                </div>
+                <p
+                  class="hero__location"
+                  data-en="Argentina · GMT-3 · US-friendly hours"
+                  data-es="Argentina · GMT-3 · US-friendly hours"
+                >Argentina · GMT-3 · US-friendly hours</p>
               </div>
             </div>
           </div>
@@ -441,6 +467,7 @@
        ====================================================== -->
     <script src="data/content.js" defer></script>
     <script src="js/app.js" defer></script>
+    <script src="hero.js" defer></script>
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <script src="tracker.js"></script>
   </body>

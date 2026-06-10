@@ -8,3 +8,8 @@
 
 - [ ] **Thumbnails de case studies** — Agregar thumbnails a los 2 case studies faltantes.
 - [ ] **Revisión UX con criterio Joe Natoli** — Repasar todo el index aplicando principios de UX (jerarquía visual, claridad de mensajes, flujo de atención, fricción innecesaria, etc.).
+
+## Hero
+
+- [ ] Optional: micro-hover en los círculos del Venn mostrando evidencia (User → "research, testing" · Business → "+300% subs" · Tech → "ships code")
+- [ ] PRIORITARIO — ejecutar al final, cuando el hero esté terminado: auditoría de accesibilidad WCAG AA del hero (contraste, semántica, teclado), en ambos temas y ambos idiomas.
