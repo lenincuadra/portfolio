@@ -300,6 +300,23 @@
   letter-spacing: 0.06em;
   min-height: 280px;
 }
+/* Silent, on-brand placeholder for a missing or not-yet-ready case image.
+   Keeps the slot's aspect-ratio (via .image-block--wide/--square/--portrait)
+   so there is no layout shift when a real image is added later. */
+.image-block--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--img-ph-fill);
+  border: 1px dashed var(--img-ph-border);
+}
+.image-block__icon {
+  width: 22%;
+  min-width: 36px;
+  max-width: 64px;
+  height: auto;
+  color: var(--img-ph-icon);
+}
 .image-block__caption {
   padding: var(--sp-4) var(--sp-5);
   font-family: var(--font-mono);

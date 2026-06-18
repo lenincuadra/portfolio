@@ -27,6 +27,7 @@
     #case-v3-content hr { border: none; border-top: 1px solid var(--border-subtle); margin-top: 3rem; margin-bottom: 0; }
     #case-v3-content h1 + h2 + p { margin-top: var(--sp-4); }
     #case-v3-content .image-block { cursor: zoom-in; margin-block: var(--sp-6); }
+    #case-v3-content .image-block--empty { cursor: default; }
     /* Lightbox */
     #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 9999; align-items: center; justify-content: center; cursor: zoom-out; }
     #lightbox.is-open { display: flex; }
@@ -143,6 +144,36 @@
   <script>
     const LANG_KEY = 'portfolio-lang';
 
+    // ── Case image placeholder (silent, on-brand fallback) ─────────────────────
+    // Localized qualifier appended to the English image description. English is the
+    // source of truth; both strings live here so they can be swapped on toggle.
+    const IMG_PH_QUALIFIER = { en: 'image coming soon', es: 'imagen en preparación' };
+    // Decorative outline image icon, no library dependency. Swap freely.
+    const IMG_PH_ICON =
+      '<svg class="image-block__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">' +
+      '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>' +
+      '<circle cx="8.5" cy="8.5" r="1.5"/>' +
+      '<polyline points="21 15 16 10 5 21"/></svg>';
+
+    // Accessible name for the placeholder: English description plus localized qualifier.
+    function imgPhLabel(desc, lng) {
+      const q = IMG_PH_QUALIFIER[lng] || IMG_PH_QUALIFIER.en;
+      if (!desc) return q.charAt(0).toUpperCase() + q.slice(1);
+      return desc + ', ' + q;
+    }
+
+    // On image load failure, degrade the slot to the silent placeholder in place.
+    // Replaces markup (no new image request), so there is no error loop.
+    window.__caseImgFallback = function (img) {
+      const block = img.closest('.image-block');
+      if (!block || block.classList.contains('image-block--empty')) return;
+      block.classList.add('image-block--empty');
+      block.setAttribute('role', 'img');
+      const label = getLang() === 'es' ? block.dataset.phEs : block.dataset.phEn;
+      if (label) block.setAttribute('aria-label', label);
+      block.innerHTML = IMG_PH_ICON;
+    };
+
     // Theme
     const html = document.documentElement;
     if (localStorage.getItem('theme') === 'dark') html.classList.add('theme-dark');
@@ -172,6 +203,11 @@
       document.querySelectorAll('[data-en]').forEach(el => {
         const text = el.dataset[lang];
         if (text !== undefined) el.textContent = text;
+      });
+      // Image placeholders carry their label in data-ph-en/data-ph-es, not text.
+      document.querySelectorAll('.image-block--empty[data-ph-en]').forEach(el => {
+        const label = lang === 'es' ? el.dataset.phEs : el.dataset.phEn;
+        if (label) el.setAttribute('aria-label', label);
       });
       [document.getElementById('cta-resume'), document.getElementById('nav-resume')].forEach(el => {
         if (el) el.href = RESUME_URLS[lang] || RESUME_URLS.en;
@@ -235,8 +271,21 @@
               return `<li><h4>${t(enLabel, esLabel)}</h4><p>${t(enDesc, esDesc)}</p></li>`;
             }).join('') + '</ul>';
           case 'image': {
-            const safeAlt = (enItem.alt || '').replace(/"/g, '&quot;');
-            return `<div class="image-block image-block--wide" data-ph="${safeAlt}"><img src="../${enItem.src}" alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="var b=this.closest('.image-block');b.innerHTML='<div class=&quot;image-block__placeholder&quot;>'+(b.dataset.ph||'')+'</div>'" /></div>`;
+            const desc       = enItem.alt || '';
+            // Aspect-ratio is reserved up front (default 16/9), overridable per slot
+            // via "ratio": "wide" | "square" | "portrait", so the slot does not shift
+            // when a real image replaces the placeholder.
+            const ratioClass = ({ wide: 'image-block--wide', square: 'image-block--square', portrait: 'image-block--portrait' })[enItem.ratio] || 'image-block--wide';
+            const phEn       = imgPhLabel(desc, 'en').replace(/"/g, '&quot;');
+            const phEs       = imgPhLabel(desc, 'es').replace(/"/g, '&quot;');
+            // No source declared, intended-but-not-ready: render the placeholder, no request.
+            if (!(enItem.src || '').trim()) {
+              const cur = lang === 'es' ? phEs : phEn;
+              return `<div class="image-block ${ratioClass} image-block--empty" role="img" aria-label="${cur}" data-ph-en="${phEn}" data-ph-es="${phEs}">${IMG_PH_ICON}</div>`;
+            }
+            // Source present: show the image; on failure it degrades to the same placeholder.
+            const safeAlt = desc.replace(/"/g, '&quot;');
+            return `<div class="image-block ${ratioClass}" data-ph-en="${phEn}" data-ph-es="${phEs}"><img src="../${enItem.src}" alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="window.__caseImgFallback(this)" /></div>`;
           }
           case 'gallery':
             return `<div>${(enItem.images || []).map(img => `<img src="../${img.src}" alt="${img.alt || ''}" loading="lazy" />`).join('')}</div>`;
