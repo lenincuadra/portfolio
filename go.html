@@ -26,8 +26,10 @@
   var destKey = params.get("dest") || "portfolio";
   var DEST    = DESTINATIONS[destKey] || DESTINATIONS.portfolio;
 
-  // Visita propia, redirigir sin trackear
+  // Visita propia, redirigir sin trackear. Marcar la sesión como ya
+  // trackeada para que tracker.js no la registre como "organic" al aterrizar.
   if (company === "me") {
+    try { sessionStorage.setItem("portfolio_tracked", "1"); } catch (e) {}
     window.location.replace(DEST);
     return;
   }
