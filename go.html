@@ -13,17 +13,26 @@
   var PUBLIC_KEY  = "zdniFfke6xnYC8I4e";
   var TO_EMAIL    = "leninxperience@gmail.com";
   var STORAGE_KEY = "portfolio_visits";
-  var DEST        = "https://lenincuadra.github.io/portfolio/";
 
-  var company = new URLSearchParams(window.location.search).get("ref") || "";
+  // Destinos permitidos. "dest" es opcional: si no viene, se mantiene
+  // el comportamiento actual (siempre va al portfolio).
+  var DESTINATIONS = {
+    portfolio: "https://lenincuadra.github.io/portfolio/",
+    linkedin:  "https://www.linkedin.com/in/lenincuadra/"
+  };
 
-  // Visita propia — redirigir sin trackear
+  var params  = new URLSearchParams(window.location.search);
+  var company = params.get("ref") || "";
+  var destKey = params.get("dest") || "portfolio";
+  var DEST    = DESTINATIONS[destKey] || DESTINATIONS.portfolio;
+
+  // Visita propia, redirigir sin trackear
   if (company === "me") {
     window.location.replace(DEST);
     return;
   }
 
-  // Sin ref — registrar como "direct"
+  // Sin ref: cae en li-profile (LinkedIn limpia los ?ref= de los links del perfil)
   if (!company) company = "li-profile";
 
   var timestamp = new Date().toLocaleString("es-AR", {
@@ -32,7 +41,7 @@
     hour: "2-digit", minute: "2-digit"
   });
 
-  // Geolocalización — fallback silencioso si falla
+  // Geolocalización, fallback silencioso si falla
   var location = "Ubicación desconocida";
   try {
     var res = await fetch("https://ipapi.co/json/");
@@ -43,26 +52,27 @@
   // Guardar en localStorage
   try {
     var visits = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
-    visits.unshift({ company: company, timestamp: timestamp, location: location });
+    visits.unshift({ company: company, timestamp: timestamp, location: location, dest: destKey });
     if (visits.length > 200) visits = visits.slice(0, 200);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(visits));
   } catch (e) {}
 
-  // Enviar email — fallback silencioso si falla
+  // Enviar email, fallback silencioso si falla
   try {
     emailjs.init(PUBLIC_KEY);
     await emailjs.send(SERVICE_ID, TEMPLATE_ID, {
       to_email:  TO_EMAIL,
       company:   company,
       timestamp: timestamp,
-      location:  location
+      location:  location,
+      dest:      destKey
     });
   } catch (e) {}
 
   // Marcar sesión como ya trackeada para que tracker.js no dispare de nuevo
   try { sessionStorage.setItem("portfolio_tracked", "1"); } catch (e) {}
 
-  // Redirigir al portfolio limpio
+  // Redirigir al destino correspondiente
   window.location.replace(DEST);
 })();
 </script>
