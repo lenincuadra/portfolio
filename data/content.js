@@ -16,8 +16,8 @@ const PORTFOLIO_DATA = {
       "email": "leninxperience@gmail.com",
       "linkedinUrl": "https://www.linkedin.com/in/lenincuadra/",
       "resumeUrl": {
-        "en": "assets/cv/Lenin_Cuadra__Product_UX_UI_Designer_CV.pdf",
-        "es": "assets/cv/Lenin_Cuadra__Product_UX_UI_Designer_CV_ES.pdf"
+        "en": "assets/cv/Lenin_Cuadra_CV_EN.pdf",
+        "es": "assets/cv/Lenin_Cuadra_CV_ES.pdf"
       },
       "lang": "en"
     },
@@ -1198,8 +1198,8 @@ const PORTFOLIO_DATA = {
       "email": "leninxperience@gmail.com",
       "linkedinUrl": "https://www.linkedin.com/in/lenincuadra/",
       "resumeUrl": {
-        "en": "assets/cv/Lenin_Cuadra__Product_UX_UI_Designer_CV.pdf",
-        "es": "assets/cv/Lenin_Cuadra__Product_UX_UI_Designer_CV_ES.pdf"
+        "en": "assets/cv/Lenin_Cuadra_CV_EN.pdf",
+        "es": "assets/cv/Lenin_Cuadra_CV_ES.pdf"
       },
       "lang": "es"
     },
