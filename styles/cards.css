@@ -63,6 +63,21 @@
 .case-card:hover .case-card__image img {
   transform: scale(1.04);
 }
+/* On-brand placeholder for a missing or broken card cover (mirrors .image-block--empty). */
+.case-card__image--empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--img-ph-fill);
+  border: 1px dashed var(--img-ph-border);
+}
+.case-card__ph-icon {
+  width: 22%;
+  min-width: 36px;
+  max-width: 64px;
+  height: auto;
+  color: var(--img-ph-icon);
+}
 .case-card__body {
   padding: var(--sp-6);
   flex: 1;

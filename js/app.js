@@ -294,11 +294,8 @@
         const delay = i > 0 ? ` reveal-delay-${i}` : '';
         return `
           <article class="case-card reveal${delay}" onclick="location.href='${caseUrl(c)}'" style="cursor:pointer">
-            <a href="${caseUrl(c)}" class="case-card__image" aria-label="${c.card.title} — view case study">
-              ${c.images && c.images.video
-                ? buildVideoEl(c.images.video, c.images.cover)
-                : `<img src="${c.images ? resolveAssetUrl(c.images.cover) : ''}" alt="" loading="lazy" />`
-              }
+            <a href="${caseUrl(c)}" class="case-card__image${c.images && (c.images.video || c.images.cover) ? '' : ' case-card__image--empty'}" aria-label="${c.card.title} — view case study">
+              ${buildCardCover(c)}
             </a>
             <div class="case-card__body">
               <h3 class="case-card__title">${c.card.title}</h3>
@@ -811,6 +808,30 @@
            + '</video>';
     }
     return '<video src="' + src + '" poster="' + poster + '" autoplay muted playsinline data-freeze-loop></video>';
+  }
+
+  // On-brand placeholder for a missing/broken card cover (mirrors case-v3's __caseImgFallback).
+  function cardPhIcon() {
+    return '<svg class="case-card__ph-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">'
+         + '<rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>'
+         + '<circle cx="8.5" cy="8.5" r="1.5"/>'
+         + '<polyline points="21 15 16 10 5 21"/></svg>';
+  }
+
+  // On cover load failure, degrade the card image slot to the silent placeholder in place (no new request).
+  window.__cardImgFallback = function (img) {
+    const slot = img.closest('.case-card__image');
+    if (!slot || slot.classList.contains('case-card__image--empty')) return;
+    slot.classList.add('case-card__image--empty');
+    slot.innerHTML = cardPhIcon();
+  };
+
+  // Build the card cover: video, image (with on-failure fallback), or placeholder when no source.
+  function buildCardCover(c) {
+    if (c.images && c.images.video) return buildVideoEl(c.images.video, c.images.cover);
+    const cover = c.images && c.images.cover ? resolveAssetUrl(c.images.cover) : '';
+    if (!cover) return cardPhIcon();
+    return '<img src="' + cover + '" alt="" loading="lazy" onerror="window.__cardImgFallback(this)" />';
   }
 
   function resolveAssetUrl(url) {
