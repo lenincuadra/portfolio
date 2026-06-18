@@ -3,6 +3,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Apply the saved theme (or OS preference) before first paint, prevents a light flash -->
+  <script>
+    (function () {
+      try {
+        var stored = localStorage.getItem('theme');
+        if (stored === 'dark' || (!stored && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('theme-dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta name="description" id="page-desc" content="" />
 
   <!-- Open Graph -->
@@ -174,9 +186,8 @@
       block.innerHTML = IMG_PH_ICON;
     };
 
-    // Theme
+    // Theme: the initial theme is set by the inline script in <head> to avoid a flash. Here we only wire the toggle.
     const html = document.documentElement;
-    if (localStorage.getItem('theme') === 'dark') html.classList.add('theme-dark');
     document.getElementById('theme-toggle').addEventListener('click', () => {
       const dark = html.classList.toggle('theme-dark');
       localStorage.setItem('theme', dark ? 'dark' : 'light');
