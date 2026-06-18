@@ -248,13 +248,13 @@
       <button id="toggle-linkedin" class="toggle-btn" onclick="setLinkType('linkedin')">LinkedIn</button>
     </div>
     <div class="link-row">
-      <input class="link-input-company" type="text" id="company-input" placeholder="ej: acme123" oninput="generateLink()">
+      <input class="link-input-company" type="text" id="company-input" placeholder="ej: 0614k2" oninput="generateLink()">
       <input type="text" id="generated-link" readonly placeholder="Tu link aparecerá acá">
       <button class="btn" onclick="copyLink()">Copiar</button>
       <span class="copied" id="copied-msg">¡Copiado!</span>
     </div>
     <p style="font-size:0.75rem; color:#9CA3AF; margin-top:4px;">
-      Usá un slug corto sin espacios. Ej: <strong>google</strong>, <strong>stripe-2026</strong>, <strong>figma-apply</strong>
+      Pegá el código opaco que genera el skill ref-tracker (formato MMDD, mes primero, + sufijo). Ej: <strong>0614k2</strong>. No uses el nombre de la empresa ni un formato con fecha tipo li-DDMM.
     </p>
   </div>
 
