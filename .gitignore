@@ -3,3 +3,6 @@
 *.code-workspace
 Checklist-to-do/
 test-results/
+
+# Registro privado de códigos de tracking — NUNCA publicar (el repo es GitHub Pages)
+tracking-registry.md
