@@ -100,22 +100,23 @@ const PORTFOLIO_DATA = {
           "template": "v3",
           "featured": false,
           "images": {
-            "cover": "assets/images/no-handoff/cover.png",
+            "cover": "assets/images/no-handoff/cover.webp",
+            "video": "assets/images/no-handoff/no-handoff-loop.webm",
             "screens": [
               {
-                "src": "assets/images/no-handoff/screen-app.png",
-                "poster": "assets/images/no-handoff/screen-app.png",
+                "src": "assets/images/no-handoff/screen-app.webp",
+                "poster": "assets/images/no-handoff/screen-app.webp",
                 "label": "Running App"
               },
               {
-                "src": "assets/images/no-handoff/screen-library.png",
-                "poster": "assets/images/no-handoff/screen-library.png",
+                "src": "assets/images/no-handoff/screen-library.webp",
+                "poster": "assets/images/no-handoff/screen-library.webp",
                 "label": "Component Library"
               },
               {
-                "src": "assets/images/no-handoff/screen-side-by-side.png",
-                "poster": "assets/images/no-handoff/screen-side-by-side.png",
-                "label": "Figma vs App"
+                "src": "assets/images/no-handoff/component-mapping.webp",
+                "poster": "assets/images/no-handoff/component-mapping.webp",
+                "label": "Component Reference"
               }
             ]
           },
@@ -137,8 +138,8 @@ const PORTFOLIO_DATA = {
             "subtitle": "Built with Claude Code + Figma MCP"
           },
           "quickScan": {
-            "role": "TODO",
-            "team": "TODO",
+            "role": "Product Designer",
+            "team": "Solo",
             "timeline": "2 days",
             "tools": "Claude Code · Figma MCP"
           },
@@ -147,9 +148,13 @@ const PORTFOLIO_DATA = {
               "id": "section-overview-image",
               "content": [
                 {
+                  "type": "body",
+                  "text": "⚠️ Confidentiality note: This case presents a fictional brand (EduCore / Northgate University) built on a real client project. The original brand, client name, and design system name are protected by NDA and do not appear in any screenshot or recording shown here."
+                },
+                {
                   "type": "image",
-                  "src": "assets/images/no-handoff/hero.png",
-                  "alt": "App running in browser, full flow visible",
+                  "src": "assets/images/no-handoff/hero.webp",
+                  "alt": "EduCore Program Portal running in browser — opted-in state with term filter pills and course list",
                   "loading": "lazy"
                 }
               ]
@@ -178,12 +183,6 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "body",
                   "text": "One wrong component propagates to every screen that uses it — the output looks close, but it's not trustworthy enough to show anyone."
-                },
-                {
-                  "type": "image",
-                  "src": "assets/images/no-handoff/before-after.png",
-                  "alt": "Before/after — failed AI attempt vs clean component output",
-                  "loading": "lazy"
                 }
               ]
             },
@@ -220,8 +219,14 @@ const PORTFOLIO_DATA = {
                 },
                 {
                   "type": "image",
-                  "src": "assets/images/no-handoff/vscode-library.png",
-                  "alt": "VS Code — component library structure and reference .md file",
+                  "src": "assets/images/no-handoff/process-component-structure.webp",
+                  "alt": "Component library structure in editor — 14 components organized by folder, Button.tsx open showing typed props and token-based CSS classes",
+                  "loading": "lazy"
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/no-handoff/component-mapping.webp",
+                  "alt": "component-mapping.md — registry table showing component name, status, Figma node ID, and notes for each of the 14 components",
                   "loading": "lazy"
                 }
               ]
@@ -244,9 +249,15 @@ const PORTFOLIO_DATA = {
                 },
                 {
                   "type": "image",
-                  "src": "assets/images/no-handoff/side-by-side.png",
-                  "alt": "Side by side — Figma screen vs running app",
+                  "src": "assets/images/no-handoff/screen-app.webp",
+                  "alt": "EduCore Program Portal — opted-out state with yellow banner and opt-back-in prompt",
                   "loading": "lazy"
+                },
+                {
+                  "type": "video",
+                  "src": "assets/images/no-handoff/no-handoff-tests.webm",
+                  "caption": "Full test suite — functional flows + WCAG 2.1 AA, all passing.",
+                  "alt": "Automated test suite passing: functional flows and WCAG 2.1 AA accessibility checks"
                 }
               ]
             },
@@ -264,7 +275,8 @@ const PORTFOLIO_DATA = {
                     "User testing — real component behavior, real accessibility issues surface",
                     "Stakeholder presentations — live app fidelity instead of a click-through prototype",
                     "Sales demos — production look & feel, easy to update",
-                    "Potential end of handoff — design delivers components to dev directly"
+                    "Potential end of handoff — design delivers components to dev directly",
+                    "Rebranding the entire product (palette, naming, logo, copy) took 18 minutes — proof of the token-driven system"
                   ]
                 }
               ]
@@ -1281,22 +1293,20 @@ const PORTFOLIO_DATA = {
           "template": "v3",
           "featured": false,
           "images": {
-            "cover": "assets/images/no-handoff/cover.png",
+            "cover": "assets/images/no-handoff/cover.webp",
+            "video": "assets/images/no-handoff/no-handoff-loop.webm",
             "screens": [
               {
-                "src": "assets/images/no-handoff/screen-app.png",
-                "poster": "assets/images/no-handoff/screen-app.png",
+                "src": "assets/images/no-handoff/screen-app.webp",
                 "label": "App en ejecución"
               },
               {
-                "src": "assets/images/no-handoff/screen-library.png",
-                "poster": "assets/images/no-handoff/screen-library.png",
+                "src": "assets/images/no-handoff/screen-library.webp",
                 "label": "Librería de componentes"
               },
               {
-                "src": "assets/images/no-handoff/screen-side-by-side.png",
-                "poster": "assets/images/no-handoff/screen-side-by-side.png",
-                "label": "Figma vs App"
+                "src": "assets/images/no-handoff/component-mapping.webp",
+                "label": "Referencia de componentes"
               }
             ]
           },
@@ -1318,8 +1328,8 @@ const PORTFOLIO_DATA = {
             "subtitle": "Creado con Claude Code + Figma MCP"
           },
           "quickScan": {
-            "role": "TODO",
-            "team": "TODO",
+            "role": "Product Designer",
+            "team": "Solo",
             "timeline": "2 días",
             "tools": "Claude Code · Figma MCP"
           },
@@ -1328,9 +1338,13 @@ const PORTFOLIO_DATA = {
               "id": "section-overview-image",
               "content": [
                 {
+                  "type": "body",
+                  "text": "⚠️ Nota de confidencialidad: Este case presenta una marca ficticia (EduCore / Northgate University) construida sobre un proyecto real de cliente. La marca original, el nombre del cliente y el nombre del design system están protegidos por NDA y no aparecen en ninguna captura ni grabación mostrada aquí."
+                },
+                {
                   "type": "image",
-                  "src": "assets/images/no-handoff/hero.png",
-                  "alt": "App corriendo en el browser, flujo completo visible",
+                  "src": "assets/images/no-handoff/hero.webp",
+                  "alt": "Portal EduCore Program corriendo en el browser — estado opted-in con píldoras de filtro por término y lista de cursos",
                   "loading": "lazy"
                 }
               ]
@@ -1359,12 +1373,6 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "body",
                   "text": "Un componente equivocado se propaga a cada pantalla que lo usa — el resultado se ve parecido, pero no es lo suficientemente confiable para mostrárselo a alguien."
-                },
-                {
-                  "type": "image",
-                  "src": "assets/images/no-handoff/before-after.png",
-                  "alt": "Antes/después — intento fallido de IA vs output limpio de componentes",
-                  "loading": "lazy"
                 }
               ]
             },
@@ -1401,8 +1409,14 @@ const PORTFOLIO_DATA = {
                 },
                 {
                   "type": "image",
-                  "src": "assets/images/no-handoff/vscode-library.png",
-                  "alt": "VS Code — estructura de la librería de componentes y archivo .md de referencia",
+                  "src": "assets/images/no-handoff/process-component-structure.webp",
+                  "alt": "Estructura de la librería de componentes en el editor — 14 componentes organizados por carpeta, Button.tsx abierto mostrando props tipadas y clases CSS basadas en tokens",
+                  "loading": "lazy"
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/no-handoff/component-mapping.webp",
+                  "alt": "component-mapping.md — tabla de registro con nombre de componente, estado, ID de nodo en Figma y notas para cada uno de los 14 componentes",
                   "loading": "lazy"
                 }
               ]
@@ -1425,9 +1439,15 @@ const PORTFOLIO_DATA = {
                 },
                 {
                   "type": "image",
-                  "src": "assets/images/no-handoff/side-by-side.png",
-                  "alt": "Comparación — pantalla de Figma vs app en ejecución",
+                  "src": "assets/images/no-handoff/screen-app.webp",
+                  "alt": "Portal EduCore Program — estado opted-out con banner amarillo y prompt para volver a optar",
                   "loading": "lazy"
+                },
+                {
+                  "type": "video",
+                  "src": "assets/images/no-handoff/no-handoff-tests.webm",
+                  "caption": "Suite de tests completa — flujos funcionales + accesibilidad WCAG 2.1 AA, todo en verde.",
+                  "alt": "Suite de tests automatizados pasando: flujos funcionales y chequeos de accesibilidad WCAG 2.1 AA"
                 }
               ]
             },
@@ -1445,7 +1465,8 @@ const PORTFOLIO_DATA = {
                     "User testing — comportamiento real de componentes, problemas reales de accesibilidad a la vista",
                     "Presentaciones a stakeholders — fidelidad de app en vivo en lugar de un prototipo clickeable",
                     "Sales demos — look & feel de producción, fácil de actualizar",
-                    "Potencial fin del handoff — diseño entrega componentes directamente a desarrollo"
+                    "Potencial fin del handoff — diseño entrega componentes directamente a desarrollo",
+                    "Rebrandear el producto completo (paleta, naming, logo, copy) tomó 18 minutos — prueba del sistema basado en tokens"
                   ]
                 }
               ]

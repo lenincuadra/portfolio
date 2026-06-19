@@ -288,6 +288,11 @@
   height: 100%;
   object-fit: cover;
 }
+/* Demo videos (e.g. screen recordings) show the full frame, no crop. */
+.image-block--video video {
+  object-fit: contain;
+  background: var(--surface);
+}
 .image-block__placeholder {
   width: 100%;
   height: 100%;

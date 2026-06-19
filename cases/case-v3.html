@@ -298,6 +298,15 @@
             const safeAlt = desc.replace(/"/g, '&quot;');
             return `<div class="image-block ${ratioClass}" data-ph-en="${phEn}" data-ph-es="${phEs}"><img src="../${enItem.src}" alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="window.__caseImgFallback(this)" /></div>`;
           }
+          case 'video': {
+            const desc       = (enItem.alt || '').replace(/"/g, '&quot;');
+            const ratioClass = ({ wide: 'image-block--wide', square: 'image-block--square', portrait: 'image-block--portrait' })[enItem.ratio] || 'image-block--wide';
+            const webm       = enItem.src;
+            const mp4        = webm.replace(/\.webm$/, '.mp4');
+            const poster     = enItem.poster ? ` poster="../${enItem.poster}"` : '';
+            const cap        = enItem.caption ? `<figcaption class="image-block__caption">${t(enItem.caption, esItem?.caption)}</figcaption>` : '';
+            return `<figure class="image-block ${ratioClass} image-block--video"><video${poster} autoplay loop muted playsinline controls preload="metadata" aria-label="${desc}"><source src="../${webm}" type="video/webm"><source src="../${mp4}" type="video/mp4"></video>${cap}</figure>`;
+          }
           case 'gallery':
             return `<div>${(enItem.images || []).map(img => `<img src="../${img.src}" alt="${img.alt || ''}" loading="lazy" />`).join('')}</div>`;
           case 'link':

@@ -6,3 +6,6 @@ test-results/
 
 # Registro privado de códigos de tracking — NUNCA publicar (el repo es GitHub Pages)
 tracking-registry.md
+
+# Grabaciones crudas (pesadas) — convertir a webm/mp4 antes de commitear
+assets/**/*.mov
