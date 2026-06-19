@@ -228,6 +228,18 @@ const PORTFOLIO_DATA = {
                   "src": "assets/images/no-handoff/component-mapping.webp",
                   "alt": "component-mapping.md — registry table showing component name, status, Figma node ID, and notes for each of the 14 components",
                   "loading": "lazy"
+                },
+                {
+                  "type": "video",
+                  "src": "assets/images/no-handoff/no-handoff-process.webm",
+                  "caption": "Claude Code building the components from the Figma references (2× speed; client references blurred).",
+                  "alt": "Claude Code generating React components from Figma references in the editor"
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/no-handoff/kitchensink.webp",
+                  "alt": "EduCore component library — kitchen-sink view of every built component",
+                  "loading": "lazy"
                 }
               ]
             },
@@ -1429,6 +1441,18 @@ const PORTFOLIO_DATA = {
                   "type": "image",
                   "src": "assets/images/no-handoff/component-mapping.webp",
                   "alt": "component-mapping.md — tabla de registro con nombre de componente, estado, ID de nodo en Figma y notas para cada uno de los 14 componentes",
+                  "loading": "lazy"
+                },
+                {
+                  "type": "video",
+                  "src": "assets/images/no-handoff/no-handoff-process.webm",
+                  "caption": "Claude Code construyendo los componentes desde las referencias de Figma (2× de velocidad; referencias al cliente con blur).",
+                  "alt": "Claude Code generando componentes React desde referencias de Figma en el editor"
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/no-handoff/kitchensink.webp",
+                  "alt": "Librería de componentes EduCore — vista kitchen-sink con todos los componentes construidos",
                   "loading": "lazy"
                 }
               ]
