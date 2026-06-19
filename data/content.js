@@ -248,10 +248,22 @@ const PORTFOLIO_DATA = {
                   ]
                 },
                 {
-                  "type": "image",
-                  "src": "assets/images/no-handoff/screen-app.webp",
-                  "alt": "EduCore Program Portal — opted-out state with yellow banner and opt-back-in prompt",
-                  "loading": "lazy"
+                  "type": "compare",
+                  "caption": "Figma design vs. the built product — portal base view.",
+                  "left":  { "src": "assets/images/no-handoff/compare-figma-base.webp", "label": "Figma", "alt": "EduCore Program Portal base view — Figma design" },
+                  "right": { "src": "assets/images/no-handoff/compare-app-base.webp", "label": "App", "alt": "EduCore Program Portal base view — running app" }
+                },
+                {
+                  "type": "compare",
+                  "caption": "Same fidelity on the opt-out confirmation with the benefits panel.",
+                  "left":  { "src": "assets/images/no-handoff/compare-figma-optout.webp", "label": "Figma", "alt": "Opt-out confirmation with benefits panel — Figma design" },
+                  "right": { "src": "assets/images/no-handoff/compare-app-optout.webp", "label": "App", "alt": "Opt-out confirmation with benefits panel — running app" }
+                },
+                {
+                  "type": "video",
+                  "src": "assets/images/no-handoff/no-handoff-flow.webm",
+                  "caption": "The product in motion — filters, the opt-out flow, the opted-out banner, and the success toast.",
+                  "alt": "EduCore Program Portal running: filters, opt-out flow, opted-out banner and success toast"
                 },
                 {
                   "type": "video",
@@ -1438,10 +1450,22 @@ const PORTFOLIO_DATA = {
                   ]
                 },
                 {
-                  "type": "image",
-                  "src": "assets/images/no-handoff/screen-app.webp",
-                  "alt": "Portal EduCore Program — estado opted-out con banner amarillo y prompt para volver a optar",
-                  "loading": "lazy"
+                  "type": "compare",
+                  "caption": "El diseño en Figma vs. el producto construido — vista base del portal.",
+                  "left":  { "src": "assets/images/no-handoff/compare-figma-base.webp", "label": "Figma", "alt": "Vista base del Portal EduCore Program — diseño en Figma" },
+                  "right": { "src": "assets/images/no-handoff/compare-app-base.webp", "label": "App", "alt": "Vista base del Portal EduCore Program — app en ejecución" }
+                },
+                {
+                  "type": "compare",
+                  "caption": "La misma fidelidad en la confirmación de opt-out con el panel de beneficios.",
+                  "left":  { "src": "assets/images/no-handoff/compare-figma-optout.webp", "label": "Figma", "alt": "Confirmación de opt-out con panel de beneficios — diseño en Figma" },
+                  "right": { "src": "assets/images/no-handoff/compare-app-optout.webp", "label": "App", "alt": "Confirmación de opt-out con panel de beneficios — app en ejecución" }
+                },
+                {
+                  "type": "video",
+                  "src": "assets/images/no-handoff/no-handoff-flow.webm",
+                  "caption": "El producto en movimiento — filtros, el flujo de opt-out, el banner opted-out y el toast de éxito.",
+                  "alt": "Portal EduCore Program en ejecución: filtros, flujo de opt-out, banner opted-out y toast de éxito"
                 },
                 {
                   "type": "video",
