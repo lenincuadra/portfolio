@@ -194,6 +194,7 @@
             <li><a href="#badges" class="nav-link">Badges</a></li>
             <li><a href="#toast" class="nav-link">Toast</a></li>
             <li><a href="#utilities" class="nav-link">Utilidades</a></li>
+            <li><a href="#case-components" class="nav-link">Componentes de case</a></li>
           </ul>
         </nav>
       </aside>
@@ -2684,6 +2685,86 @@
             </div>
           </div>
         </section>
+
+        <!-- ── COMPONENTES DE CASE (case-v3) ───────────── -->
+        <section id="case-components" style="margin-bottom: 4rem">
+          <h2 style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 400; border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 24px;">
+            Componentes de case (case-v3)
+          </h2>
+          <p style="font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin-bottom: 28px;">
+            Bloques de contenido que renderiza data/content.js → cases/case-v3.html · estilos en styles/case.css
+          </p>
+          <style>
+            #case-components .sg-item { margin-bottom: 36px; }
+            #case-components .sg-demo { max-width: 640px; }
+            #case-components .sg-label { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin-bottom: 10px; }
+          </style>
+
+          <div class="sg-item">
+            <p class="sg-label">alert-callout (NDA / warning)</p>
+            <div class="sg-demo"><div class="alert-callout alert-callout--warning" role="note"><svg class="alert-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div class="alert-callout__body"><p class="alert-callout__title">Confidentiality note</p><p>The program shown is fictional — the real brand, client, and design system are protected by NDA.</p></div></div></div>
+          </div>
+
+          <div class="sg-item">
+            <p class="sg-label">heading (h4) + CTA (.case-subcta)</p>
+            <div class="sg-demo"><h4 class="case-subhead">Layout and flows matched Figma at 100%</h4><h5 class="case-subcta">Expand and drag to compare — Figma vs Code</h5></div>
+          </div>
+
+          <div class="sg-item">
+            <p class="sg-label">image-block — placeholder + caption centrado</p>
+            <div class="sg-demo"><div class="image-block image-block--wide image-block--empty" role="img" aria-label="Image coming soon"><svg class="image-block__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><figure class="image-block image-block--wide" style="margin-top:12px"><img src="assets/images/no-handoff/screen-app.webp" alt="" loading="lazy" /><figcaption class="image-block__caption">Caption centrado de ejemplo</figcaption></figure></div>
+          </div>
+
+          <div class="sg-item">
+            <p class="sg-label">video (autoplay · loop · muted)</p>
+            <div class="sg-demo"><figure class="image-block image-block--wide image-block--video"><video autoplay loop muted playsinline controls preload="metadata" aria-label="Demo video"><source src="assets/images/no-handoff/no-handoff-flow.webm" type="video/webm"><source src="assets/images/no-handoff/no-handoff-flow.mp4" type="video/mp4"></video><figcaption class="image-block__caption"><span class="media-label">App flow</span> — caption con label</figcaption></figure></div>
+          </div>
+
+          <div class="sg-item">
+            <p class="sg-label">slider — Figma↔Code wipe (arrastrar · expandir)</p>
+            <div class="sg-demo"><figure class="slider-figure"><div class="cslider" style="--pos:50%"><img class="cslider__base" src="assets/images/no-handoff/compare-app-base.webp" alt="" loading="lazy" /><div class="cslider__top"><img src="assets/images/no-handoff/compare-figma-base.webp" alt="" loading="lazy" /></div><div class="cslider__divider"></div><span class="compare__tag compare__tag--figma cslider__tag cslider__tag--left">Figma</span><span class="compare__tag compare__tag--app cslider__tag cslider__tag--right">Code</span><button class="cslider__expand" aria-label="Expand" type="button">⤢</button><span class="cslider__hint">↔ Drag to compare</span><input class="cslider__range" type="range" min="0" max="100" value="50" aria-label="Drag to compare" /></div></figure></div>
+          </div>
+
+          <div class="sg-item">
+            <p class="sg-label">row (.content-row) — 2-up responsive</p>
+            <div class="sg-demo"><div class="content-row"><figure class="image-block image-block--wide"><img src="assets/images/no-handoff/compare-figma-base.webp" alt="" loading="lazy" /></figure><figure class="image-block image-block--wide"><img src="assets/images/no-handoff/compare-app-base.webp" alt="" loading="lazy" /></figure></div></div>
+          </div>
+
+          <div class="sg-item">
+            <p class="sg-label">compare — side-by-side (legacy, no usado en el case)</p>
+            <div class="sg-demo"><figure class="compare-figure"><div class="compare"><div class="compare__cell"><span class="compare__tag compare__tag--figma">Figma</span><img src="assets/images/no-handoff/compare-figma-base.webp" alt="" loading="lazy" /></div><div class="compare__cell"><span class="compare__tag compare__tag--app">Code</span><img src="assets/images/no-handoff/compare-app-base.webp" alt="" loading="lazy" /></div></div></figure></div>
+          </div>
+
+          <div class="sg-item">
+            <p class="sg-label">carousel — auto-rotate + dots/flechas (no usado en el case)</p>
+            <div class="sg-demo"><figure class="carousel-figure"><div class="carousel" data-interval="4000"><div class="carousel__track"><figure class="carousel__slide is-active"><img src="assets/images/no-handoff/kitchensink.webp" alt="" loading="lazy" /></figure><figure class="carousel__slide"><img src="assets/images/no-handoff/screen-app.webp" alt="" loading="lazy" /></figure><figure class="carousel__slide"><img src="assets/images/no-handoff/compare-app-base.webp" alt="" loading="lazy" /></figure><button class="carousel__arrow carousel__arrow--prev" aria-label="Previous">‹</button><button class="carousel__arrow carousel__arrow--next" aria-label="Next">›</button></div><div class="carousel__dots"><button class="carousel__dot is-active"></button><button class="carousel__dot"></button><button class="carousel__dot"></button></div></div></figure></div>
+          </div>
+        </section>
+        <script>
+          // Init de los componentes interactivos del styleguide (slider + carousel)
+          document.querySelectorAll('#case-components .cslider').forEach(function (sl) {
+            var range = sl.querySelector('.cslider__range');
+            if (!range) return;
+            var update = function () { sl.style.setProperty('--pos', range.value + '%'); };
+            range.addEventListener('input', function () { update(); sl.classList.add('cslider--touched'); });
+            update();
+          });
+          document.querySelectorAll('#case-components .carousel').forEach(function (car) {
+            var slides = Array.prototype.slice.call(car.querySelectorAll('.carousel__slide'));
+            var dots = Array.prototype.slice.call(car.querySelectorAll('.carousel__dot'));
+            if (slides.length < 2) return;
+            var interval = parseInt(car.dataset.interval, 10) || 4000;
+            var idx = 0, timer = null;
+            function show(i) { idx = (i + slides.length) % slides.length; slides.forEach(function (s, k) { s.classList.toggle('is-active', k === idx); }); dots.forEach(function (d, k) { d.classList.toggle('is-active', k === idx); }); }
+            function start() { stop(); timer = setInterval(function () { show(idx + 1); }, interval); }
+            function stop() { if (timer) { clearInterval(timer); timer = null; } }
+            dots.forEach(function (d, k) { d.addEventListener('click', function () { show(k); start(); }); });
+            var prev = car.querySelector('.carousel__arrow--prev'); if (prev) prev.addEventListener('click', function () { show(idx - 1); start(); });
+            var next = car.querySelector('.carousel__arrow--next'); if (next) next.addEventListener('click', function () { show(idx + 1); start(); });
+            car.addEventListener('mouseenter', stop); car.addEventListener('mouseleave', start);
+            start();
+          });
+        </script>
       </main>
     </div>
 
