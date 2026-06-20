@@ -304,16 +304,60 @@
             const webm       = enItem.src;
             const mp4        = webm.replace(/\.webm$/, '.mp4');
             const poster     = enItem.poster ? ` poster="../${enItem.poster}"` : '';
-            const cap        = enItem.caption ? `<figcaption class="image-block__caption">${t(enItem.caption, esItem?.caption)}</figcaption>` : '';
-            return `<figure class="image-block ${ratioClass} image-block--video"><video${poster} autoplay loop muted playsinline controls preload="metadata" aria-label="${desc}"><source src="../${webm}" type="video/webm"><source src="../${mp4}" type="video/mp4"></video>${cap}</figure>`;
+            const vLabel     = enItem.label ? `<span class="media-label">${t(enItem.label, esItem?.label)}</span>` : '';
+            const vCapText   = enItem.caption ? t(enItem.caption, esItem?.caption) : '';
+            const cap        = (vLabel || vCapText) ? `<figcaption class="image-block__caption">${vLabel}${vLabel && vCapText ? ' — ' : ''}${vCapText}</figcaption>` : '';
+            return `<figure class="image-block ${ratioClass} image-block--video"><video${poster} autoplay loop muted playsinline${enItem.controls === false ? '' : ' controls'} preload="metadata" aria-label="${desc}"><source src="../${webm}" type="video/webm"><source src="../${mp4}" type="video/mp4"></video>${cap}</figure>`;
           }
           case 'compare': {
-            const cell = (s, fallbackLbl) => s
-              ? `<div class="compare__cell"><span class="compare__tag">${s.label || fallbackLbl}</span>`
+            const cell = (s, fallbackLbl, tagMod) => s
+              ? `<div class="compare__cell"><span class="compare__tag compare__tag--${tagMod}">${s.label || fallbackLbl}</span>`
                 + `<img src="../${s.src}" alt="${(s.alt || '').replace(/"/g, '&quot;')}" loading="lazy" /></div>`
               : '';
             const cap = enItem.caption ? `<figcaption class="image-block__caption">${t(enItem.caption, esItem?.caption)}</figcaption>` : '';
-            return `<figure class="compare-figure"><div class="compare">${cell(enItem.left, 'Figma')}${cell(enItem.right, 'App')}</div>${cap}</figure>`;
+            return `<figure class="compare-figure"><div class="compare">${cell(enItem.left, 'Figma', 'figma')}${cell(enItem.right, 'App', 'app')}</div>${cap}</figure>`;
+          }
+          case 'callout': {
+            const variant = enItem.variant || 'note';
+            const ctitle  = enItem.title ? `<p class="alert-callout__title">${t(enItem.title, esItem?.title)}</p>` : '';
+            const ctext   = t(enItem.text, esItem?.text);
+            return `<div class="alert-callout alert-callout--${variant}" role="note">`
+              + `<svg class="alert-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>`
+              + `<div class="alert-callout__body">${ctitle}<p>${ctext}</p></div></div>`;
+          }
+          case 'carousel': {
+            const interval = enItem.interval || 4000;
+            const slides = (enItem.images || []).map((img, k) => {
+              const a = (img.alt ? t(img.alt, esItem?.images?.[k]?.alt) : '').replace(/"/g, '&quot;');
+              return `<figure class="carousel__slide${k === 0 ? ' is-active' : ''}"><img src="../${img.src}" alt="${a}" loading="lazy" /></figure>`;
+            }).join('');
+            const dots = (enItem.images || []).map((_, k) =>
+              `<button class="carousel__dot${k === 0 ? ' is-active' : ''}" data-idx="${k}" aria-label="Image ${k + 1}"></button>`
+            ).join('');
+            const cap = enItem.caption ? `<figcaption class="image-block__caption">${t(enItem.caption, esItem?.caption)}</figcaption>` : '';
+            return `<figure class="carousel-figure"><div class="carousel" data-interval="${interval}"><div class="carousel__track">${slides}<button class="carousel__arrow carousel__arrow--prev" aria-label="Previous">‹</button><button class="carousel__arrow carousel__arrow--next" aria-label="Next">›</button></div><div class="carousel__dots">${dots}</div></div>${cap}</figure>`;
+          }
+          case 'slider': {
+            const b = enItem.before || {}, a = enItem.after || {};
+            const balt = (b.alt ? t(b.alt, esItem?.before?.alt) : '').replace(/"/g, '&quot;');
+            const aalt = (a.alt ? t(a.alt, esItem?.after?.alt) : '').replace(/"/g, '&quot;');
+            const blbl = b.label ? `<span class="compare__tag compare__tag--figma cslider__tag cslider__tag--left">${t(b.label, esItem?.before?.label)}</span>` : '';
+            const albl = a.label ? `<span class="compare__tag compare__tag--app cslider__tag cslider__tag--right">${t(a.label, esItem?.after?.label)}</span>` : '';
+            const cap = enItem.caption ? `<figcaption class="image-block__caption">${t(enItem.caption, esItem?.caption)}</figcaption>` : '';
+            return `<figure class="slider-figure"><div class="cslider" style="--pos:50%">`
+              + `<img class="cslider__base" src="../${a.src}" alt="${aalt}" loading="lazy" />`
+              + `<div class="cslider__top"><img src="../${b.src}" alt="${balt}" loading="lazy" /></div>`
+              + `<div class="cslider__divider"></div>${blbl}${albl}`
+              + `<button class="cslider__expand" aria-label="Expand comparison" type="button">⤢</button>`
+              + `<span class="cslider__hint">↔ Drag to compare</span>`
+              + `<input class="cslider__range" type="range" min="0" max="100" value="50" aria-label="Drag to compare design and build" />`
+              + `</div>${cap}</figure>`;
+          }
+          case 'heading':
+            return `<h4 class="case-subhead">${t(enItem.text, esItem?.text)}</h4>`;
+          case 'row': {
+            const inner = (enItem.items || []).map((it, k) => renderItem(it, esItem?.items?.[k])).join('');
+            return `<div class="content-row">${inner}</div>`;
           }
           case 'gallery':
             return `<div>${(enItem.images || []).map(img => `<img src="../${img.src}" alt="${img.alt || ''}" loading="lazy" />`).join('')}</div>`;
@@ -554,7 +598,21 @@
       }
 
       document.getElementById('case-v3-content').addEventListener('click', e => {
-        const img = e.target.closest('.image-block img');
+        const expand = e.target.closest('.cslider__expand');
+        if (expand) {
+          const sl = expand.closest('.cslider');
+          if (sl) {
+            const clone = sl.cloneNode(true);
+            clone.classList.add('cslider--lightbox');
+            lbBox.innerHTML = '';
+            lbBox.appendChild(clone);
+            if (window.__initSlider) window.__initSlider(clone);
+            lb.classList.add('is-open');
+            document.body.style.overflow = 'hidden';
+          }
+          return;
+        }
+        const img = e.target.closest('.image-block img, .compare__cell img, .carousel__slide img');
         const ph  = e.target.closest('.image-block__placeholder');
         if (img) openLightbox(img);
         else if (ph) openLightbox(ph);
@@ -564,6 +622,40 @@
       lbClose.addEventListener('click', closeLightbox);
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
     })();
+
+    // Carousel — auto-rotating image groups (gives time to view each, saves vertical space)
+    (function() {
+      document.querySelectorAll('.carousel').forEach(car => {
+        const slides = [...car.querySelectorAll('.carousel__slide')];
+        const dots   = [...car.querySelectorAll('.carousel__dot')];
+        if (slides.length < 2) return;
+        const interval = parseInt(car.dataset.interval, 10) || 4000;
+        let idx = 0, timer = null;
+        function show(i) {
+          idx = (i + slides.length) % slides.length;
+          slides.forEach((s, k) => s.classList.toggle('is-active', k === idx));
+          dots.forEach((d, k) => d.classList.toggle('is-active', k === idx));
+        }
+        function start() { stop(); timer = setInterval(() => show(idx + 1), interval); }
+        function stop()  { if (timer) { clearInterval(timer); timer = null; } }
+        dots.forEach((d, k) => d.addEventListener('click', () => { show(k); start(); }));
+        car.querySelector('.carousel__arrow--prev')?.addEventListener('click', () => { show(idx - 1); start(); });
+        car.querySelector('.carousel__arrow--next')?.addEventListener('click', () => { show(idx + 1); start(); });
+        car.addEventListener('mouseenter', stop);
+        car.addEventListener('mouseleave', start);
+        start();
+      });
+    })();
+
+    // Before/after comparison slider — drag to wipe between design and build
+    window.__initSlider = function(sl) {
+      const range = sl.querySelector('.cslider__range');
+      if (!range) return;
+      const update = () => sl.style.setProperty('--pos', range.value + '%');
+      range.addEventListener('input', () => { update(); sl.classList.add('cslider--touched'); });
+      update();
+    };
+    document.querySelectorAll('.cslider').forEach(sl => window.__initSlider(sl));
 
     // Copy email — nav + CTA
     let toastTimer;

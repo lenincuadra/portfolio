@@ -30,6 +30,7 @@ Routing en `js/app.js:13`: cualquier caso sin `template: 'v3'` cae a `case-v2`.
 
 ## Menor / continuo
 
+- [ ] **Accesibilidad de captions de media** (`.image-block__caption` en `styles/case.css`) — revisar contraste: el color `var(--ink-4)` en texto chico (`--text-xs`) puede no pasar WCAG AA (4.5:1). Centrado ya aplicado; falta validar/ajustar el contraste.
 - [ ] **Thumbnails de video** — Cambiar el `poster` de un video editando el campo `poster` en `data/content.js`. (Las líneas viejas ~92-94 quedaron desactualizadas: hoy los `poster` viven en `images.screens[].poster` — ej. no-handoff `:107-117`, fintech `:475-485`.) Apunta a otro frame del video o a una imagen estática preferida.
 
 ## Bloqueado / al final

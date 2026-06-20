@@ -101,7 +101,7 @@ const PORTFOLIO_DATA = {
           "featured": false,
           "images": {
             "cover": "assets/images/no-handoff/cover.webp",
-            "video": "assets/images/no-handoff/no-handoff-loop.webm",
+            "video": "assets/images/no-handoff/no-handoff-result.webm",
             "screens": [
               {
                 "src": "assets/images/no-handoff/screen-app.webp",
@@ -148,8 +148,10 @@ const PORTFOLIO_DATA = {
               "id": "section-overview-image",
               "content": [
                 {
-                  "type": "body",
-                  "text": "⚠️ Confidentiality note: This case presents a fictional brand (EduCore / Northgate University) built on a real client project. The original brand, client name, and design system name are protected by NDA and do not appear in any screenshot or recording shown here."
+                  "type": "callout",
+                  "variant": "warning",
+                  "title": "Confidentiality note",
+                  "text": "The program shown is fictional — the real brand, client, and design system are protected by NDA and don't appear in any screenshot or recording."
                 },
                 {
                   "type": "image",
@@ -218,28 +220,17 @@ const PORTFOLIO_DATA = {
                   "text": "A .md file with every component and its Figma link. I instructed Claude to check the original automatically if something looked off — no resharing links manually."
                 },
                 {
-                  "type": "image",
-                  "src": "assets/images/no-handoff/process-component-structure.webp",
-                  "alt": "Component library structure in editor — 14 components organized by folder, Button.tsx open showing typed props and token-based CSS classes",
-                  "loading": "lazy"
-                },
-                {
-                  "type": "image",
-                  "src": "assets/images/no-handoff/component-mapping.webp",
-                  "alt": "component-mapping.md — registry table showing component name, status, Figma node ID, and notes for each of the 14 components",
-                  "loading": "lazy"
+                  "type": "video",
+                  "controls": false,
+                  "src": "assets/images/no-handoff/no-handoff-components.webm",
+                  "caption": "The component system — folder structure, the mapping registry, and the built library.",
+                  "alt": "Component library structure, the component-mapping.md registry, and the EduCore component catalog"
                 },
                 {
                   "type": "video",
                   "src": "assets/images/no-handoff/no-handoff-process.webm",
                   "caption": "Claude Code building the components from the Figma references (2× speed; client references blurred).",
                   "alt": "Claude Code generating React components from Figma references in the editor"
-                },
-                {
-                  "type": "image",
-                  "src": "assets/images/no-handoff/kitchensink.webp",
-                  "alt": "EduCore component library — kitchen-sink view of every built component",
-                  "loading": "lazy"
                 }
               ]
             },
@@ -251,37 +242,33 @@ const PORTFOLIO_DATA = {
               "h3": "The output was indistinguishable from the real product",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "Layout and flows matched Figma at 100%",
-                    "Filters, states, and interactions all worked as designed",
-                    "Mocked data, real behavior"
-                  ]
-                },
-                {
-                  "type": "compare",
-                  "caption": "Figma design vs. the built product — portal base view.",
-                  "left":  { "src": "assets/images/no-handoff/compare-figma-base.webp", "label": "Figma", "alt": "EduCore Program Portal base view — Figma design" },
-                  "right": { "src": "assets/images/no-handoff/compare-app-base.webp", "label": "App", "alt": "EduCore Program Portal base view — running app" }
-                },
-                {
-                  "type": "compare",
-                  "caption": "Same fidelity on the opt-out confirmation with the benefits panel.",
-                  "left":  { "src": "assets/images/no-handoff/compare-figma-optout.webp", "label": "Figma", "alt": "Opt-out confirmation with benefits panel — Figma design" },
-                  "right": { "src": "assets/images/no-handoff/compare-app-optout.webp", "label": "App", "alt": "Opt-out confirmation with benefits panel — running app" }
+                  "type": "heading",
+                  "text": "Filters, states, and interactions all worked as designed"
                 },
                 {
                   "type": "video",
                   "src": "assets/images/no-handoff/no-handoff-flow.webm",
-                  "caption": "The product in motion — filters, the opt-out flow, the opted-out banner, and the success toast.",
+                  "caption": "Mocked data, real behavior.",
                   "alt": "EduCore Program Portal running: filters, opt-out flow, opted-out banner and success toast"
                 },
                 {
-                  "type": "video",
-                  "src": "assets/images/no-handoff/no-handoff-tests.webm",
-                  "caption": "Full test suite — functional flows + WCAG 2.1 AA, all passing.",
-                  "alt": "Automated test suite passing: functional flows and WCAG 2.1 AA accessibility checks"
+                  "type": "heading",
+                  "text": "Layout and flows matched Figma at 100%"
+                },
+                {
+                  "type": "row",
+                  "items": [
+                    {
+                      "type": "slider",
+                      "before": { "src": "assets/images/no-handoff/compare-figma-base.webp", "label": "Figma — Main Screen", "alt": "EduCore Program Portal main screen — Figma design" },
+                      "after":  { "src": "assets/images/no-handoff/compare-app-base.webp", "label": "Code — Main Screen", "alt": "EduCore Program Portal main screen — coded build" }
+                    },
+                    {
+                      "type": "slider",
+                      "before": { "src": "assets/images/no-handoff/compare-figma-optout.webp", "label": "Figma — Modal Benefits", "alt": "Opt-out confirmation with benefits panel — Figma design" },
+                      "after":  { "src": "assets/images/no-handoff/compare-app-optout.webp", "label": "Code — Modal Benefits", "alt": "Opt-out confirmation with benefits panel — coded build" }
+                    }
+                  ]
                 }
               ]
             },
@@ -299,8 +286,7 @@ const PORTFOLIO_DATA = {
                     "User testing — real component behavior, real accessibility issues surface",
                     "Stakeholder presentations — live app fidelity instead of a click-through prototype",
                     "Sales demos — production look & feel, easy to update",
-                    "Potential end of handoff — design delivers components to dev directly",
-                    "Rebranding the entire product (palette, naming, logo, copy) took 18 minutes — proof of the token-driven system"
+                    "Potential end of handoff — design delivers components to dev directly"
                   ]
                 }
               ]
@@ -1318,7 +1304,7 @@ const PORTFOLIO_DATA = {
           "featured": false,
           "images": {
             "cover": "assets/images/no-handoff/cover.webp",
-            "video": "assets/images/no-handoff/no-handoff-loop.webm",
+            "video": "assets/images/no-handoff/no-handoff-result.webm",
             "screens": [
               {
                 "src": "assets/images/no-handoff/screen-app.webp",
@@ -1362,8 +1348,10 @@ const PORTFOLIO_DATA = {
               "id": "section-overview-image",
               "content": [
                 {
-                  "type": "body",
-                  "text": "⚠️ Nota de confidencialidad: Este case presenta una marca ficticia (EduCore / Northgate University) construida sobre un proyecto real de cliente. La marca original, el nombre del cliente y el nombre del design system están protegidos por NDA y no aparecen en ninguna captura ni grabación mostrada aquí."
+                  "type": "callout",
+                  "variant": "warning",
+                  "title": "Nota de confidencialidad",
+                  "text": "El programa mostrado es ficticio — la marca, el cliente y el design system reales están protegidos por NDA y no aparecen en ninguna captura ni grabación."
                 },
                 {
                   "type": "image",
@@ -1432,28 +1420,17 @@ const PORTFOLIO_DATA = {
                   "text": "Un archivo .md con cada componente y su enlace de Figma. Le instruí a Claude para que revisara el original automáticamente si algo parecía mal — sin reenviar links manualmente."
                 },
                 {
-                  "type": "image",
-                  "src": "assets/images/no-handoff/process-component-structure.webp",
-                  "alt": "Estructura de la librería de componentes en el editor — 14 componentes organizados por carpeta, Button.tsx abierto mostrando props tipadas y clases CSS basadas en tokens",
-                  "loading": "lazy"
-                },
-                {
-                  "type": "image",
-                  "src": "assets/images/no-handoff/component-mapping.webp",
-                  "alt": "component-mapping.md — tabla de registro con nombre de componente, estado, ID de nodo en Figma y notas para cada uno de los 14 componentes",
-                  "loading": "lazy"
+                  "type": "video",
+                  "controls": false,
+                  "src": "assets/images/no-handoff/no-handoff-components.webm",
+                  "caption": "El sistema de componentes — estructura de carpetas, el registro de mapping y la librería construida.",
+                  "alt": "Estructura de la librería de componentes, el registro component-mapping.md y el catálogo de componentes EduCore"
                 },
                 {
                   "type": "video",
                   "src": "assets/images/no-handoff/no-handoff-process.webm",
                   "caption": "Claude Code construyendo los componentes desde las referencias de Figma (2× de velocidad; referencias al cliente con blur).",
                   "alt": "Claude Code generando componentes React desde referencias de Figma en el editor"
-                },
-                {
-                  "type": "image",
-                  "src": "assets/images/no-handoff/kitchensink.webp",
-                  "alt": "Librería de componentes EduCore — vista kitchen-sink con todos los componentes construidos",
-                  "loading": "lazy"
                 }
               ]
             },
@@ -1465,37 +1442,33 @@ const PORTFOLIO_DATA = {
               "h3": "El resultado era indistinguible del producto real",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "Layout y flujos coincidían con Figma al 100%",
-                    "Filtros, estados e interacciones funcionaban tal como se diseñaron",
-                    "Datos simulados, comportamiento real"
-                  ]
-                },
-                {
-                  "type": "compare",
-                  "caption": "El diseño en Figma vs. el producto construido — vista base del portal.",
-                  "left":  { "src": "assets/images/no-handoff/compare-figma-base.webp", "label": "Figma", "alt": "Vista base del Portal EduCore Program — diseño en Figma" },
-                  "right": { "src": "assets/images/no-handoff/compare-app-base.webp", "label": "App", "alt": "Vista base del Portal EduCore Program — app en ejecución" }
-                },
-                {
-                  "type": "compare",
-                  "caption": "La misma fidelidad en la confirmación de opt-out con el panel de beneficios.",
-                  "left":  { "src": "assets/images/no-handoff/compare-figma-optout.webp", "label": "Figma", "alt": "Confirmación de opt-out con panel de beneficios — diseño en Figma" },
-                  "right": { "src": "assets/images/no-handoff/compare-app-optout.webp", "label": "App", "alt": "Confirmación de opt-out con panel de beneficios — app en ejecución" }
+                  "type": "heading",
+                  "text": "Filtros, estados e interacciones funcionaban tal como se diseñaron"
                 },
                 {
                   "type": "video",
                   "src": "assets/images/no-handoff/no-handoff-flow.webm",
-                  "caption": "El producto en movimiento — filtros, el flujo de opt-out, el banner opted-out y el toast de éxito.",
+                  "caption": "Datos simulados, comportamiento real.",
                   "alt": "Portal EduCore Program en ejecución: filtros, flujo de opt-out, banner opted-out y toast de éxito"
                 },
                 {
-                  "type": "video",
-                  "src": "assets/images/no-handoff/no-handoff-tests.webm",
-                  "caption": "Suite de tests completa — flujos funcionales + accesibilidad WCAG 2.1 AA, todo en verde.",
-                  "alt": "Suite de tests automatizados pasando: flujos funcionales y chequeos de accesibilidad WCAG 2.1 AA"
+                  "type": "heading",
+                  "text": "Layout y flujos coincidían con Figma al 100%"
+                },
+                {
+                  "type": "row",
+                  "items": [
+                    {
+                      "type": "slider",
+                      "before": { "src": "assets/images/no-handoff/compare-figma-base.webp", "label": "Figma — Main Screen", "alt": "Pantalla principal del Portal EduCore Program — diseño en Figma" },
+                      "after":  { "src": "assets/images/no-handoff/compare-app-base.webp", "label": "Code — Main Screen", "alt": "Pantalla principal del Portal EduCore Program — build en código" }
+                    },
+                    {
+                      "type": "slider",
+                      "before": { "src": "assets/images/no-handoff/compare-figma-optout.webp", "label": "Figma — Modal Benefits", "alt": "Confirmación de opt-out con panel de beneficios — diseño en Figma" },
+                      "after":  { "src": "assets/images/no-handoff/compare-app-optout.webp", "label": "Code — Modal Benefits", "alt": "Confirmación de opt-out con panel de beneficios — build en código" }
+                    }
+                  ]
                 }
               ]
             },
@@ -1513,8 +1486,7 @@ const PORTFOLIO_DATA = {
                     "User testing — comportamiento real de componentes, problemas reales de accesibilidad a la vista",
                     "Presentaciones a stakeholders — fidelidad de app en vivo en lugar de un prototipo clickeable",
                     "Sales demos — look & feel de producción, fácil de actualizar",
-                    "Potencial fin del handoff — diseño entrega componentes directamente a desarrollo",
-                    "Rebrandear el producto completo (paleta, naming, logo, copy) tomó 18 minutos — prueba del sistema basado en tokens"
+                    "Potencial fin del handoff — diseño entrega componentes directamente a desarrollo"
                   ]
                 }
               ]

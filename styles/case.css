@@ -282,7 +282,11 @@
 .image-block--portrait {
   aspect-ratio: 3/4;
 }
-.image-block img,
+.image-block img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
 .image-block video {
   width: 100%;
   height: 100%;
@@ -305,6 +309,7 @@
   border-radius: var(--r-md);
   overflow: hidden;
   background: var(--surface);
+  cursor: zoom-in;
 }
 .compare__cell img {
   display: block;
@@ -320,12 +325,188 @@
   letter-spacing: 0.04em;
   padding: 2px 9px;
   border-radius: 99px;
-  background: var(--accent);
   color: #fff;
 }
+.compare__tag--figma { background: #2563eb; }
+.compare__tag--app   { background: #059669; }
 @media (max-width: 640px) {
   .compare { grid-template-columns: 1fr; }
 }
+
+/* Media label — short tag shown as a mono prefix in a video caption. */
+.media-label {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
+/* Alert callout — reads as meta-info, visually distinct from the narrative body. */
+.alert-callout {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: flex-start;
+  padding: var(--sp-4) var(--sp-5);
+  margin: var(--sp-6) 0;
+  border: 1px solid var(--border-subtle);
+  border-left: 3px solid #d97706;
+  border-radius: var(--r-md);
+  background: color-mix(in srgb, #d97706 6%, transparent);
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  text-align: left;
+}
+.alert-callout__icon { width: 20px; height: 20px; flex-shrink: 0; margin-top: 1px; color: #d97706; }
+.alert-callout__title { font-weight: 600; margin: 0 0 3px; }
+.alert-callout__body p { margin: 0; }
+
+/* Auto-rotating image carousel — groups screenshots so they're not all stacked. */
+.carousel__track {
+  position: relative;
+  aspect-ratio: 3 / 2;
+  background: var(--surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.carousel__slide {
+  position: absolute; inset: 0; margin: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+.carousel__slide.is-active { opacity: 1; pointer-events: auto; }
+.carousel__slide img {
+  display: block;
+  width: 100%; height: 100%;
+  object-fit: contain;
+  cursor: zoom-in;
+}
+.carousel__dots { display: flex; gap: 8px; justify-content: center; margin-top: var(--sp-3); }
+.carousel__dot {
+  width: 9px; height: 9px; padding: 0;
+  border: none; border-radius: 99px;
+  background: var(--border);
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.carousel__dot:hover { transform: scale(1.25); }
+.carousel__dot.is-active { background: var(--accent); }
+.carousel__arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  border: none; border-radius: 99px;
+  background: rgba(0, 0, 0, 0.55); color: #fff;
+  font-size: 22px; line-height: 1; padding-bottom: 2px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: opacity 0.15s ease;
+  z-index: 2;
+}
+.carousel__arrow:hover { opacity: 1; }
+.carousel__arrow--prev { left: var(--sp-3); }
+.carousel__arrow--next { right: var(--sp-3); }
+
+/* Before/after comparison slider (drag to wipe between design and build). */
+.cslider {
+  position: relative;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  --pos: 50%;
+}
+.cslider__base { display: block; width: 100%; height: auto; }
+.cslider__top {
+  position: absolute; inset: 0;
+  clip-path: inset(0 calc(100% - var(--pos)) 0 0);
+}
+.cslider__top img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cslider__divider {
+  position: absolute; top: 0; bottom: 0;
+  left: var(--pos); width: 2px; margin-left: -1px;
+  background: #fff; box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+  pointer-events: none;
+}
+.cslider__divider::after {
+  content: '↔'; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px; height: 32px; border-radius: 99px;
+  display: flex; align-items: center; justify-content: center;
+  background: #fff; border: 2px solid var(--accent); color: var(--accent);
+  font-size: 16px; line-height: 1;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.35);
+}
+.cslider__range {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; margin: 0;
+  -webkit-appearance: none; appearance: none;
+  background: transparent; cursor: ew-resize;
+}
+.cslider__range:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.cslider__range::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 40px; height: 220px;
+  background: transparent; cursor: ew-resize;
+}
+.cslider__range::-moz-range-thumb {
+  width: 40px; height: 220px; border: none;
+  background: transparent; cursor: ew-resize;
+}
+.cslider__tag { top: var(--sp-2); }
+.cslider__tag--left { left: var(--sp-2); }
+.cslider__tag--right { left: auto; right: var(--sp-2); }
+.cslider__hint {
+  position: absolute;
+  left: 50%; bottom: var(--sp-4);
+  transform: translateX(-50%);
+  padding: 5px 13px;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.62);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 3;
+}
+.cslider--touched .cslider__hint { opacity: 0; }
+.cslider__expand {
+  position: absolute;
+  bottom: var(--sp-2); right: var(--sp-2);
+  width: 30px; height: 30px;
+  display: flex; align-items: center; justify-content: center;
+  border: none; border-radius: 8px;
+  background: rgba(0, 0, 0, 0.55); color: #fff;
+  font-size: 14px; cursor: pointer;
+  opacity: 0.85; transition: opacity 0.15s ease;
+  z-index: 3;
+}
+.cslider__expand:hover { opacity: 1; }
+.cslider--lightbox { width: min(92vw, 1100px); }
+#lightbox-content .cslider { pointer-events: auto; }
+
+/* Standalone subtitle (h4) within a section */
+.case-subhead {
+  margin: var(--sp-7) 0 var(--sp-4);
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+/* Responsive row — items side by side on desktop, stacked on mobile */
+.content-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-4);
+  align-items: start;
+}
+@media (max-width: 720px) {
+  .content-row { grid-template-columns: 1fr; }
+}
+/* Media captions: centered (a11y contrast pending — see TODO) */
+.image-block__caption { text-align: center; }
 .image-block__placeholder {
   width: 100%;
   height: 100%;
