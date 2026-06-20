@@ -353,8 +353,11 @@
               + `<input class="cslider__range" type="range" min="0" max="100" value="50" aria-label="Drag to compare design and build" />`
               + `</div>${cap}</figure>`;
           }
-          case 'heading':
-            return `<h4 class="case-subhead">${t(enItem.text, esItem?.text)}</h4>`;
+          case 'heading': {
+            const lvl = enItem.level || 4;
+            const cls = lvl >= 5 ? 'case-subcta' : 'case-subhead';
+            return `<h${lvl} class="${cls}">${t(enItem.text, esItem?.text)}</h${lvl}>`;
+          }
           case 'row': {
             const inner = (enItem.items || []).map((it, k) => renderItem(it, esItem?.items?.[k])).join('');
             return `<div class="content-row">${inner}</div>`;

@@ -154,10 +154,10 @@ const PORTFOLIO_DATA = {
                   "text": "The program shown is fictional — the real brand, client, and design system are protected by NDA and don't appear in any screenshot or recording."
                 },
                 {
-                  "type": "image",
-                  "src": "assets/images/no-handoff/hero.webp",
-                  "alt": "EduCore Program Portal running in browser — opted-in state with term filter pills and course list",
-                  "loading": "lazy"
+                  "type": "video",
+                  "controls": false,
+                  "src": "assets/images/no-handoff/no-handoff-result.webm",
+                  "alt": "From building the components in Claude Code to the running EduCore product — design to code in motion"
                 }
               ]
             },
@@ -196,7 +196,7 @@ const PORTFOLIO_DATA = {
               "h3": "Three constraints that eliminated the hallucinations.",
               "content": [
                 {
-                  "type": "subheading",
+                  "type": "heading",
                   "text": "1. Reduce scope"
                 },
                 {
@@ -204,7 +204,12 @@ const PORTFOLIO_DATA = {
                   "text": "Only the components this MVP needed — not the full design system. One project, one scope, reusable later."
                 },
                 {
-                  "type": "subheading",
+                  "type": "image",
+                  "src": "assets/images/no-handoff/kitchensink.webp",
+                  "alt": "EduCore component library — the kitchen-sink catalog of every built component"
+                },
+                {
+                  "type": "heading",
                   "text": "2. Build the library first"
                 },
                 {
@@ -212,7 +217,12 @@ const PORTFOLIO_DATA = {
                   "text": "Component by component via Figma MCP: \"Replicate this with all its states.\" No guessing from memory."
                 },
                 {
-                  "type": "subheading",
+                  "type": "image",
+                  "src": "assets/images/no-handoff/process-component-structure.webp",
+                  "alt": "Component library structure in the editor — Button.tsx open showing typed props and token-based CSS classes"
+                },
+                {
+                  "type": "heading",
                   "text": "3. Build a reference table"
                 },
                 {
@@ -220,17 +230,9 @@ const PORTFOLIO_DATA = {
                   "text": "A .md file with every component and its Figma link. I instructed Claude to check the original automatically if something looked off — no resharing links manually."
                 },
                 {
-                  "type": "video",
-                  "controls": false,
-                  "src": "assets/images/no-handoff/no-handoff-components.webm",
-                  "caption": "The component system — folder structure, the mapping registry, and the built library.",
-                  "alt": "Component library structure, the component-mapping.md registry, and the EduCore component catalog"
-                },
-                {
-                  "type": "video",
-                  "src": "assets/images/no-handoff/no-handoff-process.webm",
-                  "caption": "Claude Code building the components from the Figma references (2× speed; client references blurred).",
-                  "alt": "Claude Code generating React components from Figma references in the editor"
+                  "type": "image",
+                  "src": "assets/images/no-handoff/component-mapping.webp",
+                  "alt": "component-mapping.md — registry table with component name, status, Figma node ID, and notes"
                 }
               ]
             },
@@ -254,6 +256,11 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "heading",
                   "text": "Layout and flows matched Figma at 100%"
+                },
+                {
+                  "type": "heading",
+                  "level": 5,
+                  "text": "Expand and drag to compare — Figma vs Code"
                 },
                 {
                   "type": "row",
@@ -1354,10 +1361,10 @@ const PORTFOLIO_DATA = {
                   "text": "El programa mostrado es ficticio — la marca, el cliente y el design system reales están protegidos por NDA y no aparecen en ninguna captura ni grabación."
                 },
                 {
-                  "type": "image",
-                  "src": "assets/images/no-handoff/hero.webp",
-                  "alt": "Portal EduCore Program corriendo en el browser — estado opted-in con píldoras de filtro por término y lista de cursos",
-                  "loading": "lazy"
+                  "type": "video",
+                  "controls": false,
+                  "src": "assets/images/no-handoff/no-handoff-result.webm",
+                  "alt": "Del armado de los componentes en Claude Code al producto EduCore funcionando — diseño a código en movimiento"
                 }
               ]
             },
@@ -1396,7 +1403,7 @@ const PORTFOLIO_DATA = {
               "h3": "Tres restricciones que eliminaron las alucinaciones.",
               "content": [
                 {
-                  "type": "subheading",
+                  "type": "heading",
                   "text": "1. Reducir el alcance"
                 },
                 {
@@ -1404,7 +1411,12 @@ const PORTFOLIO_DATA = {
                   "text": "Solo los componentes que necesitaba este MVP — no el design system completo. Un proyecto, un alcance, reutilizable después."
                 },
                 {
-                  "type": "subheading",
+                  "type": "image",
+                  "src": "assets/images/no-handoff/kitchensink.webp",
+                  "alt": "Librería de componentes EduCore — el catálogo kitchen-sink con todos los componentes construidos"
+                },
+                {
+                  "type": "heading",
                   "text": "2. Construir la librería primero"
                 },
                 {
@@ -1412,7 +1424,12 @@ const PORTFOLIO_DATA = {
                   "text": "Componente por componente vía Figma MCP: \"Replica esto con todos sus estados.\" Sin adivinar de memoria."
                 },
                 {
-                  "type": "subheading",
+                  "type": "image",
+                  "src": "assets/images/no-handoff/process-component-structure.webp",
+                  "alt": "Estructura de la librería de componentes en el editor — Button.tsx abierto mostrando props tipadas y clases CSS basadas en tokens"
+                },
+                {
+                  "type": "heading",
                   "text": "3. Construir una tabla de referencia"
                 },
                 {
@@ -1420,17 +1437,9 @@ const PORTFOLIO_DATA = {
                   "text": "Un archivo .md con cada componente y su enlace de Figma. Le instruí a Claude para que revisara el original automáticamente si algo parecía mal — sin reenviar links manualmente."
                 },
                 {
-                  "type": "video",
-                  "controls": false,
-                  "src": "assets/images/no-handoff/no-handoff-components.webm",
-                  "caption": "El sistema de componentes — estructura de carpetas, el registro de mapping y la librería construida.",
-                  "alt": "Estructura de la librería de componentes, el registro component-mapping.md y el catálogo de componentes EduCore"
-                },
-                {
-                  "type": "video",
-                  "src": "assets/images/no-handoff/no-handoff-process.webm",
-                  "caption": "Claude Code construyendo los componentes desde las referencias de Figma (2× de velocidad; referencias al cliente con blur).",
-                  "alt": "Claude Code generando componentes React desde referencias de Figma en el editor"
+                  "type": "image",
+                  "src": "assets/images/no-handoff/component-mapping.webp",
+                  "alt": "component-mapping.md — tabla de registro con nombre de componente, estado, ID de nodo en Figma y notas"
                 }
               ]
             },
@@ -1454,6 +1463,11 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "heading",
                   "text": "Layout y flujos coincidían con Figma al 100%"
+                },
+                {
+                  "type": "heading",
+                  "level": 5,
+                  "text": "Expandí y arrastrá para comparar — Figma vs Code"
                 },
                 {
                   "type": "row",
