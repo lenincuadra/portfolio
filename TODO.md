@@ -17,9 +17,9 @@ Auditoría original (contra disco): 14 assets faltaban en 2 casos v3. **Ambos re
 `**figma-webp-export` — ✅ completo** (assets reales + 3 videos; el plan original de 6 `.png` se reasignó):
 
 - Card + Overview/hero: `figma-flow.webm/.mp4` — video del plugin corriendo en Figma (poster `cover.webp`).
-- Process: `plugin-code.webm/.mp4` (7s, look **Cursor**) — montaje: 1s pantalla de consumo de Claude.ai ("31% used") + 3 archivos del plugin (`manifest.json` / `code.js` / `ui.html`, 2s c/u), render real del source en `plugin-export-imgs/Export-2-webp/`. La imagen suelta de tokens se quitó (queda dentro del video).
-- Result: `plugin-demo.webm/.mp4` — demo completo (export por lotes + archivos en Finder con sus pesos, 52s, con controles).
-- Status: `figma-community.webp` — página del plugin en la Figma Community, **recortada** hasta el final del "About" (sin "More like this" ni footer), ratio `auto` (el contenedor calza la imagen, sin letterbox). **Email de soporte con dominio del cliente (`@follett.com`) blureado por NDA.**
+- Process: `plugin-code.webm/.mp4` (8s, look **Cursor**) — montaje: 2s pantalla de consumo de Claude.ai ("31% used") + 3 archivos del plugin (`manifest.json` / `code.js` / `ui.html`, 2s c/u), render real del source en `plugin-export-imgs/Export-2-webp/`. La imagen suelta de tokens se quitó (queda dentro del video).
+- Result: `plugin-demo.webm/.mp4` (~19s, con **fade in/out**) — demo del plugin con **velocidad selectiva** (setup/proceso acelerados; beats clave —panel "Export optimized images" y Finder con los pesos— a ~1.6-2x) y **chrome del navegador recortado** (`crop` top 200px). `controls:false` → abre en el lightbox al click. Source crudo de 52s en `plugin-export-imgs/` (gitignoreado).
+- Status: `status-scroll.webm/.mp4` (4s) — video con **marco de navegador** que hace scroll por la página de la Figma Community (top → "About y un poco más" → top), `controls:false`. Más compacto que la imagen → el link "View on Figma Community" queda más visible. Generado de `figma-community.webp` (recortada hasta "About", **email del cliente `@follett.com` blureado por NDA**), que queda como fuente.
 - `before-after`: eliminado de EN/ES (sin fuente; se saltó por decisión del usuario).
 - Fuentes crudas en `assets/images/plugin-export-imgs/` (untracked — **NO commitear**: contiene el PNG original sin blurear con el dominio del cliente).
 
@@ -35,6 +35,8 @@ Routing en `js/app.js:13`: cualquier caso sin `template: 'v3'` cae a `case-v2`.
 
 ## Menor / continuo
 
+- **Legibilidad del contenido (`figma-webp-export`, y revisar en todos los v3)** — las secciones **Overview, Problem y Process** tienen bloques de texto largos (párrafos densos) que probablemente no se lean. Hacerlo más navegable/escaneable: acortar, partir en bullets/sub-bloques, o destacar la idea clave. Objetivo: que se capte rápido sin leer todo el párrafo.
+
 - **Accesibilidad de captions de media** (`.image-block__caption` y `.demo-figure__caption` en `styles/case.css`) — revisar contraste: el color `var(--ink-4)` en texto chico (`--text-xs`) puede no pasar WCAG AA (4.5:1). Centrado ya aplicado en ambos; falta validar/ajustar el contraste.
 - **Thumbnails de video** — Cambiar el `poster` de un video editando el campo `poster` en `data/content.js`. (Las líneas viejas ~92-94 quedaron desactualizadas: hoy los `poster` viven en `images.screens[].poster` — ej. no-handoff `:107-117`, fintech `:475-485`.) Apunta a otro frame del video o a una imagen estática preferida.
 - **Case: No Handoff: Closing the Design-Dev Gap —** El video del thumbnail (el mismo que el Overview) si bien está bien el orden, debería mostrarse que el prompt fué lo que generó el códigoo, es decir, en el espacio asignado de "Total Access Demo" debería colocarse encima el video de app andando para dar la total sensación de como funciona y que es código)
@@ -44,6 +46,6 @@ Routing en `js/app.js:13`: cualquier caso sin `template: 'v3'` cae a `case-v2`.
 - **Thumbnails de case studies** — Agregar thumbnails a los 2 case studies faltantes. *Bloqueado: se define cuando estén todos los assets (ver sección de assets faltantes arriba).*
 - **Revisión UX con criterio Joe Natoli** — Repasar todo el index aplicando principios de UX (jerarquía visual, claridad de mensajes, flujo de atención, fricción innecesaria, etc.). *Al final.*
 - Optional: micro-hover en los círculos del Venn mostrando evidencia (User → "research, testing" · Business → "+300% subs" · Tech → "ships code").
-- **Nice-to-have — lightbox galería / "TOC visual"** (case-v3): que cualquier elemento gráfico (imagen, video, slider) se abra en el lightbox mostrando su **título** (el heading de su sección en el case, NO el caption/subtítulo) y sea **navegable con flechas** por todos los gráficos del mismo case. Intención: igual que el TOC (recorriéndolo captás de qué va el case entero), pero visual — título + gráfico + navegación.
+- **✅ Implementado — lightbox galería / "TOC visual"** (case-v3): cualquier gráfico (imagen, video, slider) abre en el lightbox con su **label + título de sección** (mismos estilos que el contenido: DM Mono label + h3 Instrument Sans, alineado a la izquierda) y **navegación con flechas** (‹ › SVG, teclado ←/→, wrap-around) + contador "N / total". Los gráficos sin heading (video lead) muestran **"Case Study" (label) + título + subtítulo del case** (parte del template). Videos en `controls:false` abren al click; el resto vía botón ⤢. (Compare/carousel soportados por código, sin instancias hoy.)
 - **PRIORITARIO — ejecutar al final, cuando el hero esté terminado:** auditoría de accesibilidad WCAG AA del hero (contraste, semántica, teclado), en ambos temas y ambos idiomas.
 

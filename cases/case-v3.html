@@ -50,6 +50,28 @@
     #lightbox-placeholder span { font-size: var(--text-base); color: var(--text-tertiary); text-align: center; padding: var(--sp-6); }
     #lightbox-close { position: fixed; top: var(--sp-5); right: var(--sp-5); background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; opacity: 0.7; line-height: 1; }
     #lightbox-close:hover { opacity: 1; }
+    /* Gallery lightbox: section label + title (content styles), left-aligned + arrow navigation */
+    #lightbox-stage { display: flex; flex-direction: column; align-items: flex-start; gap: var(--sp-4); max-width: 92vw; max-height: 92vh; margin: 0; cursor: default; }
+    #lightbox-content { max-height: 72vh; overflow: visible; align-self: flex-start; }
+    #lightbox-content img.lightbox-media { display: block; max-width: 90vw; max-height: 72vh; object-fit: contain; border-radius: var(--r-md); }
+    #lightbox-content video.lightbox-video { max-height: 72vh; }
+    #lightbox-content .lightbox-fig { margin: 0; max-width: 90vw; pointer-events: auto; }
+    #lightbox-content .lightbox-fig .image-block { max-height: 72vh; }
+    #lightbox-content .cslider--lightbox { width: min(90vw, 1100px); }
+    #lightbox-caption { text-align: left; pointer-events: none; max-width: min(90vw, 920px); align-self: flex-start; }
+    #lightbox-caption .section__label { color: rgba(255,255,255,0.55); margin: 0 0 6px; }
+    #lightbox-caption .section__label:empty { display: none; }
+    #lightbox-caption h3 { color: #fff; margin: 0; }
+    #lightbox-caption #lightbox-subtitle { font-family: var(--font-body, "Instrument Sans"), system-ui, sans-serif; font-size: var(--text-base); font-weight: 400; line-height: 1.4; color: rgba(255,255,255,0.62); margin: 8px 0 0; }
+    #lightbox-caption #lightbox-subtitle:empty { display: none; }
+    #lightbox-counter { align-self: flex-start; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.1em; color: rgba(255,255,255,0.5); }
+    #lightbox-counter:empty { display: none; }
+    .lightbox-nav { position: fixed; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: #fff; width: 48px; height: 48px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0.75; transition: opacity 0.15s ease, background 0.15s ease; z-index: 10000; padding: 0; }
+    .lightbox-nav svg { width: 22px; height: 22px; display: block; }
+    .lightbox-nav:hover { opacity: 1; background: rgba(255,255,255,0.18); }
+    #lightbox-prev { left: var(--sp-5); }
+    #lightbox-next { right: var(--sp-5); }
+    #lightbox.is-single .lightbox-nav { display: none; }
     .toc-nav__title { border-bottom: none !important; padding-bottom: 0 !important; margin-bottom: 0 !important; }
     .toc-nav__reading-time { display: block; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 400; padding: 0 var(--sp-3) var(--sp-3); border-bottom: 1px solid var(--border-subtle); margin-bottom: var(--sp-1); }
     @media (max-width: 1100px) {
@@ -109,9 +131,15 @@
   </header>
 
   <!-- LIGHTBOX -->
-  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview">
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Graphic preview">
     <button id="lightbox-close" aria-label="Close">✕</button>
-    <div id="lightbox-content"></div>
+    <button id="lightbox-prev" class="lightbox-nav" aria-label="Previous graphic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg></button>
+    <button id="lightbox-next" class="lightbox-nav" aria-label="Next graphic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg></button>
+    <figure id="lightbox-stage">
+      <figcaption id="lightbox-caption"><p class="section__label" id="lightbox-eyebrow"></p><h3 id="lightbox-title"></h3><p id="lightbox-subtitle"></p></figcaption>
+      <div id="lightbox-content"></div>
+      <span id="lightbox-counter"></span>
+    </figure>
   </div>
 
   <!-- CASE LAYOUT -->
@@ -575,105 +603,134 @@
 
     // Lightbox
     (function() {
-      const lb      = document.getElementById('lightbox');
-      const lbBox   = document.getElementById('lightbox-content');
-      const lbClose = document.getElementById('lightbox-close');
+      const lb        = document.getElementById('lightbox');
+      const lbBox     = document.getElementById('lightbox-content');
+      const lbClose   = document.getElementById('lightbox-close');
+      const lbPrev    = document.getElementById('lightbox-prev');
+      const lbNext    = document.getElementById('lightbox-next');
+      const lbStage   = document.getElementById('lightbox-stage');
+      const lbTitle   = document.getElementById('lightbox-title');
+      const lbEyebrow = document.getElementById('lightbox-eyebrow');
+      const lbCount   = document.getElementById('lightbox-counter');
+      const lbSubtitle= document.getElementById('lightbox-subtitle');
+      const content   = document.getElementById('case-v3-content');
+      // Every expandable graphic in the case, in document order (one entry per graphic root).
+      const SEL = '.image-block:not(.image-block--video):not(.image-block--empty), .demo-figure, .slider-figure, .compare-figure, .carousel-figure';
+      let items = [], idx = 0;
 
-      function openLightbox(el) {
-        lbBox.innerHTML = '';
-        if (el.tagName === 'IMG') {
-          const img = document.createElement('img');
-          img.src = el.src;
-          img.alt = el.alt;
-          lbBox.appendChild(img);
-        } else {
-          const ph = document.createElement('div');
-          ph.id = 'lightbox-placeholder';
-          ph.innerHTML = el.innerHTML;
-          lbBox.appendChild(ph);
-        }
-        lb.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
+      function collect() {
+        items = [...content.querySelectorAll(SEL)].filter(el => !(el.classList.contains('image-block') && !el.querySelector('img')));
       }
-
-      function openVideoLightbox(srcVid) {
-        lbBox.innerHTML = '';
+      function typeOf(el) {
+        if (el.classList.contains('demo-figure'))     return 'video';
+        if (el.classList.contains('slider-figure'))   return 'slider';
+        if (el.classList.contains('compare-figure'))  return 'compare';
+        if (el.classList.contains('carousel-figure')) return 'carousel';
+        return 'image';
+      }
+      // Title = the graphic's section heading (h3); eyebrow = the short section label.
+      // Lead graphics with no section heading fall back to the case title.
+      function sectionOf(el) {
+        const sec = el.closest('section');
+        const h3  = sec && sec.querySelector('h3');
+        if (h3) {
+          const lbl = sec.querySelector('.section__label');
+          return { eyebrow: lbl ? lbl.textContent.trim() : '', title: h3.textContent.trim(), subtitle: '' };
+        }
+        // Lead graphic (section with no heading) → case title + subtitle, labeled "Case Study"
+        const h1 = content.querySelector('h1'), h2 = content.querySelector('h2');
+        return { eyebrow: 'Case Study', title: h1 ? h1.textContent.trim() : '', subtitle: h2 ? h2.textContent.trim() : '' };
+      }
+      function makeVideo(srcVid) {
         const v = document.createElement('video');
         v.className = 'lightbox-video';
         v.controls = true; v.autoplay = true; v.loop = true; v.muted = true;
         v.setAttribute('playsinline', '');
-        srcVid.querySelectorAll('source').forEach(s => {
-          const el = document.createElement('source');
-          el.src = s.src; el.type = s.type; v.appendChild(el);
-        });
-        lbBox.appendChild(v);
-        lb.classList.add('is-open');
-        document.body.style.overflow = 'hidden';
+        srcVid.querySelectorAll('source').forEach(s => { const el = document.createElement('source'); el.src = s.src; el.type = s.type; v.appendChild(el); });
+        return v;
       }
-
-      function closeLightbox() {
-        lb.classList.remove('is-open');
+      function render(el, type) {
         lbBox.innerHTML = '';
-        document.body.style.overflow = '';
+        let node;
+        if (type === 'image') {
+          const img = el.querySelector('img');
+          node = document.createElement('img'); node.src = img.src; node.alt = img.alt || ''; node.className = 'lightbox-media';
+        } else if (type === 'video') {
+          node = makeVideo(el.querySelector('video'));
+        } else {
+          node = el.cloneNode(true); node.classList.add('lightbox-fig');
+          node.querySelectorAll('figcaption, .image-block__expand, .cslider__expand, .cslider__hint').forEach(x => x.remove());
+          const cs = node.querySelector('.cslider'); if (cs) cs.classList.add('cslider--lightbox');
+        }
+        lbBox.appendChild(node);
+        if (type === 'slider')   { const s = node.querySelector('.cslider');   if (s && window.__initSlider)   window.__initSlider(s); }
+        if (type === 'carousel') { const c = node.querySelector('.carousel');   if (c && window.__initCarousel) window.__initCarousel(c); }
       }
+      function show(i) {
+        idx = (i + items.length) % items.length;
+        const el = items[idx], sec = sectionOf(el);
+        render(el, typeOf(el));
+        lbEyebrow.textContent = sec.eyebrow;
+        lbTitle.textContent   = sec.title;
+        lbSubtitle.textContent = sec.subtitle;
+        lbCount.textContent   = items.length > 1 ? (idx + 1) + ' / ' + items.length : '';
+      }
+      function openAt(i) { lb.classList.toggle('is-single', items.length < 2); show(i); lb.classList.add('is-open'); document.body.style.overflow = 'hidden'; }
+      function close() { lb.classList.remove('is-open'); lbBox.innerHTML = ''; document.body.style.overflow = ''; }
 
-      document.getElementById('case-v3-content').addEventListener('click', e => {
-        const expand = e.target.closest('.cslider__expand');
-        if (expand) {
-          const sl = expand.closest('.cslider');
-          if (sl) {
-            const clone = sl.cloneNode(true);
-            clone.classList.add('cslider--lightbox');
-            lbBox.innerHTML = '';
-            lbBox.appendChild(clone);
-            if (window.__initSlider) window.__initSlider(clone);
-            lb.classList.add('is-open');
-            document.body.style.overflow = 'hidden';
-          }
-          return;
+      content.addEventListener('click', e => {
+        const root = e.target.closest(SEL);
+        if (!root) return;
+        let i = items.indexOf(root);
+        if (i < 0) { collect(); i = items.indexOf(root); }
+        if (i < 0) return;
+        const isExpand = e.target.closest('.image-block__expand, .cslider__expand');
+        if (!isExpand) {
+          // let interactive controls do their job; those graphics open via the ⤢ button
+          if (e.target.closest('.carousel__arrow, .carousel__dot, .cslider__range, .cslider__divider')) return;
+          if (root.classList.contains('slider-figure')) return;
+          const v = e.target.closest('.image-block--video video');
+          if (v && v.hasAttribute('controls')) return;
         }
-        const vexp = e.target.closest('.image-block__expand');
-        if (vexp) {
-          const v = vexp.closest('.image-block--video')?.querySelector('video');
-          if (v) openVideoLightbox(v);
-          return;
-        }
-        const ncVid = e.target.closest('.image-block--video video');
-        if (ncVid && !ncVid.hasAttribute('controls')) { openVideoLightbox(ncVid); return; }
-        const img = e.target.closest('.image-block img, .compare__cell img, .carousel__slide img');
-        const ph  = e.target.closest('.image-block__placeholder');
-        if (img) openLightbox(img);
-        else if (ph) openLightbox(ph);
+        openAt(i);
       });
 
-      lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
-      lbClose.addEventListener('click', closeLightbox);
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+      lbPrev.addEventListener('click', () => show(idx - 1));
+      lbNext.addEventListener('click', () => show(idx + 1));
+      lb.addEventListener('click', e => { if (e.target === lb || e.target === lbStage) close(); });
+      lbClose.addEventListener('click', close);
+      document.addEventListener('keydown', e => {
+        if (!lb.classList.contains('is-open')) return;
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowLeft') show(idx - 1);
+        else if (e.key === 'ArrowRight') show(idx + 1);
+      });
+
+      collect();
     })();
 
-    // Carousel — auto-rotating image groups (gives time to view each, saves vertical space)
-    (function() {
-      document.querySelectorAll('.carousel').forEach(car => {
-        const slides = [...car.querySelectorAll('.carousel__slide')];
-        const dots   = [...car.querySelectorAll('.carousel__dot')];
-        if (slides.length < 2) return;
-        const interval = parseInt(car.dataset.interval, 10) || 4000;
-        let idx = 0, timer = null;
-        function show(i) {
-          idx = (i + slides.length) % slides.length;
-          slides.forEach((s, k) => s.classList.toggle('is-active', k === idx));
-          dots.forEach((d, k) => d.classList.toggle('is-active', k === idx));
-        }
-        function start() { stop(); timer = setInterval(() => show(idx + 1), interval); }
-        function stop()  { if (timer) { clearInterval(timer); timer = null; } }
-        dots.forEach((d, k) => d.addEventListener('click', () => { show(k); start(); }));
-        car.querySelector('.carousel__arrow--prev')?.addEventListener('click', () => { show(idx - 1); start(); });
-        car.querySelector('.carousel__arrow--next')?.addEventListener('click', () => { show(idx + 1); start(); });
-        car.addEventListener('mouseenter', stop);
-        car.addEventListener('mouseleave', start);
-        start();
-      });
-    })();
+    // Carousel — auto-rotating image groups (reusable so cloned carousels work in the lightbox)
+    window.__initCarousel = function(car) {
+      const slides = [...car.querySelectorAll('.carousel__slide')];
+      const dots   = [...car.querySelectorAll('.carousel__dot')];
+      if (slides.length < 2) return;
+      const interval = parseInt(car.dataset.interval, 10) || 4000;
+      let idx = 0, timer = null;
+      function show(i) {
+        idx = (i + slides.length) % slides.length;
+        slides.forEach((s, k) => s.classList.toggle('is-active', k === idx));
+        dots.forEach((d, k) => d.classList.toggle('is-active', k === idx));
+      }
+      function start() { stop(); timer = setInterval(() => show(idx + 1), interval); }
+      function stop()  { if (timer) { clearInterval(timer); timer = null; } }
+      dots.forEach((d, k) => d.addEventListener('click', () => { show(k); start(); }));
+      car.querySelector('.carousel__arrow--prev')?.addEventListener('click', () => { show(idx - 1); start(); });
+      car.querySelector('.carousel__arrow--next')?.addEventListener('click', () => { show(idx + 1); start(); });
+      car.addEventListener('mouseenter', stop);
+      car.addEventListener('mouseleave', start);
+      start();
+    };
+    document.querySelectorAll('.carousel').forEach(c => window.__initCarousel(c));
 
     // Before/after comparison slider — drag to wipe between design and build
     window.__initSlider = function(sl) {

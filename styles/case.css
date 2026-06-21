@@ -282,8 +282,9 @@
 .image-block--portrait {
   aspect-ratio: 3/4;
 }
-/* Natural-height: block hugs the image (no aspect-ratio box, no letterbox). */
-.image-block--auto img {
+/* Natural-height: block hugs the image/video (no aspect-ratio box, no letterbox). */
+.image-block--auto img,
+.image-block--auto video {
   height: auto;
   display: block;
 }

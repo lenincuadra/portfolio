@@ -362,6 +362,7 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "video",
                   "controls": false,
+                  "ratio": "auto",
                   "src": "assets/images/figma-webp-export/figma-flow.webm",
                   "alt": "The .webp export plugin running in Figma — UI flow with images selected"
                 }
@@ -422,6 +423,7 @@ const PORTFOLIO_DATA = {
                 },
                 {
                   "type": "video",
+                  "controls": false,
                   "src": "assets/images/figma-webp-export/plugin-demo.webm",
                   "caption": "Full demo — batch export to .webp, then the exported files in Finder with their sizes.",
                   "alt": "Plugin demo — batch .webp export and the resulting files with their sizes in Finder"
@@ -457,11 +459,11 @@ const PORTFOLIO_DATA = {
                 { "type": "subheading", "text": "The designer who raised the problem is the primary user." },
                 { "type": "body", "text": "The client team and I use it as needed." },
                 {
-                  "type": "image",
-                  "src": "assets/images/figma-webp-export/figma-community.webp",
-                  "ratio": "auto",
-                  "alt": "Plugin's Figma Community page — listing with cover, description and install button",
-                  "loading": "lazy"
+                  "type": "video",
+                  "controls": false,
+                  "src": "assets/images/figma-webp-export/status-scroll.webm",
+                  "caption": "The plugin's page on the Figma Community — published and installable by anyone.",
+                  "alt": "Scrolling through the WebP Optimizer page on the Figma Community — cover, description and install button"
                 },
                 {
                   "type": "link",
@@ -1566,6 +1568,7 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "video",
                   "controls": false,
+                  "ratio": "auto",
                   "src": "assets/images/figma-webp-export/figma-flow.webm",
                   "alt": "El plugin de exportación a .webp corriendo en Figma — flujo de UI con imágenes seleccionadas"
                 }
@@ -1626,6 +1629,7 @@ const PORTFOLIO_DATA = {
                 },
                 {
                   "type": "video",
+                  "controls": false,
                   "src": "assets/images/figma-webp-export/plugin-demo.webm",
                   "caption": "Demo completo — exportación por lotes a .webp, y luego los archivos en Finder con sus pesos.",
                   "alt": "Demo del plugin — exportación por lotes a .webp y los archivos resultantes con sus pesos en Finder"
@@ -1661,11 +1665,11 @@ const PORTFOLIO_DATA = {
                 { "type": "subheading", "text": "La diseñadora que planteó el problema es la usuaria principal." },
                 { "type": "body", "text": "El equipo del cliente y yo lo usamos según necesidad." },
                 {
-                  "type": "image",
-                  "src": "assets/images/figma-webp-export/figma-community.webp",
-                  "ratio": "auto",
-                  "alt": "Página del plugin en la Figma Community — listado con portada, descripción y botón de instalación",
-                  "loading": "lazy"
+                  "type": "video",
+                  "controls": false,
+                  "src": "assets/images/figma-webp-export/status-scroll.webm",
+                  "caption": "La página del plugin en la Figma Community — publicado e instalable por cualquiera.",
+                  "alt": "Scroll por la página del WebP Optimizer en la Figma Community — portada, descripción y botón de instalación"
                 },
                 {
                   "type": "link",
