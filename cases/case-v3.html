@@ -45,6 +45,7 @@
     #lightbox.is-open { display: flex; }
     #lightbox-content { max-width: 90vw; max-height: 90vh; border-radius: var(--r-md); overflow: hidden; pointer-events: none; }
     #lightbox-content img { display: block; max-width: 90vw; max-height: 90vh; object-fit: contain; }
+    #lightbox-content video.lightbox-video { display: block; max-width: 90vw; max-height: 90vh; pointer-events: auto; border-radius: var(--r-md); background: #000; }
     #lightbox-placeholder { width: min(90vw, 662px); aspect-ratio: 16/9; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; }
     #lightbox-placeholder span { font-size: var(--text-base); color: var(--text-tertiary); text-align: center; padding: var(--sp-6); }
     #lightbox-close { position: fixed; top: var(--sp-5); right: var(--sp-5); background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; opacity: 0.7; line-height: 1; }
@@ -286,7 +287,7 @@
             // Aspect-ratio is reserved up front (default 16/9), overridable per slot
             // via "ratio": "wide" | "square" | "portrait", so the slot does not shift
             // when a real image replaces the placeholder.
-            const ratioClass = ({ wide: 'image-block--wide', square: 'image-block--square', portrait: 'image-block--portrait' })[enItem.ratio] || 'image-block--wide';
+            const ratioClass = ({ wide: 'image-block--wide', square: 'image-block--square', portrait: 'image-block--portrait', auto: 'image-block--auto' })[enItem.ratio] || 'image-block--wide';
             const phEn       = imgPhLabel(desc, 'en').replace(/"/g, '&quot;');
             const phEs       = imgPhLabel(desc, 'es').replace(/"/g, '&quot;');
             // No source declared, intended-but-not-ready: render the placeholder, no request.
@@ -300,14 +301,14 @@
           }
           case 'video': {
             const desc       = (enItem.alt || '').replace(/"/g, '&quot;');
-            const ratioClass = ({ wide: 'image-block--wide', square: 'image-block--square', portrait: 'image-block--portrait' })[enItem.ratio] || 'image-block--wide';
+            const ratioClass = ({ wide: 'image-block--wide', square: 'image-block--square', portrait: 'image-block--portrait', auto: 'image-block--auto' })[enItem.ratio] || 'image-block--wide';
             const webm       = enItem.src;
             const mp4        = webm.replace(/\.webm$/, '.mp4');
             const poster     = enItem.poster ? ` poster="../${enItem.poster}"` : '';
             const vLabel     = enItem.label ? `<span class="media-label">${t(enItem.label, esItem?.label)}</span>` : '';
             const vCapText   = enItem.caption ? t(enItem.caption, esItem?.caption) : '';
-            const cap        = (vLabel || vCapText) ? `<figcaption class="image-block__caption">${vLabel}${vLabel && vCapText ? ' — ' : ''}${vCapText}</figcaption>` : '';
-            return `<figure class="image-block ${ratioClass} image-block--video"><video${poster} autoplay loop muted playsinline${enItem.controls === false ? '' : ' controls'} preload="metadata" aria-label="${desc}"><source src="../${webm}" type="video/webm"><source src="../${mp4}" type="video/mp4"></video>${cap}</figure>`;
+            const cap        = (vLabel || vCapText) ? `<figcaption class="demo-figure__caption">${vLabel}${vLabel && vCapText ? ' — ' : ''}${vCapText}</figcaption>` : '';
+            return `<figure class="demo-figure"><div class="image-block ${ratioClass} image-block--video"><video${poster} autoplay loop muted playsinline${enItem.controls === false ? '' : ' controls'} preload="metadata" aria-label="${desc}"><source src="../${webm}" type="video/webm"><source src="../${mp4}" type="video/mp4"></video><button class="image-block__expand" aria-label="Expand video" type="button">⤢</button></div>${cap}</figure>`;
           }
           case 'compare': {
             const cell = (s, fallbackLbl, tagMod) => s
@@ -595,8 +596,24 @@
         document.body.style.overflow = 'hidden';
       }
 
+      function openVideoLightbox(srcVid) {
+        lbBox.innerHTML = '';
+        const v = document.createElement('video');
+        v.className = 'lightbox-video';
+        v.controls = true; v.autoplay = true; v.loop = true; v.muted = true;
+        v.setAttribute('playsinline', '');
+        srcVid.querySelectorAll('source').forEach(s => {
+          const el = document.createElement('source');
+          el.src = s.src; el.type = s.type; v.appendChild(el);
+        });
+        lbBox.appendChild(v);
+        lb.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+      }
+
       function closeLightbox() {
         lb.classList.remove('is-open');
+        lbBox.innerHTML = '';
         document.body.style.overflow = '';
       }
 
@@ -615,6 +632,14 @@
           }
           return;
         }
+        const vexp = e.target.closest('.image-block__expand');
+        if (vexp) {
+          const v = vexp.closest('.image-block--video')?.querySelector('video');
+          if (v) openVideoLightbox(v);
+          return;
+        }
+        const ncVid = e.target.closest('.image-block--video video');
+        if (ncVid && !ncVid.hasAttribute('controls')) { openVideoLightbox(ncVid); return; }
         const img = e.target.closest('.image-block img, .compare__cell img, .carousel__slide img');
         const ph  = e.target.closest('.image-block__placeholder');
         if (img) openLightbox(img);

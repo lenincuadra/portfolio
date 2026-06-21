@@ -332,7 +332,8 @@ const PORTFOLIO_DATA = {
           "template": "v3",
           "featured": false,
           "images": {
-            "cover": "assets/images/figma-webp-export/cover.png",
+            "cover": "assets/images/figma-webp-export/cover.webp",
+            "video": "assets/images/figma-webp-export/figma-flow.webm",
             "screens": []
           },
           "card": {
@@ -359,10 +360,10 @@ const PORTFOLIO_DATA = {
               "id": "section-overview-image",
               "content": [
                 {
-                  "type": "image",
-                  "src": "assets/images/figma-webp-export/hero.png",
-                  "alt": "Plugin running in Figma, UI visible with multiple images selected",
-                  "loading": "lazy"
+                  "type": "video",
+                  "controls": false,
+                  "src": "assets/images/figma-webp-export/figma-flow.webm",
+                  "alt": "The .webp export plugin running in Figma — UI flow with images selected"
                 }
               ]
             },
@@ -387,12 +388,6 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "body",
                   "text": "With 20 or 50 credits per plan, paid plugins disappear fast. Export 10 images, make a few adjustments, re-export, and you're out. And the manual workaround isn't free either: a single export takes around 5 minutes. For 12 images across three viewports — desktop, tablet, mobile — that's a full hour. That hour belongs to the designer or it falls on the developer. Either way, someone pays for a problem that shouldn't exist."
-                },
-                {
-                  "type": "image",
-                  "src": "assets/images/figma-webp-export/before-after.png",
-                  "alt": "Before/after — manual step-by-step flow vs. the plugin in one step",
-                  "loading": "lazy"
                 }
               ]
             },
@@ -407,10 +402,11 @@ const PORTFOLIO_DATA = {
                   "text": "A designer on our agency side raised the problem. I told her I could build a plugin to fix it. Using Claude.ai and nothing but vibe coding, I built and tested it locally in 77 minutes — running it in Figma's Developer Mode while iterating. I also added a Spanish/English language toggle — I work for a US client but my agency is based in Argentina, and designers on both sides needed to use it without friction."
                 },
                 {
-                  "type": "image",
-                  "src": "assets/images/figma-webp-export/claude-process.png",
-                  "alt": "Claude.ai — build process screen, token usage visible",
-                  "loading": "lazy"
+                  "type": "video",
+                  "controls": false,
+                  "src": "assets/images/figma-webp-export/plugin-code.webm",
+                  "caption": "One Claude.ai session (usage shown), then the generated plugin files — manifest, logic and UI — open in Cursor.",
+                  "alt": "Cursor editor showing the WebP Optimizer plugin files generated with Claude.ai (manifest.json, code.js, ui.html), and the Claude.ai usage screen"
                 }
               ]
             },
@@ -425,10 +421,10 @@ const PORTFOLIO_DATA = {
                   "text": "Batch export to .webp with resolution control, published on the Figma Community. I submitted it after testing locally; it cleared review in 3 days and is now free for everyone."
                 },
                 {
-                  "type": "image",
-                  "src": "assets/images/figma-webp-export/plugin-in-use.png",
-                  "alt": "Plugin in use — export in progress or side-by-side comparison",
-                  "loading": "lazy"
+                  "type": "video",
+                  "src": "assets/images/figma-webp-export/plugin-demo.webm",
+                  "caption": "Full demo — batch export to .webp, then the exported files in Finder with their sizes.",
+                  "alt": "Plugin demo — batch .webp export and the resulting files with their sizes in Finder"
                 }
               ]
             },
@@ -454,15 +450,16 @@ const PORTFOLIO_DATA = {
               "id": "section-status",
               "tocLabel": "Status",
               "label": "Status",
-              "h3": "Published and available to the whole team — and to any Figma user via the Community.",
+              "h3": "Published and available to both teams.",
               "content": [
-                { "type": "subheading", "text": "Published and available to the whole team" },
+                { "type": "subheading", "text": "Published and available to both teams — the client's and the agency's" },
                 { "type": "body", "text": "and to any Figma user via the Community." },
                 { "type": "subheading", "text": "The designer who raised the problem is the primary user." },
                 { "type": "body", "text": "The client team and I use it as needed." },
                 {
                   "type": "image",
-                  "src": "assets/images/figma-webp-export/figma-community.png",
+                  "src": "assets/images/figma-webp-export/figma-community.webp",
+                  "ratio": "auto",
                   "alt": "Plugin's Figma Community page — listing with cover, description and install button",
                   "loading": "lazy"
                 },
@@ -1539,7 +1536,8 @@ const PORTFOLIO_DATA = {
           "template": "v3",
           "featured": false,
           "images": {
-            "cover": "assets/images/figma-webp-export/cover.png",
+            "cover": "assets/images/figma-webp-export/cover.webp",
+            "video": "assets/images/figma-webp-export/figma-flow.webm",
             "screens": []
           },
           "card": {
@@ -1566,10 +1564,10 @@ const PORTFOLIO_DATA = {
               "id": "section-overview-image",
               "content": [
                 {
-                  "type": "image",
-                  "src": "assets/images/figma-webp-export/hero.png",
-                  "alt": "Plugin corriendo en Figma, UI visible con varias imágenes seleccionadas",
-                  "loading": "lazy"
+                  "type": "video",
+                  "controls": false,
+                  "src": "assets/images/figma-webp-export/figma-flow.webm",
+                  "alt": "El plugin de exportación a .webp corriendo en Figma — flujo de UI con imágenes seleccionadas"
                 }
               ]
             },
@@ -1594,12 +1592,6 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "body",
                   "text": "Con 20 o 50 créditos por plan, los plugins de pago se agotan rápido. Exportá 10 imágenes, hacé algunos ajustes, volvé a exportar, y se terminaron. Y el workaround manual tampoco es gratis: una sola exportación tarda alrededor de 5 minutos. Para 12 imágenes en tres viewports — desktop, tablet, mobile — es una hora completa. Esa hora la paga el diseñador o cae sobre el desarrollador. De cualquier forma, alguien paga por un problema que no debería existir."
-                },
-                {
-                  "type": "image",
-                  "src": "assets/images/figma-webp-export/before-after.png",
-                  "alt": "Antes/después — flujo manual paso a paso vs. el plugin en un paso",
-                  "loading": "lazy"
                 }
               ]
             },
@@ -1614,10 +1606,11 @@ const PORTFOLIO_DATA = {
                   "text": "Una diseñadora del lado de la agencia planteó el problema. Le dije que podía construir un plugin para resolverlo. Usando Claude.ai y nada más que vibe coding, lo construí y probé localmente en 77 minutos — ejecutándolo en el Developer Mode de Figma mientras iteraba. También agregué un toggle de idioma español/inglés — trabajo para un cliente de EE.UU. pero mi agencia está en Argentina, y los diseñadores de ambos lados necesitaban usarlo sin fricción."
                 },
                 {
-                  "type": "image",
-                  "src": "assets/images/figma-webp-export/claude-process.png",
-                  "alt": "Claude.ai — pantalla del proceso de construcción, consumo de tokens visible",
-                  "loading": "lazy"
+                  "type": "video",
+                  "controls": false,
+                  "src": "assets/images/figma-webp-export/plugin-code.webm",
+                  "caption": "Una sola sesión de Claude.ai (con el consumo), y los archivos del plugin generados — manifest, lógica y UI — abiertos en Cursor.",
+                  "alt": "Editor Cursor mostrando los archivos del plugin WebP Optimizer generados con Claude.ai (manifest.json, code.js, ui.html), y la pantalla de consumo de Claude.ai"
                 }
               ]
             },
@@ -1632,10 +1625,10 @@ const PORTFOLIO_DATA = {
                   "text": "Exportación por lotes a .webp con control de resolución, publicado en la Figma Community. Lo envié tras probarlo localmente; pasó la revisión en 3 días y ahora es gratis para todos."
                 },
                 {
-                  "type": "image",
-                  "src": "assets/images/figma-webp-export/plugin-in-use.png",
-                  "alt": "Plugin en uso — exportación en progreso o comparación lado a lado",
-                  "loading": "lazy"
+                  "type": "video",
+                  "src": "assets/images/figma-webp-export/plugin-demo.webm",
+                  "caption": "Demo completo — exportación por lotes a .webp, y luego los archivos en Finder con sus pesos.",
+                  "alt": "Demo del plugin — exportación por lotes a .webp y los archivos resultantes con sus pesos en Finder"
                 }
               ]
             },
@@ -1661,15 +1654,16 @@ const PORTFOLIO_DATA = {
               "id": "section-status",
               "tocLabel": "Estado",
               "label": "Estado",
-              "h3": "Publicado y disponible para todo el equipo — y para cualquier usuario de Figma via la Community.",
+              "h3": "Publicado y disponible para ambos equipos.",
               "content": [
-                { "type": "subheading", "text": "Publicado y disponible para todo el equipo" },
+                { "type": "subheading", "text": "Publicado y disponible para ambos equipos — el del cliente y el de la agencia" },
                 { "type": "body", "text": "y para cualquier usuario de Figma via la Community." },
                 { "type": "subheading", "text": "La diseñadora que planteó el problema es la usuaria principal." },
                 { "type": "body", "text": "El equipo del cliente y yo lo usamos según necesidad." },
                 {
                   "type": "image",
-                  "src": "assets/images/figma-webp-export/figma-community.png",
+                  "src": "assets/images/figma-webp-export/figma-community.webp",
+                  "ratio": "auto",
                   "alt": "Página del plugin en la Figma Community — listado con portada, descripción y botón de instalación",
                   "loading": "lazy"
                 },

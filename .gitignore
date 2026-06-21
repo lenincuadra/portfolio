@@ -9,3 +9,8 @@ tracking-registry.md
 
 # Grabaciones crudas (pesadas) — convertir a webm/mp4 antes de commitear
 assets/**/*.mov
+
+# Fuentes crudas del case del plugin (sin procesar) — contienen un PNG sin blurear
+# con el dominio del cliente (@follett.com). NUNCA commitear; usar los assets
+# procesados en assets/images/figma-webp-export/ (email blureado por NDA).
+assets/images/plugin-export-imgs/
