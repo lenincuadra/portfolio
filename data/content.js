@@ -768,13 +768,8 @@ const PORTFOLIO_DATA = {
               "layout": "overview",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "numbered",
-                  "items": [
-                    "Same quarter, one year apart",
-                    "No pricing or campaign changes",
-                    "No external growth drivers"
-                  ]
+                  "type": "body",
+                  "text": "Tire sales were flat, and the assumption was a demand problem. It wasn't — the website's inquiry flow was quietly leaking buyers. I reframed it as a conversion problem and rebuilt the flow. The payoff was clean to attribute: 221% revenue growth, measured the same quarter one year apart."
                 }
               ]
             },
@@ -782,16 +777,11 @@ const PORTFOLIO_DATA = {
               "id": "section-scope",
               "tocLabel": "Scope",
               "label": "Scope",
-              "h3": "Full website UX redesign + conversion channel strategy.",
-              "style": "padding-bottom: 0",
+              "h3": "The brief: lift conversion without touching price, campaigns, or inventory.",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "Automotive tire sales were underperforming due to a complex inquiry flow and high cognitive friction across the website.",
-                    "The objective was to improve conversion without altering pricing, campaigns or inventory strategy."
-                  ]
+                  "type": "body",
+                  "text": "Tire sales were underperforming because of a complex inquiry flow and high friction across the site. The work was a full UX redesign of that flow plus a new conversion channel — under one constraint: no changes to pricing, campaigns, or inventory. So whatever moved the numbers would be the design, and nothing else."
                 }
               ]
             },
@@ -802,30 +792,8 @@ const PORTFOLIO_DATA = {
               "h3": "Friction was hiding revenue.",
               "content": [
                 {
-                  "type": "subheading",
-                  "text": "The original inquiry flow:"
-                },
-                {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "Required excessive cognitive effort.",
-                    "Forced users through a rigid multi-step structure.",
-                    "Relied exclusively on traditional web form submission."
-                  ]
-                },
-                {
-                  "type": "subheading",
-                  "text": "Resulting in:"
-                },
-                {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "High drop-off during form completion.",
-                    "Slow communication between buyers and the business.",
-                    "Low conversion efficiency."
-                  ]
+                  "type": "body",
+                  "text": "The original inquiry flow asked too much: a rigid, multi-step form that relied entirely on traditional web submission. Buyers dropped off mid-form, communication with the business was slow, and conversion stayed low — the demand was there, but the flow was leaking it."
                 }
               ]
             },
@@ -836,19 +804,12 @@ const PORTFOLIO_DATA = {
               "h3": "Simplify the path. Change the channel.",
               "content": [
                 {
-                  "type": "subheading",
-                  "text": "1. Cognitive Friction Reduction"
+                  "type": "heading",
+                  "text": "Cut the cognitive load"
                 },
                 {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "columns": 2,
-                  "items": [
-                    "Simplified the inquiry structure.",
-                    "Reduced unnecessary inputs.",
-                    "Improved information hierarchy and clarity.",
-                    "Optimized form completion flow."
-                  ]
+                  "type": "body",
+                  "text": "I rebuilt the inquiry form from paper up — fewer fields, a clearer hierarchy, and a flow that guides instead of interrogates. It went from hand sketches to a mid-fidelity form before any pixel was final."
                 },
                 {
                   "type": "video",
@@ -858,34 +819,25 @@ const PORTFOLIO_DATA = {
                   "alt": "Design progression: hand-drawn wireframes, then the mid-fidelity inquiry form"
                 },
                 {
+                  "type": "body",
+                  "text": "For brand selection I borrowed the quick-reply / chip pattern people already know from apps like LinkedIn: tap a suggestion instead of typing it. Fewer inputs, faster completion."
+                },
+                {
                   "type": "video",
                   "controls": false,
                   "ratio": "auto",
                   "size": "half",
                   "src": "assets/images/ecommerce/smart-suggestions.webm",
-                  "caption": "Borrowed the quick-reply / chip pattern (à la LinkedIn) for brand selection — fewer inputs, faster completion.",
+                  "caption": "The quick-reply / chip pattern (à la LinkedIn) applied to brand selection.",
                   "alt": "Quick-reply chip / smart-suggestion pattern: tapping a suggestion auto-fills the field"
                 },
                 {
-                  "type": "subheading",
-                  "text": "2. Channel Strategy Shift"
+                  "type": "heading",
+                  "text": "Add a high-intent channel"
                 },
                 {
                   "type": "body",
-                  "text": "Proposed and integrated WhatsApp as a high-intent communication channel during early market adoption."
-                },
-                {
-                  "type": "subheading",
-                  "text": "This allowed:"
-                },
-                {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "Faster buyer-business interaction.",
-                    "Reduced abandonment after initial interest.",
-                    "Real-time clarification for complex tire specifications."
-                  ]
+                  "text": "Then I changed the channel itself: WhatsApp as a one-tap handoff from the form. Buyers and the business could talk in real time, clarify complex tire specs on the spot, and the abandonment that used to happen right after someone showed interest dropped."
                 },
                 {
                   "type": "video",
@@ -900,7 +852,7 @@ const PORTFOLIO_DATA = {
             {
               "id": "section-before-after",
               "tocLabel": "Before / After",
-              "h3": "Before / After Comparison.",
+              "h3": "From a rigid multi-step form to a one-tap WhatsApp handoff.",
               "content": [
                 {
                   "type": "table",
@@ -917,16 +869,11 @@ const PORTFOLIO_DATA = {
               "id": "section-result",
               "tocLabel": "Result",
               "label": "Result",
-              "h3": "Measured as Q1 vs Q1 year-over-year.",
+              "h3": "221% revenue growth, with UX as the only variable.",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "Same quarter, one year apart — identical market conditions.",
-                    "UX intervention was the only variable changed.",
-                    "Attribution is clean: no confounding factors introduced."
-                  ]
+                  "type": "body",
+                  "text": "Measured the same quarter one year apart, with the redesign as the only thing that changed — so the attribution is clean, no confounding factors. The flow that used to leak buyers now converts them."
                 },
                 {
                   "type": "subheading",
@@ -966,19 +913,13 @@ const PORTFOLIO_DATA = {
             },
             {
               "id": "section-learnings",
-              "tocLabel": "What This Demonstrates",
-              "label": "What This Demonstrates",
-              "h3": "What This Demonstrates.",
+              "tocLabel": "Takeaway",
+              "label": "Takeaway",
+              "h3": "A revenue problem solved through UX, not just an interface redesign.",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "numbered",
-                  "items": [
-                    "Ability to identify revenue bottlenecks.",
-                    "Strategic thinking beyond interface design.",
-                    "Execution focused on measurable business impact.",
-                    "Understanding of behavioral friction and conversion dynamics."
-                  ]
+                  "type": "body",
+                  "text": "The lever wasn't visual polish — it was finding where the funnel leaked, thinking past the interface to the channel itself, and executing against a number I could measure. Behavioral friction and conversion dynamics were what moved revenue."
                 }
               ]
             }
@@ -1978,13 +1919,8 @@ const PORTFOLIO_DATA = {
               "layout": "overview",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "numbered",
-                  "items": [
-                    "Mismo trimestre, un año de diferencia",
-                    "Sin cambios de precios ni campañas",
-                    "Sin factores externos de crecimiento"
-                  ]
+                  "type": "body",
+                  "text": "Las ventas de neumáticos estaban planchadas y se asumía que era un problema de demanda. No lo era: el flujo de consulta del sitio estaba perdiendo compradores en silencio. Lo replanteé como un problema de conversión y reconstruí el flujo. El resultado fue limpio de atribuir: 221% de crecimiento en ingresos, medido el mismo trimestre un año después."
                 }
               ]
             },
@@ -1992,16 +1928,11 @@ const PORTFOLIO_DATA = {
               "id": "section-scope",
               "tocLabel": "Alcance",
               "label": "Alcance",
-              "h3": "Rediseño UX completo del sitio + estrategia de canal de conversión.",
-              "style": "padding-bottom: 0",
+              "h3": "El brief: subir la conversión sin tocar precio, campañas ni inventario.",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "Las ventas de neumáticos tenían bajo rendimiento por un flujo de consulta complejo y alta fricción cognitiva en el sitio.",
-                    "El objetivo era mejorar la conversión sin modificar precios, campañas ni estrategia de inventario."
-                  ]
+                  "type": "body",
+                  "text": "Las ventas de neumáticos rendían poco por un flujo de consulta complejo y mucha fricción en el sitio. El trabajo fue un rediseño UX completo de ese flujo más un nuevo canal de conversión — con una restricción: sin cambios de precio, campañas ni inventario. Así, lo que moviera los números iba a ser el diseño, y nada más."
                 }
               ]
             },
@@ -2012,30 +1943,8 @@ const PORTFOLIO_DATA = {
               "h3": "La fricción estaba ocultando ingresos.",
               "content": [
                 {
-                  "type": "subheading",
-                  "text": "El flujo de consulta original:"
-                },
-                {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "Exigía un esfuerzo cognitivo excesivo.",
-                    "Forzaba a los usuarios a través de una estructura rígida de múltiples pasos.",
-                    "Dependía exclusivamente del envío de formularios web tradicionales."
-                  ]
-                },
-                {
-                  "type": "subheading",
-                  "text": "Lo que resultó en:"
-                },
-                {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "Alta tasa de abandono durante el llenado del formulario.",
-                    "Comunicación lenta entre compradores y el negocio.",
-                    "Baja eficiencia de conversión."
-                  ]
+                  "type": "body",
+                  "text": "El flujo de consulta original pedía demasiado: un formulario rígido de múltiples pasos que dependía solo del envío web tradicional. Los compradores abandonaban a mitad del formulario, la comunicación con el negocio era lenta y la conversión quedaba baja — la demanda estaba, pero el flujo la dejaba escapar."
                 }
               ]
             },
@@ -2046,19 +1955,12 @@ const PORTFOLIO_DATA = {
               "h3": "Simplificar el camino. Cambiar el canal.",
               "content": [
                 {
-                  "type": "subheading",
-                  "text": "1. Reducción de fricción cognitiva"
+                  "type": "heading",
+                  "text": "Bajar la carga cognitiva"
                 },
                 {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "columns": 2,
-                  "items": [
-                    "Se simplificó la estructura de consulta.",
-                    "Se redujeron campos innecesarios.",
-                    "Se mejoró la jerarquía de información y la claridad.",
-                    "Se optimizó el flujo de llenado del formulario."
-                  ]
+                  "type": "body",
+                  "text": "Reconstruí el formulario de consulta desde el papel — menos campos, una jerarquía más clara y un flujo que guía en vez de interrogar. Pasó de bocetos a mano a un formulario mid-fi antes de que ningún pixel fuera final."
                 },
                 {
                   "type": "video",
@@ -2068,34 +1970,25 @@ const PORTFOLIO_DATA = {
                   "alt": "Progresión de diseño: wireframes a mano y luego el formulario mid-fi"
                 },
                 {
+                  "type": "body",
+                  "text": "Para la selección de marcas tomé el patrón de respuestas rápidas / chips que la gente ya conoce de apps como LinkedIn: tocar una sugerencia en vez de escribirla. Menos inputs, completado más rápido."
+                },
+                {
                   "type": "video",
                   "controls": false,
                   "ratio": "auto",
                   "size": "half",
                   "src": "assets/images/ecommerce/smart-suggestions.webm",
-                  "caption": "Tomé el patrón de respuestas rápidas / chips (estilo LinkedIn) para la selección de marcas — menos inputs, completado más rápido.",
+                  "caption": "El patrón de respuestas rápidas / chips (estilo LinkedIn) aplicado a la selección de marcas.",
                   "alt": "Patrón de chips / sugerencias: tocar una sugerencia autocompleta el campo"
                 },
                 {
-                  "type": "subheading",
-                  "text": "2. Cambio de estrategia de canal"
+                  "type": "heading",
+                  "text": "Sumar un canal de alta intención"
                 },
                 {
                   "type": "body",
-                  "text": "Se propuso e integró WhatsApp como canal de comunicación de alta intención durante la adopción temprana del mercado."
-                },
-                {
-                  "type": "subheading",
-                  "text": "Esto permitió:"
-                },
-                {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "Interacción más rápida entre compradores y el negocio.",
-                    "Menor abandono después del interés inicial.",
-                    "Aclaración en tiempo real para especificaciones técnicas complejas."
-                  ]
+                  "text": "Después cambié el canal en sí: WhatsApp como handoff a un toque desde el formulario. Comprador y negocio podían hablar en tiempo real, aclarar specs técnicas complejas al instante, y el abandono que pasaba justo después de mostrar interés bajó."
                 },
                 {
                   "type": "video",
@@ -2110,7 +2003,7 @@ const PORTFOLIO_DATA = {
             {
               "id": "section-before-after",
               "tocLabel": "Antes / Después",
-              "h3": "Comparación Antes / Después.",
+              "h3": "De un formulario rígido de múltiples pasos a un handoff a WhatsApp a un toque.",
               "content": [
                 {
                   "type": "table",
@@ -2127,16 +2020,11 @@ const PORTFOLIO_DATA = {
               "id": "section-result",
               "tocLabel": "Resultado",
               "label": "Resultado",
-              "h3": "Medido como Q1 vs Q1 año a año.",
+              "h3": "221% de crecimiento en ingresos, con la UX como única variable.",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "Mismo trimestre, un año de diferencia — condiciones de mercado idénticas.",
-                    "La intervención UX fue la única variable modificada.",
-                    "Atribución limpia: sin factores externos que confundan el resultado."
-                  ]
+                  "type": "body",
+                  "text": "Medido el mismo trimestre un año después, con el rediseño como lo único que cambió — así la atribución es limpia, sin factores que confundan. El flujo que antes perdía compradores ahora los convierte."
                 },
                 {
                   "type": "subheading",
@@ -2176,19 +2064,13 @@ const PORTFOLIO_DATA = {
             },
             {
               "id": "section-learnings",
-              "tocLabel": "Qué demuestra esto",
-              "label": "Qué demuestra esto",
-              "h3": "Qué demuestra esto.",
+              "tocLabel": "Conclusión",
+              "label": "Conclusión",
+              "h3": "Un problema de ingresos resuelto con UX, no solo un rediseño de interfaz.",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "numbered",
-                  "items": [
-                    "Capacidad para identificar cuellos de botella de ingresos.",
-                    "Pensamiento estratégico más allá del diseño de interfaz.",
-                    "Ejecución enfocada en impacto de negocio medible.",
-                    "Comprensión de la fricción conductual y las dinámicas de conversión."
-                  ]
+                  "type": "body",
+                  "text": "La palanca no fue el pulido visual — fue encontrar dónde el funnel perdía gente, pensar más allá de la interfaz hasta el canal en sí, y ejecutar contra un número medible. La fricción conductual y las dinámicas de conversión fueron lo que movió los ingresos."
                 }
               ]
             }
