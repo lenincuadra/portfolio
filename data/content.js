@@ -730,9 +730,11 @@ const PORTFOLIO_DATA = {
         // ---------------------------------------------------------------------
         {
           "slug": "ecommerce-conversion",
+          "template": "v3",
+          "featured": false,
           "images": {
             "cover": "assets/images/ecommerce/mockup.png",
-            "hero": "assets/images/telecom/portrait.png"
+            "screens": []
           },
           "card": {
             "tags": [
@@ -748,12 +750,8 @@ const PORTFOLIO_DATA = {
             "description": "221% Q1 revenue increase driven purely by UX intervention. A case study by Lenin Cuadra."
           },
           "hero": {
-            "tags": [
-              "E-commerce",
-              "Conversion Optimization",
-              "Montironi Automotive"
-            ],
-            "title": "221% Q1 Revenue Increase Driven Purely by UX Intervention."
+            "title": "221% Q1 Revenue Increase Driven Purely by UX Intervention.",
+            "subtitle": "Montironi Automotive — UX redesign + WhatsApp as a high-intent channel, with no pricing or campaign changes."
           },
           "quickScan": {
             "role": "Product Designer — UX Redesign & Channel Strategy",
@@ -766,7 +764,7 @@ const PORTFOLIO_DATA = {
               "id": "section-overview",
               "tocLabel": "Overview",
               "label": "Overview",
-              "heading": "A conversion problem disguised as a sales problem.",
+              "h3": "A conversion problem disguised as a sales problem.",
               "layout": "overview",
               "content": [
                 {
@@ -790,7 +788,7 @@ const PORTFOLIO_DATA = {
               "id": "section-scope",
               "tocLabel": "Scope",
               "label": "Scope",
-              "heading": "Full website UX redesign + conversion channel strategy.",
+              "h3": "Full website UX redesign + conversion channel strategy.",
               "style": "padding-bottom: 0",
               "content": [
                 {
@@ -807,7 +805,7 @@ const PORTFOLIO_DATA = {
               "id": "section-problem",
               "tocLabel": "Problem",
               "label": "Problem",
-              "heading": "Friction was hiding revenue.",
+              "h3": "Friction was hiding revenue.",
               "content": [
                 {
                   "type": "subheading",
@@ -841,7 +839,7 @@ const PORTFOLIO_DATA = {
               "id": "section-intervention",
               "tocLabel": "Intervention",
               "label": "Intervention",
-              "heading": "Simplify the path. Change the channel.",
+              "h3": "Simplify the path. Change the channel.",
               "content": [
                 {
                   "type": "subheading",
@@ -898,7 +896,7 @@ const PORTFOLIO_DATA = {
               "id": "section-before-after",
               "tocLabel": "Before / After",
               "label": "Before / After",
-              "heading": "Before / After Comparison.",
+              "h3": "Before / After Comparison.",
               "content": [
                 {
                   "type": "subheading",
@@ -937,7 +935,7 @@ const PORTFOLIO_DATA = {
               "id": "section-result",
               "tocLabel": "Result",
               "label": "Result",
-              "heading": "Measured as Q1 vs Q1 year-over-year.",
+              "h3": "Measured as Q1 vs Q1 year-over-year.",
               "content": [
                 {
                   "type": "steps",
@@ -964,7 +962,7 @@ const PORTFOLIO_DATA = {
               "id": "section-learnings",
               "tocLabel": "What This Demonstrates",
               "label": "What This Demonstrates",
-              "heading": "What This Demonstrates.",
+              "h3": "What This Demonstrates.",
               "content": [
                 {
                   "type": "steps",
@@ -1936,9 +1934,11 @@ const PORTFOLIO_DATA = {
         // ---------------------------------------------------------------------
         {
           "slug": "ecommerce-conversion",
+          "template": "v3",
+          "featured": false,
           "images": {
             "cover": "assets/images/ecommerce/mockup.png",
-            "hero": "assets/images/telecom/portrait.png"
+            "screens": []
           },
           "card": {
             "tags": [
@@ -1954,12 +1954,8 @@ const PORTFOLIO_DATA = {
             "description": "Incremento del 221% en ingresos Q1 impulsado únicamente por intervención UX. Un caso de estudio de Lenin Cuadra."
           },
           "hero": {
-            "tags": [
-              "E-commerce",
-              "Optimización de Conversión",
-              "Montironi Automotive"
-            ],
-            "title": "Incremento del 221% en Ingresos Q1 Impulsado Únicamente por Intervención UX."
+            "title": "Incremento del 221% en Ingresos Q1 Impulsado Únicamente por Intervención UX.",
+            "subtitle": "Montironi Automotive — rediseño de UX + WhatsApp como canal de alta intención, sin cambios de precio ni campañas."
           },
           "quickScan": {
             "role": "Product Designer — Rediseño UX y Estrategia de Canal",
@@ -1972,7 +1968,7 @@ const PORTFOLIO_DATA = {
               "id": "section-overview",
               "tocLabel": "Panorama",
               "label": "Panorama",
-              "heading": "Un problema de conversión disfrazado de problema de ventas.",
+              "h3": "Un problema de conversión disfrazado de problema de ventas.",
               "layout": "overview",
               "content": [
                 {
@@ -1996,7 +1992,7 @@ const PORTFOLIO_DATA = {
               "id": "section-scope",
               "tocLabel": "Alcance",
               "label": "Alcance",
-              "heading": "Rediseño UX completo del sitio + estrategia de canal de conversión.",
+              "h3": "Rediseño UX completo del sitio + estrategia de canal de conversión.",
               "style": "padding-bottom: 0",
               "content": [
                 {
@@ -2013,7 +2009,7 @@ const PORTFOLIO_DATA = {
               "id": "section-problem",
               "tocLabel": "Problema",
               "label": "Problema",
-              "heading": "La fricción estaba ocultando ingresos.",
+              "h3": "La fricción estaba ocultando ingresos.",
               "content": [
                 {
                   "type": "subheading",
@@ -2047,7 +2043,7 @@ const PORTFOLIO_DATA = {
               "id": "section-intervention",
               "tocLabel": "Intervención",
               "label": "Intervención",
-              "heading": "Simplificar el camino. Cambiar el canal.",
+              "h3": "Simplificar el camino. Cambiar el canal.",
               "content": [
                 {
                   "type": "subheading",
@@ -2104,7 +2100,7 @@ const PORTFOLIO_DATA = {
               "id": "section-before-after",
               "tocLabel": "Antes / Después",
               "label": "Antes / Después",
-              "heading": "Comparación Antes / Después.",
+              "h3": "Comparación Antes / Después.",
               "content": [
                 {
                   "type": "subheading",
@@ -2143,7 +2139,7 @@ const PORTFOLIO_DATA = {
               "id": "section-result",
               "tocLabel": "Resultado",
               "label": "Resultado",
-              "heading": "Medido como Q1 vs Q1 año a año.",
+              "h3": "Medido como Q1 vs Q1 año a año.",
               "content": [
                 {
                   "type": "steps",
@@ -2170,7 +2166,7 @@ const PORTFOLIO_DATA = {
               "id": "section-learnings",
               "tocLabel": "Qué demuestra esto",
               "label": "Qué demuestra esto",
-              "heading": "Qué demuestra esto.",
+              "h3": "Qué demuestra esto.",
               "content": [
                 {
                   "type": "steps",
