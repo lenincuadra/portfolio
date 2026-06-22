@@ -733,7 +733,7 @@ const PORTFOLIO_DATA = {
           "template": "v3",
           "featured": false,
           "images": {
-            "cover": "assets/images/ecommerce/mockup.png",
+            "cover": "assets/images/ecommerce/cover.webp",
             "screens": []
           },
           "card": {
@@ -775,12 +775,6 @@ const PORTFOLIO_DATA = {
                     "No pricing or campaign changes",
                     "No external growth drivers"
                   ]
-                },
-                {
-                  "type": "image",
-                  "src": "assets/images/ecommerce/impact-chart.gif",
-                  "alt": "Q1 vs Q1 revenue impact chart",
-                  "loading": "lazy"
                 }
               ]
             },
@@ -864,6 +858,14 @@ const PORTFOLIO_DATA = {
                   "alt": "Design progression: hand-drawn wireframes, then the mid-fidelity inquiry form"
                 },
                 {
+                  "type": "video",
+                  "controls": false,
+                  "ratio": "auto",
+                  "src": "assets/images/ecommerce/smart-suggestions.webm",
+                  "caption": "Borrowed the quick-reply / chip pattern (à la LinkedIn) for brand selection — fewer inputs, faster completion.",
+                  "alt": "Quick-reply chip / smart-suggestion pattern: tapping a suggestion auto-fills the field"
+                },
+                {
                   "type": "subheading",
                   "text": "2. Channel Strategy Shift"
                 },
@@ -883,6 +885,14 @@ const PORTFOLIO_DATA = {
                     "Reduced abandonment after initial interest.",
                     "Real-time clarification for complex tire specifications."
                   ]
+                },
+                {
+                  "type": "video",
+                  "controls": false,
+                  "ratio": "portrait",
+                  "src": "assets/images/ecommerce/whatsapp-flow.webm",
+                  "caption": "The redesigned inquiry form on mobile, with WhatsApp as a one-tap high-intent handoff.",
+                  "alt": "The Montironi tire inquiry form on mobile, handing off to WhatsApp"
                 }
               ]
             },
@@ -917,11 +927,6 @@ const PORTFOLIO_DATA = {
                     "Clearer hierarchy and guidance.",
                     "Integrated WhatsApp high-intent entry point."
                   ]
-                },
-                {
-                  "type": "image",
-                  "src": "assets/images/ecommerce/mockup.png",
-                  "alt": "Redesigned simplified flow"
                 }
               ]
             },
@@ -943,6 +948,18 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "subheading",
                   "text": "221% revenue growth driven exclusively by UX simplification and channel redesign."
+                },
+                {
+                  "type": "steps",
+                  "variant": "bullet",
+                  "items": [
+                    "221% — Q1 tire sales vs. the prior-year quarter.",
+                    "42.65% — user acquisition growth.",
+                    "+54 — additional WhatsApp contacts per month.",
+                    "93% — of traffic was mobile (the mobile-first bet paid off).",
+                    "~10s — average task-completion time.",
+                    "Every WhatsApp inquiry converted to a sale (Tires dept.)."
+                  ]
                 },
                 {
                   "type": "image",
@@ -1931,7 +1948,7 @@ const PORTFOLIO_DATA = {
           "template": "v3",
           "featured": false,
           "images": {
-            "cover": "assets/images/ecommerce/mockup.png",
+            "cover": "assets/images/ecommerce/cover.webp",
             "screens": []
           },
           "card": {
@@ -1973,12 +1990,6 @@ const PORTFOLIO_DATA = {
                     "Sin cambios de precios ni campañas",
                     "Sin factores externos de crecimiento"
                   ]
-                },
-                {
-                  "type": "image",
-                  "src": "assets/images/ecommerce/impact-chart.gif",
-                  "alt": "Gráfico de impacto Q1 vs Q1",
-                  "loading": "lazy"
                 }
               ]
             },
@@ -2062,6 +2073,14 @@ const PORTFOLIO_DATA = {
                   "alt": "Progresión de diseño: wireframes a mano y luego el formulario mid-fi"
                 },
                 {
+                  "type": "video",
+                  "controls": false,
+                  "ratio": "auto",
+                  "src": "assets/images/ecommerce/smart-suggestions.webm",
+                  "caption": "Tomé el patrón de respuestas rápidas / chips (estilo LinkedIn) para la selección de marcas — menos inputs, completado más rápido.",
+                  "alt": "Patrón de chips / sugerencias: tocar una sugerencia autocompleta el campo"
+                },
+                {
                   "type": "subheading",
                   "text": "2. Cambio de estrategia de canal"
                 },
@@ -2081,6 +2100,14 @@ const PORTFOLIO_DATA = {
                     "Menor abandono después del interés inicial.",
                     "Aclaración en tiempo real para especificaciones técnicas complejas."
                   ]
+                },
+                {
+                  "type": "video",
+                  "controls": false,
+                  "ratio": "portrait",
+                  "src": "assets/images/ecommerce/whatsapp-flow.webm",
+                  "caption": "El formulario rediseñado en mobile, con WhatsApp como handoff de alta intención a un toque.",
+                  "alt": "El formulario de consulta de neumáticos de Montironi en mobile, con handoff a WhatsApp"
                 }
               ]
             },
@@ -2115,11 +2142,6 @@ const PORTFOLIO_DATA = {
                     "Jerarquía y orientación más claras.",
                     "Punto de entrada WhatsApp de alta intención integrado."
                   ]
-                },
-                {
-                  "type": "image",
-                  "src": "assets/images/ecommerce/mockup.png",
-                  "alt": "Flujo simplificado rediseñado"
                 }
               ]
             },
@@ -2141,6 +2163,18 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "subheading",
                   "text": "221% de crecimiento en ingresos generado exclusivamente por simplificación UX y rediseño del canal."
+                },
+                {
+                  "type": "steps",
+                  "variant": "bullet",
+                  "items": [
+                    "221% — ventas de neumáticos Q1 vs. el mismo trimestre del año anterior.",
+                    "42.65% — crecimiento en adquisición de usuarios.",
+                    "+54 — contactos adicionales por WhatsApp al mes.",
+                    "93% — del tráfico fue mobile (la apuesta mobile-first rindió).",
+                    "~10s — tiempo promedio de completado de la tarea.",
+                    "Cada consulta por WhatsApp se convirtió en venta (dpto. Neumáticos)."
+                  ]
                 },
                 {
                   "type": "image",

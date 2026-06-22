@@ -578,6 +578,11 @@
 .demo-figure {
   margin: 0;
 }
+/* Phone-format (portrait) demo videos: cap width so they stay crisp and don't blow up */
+.demo-figure:has(.image-block--portrait) {
+  max-width: 380px;
+  margin-inline: auto;
+}
 .demo-figure__caption {
   margin-top: var(--sp-3);
   font-family: var(--font-mono);
