@@ -583,6 +583,47 @@
   max-width: 380px;
   margin-inline: auto;
 }
+/* ---- TABLE (before/after, metrics) ---- */
+.case-table {
+  margin: 0;
+  overflow-x: auto;
+}
+.case-table table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--text-base);
+}
+.case-table th,
+.case-table td {
+  text-align: left;
+  padding: var(--sp-3) var(--sp-4);
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+  line-height: 1.55;
+}
+.case-table thead th {
+  font-weight: 600;
+  color: var(--ink);
+  border-bottom: 1.5px solid var(--ink-3);
+  white-space: nowrap;
+}
+.case-table tbody td {
+  color: var(--ink-2);
+}
+.case-table tbody tr:last-child td {
+  border-bottom: none;
+}
+/* metrics variant: right-align the value column and make it stand out */
+.case-table--metrics td:last-child,
+.case-table--metrics th:last-child {
+  text-align: right;
+  white-space: nowrap;
+}
+.case-table--metrics tbody td:last-child {
+  font-family: var(--font-mono);
+  font-weight: 500;
+  color: var(--ink);
+}
 .demo-figure__caption {
   margin-top: var(--sp-3);
   font-family: var(--font-mono);

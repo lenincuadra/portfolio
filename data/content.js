@@ -899,33 +899,15 @@ const PORTFOLIO_DATA = {
             {
               "id": "section-before-after",
               "tocLabel": "Before / After",
-              "label": "Before / After",
               "h3": "Before / After Comparison.",
               "content": [
                 {
-                  "type": "subheading",
-                  "text": "Before"
-                },
-                {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "High cognitive load.",
-                    "Multi-step rigid structure.",
-                    "No real-time communication channel."
-                  ]
-                },
-                {
-                  "type": "subheading",
-                  "text": "After"
-                },
-                {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "Reduced input fields.",
-                    "Clearer hierarchy and guidance.",
-                    "Integrated WhatsApp high-intent entry point."
+                  "type": "table",
+                  "headers": ["Before", "After"],
+                  "rows": [
+                    ["High cognitive load", "Reduced input fields"],
+                    ["Multi-step, rigid structure", "Clearer hierarchy and guidance"],
+                    ["No real-time communication channel", "Integrated WhatsApp high-intent entry point"]
                   ]
                 }
               ]
@@ -947,17 +929,30 @@ const PORTFOLIO_DATA = {
                 },
                 {
                   "type": "subheading",
-                  "text": "221% revenue growth driven exclusively by UX simplification and channel redesign."
+                  "text": "Quantitative"
+                },
+                {
+                  "type": "table",
+                  "variant": "metrics",
+                  "headers": ["Metric", "Result"],
+                  "rows": [
+                    ["Q1 tire sales (vs. prior-year Q1)", "+221%"],
+                    ["User acquisition", "+42.65%"],
+                    ["WhatsApp contacts / month", "+54"],
+                    ["Mobile traffic", "93%"]
+                  ]
+                },
+                {
+                  "type": "subheading",
+                  "text": "Qualitative"
                 },
                 {
                   "type": "steps",
                   "variant": "bullet",
                   "items": [
-                    "221% — Q1 tire sales vs. the prior-year quarter.",
-                    "42.65% — user acquisition growth.",
-                    "+54 — additional WhatsApp contacts per month.",
-                    "93% — of traffic was mobile (the mobile-first bet paid off).",
-                    "~10s — average task-completion time.",
+                    "Streamlined, faster inquiry process.",
+                    "Higher form-completion rates.",
+                    "~10 seconds average task-completion time.",
                     "Every WhatsApp inquiry converted to a sale (Tires dept.)."
                   ]
                 },
@@ -2114,33 +2109,15 @@ const PORTFOLIO_DATA = {
             {
               "id": "section-before-after",
               "tocLabel": "Antes / Después",
-              "label": "Antes / Después",
               "h3": "Comparación Antes / Después.",
               "content": [
                 {
-                  "type": "subheading",
-                  "text": "Antes"
-                },
-                {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "Alta carga cognitiva.",
-                    "Estructura rígida de múltiples pasos.",
-                    "Sin canal de comunicación en tiempo real."
-                  ]
-                },
-                {
-                  "type": "subheading",
-                  "text": "Después"
-                },
-                {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "Campos reducidos.",
-                    "Jerarquía y orientación más claras.",
-                    "Punto de entrada WhatsApp de alta intención integrado."
+                  "type": "table",
+                  "headers": ["Antes", "Después"],
+                  "rows": [
+                    ["Alta carga cognitiva", "Campos reducidos"],
+                    ["Estructura rígida de múltiples pasos", "Jerarquía y orientación más claras"],
+                    ["Sin canal de comunicación en tiempo real", "Punto de entrada WhatsApp de alta intención integrado"]
                   ]
                 }
               ]
@@ -2162,17 +2139,30 @@ const PORTFOLIO_DATA = {
                 },
                 {
                   "type": "subheading",
-                  "text": "221% de crecimiento en ingresos generado exclusivamente por simplificación UX y rediseño del canal."
+                  "text": "Cuantitativo"
+                },
+                {
+                  "type": "table",
+                  "variant": "metrics",
+                  "headers": ["Métrica", "Resultado"],
+                  "rows": [
+                    ["Ventas de neumáticos Q1 (vs. Q1 año anterior)", "+221%"],
+                    ["Adquisición de usuarios", "+42.65%"],
+                    ["Contactos por WhatsApp / mes", "+54"],
+                    ["Tráfico mobile", "93%"]
+                  ]
+                },
+                {
+                  "type": "subheading",
+                  "text": "Cualitativo"
                 },
                 {
                   "type": "steps",
                   "variant": "bullet",
                   "items": [
-                    "221% — ventas de neumáticos Q1 vs. el mismo trimestre del año anterior.",
-                    "42.65% — crecimiento en adquisición de usuarios.",
-                    "+54 — contactos adicionales por WhatsApp al mes.",
-                    "93% — del tráfico fue mobile (la apuesta mobile-first rindió).",
-                    "~10s — tiempo promedio de completado de la tarea.",
+                    "Proceso de consulta más ágil y rápido.",
+                    "Mayores tasas de completado del formulario.",
+                    "~10 segundos de tiempo promedio de tarea.",
                     "Cada consulta por WhatsApp se convirtió en venta (dpto. Neumáticos)."
                   ]
                 },
