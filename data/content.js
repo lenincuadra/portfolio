@@ -857,17 +857,11 @@ const PORTFOLIO_DATA = {
                   ]
                 },
                 {
-                  "type": "gallery",
-                  "images": [
-                    {
-                      "src": "assets/images/ecommerce/wireframes.png",
-                      "alt": "Wireframes"
-                    },
-                    {
-                      "src": "assets/images/ecommerce/wireframe-MidFi.png",
-                      "alt": "Mid-Fi wireframe"
-                    }
-                  ]
+                  "type": "video",
+                  "controls": false,
+                  "src": "assets/images/ecommerce/intervention-wireframes.webm",
+                  "caption": "From paper wireframes to a mid-fidelity inquiry form — the redesign progression.",
+                  "alt": "Design progression: hand-drawn wireframes, then the mid-fidelity inquiry form"
                 },
                 {
                   "type": "subheading",
@@ -2061,17 +2055,11 @@ const PORTFOLIO_DATA = {
                   ]
                 },
                 {
-                  "type": "gallery",
-                  "images": [
-                    {
-                      "src": "assets/images/ecommerce/wireframes.png",
-                      "alt": "Wireframes"
-                    },
-                    {
-                      "src": "assets/images/ecommerce/wireframe-MidFi.png",
-                      "alt": "Wireframe Mid-Fi"
-                    }
-                  ]
+                  "type": "video",
+                  "controls": false,
+                  "src": "assets/images/ecommerce/intervention-wireframes.webm",
+                  "caption": "De los wireframes en papel a un formulario mid-fi — la progresión del rediseño.",
+                  "alt": "Progresión de diseño: wireframes a mano y luego el formulario mid-fi"
                 },
                 {
                   "type": "subheading",
