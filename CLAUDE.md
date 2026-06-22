@@ -27,6 +27,10 @@ Al escribir o migrar un case v3, redactar los `h3` para que la TOC se lea como u
 
 Cualquier componente nuevo se documenta en el styleguide (sección `case-components`). Todos los gráficos abren en el **lightbox-galería** (label + h3 de su sección, navegable con flechas).
 
+### Cómo escribir el contenido (que lea bien)
+
+Tener la info correcta no alcanza: el caso tiene que **leerse** bien. La regla corta: **prosa (`body`) lleva la narrativa; los bullets (`steps`) solo para listas reales**; patrón claim → cómo → prueba (`heading`/`h3` + `body` + gráfico); primera persona, concreto, breve. El anti-patrón es la "pared de bullets" abstractos. Guía completa con checklist: **`docs/case-v3-content-guide.md`** (referencias: `no-handoff` y `figma-webp-export`).
+
 ## Hero (`index.html`)
 
 Los tags y la descripción del hero son **copy estático hardcodeado en `index.html`** (ya no se auto-generan desde los cases). El sistema previo de scoring (`heroTagWeight`, `home.hero.tagExclude`, `buildHeroSummary` en `js/app.js`) fue eliminado.
