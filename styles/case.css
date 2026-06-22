@@ -583,6 +583,14 @@
   max-width: 380px;
   margin-inline: auto;
 }
+/* Half-size demo video (size: "half") */
+.demo-figure--half {
+  max-width: 50%;
+  margin-inline: auto;
+}
+@media (max-width: 720px) {
+  .demo-figure--half { max-width: 100%; }
+}
 /* ---- TABLE (before/after, metrics) ---- */
 .case-table {
   margin: 0;

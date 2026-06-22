@@ -336,7 +336,7 @@
             const vLabel     = enItem.label ? `<span class="media-label">${t(enItem.label, esItem?.label)}</span>` : '';
             const vCapText   = enItem.caption ? t(enItem.caption, esItem?.caption) : '';
             const cap        = (vLabel || vCapText) ? `<figcaption class="demo-figure__caption">${vLabel}${vLabel && vCapText ? ' — ' : ''}${vCapText}</figcaption>` : '';
-            return `<figure class="demo-figure"><div class="image-block ${ratioClass} image-block--video"><video${poster} autoplay loop muted playsinline${enItem.controls === false ? '' : ' controls'} preload="metadata" aria-label="${desc}"><source src="../${webm}" type="video/webm"><source src="../${mp4}" type="video/mp4"></video><button class="image-block__expand" aria-label="Expand video" type="button">⤢</button></div>${cap}</figure>`;
+            return `<figure class="demo-figure${enItem.size === 'half' ? ' demo-figure--half' : ''}"><div class="image-block ${ratioClass} image-block--video"><video${poster} autoplay loop muted playsinline${enItem.controls === false ? '' : ' controls'} preload="metadata" aria-label="${desc}"><source src="../${webm}" type="video/webm"><source src="../${mp4}" type="video/mp4"></video><button class="image-block__expand" aria-label="Expand video" type="button">⤢</button></div>${cap}</figure>`;
           }
           case 'compare': {
             const cell = (s, fallbackLbl, tagMod) => s

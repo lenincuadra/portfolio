@@ -861,6 +861,7 @@ const PORTFOLIO_DATA = {
                   "type": "video",
                   "controls": false,
                   "ratio": "auto",
+                  "size": "half",
                   "src": "assets/images/ecommerce/smart-suggestions.webm",
                   "caption": "Borrowed the quick-reply / chip pattern (à la LinkedIn) for brand selection — fewer inputs, faster completion.",
                   "alt": "Quick-reply chip / smart-suggestion pattern: tapping a suggestion auto-fills the field"
@@ -932,14 +933,13 @@ const PORTFOLIO_DATA = {
                   "text": "Quantitative"
                 },
                 {
-                  "type": "table",
-                  "variant": "metrics",
-                  "headers": ["Metric", "Result"],
-                  "rows": [
-                    ["Q1 tire sales (vs. prior-year Q1)", "+221%"],
-                    ["User acquisition", "+42.65%"],
-                    ["WhatsApp contacts / month", "+54"],
-                    ["Mobile traffic", "93%"]
+                  "type": "steps",
+                  "variant": "bullet",
+                  "items": [
+                    "221% increase in Q1 tire sales vs. the prior-year quarter.",
+                    "42.65% growth in user acquisition.",
+                    "+54 WhatsApp contacts per month.",
+                    "93% of traffic was mobile."
                   ]
                 },
                 {
@@ -2071,6 +2071,7 @@ const PORTFOLIO_DATA = {
                   "type": "video",
                   "controls": false,
                   "ratio": "auto",
+                  "size": "half",
                   "src": "assets/images/ecommerce/smart-suggestions.webm",
                   "caption": "Tomé el patrón de respuestas rápidas / chips (estilo LinkedIn) para la selección de marcas — menos inputs, completado más rápido.",
                   "alt": "Patrón de chips / sugerencias: tocar una sugerencia autocompleta el campo"
@@ -2142,14 +2143,13 @@ const PORTFOLIO_DATA = {
                   "text": "Cuantitativo"
                 },
                 {
-                  "type": "table",
-                  "variant": "metrics",
-                  "headers": ["Métrica", "Resultado"],
-                  "rows": [
-                    ["Ventas de neumáticos Q1 (vs. Q1 año anterior)", "+221%"],
-                    ["Adquisición de usuarios", "+42.65%"],
-                    ["Contactos por WhatsApp / mes", "+54"],
-                    ["Tráfico mobile", "93%"]
+                  "type": "steps",
+                  "variant": "bullet",
+                  "items": [
+                    "221% de aumento en ventas de neumáticos Q1 vs. el mismo trimestre del año anterior.",
+                    "42.65% de crecimiento en adquisición de usuarios.",
+                    "+54 contactos por WhatsApp al mes.",
+                    "93% del tráfico fue mobile."
                   ]
                 },
                 {

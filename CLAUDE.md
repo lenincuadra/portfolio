@@ -6,6 +6,27 @@ El styleguide (`styleguide.html`) debe mostrar siempre los componentes reales de
 - Si hay discrepancia entre el styleguide y el CSS real, corregir el styleguide para que refleje lo que existe, no al revés.
 - Nunca duplicar estilos en el `<style>` inline del styleguide si ya están definidos en los archivos CSS.
 
+## Case studies (template v3)
+
+Los cases con `"template": "v3"` en `data/content.js` se renderizan con `cases/case-v3.html`; los que no, caen a `case-v2` (routing en `js/app.js`). El contenido es bilingüe (el mismo objeto existe en `en` y `es`, alineado por índice; el renderer usa `t(en, es)`).
+
+### La TOC es el resumen del caso (principio clave)
+
+La tabla de contenidos de cada case-v3 muestra, por sección: el **`label`** (corto, ej. "Overview") como título y el **`h3`** como subtítulo (ver `buildTOC` en `case-v3.html`).
+
+**Regla:** leer solo la TOC tiene que alcanzar para captar el caso completo — sin leer el cuerpo ni navegarlo. Por eso cada **`h3` debe ser una afirmación declarativa y completa que haga avanzar la historia**, no un rótulo que repita el `label`.
+
+- ✅ **Referencia: `no-handoff`** — sus h3 leídos en orden cuentan el arco solos: *"Our standard delivery at PSH takes 2 weeks" → "Every time I tried to generate code from Figma designs, the AI hallucinated." → "Three constraints that eliminated the hallucinations." → "The output was indistinguishable from the real product" → "4 use cases the team didn't have before."*
+- ❌ **Evitar** h3 que solo nombran la sección: *"Before / After Comparison.", "Measured as Q1 vs Q1.", "What This Demonstrates."* (no agregan nada; repiten el `label`).
+
+Al escribir o migrar un case v3, redactar los `h3` para que la TOC se lea como un resumen narrado. **`no-handoff` es el ejemplo a seguir.**
+
+### Componentes de contenido (`type` en `sections[].content[]`)
+
+`body`, `quote`, `steps` (`variant`: bullet/numbered; "label — desc" → h4+p), `subheading` (agrupa con el siguiente body), `image` (`ratio`: wide/square/portrait/auto), `video` (`controls`, `ratio`, `size:"half"`, `poster`, `caption`), `compare`, `callout`, `carousel`, `slider`, `heading` (`level` 4/5), `row`, `gallery`, `link`, `table` (`headers`+`rows`, `variant:"metrics"`).
+
+Cualquier componente nuevo se documenta en el styleguide (sección `case-components`). Todos los gráficos abren en el **lightbox-galería** (label + h3 de su sección, navegable con flechas).
+
 ## Hero (`index.html`)
 
 Los tags y la descripción del hero son **copy estático hardcodeado en `index.html`** (ya no se auto-generan desde los cases). El sistema previo de scoring (`heroTagWeight`, `home.hero.tagExclude`, `buildHeroSummary` en `js/app.js`) fue eliminado.
