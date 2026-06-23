@@ -812,17 +812,13 @@ const PORTFOLIO_DATA = {
                   "text": "I rebuilt the inquiry form from paper up: fewer fields, a clearer hierarchy, and a flow that guides instead of interrogates. It went from hand sketches to a mid-fidelity form before any pixel was final."
                 },
                 {
-                  "type": "image",
+                  "type": "video",
+                  "controls": false,
                   "ratio": "wide",
-                  "src": "assets/images/ecommerce/wireframes.png",
-                  "alt": "Hand-drawn paper wireframes of the inquiry form, sketched in red pen"
-                },
-                {
-                  "type": "image",
-                  "device": "phone",
-                  "src": "assets/images/ecommerce/wireframe-MidFi.png",
-                  "caption": "The mid-fidelity inquiry form for Montironi, rebuilt from those paper sketches.",
-                  "alt": "Mid-fidelity mobile mockup of the Montironi tire inquiry form"
+                  "canvas": "dark",
+                  "src": "assets/images/ecommerce/intervention-progression.webm",
+                  "caption": "From hand sketches to the mid-fidelity inquiry form, the redesign progression.",
+                  "alt": "Design progression: hand-drawn paper wireframes dissolving into the mid-fidelity Montironi inquiry form"
                 },
                 {
                   "type": "body",
@@ -1970,17 +1966,13 @@ const PORTFOLIO_DATA = {
                   "text": "Reconstruí el formulario de consulta desde el papel: menos campos, una jerarquía más clara y un flujo que guía en vez de interrogar. Pasó de bocetos a mano a un formulario mid-fi antes de que ningún pixel fuera final."
                 },
                 {
-                  "type": "image",
+                  "type": "video",
+                  "controls": false,
                   "ratio": "wide",
-                  "src": "assets/images/ecommerce/wireframes.png",
-                  "alt": "Wireframes en papel del formulario de consulta, bocetados a mano en lápiz rojo"
-                },
-                {
-                  "type": "image",
-                  "device": "phone",
-                  "src": "assets/images/ecommerce/wireframe-MidFi.png",
-                  "caption": "El formulario de consulta mid-fi de Montironi, reconstruido a partir de esos bocetos en papel.",
-                  "alt": "Mockup mobile mid-fi del formulario de consulta de neumáticos de Montironi"
+                  "canvas": "dark",
+                  "src": "assets/images/ecommerce/intervention-progression.webm",
+                  "caption": "De los bocetos a mano al formulario de consulta mid-fi, la progresión del rediseño.",
+                  "alt": "Progresión de diseño: los wireframes en papel disuelven en el formulario de consulta mid-fi de Montironi"
                 },
                 {
                   "type": "body",
