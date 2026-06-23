@@ -1,6 +1,9 @@
 # ══════════════════════════════════════════════════════
 # CASE STUDY SCHEMA — populates cases/case-v2.html template
 # ══════════════════════════════════════════════════════
+# ⚠️ OBSOLETO (flujo v2). Los cases actuales son v3 data-driven en data/content.js.
+#    Para crear o migrar un case usá docs/case-v3-guide.md. NO uses este schema para v3.
+# ══════════════════════════════════════════════════════
 # Llena este archivo con el contenido del caso.
 # Cada campo tiene versión EN (inglés) y ES (español latino neutro).
 # Aplica los valores al HTML manualmente siguiendo CASES.md.

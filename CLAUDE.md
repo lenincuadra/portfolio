@@ -1,5 +1,9 @@
 # Portfolio — instrucciones para Claude
 
+## Commits
+
+Mensajes de commit **en español** (no traducir al inglés), matching el historial: prefijo de área + acción en imperativo/presente. Ej.: `ecommerce: reescribe…`, `case-v3: documenta…`, `Styleguide: …`.
+
 ## Styleguide
 El styleguide (`styleguide.html`) debe mostrar siempre los componentes reales del proyecto.
 - Las clases, tokens y estilos que se demuestran en el styleguide deben coincidir exactamente con los que están definidos en los archivos CSS (`styles/`).
@@ -9,6 +13,8 @@ El styleguide (`styleguide.html`) debe mostrar siempre los componentes reales de
 ## Case studies (template v3)
 
 Los cases con `"template": "v3"` en `data/content.js` se renderizan con `cases/case-v3.html`; los que no, caen a `case-v2` (routing en `js/app.js`). El contenido es bilingüe (el mismo objeto existe en `en` y `es`, alineado por índice; el renderer usa `t(en, es)`).
+
+**Para crear o migrar un case v3 de punta a punta** (estructura del objeto, todos los `type` con sus campos derivados del renderer, validación sin navegador y checklist): **`docs/case-v3-guide.md`** — empezá por ahí. (`CASE-STUDY-GUIDE.md` en la raíz es el flujo v2 obsoleto.)
 
 ### La TOC es el resumen del caso (principio clave)
 

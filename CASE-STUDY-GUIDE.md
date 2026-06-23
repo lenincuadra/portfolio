@@ -1,5 +1,7 @@
 # Cómo agregar un nuevo case study
 
+> ⚠️ **OBSOLETO — flujo v2.** Este doc describe el template viejo `case-v2.html` (un HTML por caso + YAML aplicado a mano). Los cases actuales son **v3 data-driven** (un objeto en `data/content.js` + el renderer único `case-v3.html`). Para **crear o migrar un case, usá `docs/case-v3-guide.md`**. Lo único de acá que sigue valiendo es la sección **Imágenes** (convenciones de assets).
+
 Guía completa para crear un caso desde cero usando el template `case-v2.html`.
 
 ---
