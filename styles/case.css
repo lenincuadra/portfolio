@@ -266,11 +266,14 @@
 }
 
 /* ---- IMAGE BLOCK ---- */
+/* Media canvas: --bg-card (white in light, near-black in dark) frames screenshots and
+   mockups — most of which carry their own light/white background — without the heavy
+   --surface divider tint showing as a seam. The letterbox bars match. See docs/design.md. */
 .image-block {
   width: 100%;
   border-radius: var(--r-md);
   overflow: hidden;
-  background: var(--surface);
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
 }
 .image-block--wide {
@@ -304,7 +307,50 @@
 }
 .image-block--video video {
   object-fit: contain;
-  background: var(--surface);
+  background: var(--bg-card);
+}
+/* Dark canvas (opt-in via "canvas": "dark"): frames a mobile / low-contrast screenshot —
+   e.g. a white digital wireframe — on a warm near-black stage so it reads as a device
+   screen instead of dissolving into the light card. Pairs with "ratio": "portrait". */
+.image-block--canvas-dark,
+.image-block--canvas-dark video {
+  background: var(--media-canvas-dark);
+}
+
+/* ---- DEVICE FRAME (phone mockup) ---- */
+/* A mobile screenshot shown inside a phone body, centered on a full-width stage that
+   follows the theme. The dark bezel gives the screen an edge, so a light/white mockup
+   reads as a phone even on a light stage. Opt-in via the image component's "device":"phone".
+   See docs/design.md. */
+.device-figure {
+  margin-block: var(--sp-6);
+}
+.device-stage {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: var(--sp-10) var(--sp-6);
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--r-md);
+}
+.device-phone {
+  flex: 0 0 auto;
+  width: min(248px, 66%);
+  padding: 8px;
+  background: #111114;
+  border-radius: 32px;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+    var(--shadow-lg);
+  cursor: zoom-in;
+}
+.device-phone__screen {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 24px;
+  background: #fff;
 }
 /* Expand-to-lightbox affordance on demo videos (mirrors .cslider__expand) */
 .image-block__expand {
@@ -511,9 +557,12 @@
 .cslider--lightbox { width: min(92vw, 1100px); }
 #lightbox-content .cslider { pointer-events: auto; }
 
-/* Standalone subtitle (h4) within a section */
+/* Standalone subtitle (h4) within a section — opens a sub-topic, so it needs clear top
+   separation from the preceding media/prose. (--sp-7 didn't exist in the scale, which
+   silently voided the whole margin declaration → no spacing at all.) The contextual
+   refinements live in case-v3.html's inline <style>. See docs/design.md. */
 .case-subhead {
-  margin: var(--sp-7) 0 var(--sp-4);
+  margin: var(--sp-10) 0 var(--sp-4);
   font-size: var(--text-lg);
   font-weight: 600;
 }
@@ -605,21 +654,33 @@
 .case-table td {
   text-align: left;
   padding: var(--sp-3) var(--sp-4);
-  border-bottom: 1px solid var(--border-subtle);
   vertical-align: top;
   line-height: 1.55;
+}
+/* Dividers run vertically (between columns), not horizontally (between rows) — the
+   point of a before/after or label/value table is the column split, so that's the line
+   we draw. Outer edges are flush so the table aligns to the surrounding text column. */
+.case-table th:not(:last-child),
+.case-table td:not(:last-child) {
+  border-right: 1px solid var(--border-subtle);
+}
+.case-table th:first-child,
+.case-table td:first-child {
+  padding-left: 0;
+}
+.case-table th:last-child,
+.case-table td:last-child {
+  padding-right: 0;
 }
 .case-table thead th {
   font-weight: 600;
   color: var(--ink);
-  border-bottom: 1.5px solid var(--ink-3);
   white-space: nowrap;
+  /* The one horizontal rule we keep: under the labels, to split header from data. */
+  border-bottom: 1px solid var(--border-subtle);
 }
 .case-table tbody td {
   color: var(--ink-2);
-}
-.case-table tbody tr:last-child td {
-  border-bottom: none;
 }
 /* metrics variant: right-align the value column and make it stand out */
 .case-table--metrics td:last-child,

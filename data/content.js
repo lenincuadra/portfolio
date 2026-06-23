@@ -769,7 +769,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "Tire sales were flat, and the assumption was a demand problem. It wasn't — the website's inquiry flow was quietly leaking buyers. I reframed it as a conversion problem and rebuilt the flow. The payoff was clean to attribute: 221% revenue growth, measured the same quarter one year apart."
+                  "text": "Tire sales were flat, and the assumption was a demand problem. It wasn't. The website's inquiry flow was quietly leaking buyers. I reframed it as a conversion problem and rebuilt the flow. The payoff was clean to attribute: 221% revenue growth, measured the same quarter one year apart."
                 }
               ]
             },
@@ -777,11 +777,11 @@ const PORTFOLIO_DATA = {
               "id": "section-scope",
               "tocLabel": "Scope",
               "label": "Scope",
-              "h3": "The brief: lift conversion without touching price, campaigns, or inventory.",
+              "h3": "Lift conversion without touching price, campaigns, or inventory.",
               "content": [
                 {
                   "type": "body",
-                  "text": "Tire sales were underperforming because of a complex inquiry flow and high friction across the site. The work was a full UX redesign of that flow plus a new conversion channel — under one constraint: no changes to pricing, campaigns, or inventory. So whatever moved the numbers would be the design, and nothing else."
+                  "text": "Tire sales were underperforming because of a complex inquiry flow and high friction across the site. The work was a full UX redesign of that flow plus a new conversion channel, under one constraint: no changes to pricing, campaigns, or inventory. So whatever moved the numbers would be the design, and nothing else."
                 }
               ]
             },
@@ -793,7 +793,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "The original inquiry flow asked too much: a rigid, multi-step form that relied entirely on traditional web submission. Buyers dropped off mid-form, communication with the business was slow, and conversion stayed low — the demand was there, but the flow was leaking it."
+                  "text": "The original inquiry flow asked too much: one open-ended form that made buyers spell out every detail themselves, relying entirely on traditional web submission. Buyers dropped off mid-form, communication with the business was slow, and conversion stayed low. The demand was there, but the flow was leaking it."
                 }
               ]
             },
@@ -809,14 +809,20 @@ const PORTFOLIO_DATA = {
                 },
                 {
                   "type": "body",
-                  "text": "I rebuilt the inquiry form from paper up — fewer fields, a clearer hierarchy, and a flow that guides instead of interrogates. It went from hand sketches to a mid-fidelity form before any pixel was final."
+                  "text": "I rebuilt the inquiry form from paper up: fewer fields, a clearer hierarchy, and a flow that guides instead of interrogates. It went from hand sketches to a mid-fidelity form before any pixel was final."
                 },
                 {
-                  "type": "video",
-                  "controls": false,
-                  "src": "assets/images/ecommerce/intervention-wireframes.webm",
-                  "caption": "From paper wireframes to a mid-fidelity inquiry form — the redesign progression.",
-                  "alt": "Design progression: hand-drawn wireframes, then the mid-fidelity inquiry form"
+                  "type": "image",
+                  "ratio": "wide",
+                  "src": "assets/images/ecommerce/wireframes.png",
+                  "alt": "Hand-drawn paper wireframes of the inquiry form, sketched in red pen"
+                },
+                {
+                  "type": "image",
+                  "device": "phone",
+                  "src": "assets/images/ecommerce/wireframe-MidFi.png",
+                  "caption": "The mid-fidelity inquiry form for Montironi, rebuilt from those paper sketches.",
+                  "alt": "Mid-fidelity mobile mockup of the Montironi tire inquiry form"
                 },
                 {
                   "type": "body",
@@ -852,14 +858,15 @@ const PORTFOLIO_DATA = {
             {
               "id": "section-before-after",
               "tocLabel": "Before / After",
-              "h3": "From a rigid multi-step form to a one-tap WhatsApp handoff.",
+              "label": "Before / After",
+              "h3": "From an open-ended form that asked for everything to a one-tap WhatsApp handoff.",
               "content": [
                 {
                   "type": "table",
                   "headers": ["Before", "After"],
                   "rows": [
                     ["High cognitive load", "Reduced input fields"],
-                    ["Multi-step, rigid structure", "Clearer hierarchy and guidance"],
+                    ["Open-ended form, every detail by hand", "Clearer hierarchy and guidance"],
                     ["No real-time communication channel", "Integrated WhatsApp high-intent entry point"]
                   ]
                 }
@@ -873,24 +880,10 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "Measured the same quarter one year apart, with the redesign as the only thing that changed — so the attribution is clean, no confounding factors. The flow that used to leak buyers now converts them."
+                  "text": "Measured the same quarter one year apart, with the redesign as the only thing that changed, so the attribution is clean, no confounding factors. The flow that used to leak buyers now converts them."
                 },
                 {
-                  "type": "subheading",
-                  "text": "Quantitative"
-                },
-                {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "221% increase in Q1 tire sales vs. the prior-year quarter.",
-                    "42.65% growth in user acquisition.",
-                    "+54 WhatsApp contacts per month.",
-                    "93% of traffic was mobile."
-                  ]
-                },
-                {
-                  "type": "subheading",
+                  "type": "heading",
                   "text": "Qualitative"
                 },
                 {
@@ -901,6 +894,20 @@ const PORTFOLIO_DATA = {
                     "Higher form-completion rates.",
                     "~10 seconds average task-completion time.",
                     "Every WhatsApp inquiry converted to a sale (Tires dept.)."
+                  ]
+                },
+                {
+                  "type": "heading",
+                  "text": "Quantitative"
+                },
+                {
+                  "type": "steps",
+                  "variant": "bullet",
+                  "items": [
+                    "221% increase in Q1 tire sales vs. the prior-year quarter.",
+                    "42.65% growth in user acquisition.",
+                    "+54 WhatsApp contacts per month.",
+                    "93% of traffic was mobile."
                   ]
                 },
                 {
@@ -919,7 +926,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "The lever wasn't visual polish — it was finding where the funnel leaked, thinking past the interface to the channel itself, and executing against a number I could measure. Behavioral friction and conversion dynamics were what moved revenue."
+                  "text": "The lever wasn't visual polish: it was finding where the funnel leaked, thinking past the interface to the channel itself, and executing against a number I could measure. Behavioral friction and conversion dynamics were what moved revenue."
                 }
               ]
             }
@@ -1928,11 +1935,11 @@ const PORTFOLIO_DATA = {
               "id": "section-scope",
               "tocLabel": "Alcance",
               "label": "Alcance",
-              "h3": "El brief: subir la conversión sin tocar precio, campañas ni inventario.",
+              "h3": "Subir la conversión sin tocar precio, campañas ni inventario.",
               "content": [
                 {
                   "type": "body",
-                  "text": "Las ventas de neumáticos rendían poco por un flujo de consulta complejo y mucha fricción en el sitio. El trabajo fue un rediseño UX completo de ese flujo más un nuevo canal de conversión — con una restricción: sin cambios de precio, campañas ni inventario. Así, lo que moviera los números iba a ser el diseño, y nada más."
+                  "text": "Las ventas de neumáticos rendían poco por un flujo de consulta complejo y mucha fricción en el sitio. El trabajo fue un rediseño UX completo de ese flujo más un nuevo canal de conversión, con una restricción: sin cambios de precio, campañas ni inventario. Así, lo que moviera los números iba a ser el diseño, y nada más."
                 }
               ]
             },
@@ -1944,7 +1951,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "El flujo de consulta original pedía demasiado: un formulario rígido de múltiples pasos que dependía solo del envío web tradicional. Los compradores abandonaban a mitad del formulario, la comunicación con el negocio era lenta y la conversión quedaba baja — la demanda estaba, pero el flujo la dejaba escapar."
+                  "text": "El flujo de consulta original pedía demasiado: un formulario abierto donde el comprador tenía que detallar todo él mismo, dependiendo solo del envío web tradicional. Los compradores abandonaban a mitad del formulario, la comunicación con el negocio era lenta y la conversión quedaba baja. La demanda estaba, pero el flujo la dejaba escapar."
                 }
               ]
             },
@@ -1960,14 +1967,20 @@ const PORTFOLIO_DATA = {
                 },
                 {
                   "type": "body",
-                  "text": "Reconstruí el formulario de consulta desde el papel — menos campos, una jerarquía más clara y un flujo que guía en vez de interrogar. Pasó de bocetos a mano a un formulario mid-fi antes de que ningún pixel fuera final."
+                  "text": "Reconstruí el formulario de consulta desde el papel: menos campos, una jerarquía más clara y un flujo que guía en vez de interrogar. Pasó de bocetos a mano a un formulario mid-fi antes de que ningún pixel fuera final."
                 },
                 {
-                  "type": "video",
-                  "controls": false,
-                  "src": "assets/images/ecommerce/intervention-wireframes.webm",
-                  "caption": "De los wireframes en papel a un formulario mid-fi — la progresión del rediseño.",
-                  "alt": "Progresión de diseño: wireframes a mano y luego el formulario mid-fi"
+                  "type": "image",
+                  "ratio": "wide",
+                  "src": "assets/images/ecommerce/wireframes.png",
+                  "alt": "Wireframes en papel del formulario de consulta, bocetados a mano en lápiz rojo"
+                },
+                {
+                  "type": "image",
+                  "device": "phone",
+                  "src": "assets/images/ecommerce/wireframe-MidFi.png",
+                  "caption": "El formulario de consulta mid-fi de Montironi, reconstruido a partir de esos bocetos en papel.",
+                  "alt": "Mockup mobile mid-fi del formulario de consulta de neumáticos de Montironi"
                 },
                 {
                   "type": "body",
@@ -2003,14 +2016,15 @@ const PORTFOLIO_DATA = {
             {
               "id": "section-before-after",
               "tocLabel": "Antes / Después",
-              "h3": "De un formulario rígido de múltiples pasos a un handoff a WhatsApp a un toque.",
+              "label": "Antes / Después",
+              "h3": "De un formulario abierto que pedía todo a un handoff a WhatsApp a un toque.",
               "content": [
                 {
                   "type": "table",
                   "headers": ["Antes", "Después"],
                   "rows": [
                     ["Alta carga cognitiva", "Campos reducidos"],
-                    ["Estructura rígida de múltiples pasos", "Jerarquía y orientación más claras"],
+                    ["Formulario abierto, todo el detalle a mano", "Jerarquía y orientación más claras"],
                     ["Sin canal de comunicación en tiempo real", "Punto de entrada WhatsApp de alta intención integrado"]
                   ]
                 }
@@ -2024,24 +2038,10 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "Medido el mismo trimestre un año después, con el rediseño como lo único que cambió — así la atribución es limpia, sin factores que confundan. El flujo que antes perdía compradores ahora los convierte."
+                  "text": "Medido el mismo trimestre un año después, con el rediseño como lo único que cambió, así la atribución es limpia, sin factores que confundan. El flujo que antes perdía compradores ahora los convierte."
                 },
                 {
-                  "type": "subheading",
-                  "text": "Cuantitativo"
-                },
-                {
-                  "type": "steps",
-                  "variant": "bullet",
-                  "items": [
-                    "221% de aumento en ventas de neumáticos Q1 vs. el mismo trimestre del año anterior.",
-                    "42.65% de crecimiento en adquisición de usuarios.",
-                    "+54 contactos por WhatsApp al mes.",
-                    "93% del tráfico fue mobile."
-                  ]
-                },
-                {
-                  "type": "subheading",
+                  "type": "heading",
                   "text": "Cualitativo"
                 },
                 {
@@ -2052,6 +2052,20 @@ const PORTFOLIO_DATA = {
                     "Mayores tasas de completado del formulario.",
                     "~10 segundos de tiempo promedio de tarea.",
                     "Cada consulta por WhatsApp se convirtió en venta (dpto. Neumáticos)."
+                  ]
+                },
+                {
+                  "type": "heading",
+                  "text": "Cuantitativo"
+                },
+                {
+                  "type": "steps",
+                  "variant": "bullet",
+                  "items": [
+                    "221% de aumento en ventas de neumáticos Q1 vs. el mismo trimestre del año anterior.",
+                    "42.65% de crecimiento en adquisición de usuarios.",
+                    "+54 contactos por WhatsApp al mes.",
+                    "93% del tráfico fue mobile."
                   ]
                 },
                 {
@@ -2070,7 +2084,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "La palanca no fue el pulido visual — fue encontrar dónde el funnel perdía gente, pensar más allá de la interfaz hasta el canal en sí, y ejecutar contra un número medible. La fricción conductual y las dinámicas de conversión fueron lo que movió los ingresos."
+                  "text": "La palanca no fue el pulido visual: fue encontrar dónde el funnel perdía gente, pensar más allá de la interfaz hasta el canal en sí, y ejecutar contra un número medible. La fricción conductual y las dinámicas de conversión fueron lo que movió los ingresos."
                 }
               ]
             }

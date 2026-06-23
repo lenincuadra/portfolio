@@ -29,6 +29,10 @@
   --img-ph-fill: color-mix(in srgb, var(--accent) 7%, transparent);
   --img-ph-border: color-mix(in srgb, var(--accent-dim) 45%, transparent);
   --img-ph-icon: var(--accent-dim);
+  /* Dark stage for mobile / low-contrast media (see .image-block--canvas-dark): a warm
+     near-black from the dark palette, so a white-background screenshot reads as a phone
+     screen on a dark stage in BOTH themes. */
+  --media-canvas-dark: #211f1c;
   --fw-light: 300;
   --fw-normal: 400;
   --fw-medium: 500;
@@ -103,6 +107,7 @@ html.theme-dark,
   --img-ph-fill: color-mix(in srgb, var(--accent) 14%, transparent);
   --img-ph-border: color-mix(in srgb, var(--accent-dim) 40%, transparent);
   --img-ph-icon: var(--accent-dim);
+  --media-canvas-dark: #2c2a26;
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3), 0 1px 2px rgba(0, 0, 0, 0.2);
   --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.4), 0 2px 6px rgba(0, 0, 0, 0.25);
   --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.3);

@@ -34,6 +34,12 @@
   <style>
     #case-v3-content .section__label { margin-top: 3rem; margin-bottom: 0; }
     #case-v3-content h3 { margin-bottom: var(--sp-5); }
+    /* A section that omits its eyebrow label: the h3 is first child and needs the same top
+       breathing room .section__label would have provided, so the section rhythm holds. */
+    #case-v3-content section > h3:first-child { margin-top: 3rem; }
+    /* A subhead directly under the section h3 sits closer — the h3 already opened the topic
+       (the standalone .case-subhead top margin is the after-media distance). */
+    #case-v3-content h3 + .case-subhead { margin-top: var(--sp-6); }
     #case-v3-content ul, #case-v3-content ol { margin-block: calc(var(--sp-5) / 2); list-style: none; padding: 0; }
     #case-v3-content li + li { margin-top: var(--sp-5); }
     #case-v3-content hr { border: none; border-top: 1px solid var(--border-subtle); margin-top: 3rem; margin-bottom: 0; }
@@ -316,6 +322,7 @@
             // via "ratio": "wide" | "square" | "portrait", so the slot does not shift
             // when a real image replaces the placeholder.
             const ratioClass = ({ wide: 'image-block--wide', square: 'image-block--square', portrait: 'image-block--portrait', auto: 'image-block--auto' })[enItem.ratio] || 'image-block--wide';
+            const canvasClass = enItem.canvas === 'dark' ? ' image-block--canvas-dark' : '';
             const phEn       = imgPhLabel(desc, 'en').replace(/"/g, '&quot;');
             const phEs       = imgPhLabel(desc, 'es').replace(/"/g, '&quot;');
             // No source declared, intended-but-not-ready: render the placeholder, no request.
@@ -325,18 +332,26 @@
             }
             // Source present: show the image; on failure it degrades to the same placeholder.
             const safeAlt = desc.replace(/"/g, '&quot;');
-            return `<div class="image-block ${ratioClass}" data-ph-en="${phEn}" data-ph-es="${phEs}"><img src="../${enItem.src}" alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="window.__caseImgFallback(this)" /></div>`;
+            // Phone mockup: screenshot inside a device bezel, centered on a theme-following
+            // stage. The bezel gives the screen an edge, so a light/white mockup still reads
+            // as a phone on a light stage (no dark canvas needed). See docs/design.md.
+            if (enItem.device === 'phone') {
+              const dCap = enItem.caption ? `<figcaption class="demo-figure__caption">${t(enItem.caption, esItem?.caption)}</figcaption>` : '';
+              return `<figure class="device-figure"><div class="device-stage"><div class="device-phone"><img class="device-phone__screen" src="../${enItem.src}" alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="window.__caseImgFallback(this)" /></div></div>${dCap}</figure>`;
+            }
+            return `<div class="image-block ${ratioClass}${canvasClass}" data-ph-en="${phEn}" data-ph-es="${phEs}"><img src="../${enItem.src}" alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="window.__caseImgFallback(this)" /></div>`;
           }
           case 'video': {
             const desc       = (enItem.alt || '').replace(/"/g, '&quot;');
             const ratioClass = ({ wide: 'image-block--wide', square: 'image-block--square', portrait: 'image-block--portrait', auto: 'image-block--auto' })[enItem.ratio] || 'image-block--wide';
+            const canvasClass = enItem.canvas === 'dark' ? ' image-block--canvas-dark' : '';
             const webm       = enItem.src;
             const mp4        = webm.replace(/\.webm$/, '.mp4');
             const poster     = enItem.poster ? ` poster="../${enItem.poster}"` : '';
             const vLabel     = enItem.label ? `<span class="media-label">${t(enItem.label, esItem?.label)}</span>` : '';
             const vCapText   = enItem.caption ? t(enItem.caption, esItem?.caption) : '';
             const cap        = (vLabel || vCapText) ? `<figcaption class="demo-figure__caption">${vLabel}${vLabel && vCapText ? ' — ' : ''}${vCapText}</figcaption>` : '';
-            return `<figure class="demo-figure${enItem.size === 'half' ? ' demo-figure--half' : ''}"><div class="image-block ${ratioClass} image-block--video"><video${poster} autoplay loop muted playsinline${enItem.controls === false ? '' : ' controls'} preload="metadata" aria-label="${desc}"><source src="../${webm}" type="video/webm"><source src="../${mp4}" type="video/mp4"></video><button class="image-block__expand" aria-label="Expand video" type="button">⤢</button></div>${cap}</figure>`;
+            return `<figure class="demo-figure${enItem.size === 'half' ? ' demo-figure--half' : ''}"><div class="image-block ${ratioClass} image-block--video${canvasClass}"><video${poster} autoplay loop muted playsinline${enItem.controls === false ? '' : ' controls'} preload="metadata" aria-label="${desc}"><source src="../${webm}" type="video/webm"><source src="../${mp4}" type="video/mp4"></video><button class="image-block__expand" aria-label="Expand video" type="button">⤢</button></div>${cap}</figure>`;
           }
           case 'compare': {
             const cell = (s, fallbackLbl, tagMod) => s
@@ -622,7 +637,7 @@
       const lbSubtitle= document.getElementById('lightbox-subtitle');
       const content   = document.getElementById('case-v3-content');
       // Every expandable graphic in the case, in document order (one entry per graphic root).
-      const SEL = '.image-block:not(.image-block--video):not(.image-block--empty), .demo-figure, .slider-figure, .compare-figure, .carousel-figure';
+      const SEL = '.image-block:not(.image-block--video):not(.image-block--empty), .demo-figure, .slider-figure, .compare-figure, .carousel-figure, .device-figure';
       let items = [], idx = 0;
 
       function collect() {

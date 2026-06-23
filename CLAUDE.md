@@ -23,13 +23,17 @@ Al escribir o migrar un case v3, redactar los `h3` para que la TOC se lea como u
 
 ### Componentes de contenido (`type` en `sections[].content[]`)
 
-`body`, `quote`, `steps` (`variant`: bullet/numbered; "label — desc" → h4+p), `subheading` (agrupa con el siguiente body), `image` (`ratio`: wide/square/portrait/auto), `video` (`controls`, `ratio`, `size:"half"`, `poster`, `caption`), `compare`, `callout`, `carousel`, `slider`, `heading` (`level` 4/5), `row`, `gallery`, `link`, `table` (`headers`+`rows`, `variant:"metrics"`).
+`body`, `quote`, `steps` (`variant`: bullet/numbered; "label — desc" → h4+p), `subheading` (agrupa con el siguiente body), `image` (`ratio`: wide/square/portrait/auto; `device:"phone"` = mockup en bezel; `canvas:"dark"`), `video` (`controls`, `ratio`, `size:"half"`, `poster`, `caption`, `canvas:"dark"`), `compare`, `callout`, `carousel`, `slider`, `heading` (`level` 4/5), `row`, `gallery`, `link`, `table` (`headers`+`rows`, `variant:"metrics"`).
 
 Cualquier componente nuevo se documenta en el styleguide (sección `case-components`). Todos los gráficos abren en el **lightbox-galería** (label + h3 de su sección, navegable con flechas).
 
 ### Cómo escribir el contenido (que lea bien)
 
-Tener la info correcta no alcanza: el caso tiene que **leerse** bien. La regla corta: **prosa (`body`) lleva la narrativa; los bullets (`steps`) solo para listas reales**; patrón claim → cómo → prueba (`heading`/`h3` + `body` + gráfico); primera persona, concreto, breve. El anti-patrón es la "pared de bullets" abstractos. Guía completa con checklist: **`docs/case-v3-content-guide.md`** (referencias: `no-handoff` y `figma-webp-export`).
+Tener la info correcta no alcanza: el caso tiene que **leerse** bien. La regla corta: **prosa (`body`) lleva la narrativa; los bullets (`steps`) solo para listas reales**; patrón claim → cómo → prueba (`heading`/`h3` + `body` + gráfico); primera persona, concreto, breve. El anti-patrón es la "pared de bullets" abstractos. **Sin em-dashes (`—`) en el copy** (usá coma/punto/dos puntos/paréntesis); ojo: el `" — "` de `steps` (`"label — desc"`) y de los captions de `video` es sintaxis que parsea el renderer, no texto, y se mantiene. Guía completa con checklist: **`docs/case-v3-content-guide.md`** (referencias: `no-handoff` y `figma-webp-export`).
+
+### Decisiones de diseño / jerarquía visual del template
+
+El *por qué* de los tokens y espaciados que valen para **todos** los case-v3 (fondo de media containers, espaciado de sub-secciones, secciones sin `label`, dos sub-secciones dentro de una): **`docs/design.md`**. Regla: una decisión de presentación que aplica a todos los cases va como regla de template (clase / `#case-v3-content`), documentada ahí — nunca como estilo inline en `data/content.js`. Espaciados siempre con tokens existentes de `tokens.css` (un `--sp-N` inexistente invalida la declaración entera en silencio).
 
 ## Hero (`index.html`)
 
