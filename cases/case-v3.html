@@ -226,6 +226,7 @@
     document.getElementById('theme-toggle').addEventListener('click', () => {
       const dark = html.classList.toggle('theme-dark');
       localStorage.setItem('theme', dark ? 'dark' : 'light');
+      applyThemedVideos();
     });
 
     // Footer year
@@ -351,6 +352,13 @@
             const vLabel     = enItem.label ? `<span class="media-label">${t(enItem.label, esItem?.label)}</span>` : '';
             const vCapText   = enItem.caption ? t(enItem.caption, esItem?.caption) : '';
             const cap        = (vLabel || vCapText) ? `<figcaption class="demo-figure__caption">${vLabel}${vLabel && vCapText ? ' — ' : ''}${vCapText}</figcaption>` : '';
+            // Themed video: 2 variantes horneadas (stage light/dark) que el JS intercambia
+            // por tema (applyThemedVideos). El fondo del video sigue el tema sin alpha.
+            // src apunta al "-dark.webm"; base = ruta sin "-dark.webm". Ver docs/design.md.
+            if (enItem.themed) {
+              const base = ('../' + webm).replace(/-dark\.webm$/, '');
+              return `<figure class="demo-figure${enItem.size === 'half' ? ' demo-figure--half' : ''}"><div class="image-block ${ratioClass} image-block--video"><video data-themed-base="${base}"${poster} autoplay loop muted playsinline${enItem.controls === false ? '' : ' controls'} preload="metadata" aria-label="${desc}"></video><button class="image-block__expand" aria-label="Expand video" type="button">⤢</button></div>${cap}</figure>`;
+            }
             return `<figure class="demo-figure${enItem.size === 'half' ? ' demo-figure--half' : ''}"><div class="image-block ${ratioClass} image-block--video${canvasClass}"><video${poster} autoplay loop muted playsinline${enItem.controls === false ? '' : ' controls'} preload="metadata" aria-label="${desc}"><source src="../${webm}" type="video/webm"><source src="../${mp4}" type="video/mp4"></video><button class="image-block__expand" aria-label="Expand video" type="button">⤢</button></div>${cap}</figure>`;
           }
           case 'compare': {
@@ -753,6 +761,23 @@
       start();
     };
     document.querySelectorAll('.carousel').forEach(c => window.__initCarousel(c));
+
+    // Themed video: inject the baked light/dark variant per current theme, and on toggle.
+    // The video's stage is baked, so it follows the theme by swapping the source file
+    // (no alpha). data-themed-base = path sin "-light/-dark.webm". See docs/design.md.
+    function applyThemedVideos() {
+      const variant = document.documentElement.classList.contains('theme-dark') ? 'dark' : 'light';
+      document.querySelectorAll('video[data-themed-base]').forEach(function (v) {
+        if (v.dataset.themedVariant === variant) return;
+        v.dataset.themedVariant = variant;
+        const base = v.dataset.themedBase;
+        v.innerHTML = '<source src="' + base + '-' + variant + '.webm" type="video/webm">'
+                    + '<source src="' + base + '-' + variant + '.mp4" type="video/mp4">';
+        v.load();
+        const p = v.play(); if (p && p.catch) p.catch(function () {});
+      });
+    }
+    applyThemedVideos();
 
     // Before/after comparison slider — drag to wipe between design and build
     window.__initSlider = function(sl) {

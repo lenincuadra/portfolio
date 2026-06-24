@@ -29,7 +29,7 @@ Al escribir o migrar un case v3, redactar los `h3` para que la TOC se lea como u
 
 ### Componentes de contenido (`type` en `sections[].content[]`)
 
-`body`, `quote`, `steps` (`variant`: bullet/numbered; "label — desc" → h4+p), `subheading` (agrupa con el siguiente body), `image` (`ratio`: wide/square/portrait/auto; `device:"phone"` = mockup en bezel; `canvas:"dark"`), `video` (`controls`, `ratio`, `size:"half"`, `poster`, `caption`, `canvas:"dark"`), `compare`, `callout`, `carousel`, `slider`, `heading` (`level` 4/5), `row`, `gallery`, `link`, `table` (`headers`+`rows`, `variant:"metrics"`).
+`body`, `quote`, `steps` (`variant`: bullet/numbered; "label — desc" → h4+p), `subheading` (agrupa con el siguiente body), `image` (`ratio`: wide/square/portrait/auto; `device:"phone"` = mockup en bezel; `canvas:"dark"`), `video` (`controls`, `ratio`, `size:"half"`, `poster`, `caption`, `canvas:"dark"`, `themed` = fondo theme-aware con 2 variantes `-light`/`-dark`), `compare`, `callout`, `carousel`, `slider`, `heading` (`level` 4/5), `row`, `gallery`, `link`, `table` (`headers`+`rows`, `variant:"metrics"`).
 
 Cualquier componente nuevo se documenta en el styleguide (sección `case-components`). Todos los gráficos abren en el **lightbox-galería** (label + h3 de su sección, navegable con flechas).
 

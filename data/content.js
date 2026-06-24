@@ -452,19 +452,13 @@ const PORTFOLIO_DATA = {
                   "attr": "Product Design Lead"
                 },
                 {
-                  "type": "carousel",
-                  "interval": 3000,
-                  "images": [
-                    {
-                      "src": "assets/images/figma-webp-export/slack-endorsement-thread.webp",
-                      "alt": "Slack thread: the team reacts to the plugin and the lead replies that she has to brag about her teammates"
-                    },
-                    {
-                      "src": "assets/images/figma-webp-export/slack-endorsement-post.webp",
-                      "alt": "Slack post from the Product Design lead: the plugin solves the team's .webp handoff problem and the UX team can use it immediately"
-                    }
-                  ],
-                  "caption": "The endorsement in the team's Slack: the post, the reactions, and the thread."
+                  "type": "video",
+                  "controls": false,
+                  "ratio": "auto",
+                  "themed": true,
+                  "src": "assets/images/figma-webp-export/lead-endorsement-dark.webm",
+                  "caption": "The endorsement in the team's Slack: the post, the reactions, and the thread.",
+                  "alt": "Slack thread and post where the Product Design lead celebrates the plugin and the team reacts; it solves the .webp handoff problem and the UX team can use it immediately"
                 }
               ]
             },
@@ -1626,19 +1620,13 @@ const PORTFOLIO_DATA = {
                   "attr": "Lead de Product Design"
                 },
                 {
-                  "type": "carousel",
-                  "interval": 3000,
-                  "images": [
-                    {
-                      "src": "assets/images/figma-webp-export/slack-endorsement-thread.webp",
-                      "alt": "Hilo de Slack: el equipo reacciona al plugin y la lead responde que tiene que presumir de sus compañeros"
-                    },
-                    {
-                      "src": "assets/images/figma-webp-export/slack-endorsement-post.webp",
-                      "alt": "Post de Slack de la lead de Product Design: el plugin resuelve el problema de handoff de .webp del equipo y el equipo de UX puede usarlo de inmediato"
-                    }
-                  ],
-                  "caption": "El endorsement en el Slack del equipo: el post, las reacciones y el hilo."
+                  "type": "video",
+                  "controls": false,
+                  "ratio": "auto",
+                  "themed": true,
+                  "src": "assets/images/figma-webp-export/lead-endorsement-dark.webm",
+                  "caption": "El endorsement en el Slack del equipo: el post, las reacciones y el hilo.",
+                  "alt": "Hilo y post de Slack donde la lead de Product Design celebra el plugin y el equipo reacciona; resuelve el problema de handoff de .webp y el equipo de UX puede usarlo de inmediato"
                 }
               ]
             },

@@ -82,7 +82,7 @@ Cada item es `{ "type": "...", ...campos }`. Lista exacta de lo que el renderer 
 | `steps` | `variant`: `bullet`\|`numbered`, `items[]` | Lista. `bullet` con `"label — desc"` → `<h4>`+`<p>`; sin `" — "` → línea simple. `numbered` → lista ordenada. Solo para **listas reales** (enumeraciones), no para trocear prosa. |
 | `quote` | `text`, `attr?` | `<blockquote>` + `<cite>`. |
 | `image` | `src`, `alt`, `ratio?`, `loading?`, `canvas?`, `device?`, `caption?` | Ver detalle abajo. |
-| `video` | `src` (.webm), `alt`, `controls?`, `ratio?`, `size?`, `poster?`, `label?`, `caption?`, `canvas?` | autoplay/loop/muted. Abre en lightbox. El `.mp4` hermano se deriva del `.webm`. |
+| `video` | `src` (.webm), `alt`, `controls?`, `ratio?`, `size?`, `poster?`, `label?`, `caption?`, `canvas?`, `themed?` | autoplay/loop/muted. Abre en lightbox. El `.mp4` hermano se deriva del `.webm`. |
 | `table` | `headers[]`, `rows[][]`, `caption?`, `variant?`: `metrics` | Divisores verticales entre columnas + rule horizontal en los labels. `metrics` alinea la última columna a la derecha (mono). |
 | `compare` | `left{src,label,alt}`, `right{src,label,alt}`, `caption?` | 2 paneles etiquetados lado a lado. |
 | `slider` | `before{src,label,alt}`, `after{src,label,alt}`, `caption?` | Drag-to-compare (wipe). |
@@ -104,6 +104,7 @@ Cada item es `{ "type": "...", ...campos }`. Lista exacta de lo que el renderer 
 - `ratio` igual que image; `size: "half"` lo muestra a 50% centrado; `poster` = imagen de carga.
 - `label` + `caption` se unen con `" — "` (eso es sintaxis del renderer, no copy).
 - Subí **`.webm` y `.mp4`** con el mismo nombre; en el `src` poné el `.webm`.
+- `themed: true` → fondo **theme-aware**: 2 variantes horneadas (`<base>-light` / `<base>-dark`, stage = `--bg-card` de cada tema); el `src` apunta al `-dark.webm` y el JS las intercambia por tema. Para un crossfade de imágenes que siga light/dark (alternativa simple: `carousel`). Detalle: `docs/design.md`.
 
 Todos los gráficos (image/video/compare/slider/carousel/`device:"phone"`) abren en el **lightbox-galería** (label + h3 de su sección, navegable con flechas).
 
@@ -124,7 +125,7 @@ Romper la alineación por índice es el error más común y el renderer no lo av
 - Carpeta `assets/images/<slug>/`. Rutas en `content.js` **relativas a la raíz** (`assets/...`), sin `../` (el renderer agrega el prefijo).
 - Video: **`.webm` + `.mp4`** (mismo nombre). El renderer referencia el `.webm` y deriva el `.mp4` como fallback.
 - Mobile: `device: "phone"` (bezel) para un mockup.
-- **Nunca hornear un fondo de tema** (ej. un stage oscuro) dentro de un video/imagen: el fondo de media es theme-aware (`--bg-card`). **Para un crossfade entre 2+ imágenes** (before/after, una progresión, un slideshow) usá el componente **`carousel`** (theme-aware), no un video horneado; un `video` es solo para contenido que **es** video real. Detalle y excepciones (`canvas:"dark"`): `docs/design.md`.
+- **Nunca hornear un fondo de un solo tema** dentro de un video/imagen: el fondo de media es theme-aware (`--bg-card`). **Para un crossfade theme-aware entre imágenes** usá el `carousel` (simple) o un **video `themed`** (`"themed": true`: 2 variantes `-light`/`-dark` que el JS intercambia por tema). Convención de nombres y excepción (`canvas:"dark"`): `docs/design.md`.
 - Convenciones de tamaño/formato e ideas de naming: `CASE-STUDY-GUIDE.md` §Imágenes sigue valiendo (es lo único de ese doc que no es v2-específico).
 
 ---
