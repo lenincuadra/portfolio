@@ -300,7 +300,7 @@
           case 'body':
             return `<p>${t(enItem.text, esItem?.text)}</p>`;
           case 'quote':
-            return `<blockquote><p>${t(enItem.text, esItem?.text)}</p>${enItem.attr ? `<cite>${t(enItem.attr, esItem?.attr)}</cite>` : ''}</blockquote>`;
+            return `<blockquote class="case-quote"><p>${t(enItem.text, esItem?.text)}</p>${enItem.attr ? `<cite>${t(enItem.attr, esItem?.attr)}</cite>` : ''}</blockquote>`;
           case 'steps':
             if (enItem.variant === 'numbered') {
               return `<ol>${(enItem.items || []).map((it, k) => `<li>${t(it, esItem?.items?.[k])}</li>`).join('')}</ol>`;

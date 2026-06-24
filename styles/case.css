@@ -432,7 +432,9 @@
 .carousel__track {
   position: relative;
   aspect-ratio: 3 / 2;
-  background: var(--surface);
+  /* --bg-card: canvas theme-aware (igual que .image-block), no --surface — así las barras
+     de letterbox del carousel siguen el tema en light y dark. Ver docs/design.md. */
+  background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--r-md);
   overflow: hidden;
@@ -1055,25 +1057,47 @@
 
 /* ---- CASE QUOTE ---- */
 .case-quote {
-  margin-top: var(--sp-6);
-  padding: var(--sp-5) var(--sp-6);
+  position: relative;
+  margin: var(--sp-8) 0;
+  padding: var(--sp-5) var(--sp-6) var(--sp-6);
+  padding-left: var(--sp-10);
   border-left: 3px solid var(--accent);
   background: var(--surface);
   border-radius: 0 var(--r-md) var(--r-md) 0;
 }
+/* Hanging quotation mark in the gutter — decorative, theme-aware accent (sits left of the
+   text, not over it). Tokens (--accent/--surface/--ink) keep it correct in light + dark. */
+.case-quote::before {
+  content: "\201C";
+  position: absolute;
+  top: var(--sp-1);
+  left: var(--sp-3);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--accent);
+  opacity: 0.5;
+}
 .case-quote p {
-  font-style: italic;
   font-size: var(--text-md);
-  line-height: 1.6;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--ink);
   margin: 0;
 }
 .case-quote cite {
   display: block;
-  margin-top: var(--sp-2);
+  margin-top: var(--sp-4);
+  font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-style: normal;
-  opacity: 0.6;
+  letter-spacing: 0.04em;
+  /* a11y: --ink-2 mantiene >=4.5:1 sobre --surface en light y dark
+     (--ink-3 da ~3.7:1 y --ink-4 ~2:1 → fallan AA para texto chico). */
+  color: var(--ink-2);
 }
+.case-quote cite::before { content: "— "; }
 
 /* ---- CASE NAVIGATION (case-v2 variant) ---- */
 .case-nav {

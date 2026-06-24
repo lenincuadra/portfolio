@@ -445,6 +445,26 @@ const PORTFOLIO_DATA = {
                     "It scales to any project size — 6 images or 12, the time cost is the same: under a minute.",
                     "Free, permanently — No paywall, no plan upgrades, no credits."
                   ]
+                },
+                {
+                  "type": "quote",
+                  "text": "He listened to a problem our team was running into, put his brain to it, and created a plugin that was just published on Figma. The UX team can immediately put this to use.",
+                  "attr": "Product Design Lead"
+                },
+                {
+                  "type": "carousel",
+                  "interval": 3000,
+                  "images": [
+                    {
+                      "src": "assets/images/figma-webp-export/slack-endorsement-thread.webp",
+                      "alt": "Slack thread: the team reacts to the plugin and the lead replies that she has to brag about her teammates"
+                    },
+                    {
+                      "src": "assets/images/figma-webp-export/slack-endorsement-post.webp",
+                      "alt": "Slack post from the Product Design lead: the plugin solves the team's .webp handoff problem and the UX team can use it immediately"
+                    }
+                  ],
+                  "caption": "The endorsement in the team's Slack: the post, the reactions, and the thread."
                 }
               ]
             },
@@ -1599,6 +1619,26 @@ const PORTFOLIO_DATA = {
                     "Escala a cualquier tamaño de proyecto — 6 imágenes o 12, el costo de tiempo es el mismo: menos de un minuto.",
                     "Gratis, permanentemente — Sin muro de pago, sin actualizaciones de plan, sin créditos."
                   ]
+                },
+                {
+                  "type": "quote",
+                  "text": "Escuchó un problema que nuestro equipo estaba teniendo, le puso la cabeza, y creó un plugin que se acaba de publicar en Figma. El equipo de UX puede usarlo de inmediato.",
+                  "attr": "Lead de Product Design"
+                },
+                {
+                  "type": "carousel",
+                  "interval": 3000,
+                  "images": [
+                    {
+                      "src": "assets/images/figma-webp-export/slack-endorsement-thread.webp",
+                      "alt": "Hilo de Slack: el equipo reacciona al plugin y la lead responde que tiene que presumir de sus compañeros"
+                    },
+                    {
+                      "src": "assets/images/figma-webp-export/slack-endorsement-post.webp",
+                      "alt": "Post de Slack de la lead de Product Design: el plugin resuelve el problema de handoff de .webp del equipo y el equipo de UX puede usarlo de inmediato"
+                    }
+                  ],
+                  "caption": "El endorsement en el Slack del equipo: el post, las reacciones y el hilo."
                 }
               ]
             },
