@@ -123,7 +123,8 @@ Romper la alineación por índice es el error más común y el renderer no lo av
 
 - Carpeta `assets/images/<slug>/`. Rutas en `content.js` **relativas a la raíz** (`assets/...`), sin `../` (el renderer agrega el prefijo).
 - Video: **`.webm` + `.mp4`** (mismo nombre). El renderer referencia el `.webm` y deriva el `.mp4` como fallback.
-- Mobile: `device: "phone"` (bezel) para un mockup; para una progresión/animación, un `video` con `canvas: "dark"` (ej. el caso ecommerce, `intervention-progression`). **Nunca** dejar fondo blanco horneado alrededor de un mockup.
+- Mobile: `device: "phone"` (bezel) para un mockup.
+- **Nunca hornear un fondo de tema** (ej. un stage oscuro) dentro de un video/imagen: el fondo de media es theme-aware (`--bg-card`). **Para un crossfade entre 2+ imágenes** (before/after, una progresión, un slideshow) usá el componente **`carousel`** (theme-aware), no un video horneado; un `video` es solo para contenido que **es** video real. Detalle y excepciones (`canvas:"dark"`): `docs/design.md`.
 - Convenciones de tamaño/formato e ideas de naming: `CASE-STUDY-GUIDE.md` §Imágenes sigue valiendo (es lo único de ese doc que no es v2-específico).
 
 ---
