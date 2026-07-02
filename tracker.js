@@ -9,6 +9,15 @@
     return new URLSearchParams(window.location.search).get(name) || "";
   }
 
+  // Split a tracking ref into its base code + the link that was opened.
+  // e.g. "0628r4P" -> { code: "0628r4", link: "Portfolio" }; "0628r4L" -> LinkedIn.
+  // Reserved/organic codes (no P/L suffix) pass through unchanged.
+  function parseRef(ref) {
+    var m = /^(\d{4}[a-z][2-9])([PL])$/.exec(ref);
+    if (m) return { code: m[1], link: m[2] === "P" ? "Portfolio" : "LinkedIn" };
+    return { code: ref, link: "" };
+  }
+
   function getLocation() {
     return new Promise(function (resolve) {
       fetch("https://ipapi.co/json/")
@@ -20,20 +29,22 @@
     });
   }
 
-  function saveVisit(company, timestamp, location) {
+  function saveVisit(company, timestamp, location, code, link) {
     var visits = [];
     try { visits = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); } catch (e) {}
-    visits.unshift({ company: company, timestamp: timestamp, location: location });
+    visits.unshift({ company: company, timestamp: timestamp, location: location, code: code, link: link });
     if (visits.length > 200) visits = visits.slice(0, 200);
     try { localStorage.setItem(STORAGE_KEY, JSON.stringify(visits)); } catch (e) {}
   }
 
-  function sendEmail(company, timestamp, location) {
+  function sendEmail(company, timestamp, location, code, link) {
     if (typeof emailjs === "undefined") return;
     emailjs.init(PUBLIC_KEY);
     emailjs.send(SERVICE_ID, TEMPLATE_ID, {
       to_email:  TO_EMAIL,
       company:   company,
+      code:      code || "",
+      link:      link || "",
       timestamp: timestamp,
       location:  location
     });
@@ -51,9 +62,12 @@
     }
   } catch (e) {}
 
-  var company = getParam("ref");
-  if (!company) company = "organic";
-  if (company === "me") return;
+  var ref = getParam("ref");
+  if (!ref) ref = "organic";
+  if (ref === "me") return;
+
+  var parsed  = parseRef(ref);
+  var company = parsed.link ? parsed.code + " · " + parsed.link : parsed.code;
 
   var timestamp = new Date().toLocaleString("es-AR", {
     timeZone: "America/Argentina/Cordoba",
@@ -62,7 +76,7 @@
   });
 
   getLocation().then(function (location) {
-    saveVisit(company, timestamp, location);
-    sendEmail(company, timestamp, location);
+    saveVisit(company, timestamp, location, parsed.code, parsed.link);
+    sendEmail(company, timestamp, location, parsed.code, parsed.link);
   });
 })();
