@@ -13,10 +13,19 @@
 //     visible la personalización (efecto "armó una página para nosotros")
 //
 // CÓMO SE ACTIVA (precedencia, resuelta por resolveActiveProfile()):
-//   1. ?focus=<id> en la URL del index (para links directos en outreach)
-//   2. ?ref=<empresa> en la URL, mapeado por refToProfile
-//   3. sessionStorage 'portfolio_ref' (lo guarda go.html al redirigir), mapeado
+//   1. ?focus=<id> en la URL del index (links directos en outreach)
+//   2. sessionStorage 'portfolio_focus' (lo guarda go.html si el link trackeado
+//      traía &focus= — es LA vía para links con código opaco; los genera
+//      scripts/new-link.js)
+//   3. ?ref=<...> en la URL o sessionStorage 'portfolio_ref', mapeado por
+//      refToProfile (solo para refs que se quieran mapear acá)
 //   Sin match → null → el index se comporta exactamente como siempre.
+//
+// PRIVACIDAD: este archivo es PÚBLICO (GitHub Pages). NO mapear nombres de
+// empresas target en refToProfile: delata a quién se está aplicando (la misma
+// razón por la que los refs de tracking son códigos opacos y el registro está
+// gitignoreado). La personalización de links trackeados viaja como &focus=
+// en el link de go.html, que solo revela la industria del perfil.
 //
 // VALIDACIÓN: scripts/case-check.js valida slugs/ids/labels de este archivo.
 // Al agregar un perfil o mapear una empresa nueva: editar acá y correr
@@ -45,17 +54,10 @@ const PORTFOLIO_PROFILES = {
     }
   },
 
-  // ref (de go.html?ref=<empresa> o index.html?ref=...) → perfil. Minúsculas.
-  refToProfile: {
-    meli: "payments",
-    mercadolibre: "payments",
-    mercadopago: "payments",
-    uala: "payments",
-    pomelo: "payments",
-    lemon: "payments",
-    brubank: "payments",
-    belo: "payments"
-  }
+  // ref → perfil, en minúsculas. VACÍO a propósito: mapear una empresa acá la
+  // publica (ver PRIVACIDAD en el header). Para links trackeados usar &focus=
+  // en la URL de go.html (scripts/new-link.js los arma).
+  refToProfile: {}
 };
 
 // Resolver compartido (app.js y hero.js): perfil activo o null.
@@ -64,6 +66,7 @@ function resolveActiveProfile() {
     const P = PORTFOLIO_PROFILES;
     const params = new URLSearchParams(window.location.search);
     let id = params.get('focus');
+    if (!id) { try { id = sessionStorage.getItem('portfolio_focus'); } catch (e) {} }
     if (!id) {
       let ref = params.get('ref');
       if (!ref) { try { ref = sessionStorage.getItem('portfolio_ref'); } catch (e) {} }

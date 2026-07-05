@@ -76,7 +76,7 @@ Para cambiar las pruebas: editar `cases.json` (campos `proof`/`proof_es`, `metri
 
 ### Personalización por link (`data/profiles.js`)
 
-El index se adapta a quién mira, **sin ocultar nada** (regla: ordenar, no ocultar; sin filtros manuales). Un perfil define: `featured` (override del flag), `order` (grilla), `proofs` (pruebas preferidas del hero) y `label` bilingüe (sufijo "Featured Work · For payment platforms"). Se activa por `?focus=<perfil>`, por `?ref=<empresa>` (mapeado en `refToProfile`), o por el ref que `go.html` guarda en sessionStorage al redirigir. Sin perfil activo, el index no cambia en nada (fallback total). `scripts/case-check.js` valida el archivo. Reglas y cómo extender: header de `data/profiles.js`.
+El index se adapta a quién mira, **sin ocultar nada** (regla: ordenar, no ocultar; sin filtros manuales). Un perfil define: `featured` (override del flag), `order` (grilla), `proofs` (pruebas preferidas del hero) y `label` bilingüe (sufijo "Featured Work · For payment platforms"). Se activa por `?focus=<perfil>` en el index, o por el `&focus=` de un link trackeado de `go.html` (viaja por sessionStorage). **Privacidad**: `refToProfile` queda vacío a propósito: mapear empresas ahí las publica (el repo es público; los refs de tracking son códigos opacos por la misma razón). Los links trackeados+personalizados se generan con **`node scripts/new-link.js "<empresa>" --focus <perfil>`** (registra el código en `tracking-registry.md`, privado). Sin perfil activo, el index no cambia en nada. `case-check` valida el archivo.
 
 ## Accesibilidad (WCAG AA)
 

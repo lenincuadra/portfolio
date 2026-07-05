@@ -38,7 +38,7 @@ La salida es **determinística** (sin fechas): si el contenido no cambió, no ha
 
 1. **Todo case necesita `meta.title` y `meta.description`** en `content.js` (alimentan title, OG, JSON-LD y `llms.txt`).
 2. Al **agregar, renombrar o migrar** un case: `node scripts/seo-build.js` y commitear lo regenerado (el hook avisa si te olvidás).
-3. Si cambia el **dominio** (ej. dominio propio en vez de github.io): actualizar `BASE` en `seo-build.js`, el canonical/OG/JSON-LD de `index.html` y la URL del autor en `case-v3.html`; regenerar.
+3. Si cambia el **dominio** (ej. dominio propio en vez de github.io): actualizar `BASE` en `seo-build.js` **y en `scripts/new-link.js`**, el canonical/OG/JSON-LD de `index.html`, la URL del autor en `case-v3.html` y los `DESTINATIONS` de `go.html`; regenerar.
 4. La descripción del sitio vive en el `<meta name="description">` de `index.html`; `llms.txt` la lee de ahí (no duplicarla en el script).
 
 ## Limitaciones conocidas

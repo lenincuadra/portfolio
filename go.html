@@ -34,6 +34,15 @@
   var destKey = params.get("dest") || "portfolio";
   var DEST    = DESTINATIONS[destKey] || DESTINATIONS.portfolio;
 
+  // Personalización por perfil (data/profiles.js): el link trackeado puede
+  // traer &focus=<perfil> (genérico por industria, no delata la empresa: los
+  // refs son códigos opacos a propósito). Se guarda SIEMPRE (también en "me")
+  // y el index lo lee vía resolveActiveProfile().
+  try {
+    var focus = params.get("focus");
+    if (focus) sessionStorage.setItem("portfolio_focus", focus);
+  } catch (e) {}
+
   // Visita propia, redirigir sin trackear. Marcar la sesión como ya
   // trackeada para que tracker.js no la registre como "organic" al aterrizar.
   if (company === "me") {
