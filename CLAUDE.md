@@ -80,5 +80,5 @@ Auditoría hecha (2026-07-04) sobre index + case-v3 + 404, ambos temas e idiomas
 
 - **Texto nunca con `--ink-4`** (es decorativo-only); `--ink-3` es el tono más claro permitido para texto.
 - **Acento como texto y focus ring → `--accent-ink`** (theme-aware); `--accent` queda para superficies y texto sobre `--accent-pale`.
-- Al tocar `tokens.css` o agregar componentes con texto: correr **`node scripts/a11y-contrast.js`** (y agregar el par nuevo a su manifest). Debe quedar en verde.
+- Al tocar `tokens.css` o agregar componentes con texto: correr **`node scripts/a11y-contrast.js`** (y agregar el par nuevo a su manifest). Debe quedar en verde. El pre-commit hook (`.githooks/pre-commit`) lo corre solo y bloquea el commit si falla; setup por clone: `git config core.hooksPath .githooks`.
 - Interactivo = `<a>`/`<button>` reales; overlays cierran con Escape y devuelven el foco; media autoplay respeta `prefers-reduced-motion`.

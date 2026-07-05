@@ -1,0 +1,20 @@
+#!/bin/sh
+# Pre-commit: bloquea el commit si algún par fondo/texto rompe WCAG AA.
+# Manifest y reglas: scripts/a11y-contrast.js + docs/a11y.md.
+# Setup (una vez por clone): git config core.hooksPath .githooks
+# Nota: valida el working tree (tokens.css como está en disco, no lo stageado).
+
+root="$(git rev-parse --show-toplevel)"
+
+if ! command -v node >/dev/null 2>&1; then
+  echo "pre-commit a11y: node no disponible, chequeo salteado (correr node scripts/a11y-contrast.js a mano)." >&2
+  exit 0
+fi
+
+out="$(node "$root/scripts/a11y-contrast.js" 2>&1)" && exit 0
+
+echo "" >&2
+echo "✗ Commit bloqueado: contraste WCAG AA roto." >&2
+echo "$out" | grep -E '✗|fallas' >&2
+echo "Corregir el token en styles/tokens.css (o el par en scripts/a11y-contrast.js si el uso cambió). Ver docs/a11y.md." >&2
+exit 1
