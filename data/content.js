@@ -314,8 +314,8 @@ const PORTFOLIO_DATA = {
           ],
           "nav": {
             "prev": {
-              "slug": "telecom-legacy-refactor",
-              "title": "Telecom Legacy Platform Refactor"
+              "slug": "khatu",
+              "title": "Khatu: Rethinking an Internal Dev Platform"
             },
             "next": {
               "slug": "figma-webp-export",
@@ -958,6 +958,7 @@ const PORTFOLIO_DATA = {
         // ---------------------------------------------------------------------
         {
           "slug": "telecom-legacy-refactor",
+          "template": "v3",
           "images": {
             "cover": "assets/images/telecom/after-poster.png",
             "video": "assets/images/telecom/before-after.webm",
@@ -971,7 +972,7 @@ const PORTFOLIO_DATA = {
               "Design Systems"
             ],
             "title": "Refactoring a Legacy Telecom Platform for Structural Clarity",
-            "excerpt": "Led the structural refactor of a live telecom platform — from fragmented IA and inconsistent navigation to a coherent v2 architecture aligned with the new corporate Design System."
+            "excerpt": "Led the structural refactor of a live telecom platform: from fragmented IA and inconsistent navigation to a coherent v2 architecture aligned with the new corporate Design System."
           },
           "meta": {
             "title": "Telecom Legacy Refactor · Lenin Cuadra",
@@ -996,22 +997,17 @@ const PORTFOLIO_DATA = {
               "id": "section-overview",
               "tocLabel": "Overview",
               "label": "Overview",
-              "heading": "A platform that had outgrown its original architecture.",
-              "layout": "overview",
+              "h3": "A live telecom platform had outgrown its original architecture.",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "numbered",
-                  "items": [
-                    "A live telecom application in production with real users",
-                    "Accumulated structural debt: fragmented IA, inconsistent navigation, iconography issues",
-                    "Full v1 → v2 transition without incremental public releases"
-                  ]
+                  "type": "body",
+                  "text": "A telecom application in production, used every day by real teams, had accumulated structural debt: a fragmented information architecture, inconsistent navigation, and iconography that hurt comprehension. I led a full v1-to-v2 refactor, with no incremental public releases, to give it back the structural clarity it had lost."
                 },
                 {
                   "type": "image",
-                  "src": "assets/images/telecom/mockup-multitasking.png",
-                  "alt": "Telecom platform overview",
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/old-version.png",
+                  "alt": "The legacy telecom user portal: a contacts list, dial pad, and a meeting panel crowded together",
                   "loading": "lazy"
                 }
               ]
@@ -1020,15 +1016,22 @@ const PORTFOLIO_DATA = {
               "id": "section-problem",
               "tocLabel": "Problem",
               "label": "Problem",
-              "heading": "The system required users to guess, not recognize.",
+              "h3": "The system made users guess instead of recognize.",
               "content": [
                 {
                   "type": "body",
-                  "text": "The platform suffered from poorly structured information hierarchy, navigation that required users to guess rather than recognize, iconography inconsistencies that reduced comprehension, and divergence from the newly adopted Design System used across other company products. This created cognitive friction and reduced task clarity in a product already in active use."
+                  "text": "The information hierarchy was poorly structured, navigation forced users to guess instead of recognize, the iconography was inconsistent, and the whole product had drifted from the Design System the company had adopted everywhere else. In a tool already in daily use, that added cognitive friction and slowed every task."
+                },
+                {
+                  "type": "image",
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/old-app-architecture.png",
+                  "alt": "The legacy information architecture mapped out as a sprawling tree of nested calling states, options, and library screens",
+                  "loading": "lazy"
                 },
                 {
                   "type": "quote",
-                  "text": "\"The problem wasn't visual. It was structural. The architecture itself was creating cognitive friction.\"",
+                  "text": "The problem wasn't visual. It was structural. The architecture itself was creating cognitive friction.",
                   "attr": "Design framing, refactor kickoff"
                 }
               ]
@@ -1037,15 +1040,15 @@ const PORTFOLIO_DATA = {
               "id": "section-constraints",
               "tocLabel": "Constraints",
               "label": "Constraints",
-              "heading": "Refactoring live — without disrupting users.",
+              "h3": "A live system, no staging, one v1-to-v2 jump.",
               "content": [
                 {
                   "type": "steps",
                   "variant": "bullet",
                   "items": [
-                    "Live system — No staging environment: the refactor had to be planned as a full v1 → v2 transition with no intermediate public state.",
-                    "Legacy IA — Accumulated structural debt: fragmented groupings and implicit module dependencies made partial fixes ineffective.",
-                    "Design System — New corporate standard: adoption required alignment across iconography, components, and interaction patterns."
+                    "Live system — No staging environment, so the refactor had to ship as one full v1-to-v2 transition with no intermediate public state.",
+                    "Legacy IA — Fragmented groupings and implicit module dependencies meant partial fixes wouldn't hold.",
+                    "Design System — Adopting the new corporate standard required aligning iconography, components, and interaction patterns."
                   ]
                 }
               ]
@@ -1054,39 +1057,82 @@ const PORTFOLIO_DATA = {
               "id": "section-process",
               "tocLabel": "Process",
               "label": "Process",
-              "heading": "Restructure first. Standardize second. Validate third.",
+              "h3": "Restructure the IA, standardize on the Design System, then validate.",
               "content": [
                 {
-                  "type": "subheading",
-                  "text": "Phase 1 — Full IA reorganization: v1 → v2"
+                  "type": "heading",
+                  "text": "I started from the users, not the screens"
                 },
                 {
                   "type": "body",
-                  "text": "Completely reorganized the information architecture: redefined the navigation model, clarified grouping logic, and established explicit module separation. The goal was to eliminate the 'guess rather than recognize' pattern that had accumulated in the legacy system."
+                  "text": "Before touching the structure, I ran interviews and mapped them on a sentiment board, from painpoints to satisfaction. The same complaints kept surfacing: too much visual load, no sense of system status, and a heavy learning curve."
                 },
                 {
-                  "type": "subheading",
-                  "text": "Phase 2 — Applying corporate Design System standards"
+                  "type": "image",
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/sentiment-analysis-from-interviews.png",
+                  "alt": "A sentiment-analysis board from user interviews, sticky notes grouped from painpoints to satisfaction",
+                  "loading": "lazy"
                 },
                 {
-                  "type": "body",
-                  "text": "Applied the new corporate Design System across the platform — standardizing components, interaction patterns, and iconography. Alignment with the broader product ecosystem reduced the learning curve for users already familiar with other company products."
-                },
-                {
-                  "type": "subheading",
-                  "text": "Phase 3 — Standardizing iconography for recognition"
-                },
-                {
-                  "type": "body",
-                  "text": "The legacy icon set had inconsistent metaphors and lower recognition accuracy. By adopting the Design System iconography, I improved recognition rates, standardized the visual language, and aligned the product with the broader company ecosystem."
-                },
-                {
-                  "type": "subheading",
-                  "text": "Phase 4 — Usability testing to confirm structural improvements"
+                  "type": "heading",
+                  "text": "Turned the findings into heuristics to fix"
                 },
                 {
                   "type": "body",
-                  "text": "Usability testing validated the refactor: increased task success rates, improved clarity in navigation, and better icon comprehension under the new Design System confirmed that structural simplification improved real user interaction with the live system."
+                  "text": "I distilled the research into a short list of heuristics to design against: user control and freedom, visibility of system status, error prevention, and a better signal-to-noise ratio. Those became the rubric for every structural decision."
+                },
+                {
+                  "type": "image",
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/heuristic-focus-after-research.png",
+                  "alt": "Four heuristics to focus on: user control and freedom, visibility of system status, error prevention, and signal-to-noise ratio",
+                  "loading": "lazy"
+                },
+                {
+                  "type": "heading",
+                  "text": "Restructured the information architecture"
+                },
+                {
+                  "type": "body",
+                  "text": "I redefined the navigation model, clarified the grouping logic, and made module separation explicit, working from low-fi wireframes up. The goal was simple: replace the guess-instead-of-recognize pattern the legacy system had accumulated."
+                },
+                {
+                  "type": "image",
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/low-wireframing.png",
+                  "alt": "Low-fidelity wireframe of the restructured call screen, with transfer and notes laid out clearly",
+                  "loading": "lazy"
+                },
+                {
+                  "type": "heading",
+                  "text": "Standardized on the corporate Design System"
+                },
+                {
+                  "type": "body",
+                  "text": "Then I aligned components, interaction patterns, and iconography with the corporate Design System used across the company's other products. That alignment cut the learning curve for users who already knew those products."
+                },
+                {
+                  "type": "image",
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/mockup-overview.png",
+                  "alt": "The refactored platform: call transfer, in-call participants, and the recordings library, all built on Design System components",
+                  "loading": "lazy"
+                },
+                {
+                  "type": "heading",
+                  "text": "Validated with usability testing"
+                },
+                {
+                  "type": "body",
+                  "text": "I tested the new structure and iterated where it failed. The navbar, for one, went through a round of changes after testing: actions like recordings and reportings that users couldn't find before became named, visible items. Task success, navigation clarity, and icon comprehension all improved."
+                },
+                {
+                  "type": "image",
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/usability-test-changes.png",
+                  "alt": "Before and after of the navbar from usability testing: bare icons relabeled and surfaced as named items",
+                  "loading": "lazy"
                 }
               ]
             },
@@ -1094,31 +1140,31 @@ const PORTFOLIO_DATA = {
               "id": "section-decisions",
               "tocLabel": "Decisions",
               "label": "Decisions",
-              "heading": "The structural choices behind the refactor.",
+              "h3": "A full v2 jump, not incremental patching.",
               "content": [
                 {
-                  "type": "subheading",
-                  "text": "Full v1 → v2 transition instead of incremental updates"
+                  "type": "heading",
+                  "text": "A full v1-to-v2 transition instead of incremental updates"
                 },
                 {
                   "type": "body",
-                  "text": "Incremental updates to a structurally broken system would have created a hybrid architecture harder to maintain and worse for users during the transition period. A full version transition was riskier but produced a coherent result — and avoided prolonged user confusion."
+                  "text": "Patching a structurally broken system incrementally would have produced a hybrid architecture: harder to maintain and worse for users during the transition. A full version jump was riskier, but it produced a coherent result and avoided dragging users through prolonged confusion."
                 },
                 {
-                  "type": "subheading",
+                  "type": "heading",
                   "text": "Adopt the corporate Design System, not a local visual fix"
                 },
                 {
                   "type": "body",
-                  "text": "The temptation was to create a local icon set or component library that fit the existing IA. Instead, I aligned with the corporate Design System — which required deeper IA restructuring but produced ecosystem consistency and reduced future maintenance overhead."
+                  "text": "The easy path was a local icon set or component library bolted onto the existing IA. Instead I aligned with the corporate Design System, which forced a deeper IA restructure but bought ecosystem consistency and far less future maintenance."
                 },
                 {
-                  "type": "subheading",
+                  "type": "heading",
                   "text": "Prioritize navigation clarity over feature parity"
                 },
                 {
                   "type": "body",
-                  "text": "During the refactor, some legacy features required relocation or de-prioritization to achieve navigation clarity. I made explicit decisions about primary navigation access vs. nested content — based on task frequency and user mental models, not legacy placement."
+                  "text": "Some legacy features had to move or step down in priority to make the navigation clear. I made those calls explicitly, based on how often a task actually happened and the user's mental model, not on where the feature used to live."
                 }
               ]
             },
@@ -1126,39 +1172,42 @@ const PORTFOLIO_DATA = {
               "id": "section-impact",
               "tocLabel": "Impact",
               "label": "Impact",
-              "heading": "Structural clarity in a live, complex system.",
+              "h3": "Higher task success and navigation clarity, confirmed post-launch.",
               "content": [
                 {
+                  "type": "body",
+                  "text": "Measured after launch, the refactor moved the things that mattered. Same product, same users, a coherent v2 architecture, and the structural friction gone."
+                },
+                {
                   "type": "steps",
-                  "variant": "numbered",
+                  "variant": "bullet",
                   "items": [
-                    "↑ Task success rates — validated by usability testing post-launch",
-                    "↑ Navigation clarity — users recognized paths instead of guessing",
-                    "↑ Icon comprehension — Design System iconography outperformed legacy set",
-                    "v2 — complete IA restructure without incremental releases"
+                    "Higher task-success rates — Validated by post-launch usability testing.",
+                    "Clearer navigation — Users recognized paths instead of guessing.",
+                    "Better icon comprehension — The Design System iconography outperformed the legacy set.",
+                    "A complete v2 IA restructure — Shipped with no incremental public releases."
                   ]
                 },
                 {
-                  "type": "body",
-                  "text": "The refactor demonstrated that structural design interventions in live systems can deliver measurable UX improvement — without requiring a product rebuild or user-facing disruption during the transition."
+                  "type": "video",
+                  "controls": false,
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/before-after.webm",
+                  "poster": "assets/images/telecom/after-poster.png",
+                  "caption": "Before and after the refactor: the same platform, restructured and aligned to the Design System.",
+                  "alt": "Before-and-after of the telecom platform, from the legacy version to the refactored v2"
                 }
               ]
             },
             {
               "id": "section-learnings",
-              "tocLabel": "What This Demonstrates",
-              "label": "What This Demonstrates",
-              "heading": "What This Demonstrates.",
+              "tocLabel": "Takeaway",
+              "label": "Takeaway",
+              "h3": "Structural refactoring is a design discipline, not just a dev one.",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "numbered",
-                  "items": [
-                    "Ability to intervene in legacy systems without disrupting live operations — structural refactoring is a design discipline, not just a development one.",
-                    "Structural thinking in complex, constraint-driven environments: the architecture itself was the problem, and the architecture had to be the solution.",
-                    "Strategic application of Design Systems beyond visual consistency — Design System adoption here was an architectural decision that reduced cognitive debt across the product ecosystem.",
-                    "Leadership in high-risk, full-version refactoring: coordinating design and engineering decisions across a complex transition without incremental releases."
-                  ]
+                  "type": "body",
+                  "text": "The architecture itself was the problem, so the architecture had to be the solution. This case is where I learned to intervene in a live, constraint-heavy legacy system without disrupting it, to treat a Design System as an architectural decision and not just a coat of paint, and to lead design and engineering through a high-risk, full-version jump."
                 }
               ]
             }
@@ -1167,6 +1216,207 @@ const PORTFOLIO_DATA = {
             "prev": {
               "slug": "ecommerce-conversion",
               "title": "221% Q1 Revenue: E-commerce Conversion"
+            },
+            "next": {
+              "slug": "khatu",
+              "title": "Khatu: Rethinking an Internal Dev Platform"
+            }
+          }
+        },
+
+        // ---------------------------------------------------------------------
+        // CASE — KHATU / INTERNAL DEV PLATFORM (research-driven redesign)
+        // ---------------------------------------------------------------------
+        {
+          "slug": "khatu",
+          "template": "v3",
+          "featured": false,
+          "images": {
+            "cover": "assets/images/khatu/cover.webp"
+          },
+          "card": {
+            "tags": ["UX Research", "Developer Experience", "Information Architecture"],
+            "title": "Khatu: Rethinking an Internal Dev Platform",
+            "excerpt": "Naranja X's internal platform could bootstrap a project in minutes, yet few engineers used it. Interviews, an empathy map and a card sort reframed a requested reskin into a redesign built around discovery."
+          },
+          "meta": {
+            "title": "Khatu: Rethinking an Internal Dev Platform · Lenin Cuadra",
+            "description": "A research-driven redesign of Khatu, Naranja X's internal developer platform. Interviews, an empathy map, a persona and a card sort reframed a visual refresh into a redesign built around discovery."
+          },
+          "hero": {
+            "title": "Khatu: Rethinking an Internal Dev Platform",
+            "subtitle": "A research-driven redesign of Naranja X's internal developer platform"
+          },
+          "sections": [
+            {
+              "id": "section-lead",
+              "content": [
+                {
+                  "type": "image",
+                  "src": "assets/images/khatu/dashboard-v2.webp",
+                  "alt": "Khatu 2.0 dashboard: the redesigned home of Naranja X's internal developer platform, showing recent repositories and project shortcuts"
+                }
+              ]
+            },
+            {
+              "id": "section-overview",
+              "tocLabel": "Overview",
+              "label": "Overview",
+              "h3": "Khatu could spin up a full project in minutes, but most engineers never opened it.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "Khatu was Naranja X's internal platform for engineers. From one place you could generate a repository, pull a ready made template, and wire up cloud infrastructure and security. It turned the first day of a project into a few clicks."
+                },
+                {
+                  "type": "body",
+                  "text": "It worked, and the people who used it liked it. The problem was that most of the engineering org either didn't know Khatu existed or forgot that it did."
+                }
+              ]
+            },
+            {
+              "id": "section-problem",
+              "tocLabel": "Problem",
+              "label": "Problem",
+              "h3": "The brief was a visual refresh. We pushed to learn why adoption was low first.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "The team came to us for a v2 that looked more modern. Before touching pixels, we asked the harder question: if Khatu already saved so much time, why were so few people using it? A new skin on an unused tool is still an unused tool."
+                }
+              ]
+            },
+            {
+              "id": "section-research",
+              "tocLabel": "Research",
+              "label": "Research",
+              "h3": "Interviews with the platform's own engineers became an empathy map and a persona we named Mate.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "We ran interviews with the engineers who were supposed to live in Khatu every day, then clustered what they said, thought, did and felt into an empathy map."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/khatu/empathy-map.webp",
+                  "alt": "Empathy map built from engineer interviews, with sticky notes grouped into says, thinks, does and feels quadrants",
+                  "caption": "Interview notes clustered into says, thinks, does and feels."
+                },
+                {
+                  "type": "body",
+                  "text": "From there we distilled a primary persona: Mate, a senior architect who spends his week deploying infrastructure and spinning up automation projects. Khatu was built for people like him, and he was one of the ones who used it least."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/khatu/persona-mate.webp",
+                  "ratio": "portrait",
+                  "alt": "Persona sheet for Mate, a senior architect: his tools, tech stack, motivations, goals and the barriers that keep him from using Khatu",
+                  "caption": "Mate: the senior architect Khatu was built for."
+                },
+                {
+                  "type": "heading",
+                  "text": "Google Analytics and Hotjar Survey"
+                },
+                {
+                  "type": "body",
+                  "text": "Behavioral data, to weigh what engineers said against what they actually did."
+                },
+                {
+                  "type": "gallery",
+                  "images": [
+                    { "src": "assets/images/khatu/hotjar-survey.webp", "alt": "Hotjar survey results collected from Khatu users" },
+                    { "src": "assets/images/khatu/analytics-insight.webp", "alt": "Google Analytics insight on how engineers moved through Khatu" }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "section-insights",
+              "tocLabel": "Insights",
+              "label": "Insights",
+              "h3": "Engineers never heard Khatu changed, so they pinged a teammate instead of opening it.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "The same three patterns kept surfacing."
+                },
+                {
+                  "type": "steps",
+                  "variant": "numbered",
+                  "items": [
+                    "Engineers didn't distrust Khatu, they lost track of it: it shipped changes no one announced, so they never knew what was new and stopped checking.",
+                    "When they hit a wall they didn't open the docs. Almost no one used the FAQs, so they asked whoever happened to know, and tribal knowledge beat the platform.",
+                    "The templates were Khatu's core value and its worst experience: a flat, unlabeled wall where finding the right one meant already knowing its name."
+                  ]
+                },
+                {
+                  "type": "quote",
+                  "text": "I always ask Sebas.",
+                  "attr": "Sebas was a senior QA Automation engineer, and the lead of the Khatu team."
+                }
+              ]
+            },
+            {
+              "id": "section-redesign",
+              "tocLabel": "Redesign",
+              "label": "Redesign",
+              "h3": "A card sort turned a wall of templates into three groups, and that reshaped v2.0.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "The card sort was the turning point. We had engineers group Khatu's templates their own way, and the dendrogram drew clean clusters: front end, QA testing, and backend."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/khatu/card-sorting.webp",
+                  "ratio": "auto",
+                  "alt": "Card sorting dendrogram showing how engineers grouped Khatu's templates, with clusters forming around front end, QA and backend",
+                  "caption": "Open card sort. The dendrogram grouped templates the way engineers actually think about them."
+                },
+                {
+                  "type": "body",
+                  "text": "That structure became the new Templates page. Named groups replaced the flat list, so Mate can find the automation template he needs without knowing its exact name."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/khatu/templates-v2.webp",
+                  "alt": "Khatu 2.0 Templates page, with templates organized under FrontEnd, QA Testing and Backend groups",
+                  "caption": "Templates in v2.0, grouped FrontEnd, QA and Backend from the card sort."
+                },
+                {
+                  "type": "heading",
+                  "text": "From a proposal to a system"
+                },
+                {
+                  "type": "body",
+                  "text": "The rest of the platform followed the same logic. Every screen went from a low fidelity wireframe to a consistent v2.0 built around discovery."
+                },
+                {
+                  "type": "video",
+                  "controls": false,
+                  "src": "assets/images/khatu/proposal-evolution.webm",
+                  "alt": "The Khatu interface cycling from a v1 low-fidelity wireframe through the shipped v2.0 templates page and dashboard",
+                  "caption": "The v1 wireframe is the skeleton the v2.0 was built on."
+                }
+              ]
+            },
+            {
+              "id": "section-takeaway",
+              "tocLabel": "Takeaway",
+              "label": "Takeaway",
+              "h3": "Research turned a reskin into a platform people could actually navigate.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "Khatu 2.0 was designed and handed off as a research backed proposal, so there's no adoption metric to point to here. That's the honest version. What the project shows is the reframe: the team asked for a new coat of paint, and the research turned it into a redesign about discovery over decoration, so the platform's real value could finally be found."
+                }
+              ]
+            }
+          ],
+          "nav": {
+            "prev": {
+              "slug": "telecom-legacy-refactor",
+              "title": "Telecom Legacy Platform Refactor"
             },
             "next": {
               "slug": "no-handoff",
@@ -1482,8 +1732,8 @@ const PORTFOLIO_DATA = {
           ],
           "nav": {
             "prev": {
-              "slug": "telecom-legacy-refactor",
-              "title": "Telecom Legacy Platform Refactor"
+              "slug": "khatu",
+              "title": "Khatu: Repensar una Plataforma Interna para Devs"
             },
             "next": {
               "slug": "figma-webp-export",
@@ -2126,6 +2376,7 @@ const PORTFOLIO_DATA = {
         // ---------------------------------------------------------------------
         {
           "slug": "telecom-legacy-refactor",
+          "template": "v3",
           "images": {
             "cover": "assets/images/telecom/after-poster.png",
             "video": "assets/images/telecom/before-after.webm",
@@ -2139,7 +2390,7 @@ const PORTFOLIO_DATA = {
               "Design Systems"
             ],
             "title": "Refactoring de una Plataforma Telecom Legada para Claridad Estructural",
-            "excerpt": "Lideré el refactoring estructural de una plataforma telecom en producción — de una IA fragmentada y navegación inconsistente a una arquitectura v2 coherente alineada con el nuevo Design System corporativo."
+            "excerpt": "Lideré el refactoring estructural de una plataforma telecom en producción: de una IA fragmentada y navegación inconsistente a una arquitectura v2 coherente alineada con el nuevo Design System corporativo."
           },
           "meta": {
             "title": "Refactoring Telecom Legado · Lenin Cuadra",
@@ -2164,22 +2415,17 @@ const PORTFOLIO_DATA = {
               "id": "section-overview",
               "tocLabel": "Panorama",
               "label": "Panorama",
-              "heading": "Una plataforma que había superado su arquitectura original.",
-              "layout": "overview",
+              "h3": "Una plataforma telecom en vivo había superado su arquitectura original.",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "numbered",
-                  "items": [
-                    "Una aplicación telecom en producción con usuarios reales",
-                    "Deuda estructural acumulada: IA fragmentada, navegación inconsistente, problemas de iconografía",
-                    "Transición completa v1 → v2 sin lanzamientos públicos incrementales"
-                  ]
+                  "type": "body",
+                  "text": "Una aplicación telecom en producción, usada todos los días por equipos reales, había acumulado deuda estructural: una arquitectura de información fragmentada, navegación inconsistente e iconografía que dañaba la comprensión. Lideré un refactoring completo de v1 a v2, sin lanzamientos públicos incrementales, para devolverle la claridad estructural que había perdido."
                 },
                 {
                   "type": "image",
-                  "src": "assets/images/telecom/mockup-multitasking.png",
-                  "alt": "Panorama de la plataforma telecom",
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/old-version.png",
+                  "alt": "El portal de usuario telecom legacy: una lista de contactos, dial pad y un panel de reuniones amontonados",
                   "loading": "lazy"
                 }
               ]
@@ -2188,15 +2434,22 @@ const PORTFOLIO_DATA = {
               "id": "section-problem",
               "tocLabel": "Problema",
               "label": "Problema",
-              "heading": "El sistema obligaba a los usuarios a adivinar, no a reconocer.",
+              "h3": "El sistema hacía que los usuarios adivinaran en vez de reconocer.",
               "content": [
                 {
                   "type": "body",
-                  "text": "La plataforma sufría de una jerarquía de información mal estructurada, navegación que obligaba a los usuarios a adivinar en lugar de reconocer, inconsistencias de iconografía que reducían la comprensión, y divergencia del nuevo Design System adoptado en otros productos de la empresa. Esto generaba fricción cognitiva y reducía la claridad de las tareas en un producto ya en uso activo."
+                  "text": "La jerarquía de información estaba mal estructurada, la navegación obligaba a adivinar en vez de reconocer, la iconografía era inconsistente, y todo el producto se había alejado del Design System que la empresa había adoptado en todo lo demás. En una herramienta ya en uso diario, eso sumaba fricción cognitiva y frenaba cada tarea."
+                },
+                {
+                  "type": "image",
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/old-app-architecture.png",
+                  "alt": "La arquitectura de información legacy mapeada como un árbol enorme de estados de llamada, opciones y pantallas de biblioteca anidados",
+                  "loading": "lazy"
                 },
                 {
                   "type": "quote",
-                  "text": "\"El problema no era visual. Era estructural. La arquitectura en sí misma estaba generando fricción cognitiva.\"",
+                  "text": "El problema no era visual. Era estructural. La arquitectura en sí misma estaba generando fricción cognitiva.",
                   "attr": "Encuadre de diseño, kickoff del refactoring"
                 }
               ]
@@ -2205,15 +2458,15 @@ const PORTFOLIO_DATA = {
               "id": "section-constraints",
               "tocLabel": "Restricciones",
               "label": "Restricciones",
-              "heading": "Refactoring en vivo — sin interrumpir a los usuarios.",
+              "h3": "Un sistema en vivo, sin staging, un solo salto de v1 a v2.",
               "content": [
                 {
                   "type": "steps",
                   "variant": "bullet",
                   "items": [
-                    "Sistema en vivo — sin entorno de staging: el refactoring debía planificarse como una transición completa v1 → v2 sin estado público intermedio.",
-                    "IA legacy — deuda estructural acumulada: agrupamientos fragmentados y dependencias implícitas entre módulos hacían que las correcciones parciales fueran ineficaces.",
-                    "Design System — nuevo estándar corporativo: la adopción requería alineación en iconografía, componentes y patrones de interacción."
+                    "Sistema en vivo — Sin entorno de staging, así que el refactoring tenía que salir como una transición completa de v1 a v2, sin estado público intermedio.",
+                    "IA legacy — Agrupamientos fragmentados y dependencias implícitas entre módulos hacían que las correcciones parciales no se sostuvieran.",
+                    "Design System — Adoptar el nuevo estándar corporativo requería alinear iconografía, componentes y patrones de interacción."
                   ]
                 }
               ]
@@ -2222,39 +2475,82 @@ const PORTFOLIO_DATA = {
               "id": "section-process",
               "tocLabel": "Proceso",
               "label": "Proceso",
-              "heading": "Reestructurar primero. Estandarizar después. Validar al final.",
+              "h3": "Reestructurar la IA, estandarizar sobre el Design System, y después validar.",
               "content": [
                 {
-                  "type": "subheading",
-                  "text": "Fase 1 — Reorganización completa de IA: v1 → v2"
+                  "type": "heading",
+                  "text": "Empecé por los usuarios, no por las pantallas"
                 },
                 {
                   "type": "body",
-                  "text": "Reorganicé completamente la arquitectura de información: redefiní el modelo de navegación, clarifiqué la lógica de agrupamiento y establecí separación explícita de módulos. El objetivo era eliminar el patrón adivinar-en-lugar-de-reconocer acumulado en el sistema legacy."
+                  "text": "Antes de tocar la estructura, hice entrevistas y las mapeé en un board de sentiment, de painpoints a satisfacción. Las mismas quejas aparecían una y otra vez: demasiada carga visual, ninguna noción del estado del sistema y una curva de aprendizaje pesada."
                 },
                 {
-                  "type": "subheading",
-                  "text": "Fase 2 — Aplicación de estándares del Design System corporativo"
+                  "type": "image",
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/sentiment-analysis-from-interviews.png",
+                  "alt": "Un board de sentiment-analysis de las entrevistas, con sticky notes agrupadas de painpoints a satisfacción",
+                  "loading": "lazy"
                 },
                 {
-                  "type": "body",
-                  "text": "Apliqué el nuevo Design System corporativo en toda la plataforma — estandarizando componentes, patrones de interacción e iconografía. La alineación con el ecosistema de producto redujo la curva de aprendizaje para usuarios ya familiarizados con otros productos de la empresa."
-                },
-                {
-                  "type": "subheading",
-                  "text": "Fase 3 — Estandarización de iconografía para el reconocimiento"
-                },
-                {
-                  "type": "body",
-                  "text": "El conjunto de iconos legacy tenía metáforas inconsistentes y menor precisión de reconocimiento. Al adoptar la iconografía del Design System, mejoré las tasas de reconocimiento, estandaricé el lenguaje visual y alineé el producto con el ecosistema más amplio de la empresa."
-                },
-                {
-                  "type": "subheading",
-                  "text": "Fase 4 — Testing de usabilidad para confirmar las mejoras estructurales"
+                  "type": "heading",
+                  "text": "Convertí los hallazgos en heurísticas a resolver"
                 },
                 {
                   "type": "body",
-                  "text": "El testing de usabilidad validó el refactoring: mayor tasa de éxito en tareas, mejor claridad en la navegación y mayor comprensión de iconos bajo el nuevo Design System confirmaron que la simplificación estructural mejoró la interacción real de los usuarios con el sistema en vivo."
+                  "text": "Destilé la investigación en una lista corta de heurísticas para diseñar en contra: control y libertad del usuario, visibilidad del estado del sistema, prevención de errores y una mejor relación señal-ruido. Esas pasaron a ser la regla de cada decisión estructural."
+                },
+                {
+                  "type": "image",
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/heuristic-focus-after-research.png",
+                  "alt": "Cuatro heurísticas en las que enfocarse: control y libertad del usuario, visibilidad del estado del sistema, prevención de errores y relación señal-ruido",
+                  "loading": "lazy"
+                },
+                {
+                  "type": "heading",
+                  "text": "Reestructuré la arquitectura de información"
+                },
+                {
+                  "type": "body",
+                  "text": "Redefiní el modelo de navegación, clarifiqué la lógica de agrupamiento e hice explícita la separación de módulos, desde wireframes low-fi hacia arriba. El objetivo era simple: reemplazar el patrón de adivinar-en-lugar-de-reconocer que el sistema legacy había acumulado."
+                },
+                {
+                  "type": "image",
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/low-wireframing.png",
+                  "alt": "Wireframe de baja fidelidad de la pantalla de llamada reestructurada, con transferencia y notas dispuestas con claridad",
+                  "loading": "lazy"
+                },
+                {
+                  "type": "heading",
+                  "text": "Estandaricé sobre el Design System corporativo"
+                },
+                {
+                  "type": "body",
+                  "text": "Después alineé componentes, patrones de interacción e iconografía con el Design System corporativo usado en los otros productos de la empresa. Esa alineación bajó la curva de aprendizaje para los usuarios que ya conocían esos productos."
+                },
+                {
+                  "type": "image",
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/mockup-overview.png",
+                  "alt": "La plataforma refactorizada: transferencia de llamada, participantes en llamada y la biblioteca de grabaciones, todo sobre componentes del Design System",
+                  "loading": "lazy"
+                },
+                {
+                  "type": "heading",
+                  "text": "Validé con testing de usabilidad"
+                },
+                {
+                  "type": "body",
+                  "text": "Probé la nueva estructura e iteré donde fallaba. La navbar, por ejemplo, pasó por una ronda de cambios tras el testing: acciones como grabaciones y reportes que antes no se encontraban pasaron a ser ítems nombrados y visibles. La tasa de éxito de tareas, la claridad de navegación y la comprensión de iconos mejoraron."
+                },
+                {
+                  "type": "image",
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/usability-test-changes.png",
+                  "alt": "Antes y después de la navbar a partir del testing de usabilidad: iconos sueltos reetiquetados y expuestos como ítems nombrados",
+                  "loading": "lazy"
                 }
               ]
             },
@@ -2262,31 +2558,31 @@ const PORTFOLIO_DATA = {
               "id": "section-decisions",
               "tocLabel": "Decisiones",
               "label": "Decisiones",
-              "heading": "Las decisiones estructurales detrás del refactoring.",
+              "h3": "Un salto completo a v2, no parches incrementales.",
               "content": [
                 {
-                  "type": "subheading",
-                  "text": "Transición completa v1 → v2 en lugar de actualizaciones incrementales"
+                  "type": "heading",
+                  "text": "Una transición completa de v1 a v2 en vez de actualizaciones incrementales"
                 },
                 {
                   "type": "body",
-                  "text": "Las actualizaciones incrementales a un sistema estructuralmente roto habrían creado una arquitectura híbrida más difícil de mantener y peor para los usuarios durante la transición. Una transición de versión completa fue más arriesgada pero produjo un resultado coherente — y evitó confusión prolongada en los usuarios."
+                  "text": "Parchar un sistema estructuralmente roto de forma incremental habría producido una arquitectura híbrida: más difícil de mantener y peor para los usuarios durante la transición. Un salto de versión completo fue más arriesgado, pero produjo un resultado coherente y evitó arrastrar a los usuarios por una confusión prolongada."
                 },
                 {
-                  "type": "subheading",
+                  "type": "heading",
                   "text": "Adoptar el Design System corporativo, no una solución visual local"
                 },
                 {
                   "type": "body",
-                  "text": "La tentación era crear un conjunto de iconos o una biblioteca de componentes local que se adaptara a la IA existente. En cambio, me alineé con el Design System corporativo — lo que requirió una reestructuración de IA más profunda, pero produjo consistencia en el ecosistema y redujo la sobrecarga de mantenimiento futuro."
+                  "text": "El camino fácil era un set de iconos o una biblioteca de componentes local pegada a la IA existente. En cambio me alineé con el Design System corporativo, que forzó una reestructuración de IA más profunda pero compró consistencia de ecosistema y mucho menos mantenimiento futuro."
                 },
                 {
-                  "type": "subheading",
+                  "type": "heading",
                   "text": "Priorizar la claridad de navegación por encima de la paridad de funcionalidades"
                 },
                 {
                   "type": "body",
-                  "text": "Durante el refactoring, algunas funcionalidades legacy requirieron reubicación o repriorización para lograr claridad en la navegación. Tomé decisiones explícitas sobre qué merecía acceso de navegación principal vs. qué debía quedar anidado — basadas en la frecuencia de tareas y los modelos mentales del usuario, no en la ubicación legacy."
+                  "text": "Algunas funcionalidades legacy tuvieron que moverse o bajar de prioridad para que la navegación quedara clara. Tomé esas decisiones de forma explícita, según con qué frecuencia pasaba realmente una tarea y el modelo mental del usuario, no según dónde solía estar la funcionalidad."
                 }
               ]
             },
@@ -2294,39 +2590,42 @@ const PORTFOLIO_DATA = {
               "id": "section-impact",
               "tocLabel": "Impacto",
               "label": "Impacto",
-              "heading": "Claridad estructural en un sistema vivo y complejo.",
+              "h3": "Más éxito en tareas y más claridad de navegación, confirmado post-lanzamiento.",
               "content": [
                 {
+                  "type": "body",
+                  "text": "Medido después del lanzamiento, el refactoring movió lo que importaba. Mismo producto, mismos usuarios, una arquitectura v2 coherente, y la fricción estructural eliminada."
+                },
+                {
                   "type": "steps",
-                  "variant": "numbered",
+                  "variant": "bullet",
                   "items": [
-                    "↑ Tasas de éxito de tareas — validado por testing de usabilidad post-lanzamiento",
-                    "↑ Claridad de navegación — los usuarios reconocían los caminos en lugar de adivinar",
-                    "↑ Comprensión de iconos — la iconografía del Design System superó al conjunto legacy",
-                    "v2 — reestructuración completa de IA sin lanzamientos incrementales"
+                    "Mayor tasa de éxito en tareas — Validado por testing de usabilidad post-lanzamiento.",
+                    "Navegación más clara — Los usuarios reconocían los caminos en vez de adivinar.",
+                    "Mejor comprensión de iconos — La iconografía del Design System superó al conjunto legacy.",
+                    "Reestructuración de IA v2 completa — Lanzada sin entregas públicas incrementales."
                   ]
                 },
                 {
-                  "type": "body",
-                  "text": "El refactoring demostró que las intervenciones de diseño estructural en sistemas en vivo pueden generar mejoras UX medibles — sin requerir una reconstrucción del producto ni interrupciones visibles para el usuario durante la transición."
+                  "type": "video",
+                  "controls": false,
+                  "ratio": "wide",
+                  "src": "assets/images/telecom/before-after.webm",
+                  "poster": "assets/images/telecom/after-poster.png",
+                  "caption": "Antes y después del refactoring: la misma plataforma, reestructurada y alineada al Design System.",
+                  "alt": "Antes y después de la plataforma telecom, de la versión legacy a la v2 refactorizada"
                 }
               ]
             },
             {
               "id": "section-learnings",
-              "tocLabel": "Qué demuestra esto",
-              "label": "Qué demuestra esto",
-              "heading": "Qué demuestra esto.",
+              "tocLabel": "Conclusión",
+              "label": "Conclusión",
+              "h3": "El refactoring estructural es una disciplina de diseño, no solo de desarrollo.",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "numbered",
-                  "items": [
-                    "Capacidad de intervenir en sistemas legacy sin interrumpir las operaciones en vivo — el refactoring estructural es una disciplina de diseño, no solo de desarrollo.",
-                    "Pensamiento estructural en entornos complejos y con restricciones: la arquitectura en sí era el problema, y la arquitectura tenía que ser la solución.",
-                    "Aplicación estratégica de Design Systems más allá de la consistencia visual — la adopción aquí fue una decisión arquitectónica que redujo la deuda cognitiva en el ecosistema de producto.",
-                    "Liderazgo en refactoring de versión completa de alto riesgo: coordinando decisiones de diseño e ingeniería en una transición compleja sin lanzamientos incrementales."
-                  ]
+                  "type": "body",
+                  "text": "La arquitectura en sí era el problema, así que la arquitectura tenía que ser la solución. Este caso es donde aprendí a intervenir en un sistema legacy en vivo y lleno de restricciones sin interrumpirlo, a tratar un Design System como una decisión arquitectónica y no solo una mano de pintura, y a liderar diseño e ingeniería en un salto de versión completo y de alto riesgo."
                 }
               ]
             }
@@ -2335,6 +2634,207 @@ const PORTFOLIO_DATA = {
             "prev": {
               "slug": "ecommerce-conversion",
               "title": "221% Q1 en Ingresos: Conversión E-commerce"
+            },
+            "next": {
+              "slug": "khatu",
+              "title": "Khatu: Repensar una Plataforma Interna para Devs"
+            }
+          }
+        },
+
+        // ---------------------------------------------------------------------
+        // CASO — KHATU / PLATAFORMA INTERNA DE DEVS (rediseño research-driven)
+        // ---------------------------------------------------------------------
+        {
+          "slug": "khatu",
+          "template": "v3",
+          "featured": false,
+          "images": {
+            "cover": "assets/images/khatu/cover.webp"
+          },
+          "card": {
+            "tags": ["Investigación UX", "Developer Experience", "Arquitectura de Información"],
+            "title": "Khatu: Repensar una Plataforma Interna para Devs",
+            "excerpt": "La plataforma interna de Naranja X podía crear un proyecto en minutos, pero pocos ingenieros la usaban. Entrevistas, un mapa de empatía y un card sorting convirtieron un pedido de refresh visual en un rediseño construido alrededor del descubrimiento."
+          },
+          "meta": {
+            "title": "Khatu: Repensar una Plataforma Interna para Devs · Lenin Cuadra",
+            "description": "Rediseño research-driven de Khatu, la plataforma interna de developers de Naranja X. Entrevistas, un mapa de empatía, una persona y un card sorting convirtieron un refresh visual en un rediseño construido alrededor del descubrimiento."
+          },
+          "hero": {
+            "title": "Khatu: Repensar una Plataforma Interna para Devs",
+            "subtitle": "Rediseño research-driven de la plataforma interna de developers de Naranja X"
+          },
+          "sections": [
+            {
+              "id": "section-lead",
+              "content": [
+                {
+                  "type": "image",
+                  "src": "assets/images/khatu/dashboard-v2.webp",
+                  "alt": "Dashboard de Khatu 2.0: la home rediseñada de la plataforma interna de developers de Naranja X, con repositorios recientes y accesos a proyectos"
+                }
+              ]
+            },
+            {
+              "id": "section-overview",
+              "tocLabel": "Overview",
+              "label": "Overview",
+              "h3": "Khatu podía crear un proyecto entero en minutos, pero la mayoría de los ingenieros nunca lo abría.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "Khatu era la plataforma interna de Naranja X para developers. Desde un solo lugar podías generar un repositorio, tomar un template listo para usar, y configurar infraestructura cloud y seguridad. Convertía el primer día de un proyecto en unos pocos clics."
+                },
+                {
+                  "type": "body",
+                  "text": "Funcionaba, y a quienes lo usaban les gustaba. El problema era que la mayor parte del equipo de ingeniería no sabía que Khatu existía, o se olvidaba de que existía."
+                }
+              ]
+            },
+            {
+              "id": "section-problem",
+              "tocLabel": "Problem",
+              "label": "Problem",
+              "h3": "El pedido era un refresh visual. Empujamos para entender primero por qué la adopción era tan baja.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "El equipo nos vino a pedir una v2 más moderna. Antes de tocar un pixel, hicimos la pregunta más difícil: si Khatu ya ahorraba tanto tiempo, ¿por qué lo usaba tan poca gente? Una piel nueva sobre una herramienta que nadie usa sigue siendo una herramienta que nadie usa."
+                }
+              ]
+            },
+            {
+              "id": "section-research",
+              "tocLabel": "Research",
+              "label": "Research",
+              "h3": "Las entrevistas con los propios ingenieros de la plataforma se volvieron un mapa de empatía y una persona que llamamos Mate.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "Entrevistamos a los ingenieros que se suponía que vivían en Khatu todos los días, y agrupamos lo que decían, pensaban, hacían y sentían en un mapa de empatía."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/khatu/empathy-map.webp",
+                  "alt": "Mapa de empatía construido a partir de las entrevistas con ingenieros, con notas agrupadas en dice, piensa, hace y siente",
+                  "caption": "Notas de las entrevistas agrupadas en dice, piensa, hace y siente."
+                },
+                {
+                  "type": "body",
+                  "text": "De ahí destilamos una persona principal: Mate, un arquitecto senior que se pasa la semana desplegando infraestructura y arrancando proyectos de automation. Khatu estaba hecho para gente como él, y él era uno de los que menos lo usaba."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/khatu/persona-mate.webp",
+                  "ratio": "portrait",
+                  "alt": "Ficha de persona de Mate, un arquitecto senior: sus herramientas, stack técnico, motivaciones, metas y las barreras que le impiden usar Khatu",
+                  "caption": "Mate: el arquitecto senior para el que Khatu fue construido."
+                },
+                {
+                  "type": "heading",
+                  "text": "Google Analytics y Hotjar Survey"
+                },
+                {
+                  "type": "body",
+                  "text": "Datos de comportamiento, para pesar lo que los ingenieros decían contra lo que realmente hacían."
+                },
+                {
+                  "type": "gallery",
+                  "images": [
+                    { "src": "assets/images/khatu/hotjar-survey.webp", "alt": "Resultados de la encuesta de Hotjar hecha a usuarios de Khatu" },
+                    { "src": "assets/images/khatu/analytics-insight.webp", "alt": "Insight de Google Analytics sobre cómo se movían los ingenieros dentro de Khatu" }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "section-insights",
+              "tocLabel": "Insights",
+              "label": "Insights",
+              "h3": "Los ingenieros nunca se enteraban de que Khatu cambiaba, así que le preguntaban a un compañero en vez de abrirlo.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "Los mismos tres patrones aparecían una y otra vez."
+                },
+                {
+                  "type": "steps",
+                  "variant": "numbered",
+                  "items": [
+                    "Los ingenieros no desconfiaban de Khatu, le perdían el rastro: lanzaba cambios que nadie anunciaba, así que nunca sabían qué había de nuevo y dejaban de mirar.",
+                    "Cuando se trababan no abrían la documentación. Casi nadie usaba las FAQs, así que le preguntaban a quien supiera, y el conocimiento tribal le ganaba a la plataforma.",
+                    "Los templates eran el valor central de Khatu y su peor experiencia: un muro plano y sin etiquetas donde encontrar el correcto significaba ya saber su nombre."
+                  ]
+                },
+                {
+                  "type": "quote",
+                  "text": "Siempre le consulto a Sebas.",
+                  "attr": "Sebas era un QA Automation Senior, y el lead del equipo de Khatu."
+                }
+              ]
+            },
+            {
+              "id": "section-redesign",
+              "tocLabel": "Redesign",
+              "label": "Redesign",
+              "h3": "Un card sorting convirtió un muro de templates en tres grupos, y eso reformó la v2.0.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "El card sorting fue el punto de inflexión. Hicimos que los ingenieros agruparan los templates de Khatu a su manera, y el dendrograma dibujó clusters limpios: front end, QA testing y backend."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/khatu/card-sorting.webp",
+                  "ratio": "auto",
+                  "alt": "Dendrograma del card sorting que muestra cómo los ingenieros agruparon los templates de Khatu, con clusters de front end, QA y backend",
+                  "caption": "Card sorting abierto. El dendrograma agrupó los templates como los ingenieros realmente piensan en ellos."
+                },
+                {
+                  "type": "body",
+                  "text": "Esa estructura se volvió la nueva página de Templates. Grupos con nombre reemplazaron la lista plana, así Mate encuentra el template de automation que necesita sin saber su nombre exacto."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/khatu/templates-v2.webp",
+                  "alt": "Página de Templates de Khatu 2.0, con los templates organizados en los grupos FrontEnd, QA Testing y Backend",
+                  "caption": "Templates en la v2.0, agrupados en FrontEnd, QA y Backend a partir del card sorting."
+                },
+                {
+                  "type": "heading",
+                  "text": "De una propuesta a un sistema"
+                },
+                {
+                  "type": "body",
+                  "text": "El resto de la plataforma siguió la misma lógica. Cada pantalla pasó de un wireframe de baja fidelidad a una v2.0 consistente, construida alrededor del descubrimiento."
+                },
+                {
+                  "type": "video",
+                  "controls": false,
+                  "src": "assets/images/khatu/proposal-evolution.webm",
+                  "alt": "La interfaz de Khatu recorriendo en bucle desde un wireframe v1 de baja fidelidad hasta la página de Templates y el dashboard de la v2.0",
+                  "caption": "El wireframe v1 es el esqueleto sobre el que se construyó la v2.0."
+                }
+              ]
+            },
+            {
+              "id": "section-takeaway",
+              "tocLabel": "Takeaway",
+              "label": "Takeaway",
+              "h3": "La research convirtió un cambio de piel en una plataforma por la que la gente sí podía moverse.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "Khatu 2.0 se diseñó y se entregó como una propuesta respaldada por research, así que acá no hay una métrica de adopción para mostrar. Esa es la versión honesta. Lo que el proyecto muestra es el reencuadre: el equipo pidió una mano de pintura, y la research lo convirtió en un rediseño sobre descubrimiento por encima de decoración, para que el valor real de la plataforma por fin se pudiera encontrar."
+                }
+              ]
+            }
+          ],
+          "nav": {
+            "prev": {
+              "slug": "telecom-legacy-refactor",
+              "title": "Telecom Legacy Platform Refactor"
             },
             "next": {
               "slug": "no-handoff",

@@ -42,6 +42,10 @@
     #case-v3-content h3 + .case-subhead { margin-top: var(--sp-6); }
     #case-v3-content ul, #case-v3-content ol { margin-block: calc(var(--sp-5) / 2); list-style: none; padding: 0; }
     #case-v3-content li + li { margin-top: var(--sp-5); }
+    /* numbered steps (ol) show a hanging mono counter so an ordered list reads as steps; the bullet ul stays marker-less (its items are h4+p) */
+    #case-v3-content ol { counter-reset: case-step; }
+    #case-v3-content ol > li { counter-increment: case-step; position: relative; padding-left: 2.25rem; }
+    #case-v3-content ol > li::before { content: counter(case-step) "."; position: absolute; left: 0; top: 0.05em; font-family: var(--font-mono); font-size: 0.9em; color: var(--ink-3); font-variant-numeric: tabular-nums; }
     #case-v3-content hr { border: none; border-top: 1px solid var(--border-subtle); margin-top: 3rem; margin-bottom: 0; }
     #case-v3-content h1 + h2 + p { margin-top: var(--sp-4); }
     #case-v3-content .image-block { cursor: zoom-in; margin-block: var(--sp-6); }
