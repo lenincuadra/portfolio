@@ -2,7 +2,7 @@
 
 ## Prioridad — accionable ahora
 
-### Percepción — objetivo: rol remoto USD 6k+ (auditoría 2026-07-05)
+### Percepción — auditoría con ojos de reclutador (2026-07-05)
 
 **✅ Aplicado (2026-07-05):** `fintech-ecosystem` migrado a v3 (h3s declarativos, prosa, 2 videos + wireframes + research que el v2 no mostraba; pasa `case-check --strict`); las 3 `meta.description` genéricas reescritas vendiendo resultado (EN+ES); **Featured Work resucitado** (fix del bug de `hidden` en `app.js` + `ecommerce-conversion` destacado con 3 video-screens); em-dashes del copy en 0 (los "70" eran en su mayoría paths de assets, el linter ahora solo mira copy); **performance**: media referenciada 19.7→10.2 MB (mockup de telecom 4.3 MB→112 KB webp; 3 videos de fintech re-encodeados a webm, el thumbnail de la card de fintech en el index pasó de 2.25 MB a 0.32 MB).
 
@@ -10,7 +10,7 @@
 
 ### 🧑 Acciones tuyas (checklist de búsqueda — nadie más puede hacerlas)
 
-1. **Comprar dominio propio** (~USD 10/año, ej. `lenincuadra.com` o `lenin.design`): señal de seniority para la banda 6k+. Configurar en GitHub Pages (Settings → Pages → Custom domain, crea el CNAME) y avisarme: los pasos técnicos del sitio (BASE de `seo-build`, canonical/OG/JSON-LD, autor en case-v3) están en `docs/seo.md` §Reglas 3 y los hago yo. **Tracking al migrar**: los links viejos a `github.io` no se rompen (GitHub redirige con 301 al dominio nuevo preservando path y query, así que `go.html?ref=` sigue funcionando), pero conviene (a) actualizar los destinos de los **bit.ly del CV** al dominio nuevo para evitar el doble salto, y (b) re-testear el tracking end-to-end después del cambio (visitar `go.html?ref=test` → verificar EmailJS 200 y el dashboard, como en el registro privado).
+1. **Comprar dominio propio** (~USD 10/año, ej. `lenincuadra.com` o `lenin.design`): señal de seniority para el nivel al que apuntás. Configurar en GitHub Pages (Settings → Pages → Custom domain, crea el CNAME) y avisarme: los pasos técnicos del sitio (BASE de `seo-build`, canonical/OG/JSON-LD, autor en case-v3) están en `docs/seo.md` §Reglas 3 y los hago yo. **Tracking al migrar**: los links viejos a `github.io` no se rompen (GitHub redirige con 301 al dominio nuevo preservando path y query, así que `go.html?ref=` sigue funcionando), pero conviene (a) actualizar los destinos de los **bit.ly del CV** al dominio nuevo para evitar el doble salto, y (b) re-testear el tracking end-to-end después del cambio (visitar `go.html?ref=test` → verificar EmailJS 200 y el dashboard, como en el registro privado).
 2. **Grabar el Loom (2-3 min, en inglés)** — la prueba de inglés hablado es el filtro invisible de remoto LATAM→US y casi nadie la resuelve. Guion sugerido: 20s quién sos + posicionamiento (el copy del hero ya lo tiene), 90s recorriendo `no-handoff` (el arco de la TOC es el guion: problema → 3 constraints → resultado indistinguible → 4 capacidades nuevas), 30s cierre con el +221% de ecommerce. Subirlo a Loom/YouTube unlisted; después decidimos dónde linkearlo (hero o cases).
 3. **Figma Community como canal**: agregar el link del portfolio en la descripción del plugin de webp export y en tu perfil de Community. Cada instalación es distribución gratis frente a diseñadores y sus managers.
 4. **LinkedIn alineado**: titular = el del hero ("Senior Product Designer · AI Adoption Lead"); About de LinkedIn con el +221% y los 77 minutos; y pedirle a la lead del endorsement de Slack una **recomendación formal en LinkedIn** (mismo contenido, mucha más credibilidad).
@@ -52,6 +52,8 @@ Routing en `js/app.js:13`: cualquier caso sin `template: 'v3'` cae a `case-v2`.
 - **Case: No Handoff: Closing the Design-Dev Gap —** El video del thumbnail (el mismo que el Overview) si bien está bien el orden, debería mostrarse que el prompt fué lo que generó el códigoo, es decir, en el espacio asignado de "Total Access Demo" debería colocarse encima el video de app andando para dar la total sensación de como funciona y que es código)
 
 ## Bloqueado / al final
+
+- **Portfolio personalizado por link** (estrategia definida 2026-07-05, diseño en el roadmap privado): la primera pantalla (featured + orden de la grilla + proofs del hero) se adapta según un perfil derivado del `ref`/`focus` del link compartido; **ordenar, no ocultar; sin filtros manuales**. Data-driven estilo `hero.js`, con fallback al orden actual. Implementar cuando la búsqueda activa lo pida.
 
 - **Thumbnails de case studies** — Agregar thumbnails a los 2 case studies faltantes. *Bloqueado: se define cuando estén todos los assets (ver sección de assets faltantes arriba).*
 - **Revisión UX con criterio Joe Natoli** — Repasar todo el index aplicando principios de UX (jerarquía visual, claridad de mensajes, flujo de atención, fricción innecesaria, etc.). *Al final.*
