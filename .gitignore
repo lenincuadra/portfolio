@@ -7,6 +7,9 @@ test-results/
 # Registro privado de códigos de tracking — NUNCA publicar (el repo es GitHub Pages)
 tracking-registry.md
 
+# Material privado de búsqueda laboral (estrategia, target salarial) — NUNCA publicar
+private/
+
 # Grabaciones crudas (pesadas) — convertir a webm/mp4 antes de commitear
 assets/**/*.mov
 
