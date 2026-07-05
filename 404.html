@@ -182,7 +182,7 @@
         <div class="notfound__actions">
           <button
             class="btn btn--primary btn--md"
-            onclick="history.length > 1 ? history.back() : window.location.href = 'index.html'"
+            id="notfound-back"
           >
             ← Take me back
           </button>
@@ -229,6 +229,12 @@
         html.classList.toggle('theme-dark');
         localStorage.setItem('theme', html.classList.contains('theme-dark') ? 'dark' : 'light');
         btn.setAttribute('aria-pressed', String(html.classList.contains('theme-dark')));
+      });
+
+      // Back button: vuelve si hay historial, si no va al home
+      document.getElementById('notfound-back')?.addEventListener('click', () => {
+        if (history.length > 1) history.back();
+        else window.location.href = 'index.html';
       });
 
       // Mobile nav toggle

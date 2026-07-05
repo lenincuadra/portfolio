@@ -307,7 +307,7 @@
       grid.innerHTML = secondaryCases.map((c, i) => {
         const delay = i > 0 ? ` reveal-delay-${i}` : '';
         return `
-          <article class="case-card reveal${delay}" onclick="location.href='${caseUrl(c)}'" style="cursor:pointer">
+          <article class="case-card reveal${delay}">
             <a href="${caseUrl(c)}" class="case-card__image${c.images && (c.images.video || c.images.cover) ? '' : ' case-card__image--empty'}" aria-label="${c.card.title} — view case study">
               ${buildCardCover(c)}
             </a>
@@ -324,6 +324,16 @@
             </div>
           </article>`;
       }).join('');
+
+      // a11y: la card entera navega con mouse; el acceso por teclado son los
+      // <a> internos (imagen + CTA), así que acá se ignoran para no duplicar.
+      grid.querySelectorAll('.case-card').forEach(card => {
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('a')) return;
+          const link = card.querySelector('.case-card__cta');
+          if (link) location.href = link.href;
+        });
+      });
 
       // Re-observe new reveal elements
       const observer = new IntersectionObserver(entries => {
