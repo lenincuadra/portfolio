@@ -112,7 +112,7 @@
   gap: var(--sp-2);
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--accent);
+  color: var(--accent-ink); /* a11y: acento-texto (--accent falla en dark) */
   transition: gap var(--dur-mid) var(--ease-out);
 }
 .case-card:hover .case-card__cta {

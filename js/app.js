@@ -8,6 +8,20 @@
 
   const LANG_KEY = 'portfolio-lang';
 
+  // a11y (WCAG 2.2.2 / 2.3.3): con reduced-motion no autoreproducimos loops.
+  const REDUCED_MOTION = window.matchMedia
+    && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function stopAutoplayVideos(scope) {
+    if (!REDUCED_MOTION) return;
+    (scope || document).querySelectorAll('video[autoplay]').forEach(v => {
+      v.autoplay = false;
+      v.removeAttribute('autoplay');
+      v.addEventListener('playing', () => v.pause(), { once: true });
+      try { v.pause(); } catch (e) { /* no-op */ }
+    });
+  }
+
   // --- Case URL helper --------------------------------------------------------
   function caseUrl(c) {
     const tpl = c.template === 'v3' ? 'case-v3' : 'case-v2';
@@ -321,9 +335,11 @@
 
       grid.querySelectorAll('video[data-freeze-loop]').forEach(v => {
         v.addEventListener('ended', () => {
+          if (REDUCED_MOTION) return;
           setTimeout(() => v.play(), 2000);
         });
       });
+      stopAutoplayVideos(grid);
     }
 
 
@@ -342,12 +358,17 @@
     setText('contact-heading', home.contact.heading);
     setText('contact-body',    home.contact.body);
     const emailBtn = document.getElementById('contact-email');
+    // dataset.bound: renderIndex corre de nuevo en cada cambio de idioma; sin
+    // la guarda los listeners se acumulan (el dropdown llegaba a togglear 2x
+    // y no abría).
     if (emailBtn) {
       const emailLabel = document.getElementById('contact-email-label');
       if (emailLabel) emailLabel.textContent = site.email;
 
       const copyToast = document.getElementById('copy-toast');
       let toastTimer;
+      if (!emailBtn.dataset.bound) {
+      emailBtn.dataset.bound = 'true';
       emailBtn.addEventListener('click', () => {
         // On mobile view, open the mail app directly; on desktop, copy to clipboard.
         if (window.matchMedia('(max-width: 768px)').matches) {
@@ -364,6 +385,7 @@
           toastTimer = setTimeout(() => copyToast.classList.remove('copy-toast--visible'), 2500);
         });
       });
+      }
     }
     setAttr('contact-linkedin', 'href', site.linkedinUrl);
     const contactResumeLabel = document.getElementById('contact-resume-label');
@@ -379,34 +401,51 @@
       if (heroEmailLabel) heroEmailLabel.textContent = site.email;
       if (heroLinkedin)   heroLinkedin.href = site.linkedinUrl;
 
-      const toggleDropdown = (open) => {
-        heroDropdown.hidden = !open;
-        heroContactBtn.setAttribute('aria-expanded', String(open));
-      };
+      // dataset.bound: evita listeners duplicados cuando renderIndex vuelve a
+      // correr por el toggle de idioma (duplicados = el toggle se anula a sí
+      // mismo y el menú no abre).
+      if (!heroContactBtn.dataset.bound) {
+        heroContactBtn.dataset.bound = 'true';
 
-      heroContactBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleDropdown(heroDropdown.hidden);
-      });
+        const toggleDropdown = (open) => {
+          heroDropdown.hidden = !open;
+          heroContactBtn.setAttribute('aria-expanded', String(open));
+        };
 
-      if (heroEmailOption) {
-        heroEmailOption.addEventListener('click', () => {
-          navigator.clipboard.writeText(site.email).then(() => {
-            toggleDropdown(false);
-            const copyToast = document.getElementById('copy-toast');
-            if (copyToast) {
-              const span = copyToast.querySelector('[data-en]');
-              if (span) span.textContent = getLang() === 'es' ? span.dataset.es : span.dataset.en;
-              copyToast.classList.add('copy-toast--visible');
-              setTimeout(() => copyToast.classList.remove('copy-toast--visible'), 2500);
-            }
+        heroContactBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          toggleDropdown(heroDropdown.hidden);
+        });
+
+        if (heroEmailOption) {
+          heroEmailOption.addEventListener('click', () => {
+            const { site: s } = getContent(getLang());
+            navigator.clipboard.writeText(s.email).then(() => {
+              toggleDropdown(false);
+              const copyToast = document.getElementById('copy-toast');
+              if (copyToast) {
+                const span = copyToast.querySelector('[data-en]');
+                if (span) span.textContent = getLang() === 'es' ? span.dataset.es : span.dataset.en;
+                copyToast.classList.add('copy-toast--visible');
+                setTimeout(() => copyToast.classList.remove('copy-toast--visible'), 2500);
+              }
+            });
           });
+        }
+
+        document.addEventListener('click', () => toggleDropdown(false));
+        heroDropdown.addEventListener('click', (e) => e.stopPropagation());
+        // a11y: Escape cierra el menú y devuelve el foco al botón que lo abrió
+        document.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && !heroDropdown.hidden) {
+            toggleDropdown(false);
+            heroContactBtn.focus();
+          }
         });
       }
-
-      document.addEventListener('click', () => toggleDropdown(false));
-      heroDropdown.addEventListener('click', (e) => e.stopPropagation());
     }
+
+    stopAutoplayVideos();
   }
 
   // --- CASE PAGE -------------------------------------------------------------
@@ -602,6 +641,8 @@
       setText('case-nav-next-title', caseData.nav.next.title);
     }
 
+    stopAutoplayVideos();
+
     // Build TOC from data-toc-label sections
     buildTOC(getLang());
 
@@ -724,9 +765,11 @@
     }
     updateFavicon(isDark);
     if (toggle) {
+      toggle.setAttribute('aria-pressed', String(isDark));
       toggle.addEventListener('click', () => {
         const dark = html.classList.toggle('theme-dark');
         localStorage.setItem('theme', dark ? 'dark' : 'light');
+        toggle.setAttribute('aria-pressed', String(dark));
         updateFavicon(dark);
       });
     }
@@ -736,10 +779,21 @@
     const navToggle = document.getElementById('nav-toggle');
     const nav = document.getElementById('primary-nav');
     if (navToggle && nav) {
-      navToggle.addEventListener('click', () => {
-        const open = nav.classList.toggle('is-open');
-        navToggle.setAttribute('aria-expanded', open);
+      const setOpen = (open) => {
+        nav.classList.toggle('is-open', open);
+        navToggle.setAttribute('aria-expanded', String(open));
         navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      };
+      navToggle.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+      // a11y: Escape cierra el menú y devuelve el foco; elegir un link también cierra
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && nav.classList.contains('is-open')) {
+          setOpen(false);
+          navToggle.focus();
+        }
+      });
+      nav.addEventListener('click', (e) => {
+        if (e.target.closest('a')) setOpen(false);
       });
     }
   }

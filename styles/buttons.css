@@ -55,7 +55,9 @@
   align-items: center;
   padding: 2px 8px;
   border-radius: var(--r-sm);
-  background: rgba(255, 255, 255, 0.18);
+  /* a11y: tinte oscuro — con el tinte blanco anterior, el texto blanco del
+     chip quedaba en ~4:1 sobre el acento (falla AA en texto chico). */
+  background: rgba(0, 0, 0, 0.22);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   font-weight: 400;
@@ -64,7 +66,7 @@
   transition: background var(--dur-fast);
 }
 .btn--primary:hover .btn__copy-tag {
-  background: rgba(255, 255, 255, 0.28);
+  background: rgba(0, 0, 0, 0.32);
 }
 /* Mobile: the email button opens the mail app, so the Copy chip is irrelevant */
 @media (max-width: 768px) {

@@ -67,5 +67,5 @@
   margin-top: var(--sp-6);
   font-size: var(--text-sm);
   font-weight: 500;
-  color: var(--accent);
+  color: var(--accent-ink); /* a11y: acento-texto (--accent falla en dark) */
 }

@@ -74,6 +74,11 @@ La línea `.hero__summary-recent` se genera en runtime con **`hero.js`** (vanill
 
 Para cambiar las pruebas: editar `cases.json` (campos `proof`/`proof_es`, `metric_value`, `featured`, `id` = slug real del case).
 
-### Pendiente (ver `TODO.md`)
+## Accesibilidad (WCAG AA)
 
-La auditoría de accesibilidad WCAG AA del hero está pendiente como tarea prioritaria final.
+Auditoría hecha (2026-07-04) sobre index + case-v3 + 404, ambos temas e idiomas. Reglas vigentes al tocar UI (detalle y checklist completo: **`docs/a11y.md`**):
+
+- **Texto nunca con `--ink-4`** (es decorativo-only); `--ink-3` es el tono más claro permitido para texto.
+- **Acento como texto y focus ring → `--accent-ink`** (theme-aware); `--accent` queda para superficies y texto sobre `--accent-pale`.
+- Al tocar `tokens.css` o agregar componentes con texto: correr **`node scripts/a11y-contrast.js`** (y agregar el par nuevo a su manifest). Debe quedar en verde.
+- Interactivo = `<a>`/`<button>` reales; overlays cierran con Escape y devuelven el foco; media autoplay respeta `prefers-reduced-motion`.

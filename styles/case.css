@@ -22,7 +22,7 @@
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--ink-4);
+  color: var(--ink-3); /* a11y: texto legible, --ink-4 es solo decorativo */
   padding: var(--sp-1) var(--sp-3);
   border: 1px solid var(--border);
   border-radius: 100px;
@@ -118,7 +118,7 @@
   font-weight: 400;
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--ink-4);
+  color: var(--ink-3); /* a11y: texto legible, --ink-4 es solo decorativo */
   margin-bottom: var(--sp-3);
 }
 .quick-scan__cell-value {
@@ -156,7 +156,9 @@
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: -0.01em;
-  color: var(--accent);
+  /* a11y: sobre la card oscura (--ink en light, --surface en dark) el --accent
+     puro quedaba en ~2.4-3:1; --accent-dim pasa 3:1 de texto grande en ambos. */
+  color: var(--accent-dim);
   margin-bottom: var(--sp-3);
 }
 .metric-card__label {
@@ -249,7 +251,7 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--accent);
+  color: var(--accent-ink); /* a11y: acento-texto (--accent falla en dark) */
   margin-bottom: var(--sp-2);
 }
 .process-step__title {
@@ -352,7 +354,16 @@
   border-radius: 24px;
   background: #fff;
 }
-/* Expand-to-lightbox affordance on demo videos (mirrors .cslider__expand) */
+/* a11y 2.1.1: todo gráfico expandible lleva el botón ⤢ (.image-block__expand),
+   no solo los videos — es la vía de teclado al lightbox (el click en la imagen
+   sigue funcionando con mouse). Estos contenedores son su contexto de posición. */
+.image-block,
+.compare-figure,
+.carousel-figure,
+.device-stage {
+  position: relative;
+}
+/* Expand-to-lightbox affordance (mirrors .cslider__expand) */
 .image-block__expand {
   position: absolute;
   top: var(--sp-2); right: var(--sp-2);
@@ -396,7 +407,7 @@
   color: #fff;
 }
 .compare__tag--figma { background: #2563eb; }
-.compare__tag--app   { background: #059669; }
+.compare__tag--app   { background: #047857; } /* a11y: #059669 daba 3.8:1 con el texto blanco */
 @media (max-width: 640px) {
   .compare { grid-template-columns: 1fr; }
 }
@@ -405,7 +416,7 @@
 .media-label {
   font-family: var(--font-mono);
   font-weight: 600;
-  color: var(--accent);
+  color: var(--accent-ink); /* a11y: acento-texto (--accent falla en dark) */
   letter-spacing: 0.04em;
 }
 
@@ -456,12 +467,14 @@
 .carousel__dot {
   width: 9px; height: 9px; padding: 0;
   border: none; border-radius: 99px;
-  background: var(--border);
+  /* a11y 1.4.11: los dots son controles → >=3:1 contra --bg-card
+     (--border quedaba en ~1.5:1 y era invisible como control). */
+  background: var(--ink-3);
   cursor: pointer;
   transition: background 0.15s ease, transform 0.15s ease;
 }
 .carousel__dot:hover { transform: scale(1.25); }
-.carousel__dot.is-active { background: var(--accent); }
+.carousel__dot.is-active { background: var(--accent-ink); }
 .carousel__arrow {
   position: absolute;
   top: 50%;
@@ -515,7 +528,7 @@
   -webkit-appearance: none; appearance: none;
   background: transparent; cursor: ew-resize;
 }
-.cslider__range:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.cslider__range:focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 2px; }
 .cslider__range::-webkit-slider-thumb {
   -webkit-appearance: none; width: 40px; height: 220px;
   background: transparent; cursor: ew-resize;
@@ -585,7 +598,7 @@
 @media (max-width: 720px) {
   .content-row { grid-template-columns: 1fr; }
 }
-/* Media captions: centered (a11y contrast pending — see TODO) */
+/* Media captions: centered */
 .image-block__caption { text-align: center; }
 .image-block__placeholder {
   width: 100%;
@@ -620,7 +633,7 @@
   padding: var(--sp-4) var(--sp-5);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--ink-4);
+  color: var(--ink-3); /* a11y: texto legible, --ink-4 es solo decorativo */
   letter-spacing: 0.04em;
   border-top: 1px solid var(--border-subtle);
 }
@@ -699,7 +712,7 @@
   margin-top: var(--sp-3);
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  color: var(--ink-4);
+  color: var(--ink-3); /* a11y: texto legible, --ink-4 es solo decorativo */
   letter-spacing: 0.04em;
   text-align: center;
 }
@@ -726,7 +739,7 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: 0.12em;
-  color: var(--ink-4);
+  color: var(--ink-3); /* a11y: texto legible, --ink-4 es solo decorativo */
 }
 
 /* ---- CASE NAVIGATION ---- */
@@ -767,7 +780,7 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--ink-4);
+  color: var(--ink-3); /* a11y: texto legible, --ink-4 es solo decorativo */
   display: flex;
   align-items: center;
   gap: var(--sp-2);
@@ -790,11 +803,11 @@
   font-size: var(--text-xs);
   text-transform: uppercase;
   letter-spacing: 0.14em;
-  color: var(--ink-4);
+  color: var(--ink-3); /* a11y: texto legible, --ink-4 es solo decorativo */
   transition: color var(--dur-fast);
 }
 .case-navigation__index-link:hover {
-  color: var(--accent);
+  color: var(--accent-ink);
 }
 
 /* ---- CASE PAGE LAYOUT ---- */
@@ -875,7 +888,7 @@
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: var(--ink-4);
+  color: var(--ink-3); /* a11y: links reales, --ink-4 no pasa AA */
   line-height: 1.4;
 }
 .toc-nav__link-subtitle {
@@ -963,7 +976,7 @@
   border-color: var(--border-subtle);
 }
 .case-cta:focus-within {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-ink);
   outline-offset: 2px;
 }
 .case-cta__actions {
@@ -996,7 +1009,7 @@
   border-color: var(--ink-3);
 }
 .case-cta__option:focus-visible {
-  outline: 2px solid var(--accent);
+  outline: 2px solid var(--accent-ink);
   outline-offset: 2px;
 }
 

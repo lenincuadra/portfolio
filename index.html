@@ -143,6 +143,7 @@
             class="theme-toggle"
             id="theme-toggle"
             aria-label="Toggle dark mode"
+            aria-pressed="false"
           >
             <svg
               class="icon-moon"
@@ -190,7 +191,7 @@
       </div>
     </header>
 
-    <main id="main-content">
+    <main id="main-content" tabindex="-1">
       <!-- ======================================================
          HERO
          ====================================================== -->
@@ -229,7 +230,7 @@
                 <span id="hero-cta">View Work</span>
               </a>
               <div class="hero__contact-wrap">
-                <button class="btn btn--secondary btn--md" id="hero-contact-btn" type="button" aria-haspopup="true" aria-expanded="false">
+                <button class="btn btn--secondary btn--md" id="hero-contact-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="hero-contact-dropdown">
                   <span id="hero-contact-cta">Get in touch</span>
                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
                 </button>
@@ -288,13 +289,15 @@
               </filter>
             </svg>
             <div class="hero__venn-wrap" aria-hidden="true">
+              <!-- a11y: tokens --venn-* (en dark se aclaran; --accent-2/3 puros
+                   eran ilegibles sobre fondo oscuro). Definidos en tokens.css. -->
               <svg class="hero__venn-svg" viewBox="0 0 320 400" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-                <circle cx="120" cy="150" r="98" fill="var(--accent)" fill-opacity="0.12" stroke="var(--accent)" stroke-opacity="0.55" stroke-width="1.5"/>
-                <circle cx="200" cy="150" r="98" fill="var(--accent-2)" fill-opacity="0.12" stroke="var(--accent-2)" stroke-opacity="0.55" stroke-width="1.5"/>
-                <circle cx="160" cy="225" r="98" fill="var(--accent-3)" fill-opacity="0.12" stroke="var(--accent-3)" stroke-opacity="0.55" stroke-width="1.5"/>
-                <text x="68" y="112" text-anchor="middle" font-size="13" font-weight="500" fill="var(--accent)" font-family="Instrument Sans, system-ui, sans-serif" letter-spacing="0.02em">User</text>
-                <text x="252" y="112" text-anchor="middle" font-size="13" font-weight="500" fill="var(--accent-2)" font-family="Instrument Sans, system-ui, sans-serif" letter-spacing="0.02em">Business</text>
-                <text x="160" y="308" text-anchor="middle" font-size="13" font-weight="500" fill="var(--accent-3)" font-family="Instrument Sans, system-ui, sans-serif" letter-spacing="0.02em">Tech</text>
+                <circle cx="120" cy="150" r="98" fill="var(--venn-user)" fill-opacity="0.12" stroke="var(--venn-user)" stroke-opacity="0.55" stroke-width="1.5"/>
+                <circle cx="200" cy="150" r="98" fill="var(--venn-biz)" fill-opacity="0.12" stroke="var(--venn-biz)" stroke-opacity="0.55" stroke-width="1.5"/>
+                <circle cx="160" cy="225" r="98" fill="var(--venn-tech)" fill-opacity="0.12" stroke="var(--venn-tech)" stroke-opacity="0.55" stroke-width="1.5"/>
+                <text x="68" y="112" text-anchor="middle" font-size="13" font-weight="500" fill="var(--venn-user)" font-family="Instrument Sans, system-ui, sans-serif" letter-spacing="0.02em">User</text>
+                <text x="252" y="112" text-anchor="middle" font-size="13" font-weight="500" fill="var(--venn-biz)" font-family="Instrument Sans, system-ui, sans-serif" letter-spacing="0.02em">Business</text>
+                <text x="160" y="308" text-anchor="middle" font-size="13" font-weight="500" fill="var(--venn-tech)" font-family="Instrument Sans, system-ui, sans-serif" letter-spacing="0.02em">Tech</text>
               </svg>
               <div class="hero__venn-photo">
                 <img src="assets/images/profile-pic.jpeg" alt="" loading="eager" />
@@ -314,18 +317,21 @@
           </div>
         </div>
 
-        <div class="hero__scroll-hint" aria-hidden="true" onclick="document.getElementById('work').scrollIntoView({behavior:'smooth'})" style="cursor:pointer">
+        <!-- a11y: link real (antes era un div onclick + aria-hidden: invisible
+             para teclado y lector de pantalla pero clickeable con mouse) -->
+        <a href="#work" class="hero__scroll-hint">
           <span id="hero-scroll">Scroll</span>
           <svg
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
             stroke-width="1.5"
+            aria-hidden="true"
           >
             <line x1="12" y1="5" x2="12" y2="19" />
             <polyline points="19 12 12 19 5 12" />
           </svg>
-        </div>
+        </a>
       </section>
 
       <!-- ======================================================

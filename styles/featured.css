@@ -82,7 +82,9 @@
   gap: var(--sp-2);
   font-size: var(--text-md);
   font-weight: 500;
-  color: var(--accent);
+  /* a11y: acento-texto — --accent puro no pasa sobre --surface (fondo de la
+     sección featured) en light ni sobre los fondos dark. */
+  color: var(--accent-ink);
   transition: gap var(--dur-mid) var(--ease-out);
   align-self: flex-start;
 }

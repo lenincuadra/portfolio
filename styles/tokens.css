@@ -13,13 +13,27 @@
   --border-subtle: #e8e5df;
   --ink: #1a1916;
   --ink-2: #3d3b36;
-  --ink-3: #706d65;
+  /* a11y: --ink-3 es el tono MÁS CLARO permitido para texto legible (>=4.5:1
+     sobre --bg/--bg-alt/--bg-card/--surface en ambos temas — validado por
+     scripts/a11y-contrast.js). --ink-4 es SOLO decorativo (numerales
+     aria-hidden, placeholders, bordes), nunca texto. */
+  --ink-3: #5f5c55;
   --ink-4: #9c9991;
   --accent: #7c4abf;
+  /* a11y: acento usado COMO TEXTO sobre fondos de página (CTAs de cards,
+     phases, hovers) y como color del focus ring. --accent queda para
+     superficies (btn primary) y texto sobre --accent-pale. */
+  --accent-ink: #6b3aa8;
   --accent-dim: #a97ad4;
   --accent-pale: #ede0f7;
   --accent-2: #3d2a8f;
   --accent-3: #2a7a5c;
+  /* Venn del hero (labels + trazos). En light heredan de los acentos; en dark
+     se aclaran para mantener >=3:1 sin tocar --accent-2/3 (que también
+     alimentan el filtro duotono de la foto). */
+  --venn-user: var(--accent);
+  --venn-biz: var(--accent-2);
+  --venn-tech: var(--accent-3);
   --color-success: #2d7a4f;
   --color-warning: #b87820;
   --color-danger: #c0392b;
@@ -93,13 +107,17 @@ html.theme-dark,
   --border-subtle: #2a2825;
   --ink: #f0ede8;
   --ink-2: #d4d0c8;
-  --ink-3: #8c8880;
+  --ink-3: #98948b; /* a11y: >=4.5:1 sobre los 4 fondos dark (ver :root) */
   --ink-4: #5c5a55;
   --accent: #7c4abf;
+  --accent-ink: #b28ad9; /* a11y: acento-texto legible sobre fondos dark */
   --accent-dim: #a97ad4;
   --accent-pale: #ede0f7;
   --accent-2: #3d2a8f;
   --accent-3: #2a7a5c;
+  --venn-user: #a97ad4;
+  --venn-biz: #8b7fe0;
+  --venn-tech: #4da583;
   --color-success: #2d7a4f;
   --color-warning: #b87820;
   --color-danger: #c0392b;

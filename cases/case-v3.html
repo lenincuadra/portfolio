@@ -57,7 +57,7 @@
     #lightbox-content img { display: block; max-width: 90vw; max-height: 90vh; object-fit: contain; }
     #lightbox-content video.lightbox-video { display: block; max-width: 90vw; max-height: 90vh; pointer-events: auto; border-radius: var(--r-md); background: #000; }
     #lightbox-placeholder { width: min(90vw, 662px); aspect-ratio: 16/9; background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--r-md); display: flex; align-items: center; justify-content: center; }
-    #lightbox-placeholder span { font-size: var(--text-base); color: var(--text-tertiary); text-align: center; padding: var(--sp-6); }
+    #lightbox-placeholder span { font-size: var(--text-base); color: var(--ink-3); text-align: center; padding: var(--sp-6); }
     #lightbox-close { position: fixed; top: var(--sp-5); right: var(--sp-5); background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; opacity: 0.7; line-height: 1; }
     #lightbox-close:hover { opacity: 1; }
     /* Gallery lightbox: section label + title (content styles), left-aligned + arrow navigation */
@@ -83,13 +83,14 @@
     #lightbox-next { right: var(--sp-5); }
     #lightbox.is-single .lightbox-nav { display: none; }
     .toc-nav__title { border-bottom: none !important; padding-bottom: 0 !important; margin-bottom: 0 !important; }
-    .toc-nav__reading-time { display: block; font-size: var(--text-xs); color: var(--text-tertiary); font-weight: 400; padding: 0 var(--sp-3) var(--sp-3); border-bottom: 1px solid var(--border-subtle); margin-bottom: var(--sp-1); }
+    .toc-nav__reading-time { display: block; font-size: var(--text-xs); color: var(--ink-3); font-weight: 400; padding: 0 var(--sp-3) var(--sp-3); border-bottom: 1px solid var(--border-subtle); margin-bottom: var(--sp-1); }
     @media (max-width: 1100px) {
       #case-v3-content { padding-inline: clamp(1.25rem, 5vw, 3rem); }
     }
   </style>
 </head>
 <body>
+  <a href="#case-v3-content" class="skip-link" data-en="Skip to main content" data-es="Saltar al contenido">Skip to main content</a>
 
   <!-- SITE HEADER -->
   <header class="site-header" role="banner">
@@ -132,7 +133,7 @@
           <button class="lang-switch__btn lang-switch__btn--active" data-lang="en" aria-current="true">EN</button>
           <button class="lang-switch__btn" data-lang="es" aria-current="false">ES</button>
         </div>
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode" aria-pressed="false">
           <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
         </button>
@@ -156,7 +157,7 @@
   <div class="case-layout">
 
     <!-- CASE CONTENT — no design system classes inside main -->
-    <main id="case-v3-content" class="case-content"></main>
+    <main id="case-v3-content" class="case-content" tabindex="-1"></main>
 
     <!-- TOC SIDEBAR -->
     <aside class="case-toc" aria-label="Table of contents">
@@ -181,7 +182,7 @@
           <a href="../index.html#featured-case" class="site-footer__link"><span data-en="Work" data-es="Trabajo">Work</span></a>
           <a href="../index.html#about" class="site-footer__link"><span data-en="About" data-es="Sobre mí">About</span></a>
           <a href="https://www.linkedin.com/in/lenincuadra/" class="site-footer__link" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="#" class="site-footer__link" target="_blank" rel="noopener noreferrer"><span data-en="Resume" data-es="Currículum">Resume</span></a>
+          <a href="../assets/cv/Lenin_Cuadra_CV_EN.pdf" data-resume-link class="site-footer__link" target="_blank" rel="noopener noreferrer"><span data-en="Resume" data-es="Currículum">Resume</span></a>
         </nav>
       </div>
       <div class="site-footer__copy">
@@ -227,11 +228,27 @@
 
     // Theme: the initial theme is set by the inline script in <head> to avoid a flash. Here we only wire the toggle.
     const html = document.documentElement;
-    document.getElementById('theme-toggle').addEventListener('click', () => {
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    themeToggleBtn.setAttribute('aria-pressed', String(html.classList.contains('theme-dark')));
+    themeToggleBtn.addEventListener('click', () => {
       const dark = html.classList.toggle('theme-dark');
       localStorage.setItem('theme', dark ? 'dark' : 'light');
+      themeToggleBtn.setAttribute('aria-pressed', String(dark));
       applyThemedVideos();
     });
+
+    // a11y (WCAG 2.2.2): con reduced-motion no autoreproducimos videos.
+    const REDUCED_MOTION = window.matchMedia
+      && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function stopAutoplayVideos(scope) {
+      if (!REDUCED_MOTION) return;
+      (scope || document).querySelectorAll('video[autoplay]').forEach(v => {
+        v.autoplay = false;
+        v.removeAttribute('autoplay');
+        v.addEventListener('playing', () => v.pause(), { once: true });
+        try { v.pause(); } catch (e) { /* no-op */ }
+      });
+    }
 
     // Footer year
     const fy = document.getElementById('footer-year');
@@ -260,8 +277,8 @@
         const label = lang === 'es' ? el.dataset.phEs : el.dataset.phEn;
         if (label) el.setAttribute('aria-label', label);
       });
-      [document.getElementById('cta-resume'), document.getElementById('nav-resume')].forEach(el => {
-        if (el) el.href = RESUME_URLS[lang] || RESUME_URLS.en;
+      document.querySelectorAll('#cta-resume, #nav-resume, a[data-resume-link]').forEach(el => {
+        el.href = RESUME_URLS[lang] || RESUME_URLS.en;
       });
     }
 
@@ -340,11 +357,14 @@
             // Phone mockup: screenshot inside a device bezel, centered on a theme-following
             // stage. The bezel gives the screen an edge, so a light/white mockup still reads
             // as a phone on a light stage (no dark canvas needed). See docs/design.md.
+            // a11y 2.1.1: el botón ⤢ es la vía de teclado al lightbox en todos
+            // los gráficos (el click con mouse sobre la imagen sigue andando).
+            const expandBtn = '<button class="image-block__expand" aria-label="Expand image" type="button">⤢</button>';
             if (enItem.device === 'phone') {
               const dCap = enItem.caption ? `<figcaption class="demo-figure__caption">${t(enItem.caption, esItem?.caption)}</figcaption>` : '';
-              return `<figure class="device-figure"><div class="device-stage"><div class="device-phone"><img class="device-phone__screen" src="../${enItem.src}" alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="window.__caseImgFallback(this)" /></div></div>${dCap}</figure>`;
+              return `<figure class="device-figure"><div class="device-stage"><div class="device-phone"><img class="device-phone__screen" src="../${enItem.src}" alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="window.__caseImgFallback(this)" /></div>${expandBtn}</div>${dCap}</figure>`;
             }
-            return `<div class="image-block ${ratioClass}${canvasClass}" data-ph-en="${phEn}" data-ph-es="${phEs}"><img src="../${enItem.src}" alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="window.__caseImgFallback(this)" /></div>`;
+            return `<div class="image-block ${ratioClass}${canvasClass}" data-ph-en="${phEn}" data-ph-es="${phEs}"><img src="../${enItem.src}" alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="window.__caseImgFallback(this)" />${expandBtn}</div>`;
           }
           case 'video': {
             const desc       = (enItem.alt || '').replace(/"/g, '&quot;');
@@ -371,7 +391,7 @@
                 + `<img src="../${s.src}" alt="${(s.alt || '').replace(/"/g, '&quot;')}" loading="lazy" /></div>`
               : '';
             const cap = enItem.caption ? `<figcaption class="image-block__caption">${t(enItem.caption, esItem?.caption)}</figcaption>` : '';
-            return `<figure class="compare-figure"><div class="compare">${cell(enItem.left, 'Figma', 'figma')}${cell(enItem.right, 'App', 'app')}</div>${cap}</figure>`;
+            return `<figure class="compare-figure"><div class="compare">${cell(enItem.left, 'Figma', 'figma')}${cell(enItem.right, 'App', 'app')}</div><button class="image-block__expand" aria-label="Expand comparison" type="button">⤢</button>${cap}</figure>`;
           }
           case 'callout': {
             const variant = enItem.variant || 'note';
@@ -391,7 +411,7 @@
               `<button class="carousel__dot${k === 0 ? ' is-active' : ''}" data-idx="${k}" aria-label="Image ${k + 1}"></button>`
             ).join('');
             const cap = enItem.caption ? `<figcaption class="image-block__caption">${t(enItem.caption, esItem?.caption)}</figcaption>` : '';
-            return `<figure class="carousel-figure"><div class="carousel" data-interval="${interval}"><div class="carousel__track">${slides}<button class="carousel__arrow carousel__arrow--prev" aria-label="Previous">‹</button><button class="carousel__arrow carousel__arrow--next" aria-label="Next">›</button></div><div class="carousel__dots">${dots}</div></div>${cap}</figure>`;
+            return `<figure class="carousel-figure"><div class="carousel" data-interval="${interval}"><div class="carousel__track">${slides}<button class="carousel__arrow carousel__arrow--prev" aria-label="Previous">‹</button><button class="carousel__arrow carousel__arrow--next" aria-label="Next">›</button><button class="image-block__expand" aria-label="Expand carousel" type="button">⤢</button></div><div class="carousel__dots">${dots}</div></div>${cap}</figure>`;
           }
           case 'slider': {
             const b = enItem.before || {}, a = enItem.after || {};
@@ -526,6 +546,7 @@
       </section>`;
 
       document.getElementById('case-v3-content').innerHTML = html;
+      stopAutoplayVideos();
 
       // Equalise CTA button widths to the widest one
       requestAnimationFrame(() => {
@@ -709,8 +730,35 @@
         lbSubtitle.textContent = sec.subtitle;
         lbCount.textContent   = items.length > 1 ? (idx + 1) + ' / ' + items.length : '';
       }
-      function openAt(i) { lb.classList.toggle('is-single', items.length < 2); show(i); lb.classList.add('is-open'); document.body.style.overflow = 'hidden'; }
-      function close() { lb.classList.remove('is-open'); lbBox.innerHTML = ''; document.body.style.overflow = ''; }
+      // a11y: al abrir, el foco entra al dialog (botón cerrar); al cerrar,
+      // vuelve al elemento que lo abrió.
+      let lastFocus = null;
+      function openAt(i) {
+        lb.classList.toggle('is-single', items.length < 2);
+        show(i);
+        lb.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+        lastFocus = document.activeElement;
+        lbClose.focus();
+      }
+      function close() {
+        lb.classList.remove('is-open');
+        lbBox.innerHTML = '';
+        document.body.style.overflow = '';
+        if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+        lastFocus = null;
+      }
+
+      // a11y: trampa de foco simple — Tab circula dentro del dialog abierto.
+      lb.addEventListener('keydown', e => {
+        if (e.key !== 'Tab') return;
+        const f = [...lb.querySelectorAll('button, [href], input, video[controls]')]
+          .filter(el => el.getClientRects().length);
+        if (!f.length) return;
+        const first = f[0], last = f[f.length - 1];
+        if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+        else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+      });
 
       content.addEventListener('click', e => {
         const root = e.target.closest(SEL);
@@ -755,13 +803,17 @@
         slides.forEach((s, k) => s.classList.toggle('is-active', k === idx));
         dots.forEach((d, k) => d.classList.toggle('is-active', k === idx));
       }
-      function start() { stop(); timer = setInterval(() => show(idx + 1), interval); }
+      // a11y 2.2.2: sin auto-rotación bajo reduced-motion; con foco adentro
+      // (teclado) también se pausa, igual que con el mouse encima.
+      function start() { stop(); if (REDUCED_MOTION) return; timer = setInterval(() => show(idx + 1), interval); }
       function stop()  { if (timer) { clearInterval(timer); timer = null; } }
       dots.forEach((d, k) => d.addEventListener('click', () => { show(k); start(); }));
       car.querySelector('.carousel__arrow--prev')?.addEventListener('click', () => { show(idx - 1); start(); });
       car.querySelector('.carousel__arrow--next')?.addEventListener('click', () => { show(idx + 1); start(); });
       car.addEventListener('mouseenter', stop);
       car.addEventListener('mouseleave', start);
+      car.addEventListener('focusin', stop);
+      car.addEventListener('focusout', start);
       start();
     };
     document.querySelectorAll('.carousel').forEach(c => window.__initCarousel(c));
@@ -778,6 +830,7 @@
         v.innerHTML = '<source src="' + base + '-' + variant + '.webm" type="video/webm">'
                     + '<source src="' + base + '-' + variant + '.mp4" type="video/mp4">';
         v.load();
+        if (REDUCED_MOTION) return; // a11y: no autoreproducir bajo reduced-motion
         const p = v.play(); if (p && p.catch) p.catch(function () {});
       });
     }

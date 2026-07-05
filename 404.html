@@ -83,7 +83,7 @@
         margin-top: var(--sp-12);
         font-family: var(--font-mono);
         font-size: var(--text-xs);
-        color: var(--ink-4);
+        color: var(--ink-3); /* a11y: texto legible, --ink-4 es solo decorativo */
         letter-spacing: 0.08em;
       }
 
@@ -98,6 +98,7 @@
   </head>
 
   <body class="notfound">
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- HEADER -->
     <header class="site-header" role="banner">
@@ -132,6 +133,7 @@
             class="theme-toggle"
             id="theme-toggle"
             aria-label="Toggle dark mode"
+            aria-pressed="false"
             title="Toggle dark mode"
           >
             <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -159,7 +161,7 @@
     </header>
 
     <!-- MAIN -->
-    <main id="main-content" class="notfound__body">
+    <main id="main-content" class="notfound__body" tabindex="-1">
       <div class="notfound__inner">
 
         <!-- Glyph decorativo — no es el número, es una pista visual -->
@@ -222,9 +224,11 @@
       if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
         html.classList.add('theme-dark');
       }
+      btn?.setAttribute('aria-pressed', String(html.classList.contains('theme-dark')));
       btn?.addEventListener('click', () => {
         html.classList.toggle('theme-dark');
         localStorage.setItem('theme', html.classList.contains('theme-dark') ? 'dark' : 'light');
+        btn.setAttribute('aria-pressed', String(html.classList.contains('theme-dark')));
       });
 
       // Mobile nav toggle
