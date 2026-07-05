@@ -14,7 +14,7 @@
 2. **Grabar el Loom (2-3 min, en inglés)** — la prueba de inglés hablado es el filtro invisible de remoto LATAM→US y casi nadie la resuelve. Guion sugerido: 20s quién sos + posicionamiento (el copy del hero ya lo tiene), 90s recorriendo `no-handoff` (el arco de la TOC es el guion: problema → 3 constraints → resultado indistinguible → 4 capacidades nuevas), 30s cierre con el +221% de ecommerce. Subirlo a Loom/YouTube unlisted; después decidimos dónde linkearlo (hero o cases).
 3. **Figma Community como canal**: agregar el link del portfolio en la descripción del plugin de webp export y en tu perfil de Community. Cada instalación es distribución gratis frente a diseñadores y sus managers.
 4. **LinkedIn alineado**: titular = el del hero ("Senior Product Designer · AI Adoption Lead"); About de LinkedIn con el +221% y los 77 minutos; y pedirle a la lead del endorsement de Slack una **recomendación formal en LinkedIn** (mismo contenido, mucha más credibilidad).
-5. **Un ref por empresa al aplicar**: usar `go.html?ref=<empresa>` en cada aplicación (el tracking ya existe); saber quién visitó define a quién hacerle follow-up.
+5. **Un ref por empresa al aplicar**: usar `go.html?ref=<empresa>` en cada aplicación (el tracking ya existe); saber quién visitó define a quién hacerle follow-up. **Bonus (2026-07-05)**: si la empresa está mapeada en `data/profiles.js` (ej. `ref=meli`), el index además se personaliza solo (featured + orden + proofs); para links sin tracking usar `?focus=payments|ai|conversion` directo.
 6. **Dónde y cómo aplicar**: playbook completo y explícito en **`private/job-search.md`** (fuera de git a propósito: el repo es público y ahí están la estrategia, los targets y los números). Cubre las **dos vías en paralelo**: remoto internacional (boards + outreach directo) y local AR con compensación equivalente (con objetivo #1 definido y plan de referrals). Sistema semanal: 10-15 aplicaciones dirigidas + 5 outreach, cada link con su `go.html?ref=<empresa>`, follow-up al día 4 guiado por el tracker.
 
 ### Assets faltantes (completar 1 por 1, por caso)
@@ -53,7 +53,7 @@ Routing en `js/app.js:13`: cualquier caso sin `template: 'v3'` cae a `case-v2`.
 
 ## Bloqueado / al final
 
-- **Portfolio personalizado por link** (estrategia definida 2026-07-05, diseño en el roadmap privado): la primera pantalla (featured + orden de la grilla + proofs del hero) se adapta según un perfil derivado del `ref`/`focus` del link compartido; **ordenar, no ocultar; sin filtros manuales**. Data-driven estilo `hero.js`, con fallback al orden actual. Implementar cuando la búsqueda activa lo pida.
+- **✅ Implementado (2026-07-05) — portfolio personalizado por link** (`data/profiles.js`): la primera pantalla (featured + orden de la grilla + proofs del hero + label "Featured Work · <perfil>") se adapta según `?focus=<perfil>` o el `ref` de la empresa (directo o vía `go.html`). Ordenar, no ocultar; sin perfil activo no cambia nada. 3 perfiles (`payments`/`ai`/`conversion`), validados por `case-check`. Empresas nuevas: mapear en `refToProfile`.
 
 - **Thumbnails de case studies** — Agregar thumbnails a los 2 case studies faltantes. *Bloqueado: se define cuando estén todos los assets (ver sección de assets faltantes arriba).*
 - **Revisión UX con criterio Joe Natoli** — Repasar todo el index aplicando principios de UX (jerarquía visual, claridad de mensajes, flujo de atención, fricción innecesaria, etc.). *Al final.*

@@ -278,11 +278,19 @@
       }
     }
 
+    // Perfil por link (data/profiles.js): puede overridear el featured, el orden
+    // de la grilla y el label. Sin perfil activo, todo se comporta como siempre.
+    const profile = (typeof resolveActiveProfile === 'function') ? resolveActiveProfile() : null;
+
     // Featured case
-    const featured = cases.find(c => c.featured);
+    const featured = (profile && cases.find(c => c.slug === profile.featured)) || cases.find(c => c.featured);
     if (featured) {
       const fcSection = document.getElementById('featured-case');
       if (fcSection) fcSection.hidden = false;
+      const fcLabel = document.getElementById('label-featured');
+      if (fcLabel && profile && profile.label) {
+        fcLabel.textContent = ui.case.featuredLabel + ' · ' + (getLang() === 'es' ? profile.label.es : profile.label.en);
+      }
       const fcTags = document.getElementById('fc-tags');
       if (fcTags) fcTags.innerHTML = buildTags(featured.card.tags);
       setText('featured-case-title', featured.card.title);
@@ -302,8 +310,13 @@
       }
     }
 
-    // Case grid — secondary cases only (non-featured)
-    const secondaryCases = cases.filter(c => !c.featured);
+    // Case grid — secondary cases only (todos menos el featured ACTIVO, así el
+    // featured por flag vuelve a la grilla cuando un perfil destaca a otro)
+    const secondaryCases = cases.filter(c => c !== featured);
+    if (profile && Array.isArray(profile.order)) {
+      const pos = s => { const i = profile.order.indexOf(s); return i === -1 ? profile.order.length : i; };
+      secondaryCases.sort((a, b) => pos(a.slug) - pos(b.slug));
+    }
     const grid = document.getElementById('case-grid');
     if (grid && secondaryCases.length) {
       grid.innerHTML = secondaryCases.map((c, i) => {

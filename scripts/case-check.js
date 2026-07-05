@@ -208,6 +208,43 @@ try {
   bad(`cases.json ilegible: ${e.message}`);
 }
 
+// --- data/profiles.js (personalización por link) ---------------------------------
+
+console.log('\n━━━ data/profiles.js (perfiles por link) ━━━━━━━━━━━━━━━━━━━━━━━━━');
+
+if (!fs.existsSync(path.join(ROOT, 'data', 'profiles.js'))) {
+  ok('sin data/profiles.js (personalización no configurada)');
+} else {
+  try {
+    const P = new Function(read('data/profiles.js') + '; return PORTFOLIO_PROFILES;')();
+    const proofPool = JSON.parse(read('cases.json'));
+    const proofIds = proofPool.map((p) => p.id);
+    // Mismo criterio que hero.js: el par elegido debe caber en 2 líneas.
+    const proofLen = (id) => {
+      const p = proofPool.find((x) => x.id === id) || {};
+      return Math.max((p.proof || '').length, (p.proof_es || p.proof || '').length);
+    };
+    let pFails = 0;
+    for (const [id, prof] of Object.entries(P.profiles || {})) {
+      if (!prof.label?.en?.trim() || !prof.label?.es?.trim()) { bad(`profiles.${id}: label.en/es incompleto`); pFails++; }
+      if (!slugs.en.includes(prof.featured)) { bad(`profiles.${id}: featured "${prof.featured}" no es un slug real`); pFails++; }
+      for (const s of prof.order || []) if (!slugs.en.includes(s)) { bad(`profiles.${id}: order contiene slug inexistente "${s}"`); pFails++; }
+      for (const s of prof.proofs || []) if (!proofIds.includes(s)) { bad(`profiles.${id}: proof "${s}" no existe en cases.json (o no es featured)`); pFails++; }
+      const [a, b] = prof.proofs || [];
+      if (a && b && proofLen(a) + proofLen(b) > 150) {
+        warn(`profiles.${id}: el par de proofs supera el presupuesto de 2 líneas del hero (avoidOverflow va a reemplazar la segunda)`);
+      }
+    }
+    for (const [ref, prof] of Object.entries(P.refToProfile || {})) {
+      if (!P.profiles?.[prof]) { bad(`refToProfile.${ref} → perfil inexistente "${prof}"`); pFails++; }
+      if (ref !== ref.toLowerCase()) { bad(`refToProfile."${ref}": las keys van en minúsculas (el resolver baja el ref a minúsculas)`); pFails++; }
+    }
+    if (!pFails) ok(`${Object.keys(P.profiles || {}).length} perfiles y ${Object.keys(P.refToProfile || {}).length} refs mapeados, consistentes`);
+  } catch (e) {
+    bad(`data/profiles.js ilegible: ${e.message}`);
+  }
+}
+
 // --- Resultado -------------------------------------------------------------------
 
 console.log(`\n${failures} fallas, ${warnings} warnings${strict ? ' (strict: los warnings fallan)' : ''}.`);

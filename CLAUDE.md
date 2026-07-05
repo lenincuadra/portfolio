@@ -74,6 +74,10 @@ La línea `.hero__summary-recent` se genera en runtime con **`hero.js`** (vanill
 
 Para cambiar las pruebas: editar `cases.json` (campos `proof`/`proof_es`, `metric_value`, `featured`, `id` = slug real del case).
 
+### Personalización por link (`data/profiles.js`)
+
+El index se adapta a quién mira, **sin ocultar nada** (regla: ordenar, no ocultar; sin filtros manuales). Un perfil define: `featured` (override del flag), `order` (grilla), `proofs` (pruebas preferidas del hero) y `label` bilingüe (sufijo "Featured Work · For payment platforms"). Se activa por `?focus=<perfil>`, por `?ref=<empresa>` (mapeado en `refToProfile`), o por el ref que `go.html` guarda en sessionStorage al redirigir. Sin perfil activo, el index no cambia en nada (fallback total). `scripts/case-check.js` valida el archivo. Reglas y cómo extender: header de `data/profiles.js`.
+
 ## Accesibilidad (WCAG AA)
 
 Auditoría hecha (2026-07-04) sobre index + case-v3 + 404, ambos temas e idiomas. Reglas vigentes al tocar UI (detalle y checklist completo: **`docs/a11y.md`**):

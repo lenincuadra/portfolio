@@ -91,6 +91,9 @@
   // Marcar sesión como ya trackeada para que tracker.js no dispare de nuevo
   try { sessionStorage.setItem("portfolio_tracked", "1"); } catch (e) {}
 
+  // Guardar el ref para la personalización por perfil del index (data/profiles.js)
+  try { sessionStorage.setItem("portfolio_ref", code); } catch (e) {}
+
   // Redirigir al destino correspondiente
   window.location.replace(DEST);
 })();

@@ -159,7 +159,26 @@
         // the static placeholder exactly as it is.
         if (featured.length < MAX_PROOFS) return;
 
-        var proofs = avoidOverflow(pickWeighted(featured, MAX_PROOFS), featured);
+        // Perfil por link (data/profiles.js): sus proofs van primero, en su
+        // orden; si falta alguna en el pool, se completa con el random
+        // ponderado de siempre. Sin perfil → comportamiento default intacto.
+        var preferred = [];
+        if (typeof resolveActiveProfile === 'function') {
+          var profile = resolveActiveProfile();
+          if (profile && Array.isArray(profile.proofs)) {
+            preferred = profile.proofs
+              .map(function (id) {
+                return featured.filter(function (p) { return p.id === id; })[0];
+              })
+              .filter(Boolean)
+              .slice(0, MAX_PROOFS);
+          }
+        }
+        var rest = featured.filter(function (p) {
+          return preferred.indexOf(p) === -1;
+        });
+        var proofs = preferred.concat(pickWeighted(rest, MAX_PROOFS - preferred.length));
+        proofs = avoidOverflow(proofs, featured);
         var lang = getLang();
 
         // Only now do we replace — the placeholder was never cleared before this.
