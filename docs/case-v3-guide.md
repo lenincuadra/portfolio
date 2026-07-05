@@ -132,32 +132,14 @@ Romper la alineación por índice es el error más común y el renderer no lo av
 
 ## 6. Validación sin navegador
 
-Antes de dar por listo, corré este chequeo (tipos soportados, alineación EN/ES, assets existentes):
+El validador del funnel es **`scripts/case-check.js`** (antes era un snippet acá; hoy es un script formal y el pre-commit hook lo corre en cada commit):
 
 ```bash
-node -e '
-const fs=require("fs");
-eval(fs.readFileSync("data/content.js","utf8")+"\n;globalThis.__D=PORTFOLIO_DATA;");
-const D=globalThis.__D, KNOWN=new Set(["body","quote","steps","subheading","image","video","compare","callout","carousel","slider","heading","row","gallery","link","table"]);
-const ex=p=>/^https?:/.test(p)||fs.existsSync(p.split("?")[0]);
-const srcs=(it,a)=>{if(!it||typeof it!=="object")return;["src","poster"].forEach(k=>it[k]&&a.push(it[k]));["left","right","before","after"].forEach(k=>it[k]?.src&&a.push(it[k].src));(it.images||[]).forEach(m=>m?.src&&a.push(m.src));(it.items||[]).forEach(s=>typeof s==="object"&&srcs(s,a));};
-const en=D.en.cases, es=D.es.cases; let bad=0;
-for(const c of en.filter(c=>c.template==="v3")){
-  const e=es.find(x=>x.slug===c.slug), T="["+c.slug+"] ";
-  if(!e){console.log(T+"falta en ES");bad++;continue;}
-  if((c.sections||[]).length!==(e.sections||[]).length){console.log(T+"#secciones EN!=ES");bad++;}
-  (c.sections||[]).forEach((s,i)=>{const se=(e.sections||[])[i]||{},cc=s.content||[],ce=se.content||[];
-    if(cc.length!==ce.length){console.log(T+"sec["+i+"] #items EN!=ES");bad++;}
-    cc.forEach((it,j)=>{if(!KNOWN.has(it.type)){console.log(T+"sec["+i+"]["+j+"] type? "+it.type);bad++;}
-      if(ce[j]&&ce[j].type!==it.type){console.log(T+"sec["+i+"]["+j+"] type EN!=ES");bad++;}});});
-  const a=[];(c.sections||[]).forEach(s=>(s.content||[]).forEach(it=>srcs(it,a)));c.images?.cover&&a.push(c.images.cover);
-  for(const s of a){if(!ex(s)){console.log(T+"asset falta: "+s);bad++;}if(/\.webm$/.test(s)&&!ex(s.replace(/\.webm$/,".mp4")))console.log(T+"⚠ falta mp4: "+s.replace(/\.webm$/,".mp4"));}
-}
-console.log("PROBLEMAS:",bad);
-'
+node scripts/case-check.js <slug> --strict   # loop de autoría de un case nuevo
+node scripts/case-check.js                   # todos los cases (lo que corre el hook)
 ```
 
-Debe imprimir `PROBLEMAS: 0`.
+Valida: meta/card completos, estructura v3 (id, h3, par label+h3 de la TOC, types conocidos), alineación EN/ES por índice, assets existentes (+ `.mp4` hermanos y variantes `themed`), `nav`, y `cases.json`. Las reglas editoriales (em-dashes, meta.description genérica, h3 corto) son **warnings**: con `--strict` también fallan — usarlo siempre al dar por listo un case **nuevo**. Flujo completo: `docs/case-pipeline.md`.
 
 ### Checklist final
 - [ ] Objeto en `en.cases` **y** `es.cases`, mismo `slug`, `template:"v3"`.
@@ -169,7 +151,8 @@ Debe imprimir `PROBLEMAS: 0`.
 - [ ] Prosa lleva la narrativa; bullets solo para listas reales (`docs/case-v3-content-guide.md`).
 - [ ] **Sin em-dashes** en copy (excepto el `" — "` de `steps`/captions, que es sintaxis).
 - [ ] Componente nuevo → documentado en el styleguide (`case-components`).
-- [ ] Validación estática → `PROBLEMAS: 0`.
+- [ ] `node scripts/case-check.js <slug> --strict` → 0 fallas, 0 warnings.
+- [ ] `node scripts/seo-build.js` corrido (sitemap + llms.txt con el case nuevo).
 - [ ] Probado claro/oscuro, EN/ES, mobile (< 600px).
 
 ---

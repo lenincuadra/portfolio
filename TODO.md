@@ -2,6 +2,17 @@
 
 ## Prioridad — accionable ahora
 
+### Percepción — objetivo: rol remoto USD 6k+ (auditoría 2026-07-05)
+
+En orden de impacto sobre un reclutador/hiring manager que entra hoy:
+
+1. **Migrar `fintech-ecosystem` a v3** (ya era el único pendiente, esto lo eleva a #1): es el case de mayor peso corporativo (Naranja X, zero-to-one, 3 superficies) y hoy es el único que se ve con el template viejo; si un hiring manager entra justo ahí, la inconsistencia se nota. Además su `meta.description` es genérica.
+2. **Reescribir las 3 `meta.description` genéricas** (`fintech`, `ecommerce`, `telecom`: "A case study by Lenin Cuadra" no vende nada) — es lo que Google y los links comparten. `case-check` ya las marca como warning. La de ecommerce debería abrir con el +221%.
+3. **Decidir la sección "Featured Work"**: hoy está muerta — ningún case tiene `featured: true` en `content.js` y además `app.js` nunca saca el `hidden` de `#featured-case` (bug latente: si se marcara un featured, igual no se vería). O se borra la sección + código (menos deuda), o se arregla el unhide y se destaca el case más fuerte (recomendado si se quiere guiar al reclutador: `ecommerce-conversion` por el +221% o `no-handoff` por el ángulo AI).
+4. **El About no cumple la promesa del hero**: el hero dice "AI Adoption Lead" y "AI-powered workflows", pero los 3 párrafos del About y la lista de skills son 100% PD clásico, cero mención de IA. Una línea que conecte (cómo liderás adopción de IA en el equipo) y un skill (ej. "AI-assisted design workflows") cierran la brecha.
+5. **Dominio propio** (~USD 10/año): `lenincuadra.github.io/portfolio` es señal junior para un rol de 6k+; un dominio corto mejora percepción, memorabilidad y el CV. Al migrarlo: `BASE` en `scripts/seo-build.js`, canonical/OG/JSON-LD de `index.html`, autor en `case-v3.html` (pasos en `docs/seo.md` §Reglas 3) + CNAME en GitHub Pages.
+6. **Em-dashes legacy**: 70 en copy de secciones (contra la regla de `docs/case-v3-content-guide.md`). Limpiar por case cuando se toque cada uno; `case-check` los cuenta.
+
 ### Assets faltantes (completar 1 por 1, por caso)
 
 Auditoría original (contra disco): 14 assets faltaban en 2 casos v3. **Ambos resueltos** (`no-handoff` + `figma-webp-export`). Los otros 3 (`ecommerce-conversion`, `fintech-ecosystem`, `telecom-legacy-refactor`) ya tenían sus assets completos → no quedan assets faltantes.
@@ -47,5 +58,6 @@ Routing en `js/app.js:13`: cualquier caso sin `template: 'v3'` cae a `case-v2`.
 - **Revisión UX con criterio Joe Natoli** — Repasar todo el index aplicando principios de UX (jerarquía visual, claridad de mensajes, flujo de atención, fricción innecesaria, etc.). *Al final.*
 - Optional: micro-hover en los círculos del Venn mostrando evidencia (User → "research, testing" · Business → "+300% subs" · Tech → "ships code").
 - **✅ Implementado — lightbox galería / "TOC visual"** (case-v3): cualquier gráfico (imagen, video, slider) abre en el lightbox con su **label + título de sección** (mismos estilos que el contenido: DM Mono label + h3 Instrument Sans, alineado a la izquierda) y **navegación con flechas** (‹ › SVG, teclado ←/→, wrap-around) + contador "N / total". Los gráficos sin heading (video lead) muestran **"Case Study" (label) + título + subtítulo del case** (parte del template). Videos en `controls:false` abren al click; el resto vía botón ⤢. (Compare/carousel soportados por código, sin instancias hoy.)
+- **✅ Hecho (2026-07-05) — funnel de cases formalizado** (`docs/case-pipeline.md`): input (`content/new/` + assets) → autoría (guías; IA opcional solo para prosa) → `scripts/case-check.js` (`--strict` para cases nuevos) → `scripts/seo-build.js` → pre-commit hook corre todo. El validador que vivía como snippet en `docs/case-v3-guide.md` §6 ahora es script y corre en cada commit.
 - **✅ Hecho (2026-07-04) — auditoría de accesibilidad WCAG AA** (alcance ampliado: hero + index completo + case-v3 + 404, ambos temas y ambos idiomas). Contraste resuelto a nivel tokens (`--accent-ink` nuevo, `--ink-3` recalibrado, `--ink-4` pasa a ser solo decorativo), semántica y teclado (skip links, lightbox con manejo de foco y botón ⤢ en todos los gráficos, Escape en menús, `aria-pressed`/`aria-controls`, `prefers-reduced-motion`). Sistema escalable: **`node scripts/a11y-contrast.js`** (manifest de pares fondo/texto, sin dependencias) + checklist en **`docs/a11y.md`**. Captions de media resueltos después (`--ink-3`, 2026-07-05). Queda como item separado: case-v2 (se cubre con la migración v2→v3). Blindaje: pre-commit hook que corre el script en cada commit (`.githooks/`).
 
