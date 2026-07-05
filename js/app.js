@@ -281,6 +281,8 @@
     // Featured case
     const featured = cases.find(c => c.featured);
     if (featured) {
+      const fcSection = document.getElementById('featured-case');
+      if (fcSection) fcSection.hidden = false;
       const fcTags = document.getElementById('fc-tags');
       if (fcTags) fcTags.innerHTML = buildTags(featured.card.tags);
       setText('featured-case-title', featured.card.title);

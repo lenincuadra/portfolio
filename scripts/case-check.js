@@ -170,12 +170,15 @@ if (!assetFails) ok(`${assetCount} assets existen (con pares .mp4 y variantes th
 console.log('\n━━━ Copy (reglas de docs/case-v3-content-guide.md) ━━━━━━━━━━━━━━━');
 
 let dashCount = 0;
+// Solo campos de copy: src/poster/alt/id quedan fuera (los paths de assets
+// pueden contener — en el nombre de carpeta y no son texto visible).
+const COPY_KEYS = new Set(['text', 'h3', 'title', 'subtitle', 'excerpt', 'attr']);
 function lintCopy(node, where, inSteps) {
   if (Array.isArray(node)) return node.forEach((n, i) => lintCopy(n, `${where}[${i}]`, inSteps));
   if (!node || typeof node !== 'object') return;
   const steps = inSteps || node.type === 'steps';
   for (const [k, v] of Object.entries(node)) {
-    if (typeof v === 'string' && v.includes('—') && !steps && k !== 'caption' && k !== 'items') dashCount++;
+    if (typeof v === 'string' && v.includes('—') && !steps && COPY_KEYS.has(k)) dashCount++;
     else if (typeof v === 'object') lintCopy(v, `${where}.${k}`, steps);
   }
 }

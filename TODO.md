@@ -4,14 +4,18 @@
 
 ### Percepción — objetivo: rol remoto USD 6k+ (auditoría 2026-07-05)
 
-En orden de impacto sobre un reclutador/hiring manager que entra hoy:
+**✅ Aplicado (2026-07-05):** `fintech-ecosystem` migrado a v3 (h3s declarativos, prosa, 2 videos + wireframes + research que el v2 no mostraba; pasa `case-check --strict`); las 3 `meta.description` genéricas reescritas vendiendo resultado (EN+ES); **Featured Work resucitado** (fix del bug de `hidden` en `app.js` + `ecommerce-conversion` destacado con 3 video-screens); em-dashes del copy en 0 (los "70" eran en su mayoría paths de assets, el linter ahora solo mira copy); **performance**: media referenciada 19.7→10.2 MB (mockup de telecom 4.3 MB→112 KB webp; 3 videos de fintech re-encodeados a webm, el thumbnail de la card de fintech en el index pasó de 2.25 MB a 0.32 MB).
 
-1. **Migrar `fintech-ecosystem` a v3** (ya era el único pendiente, esto lo eleva a #1): es el case de mayor peso corporativo (Naranja X, zero-to-one, 3 superficies) y hoy es el único que se ve con el template viejo; si un hiring manager entra justo ahí, la inconsistencia se nota. Además su `meta.description` es genérica.
-2. **Reescribir las 3 `meta.description` genéricas** (`fintech`, `ecommerce`, `telecom`: "A case study by Lenin Cuadra" no vende nada) — es lo que Google y los links comparten. `case-check` ya las marca como warning. La de ecommerce debería abrir con el +221%.
-3. **Decidir la sección "Featured Work"**: hoy está muerta — ningún case tiene `featured: true` en `content.js` y además `app.js` nunca saca el `hidden` de `#featured-case` (bug latente: si se marcara un featured, igual no se vería). O se borra la sección + código (menos deuda), o se arregla el unhide y se destaca el case más fuerte (recomendado si se quiere guiar al reclutador: `ecommerce-conversion` por el +221% o `no-handoff` por el ángulo AI).
-4. **El About no cumple la promesa del hero**: el hero dice "AI Adoption Lead" y "AI-powered workflows", pero los 3 párrafos del About y la lista de skills son 100% PD clásico, cero mención de IA. Una línea que conecte (cómo liderás adopción de IA en el equipo) y un skill (ej. "AI-assisted design workflows") cierran la brecha.
-5. **Dominio propio** (~USD 10/año): `lenincuadra.github.io/portfolio` es señal junior para un rol de 6k+; un dominio corto mejora percepción, memorabilidad y el CV. Al migrarlo: `BASE` en `scripts/seo-build.js`, canonical/OG/JSON-LD de `index.html`, autor en `case-v3.html` (pasos en `docs/seo.md` §Reglas 3) + CNAME en GitHub Pages.
-6. **Em-dashes legacy**: 70 en copy de secciones (contra la regla de `docs/case-v3-content-guide.md`). Limpiar por case cuando se toque cada uno; `case-check` los cuenta.
+**Queda decidir** (no urgente): sección About visible — el objeto `home.about` de `content.js` no se renderiza en ningún lado (`#about` apunta al hero, que ya cubre la promesa AI); o se agrega una sección About real (los párrafos son buenos y un hiring manager los buscaría), o se borra el objeto muerto + `about.css`.
+
+### 🧑 Acciones tuyas (checklist de búsqueda — nadie más puede hacerlas)
+
+1. **Comprar dominio propio** (~USD 10/año, ej. `lenincuadra.com` o `lenin.design`): señal de seniority para la banda 6k+. Configurar en GitHub Pages (Settings → Pages → Custom domain, crea el CNAME) y avisarme: los pasos técnicos del sitio (BASE de `seo-build`, canonical/OG/JSON-LD, autor en case-v3) están en `docs/seo.md` §Reglas 3 y los hago yo.
+2. **Grabar el Loom (2-3 min, en inglés)** — la prueba de inglés hablado es el filtro invisible de remoto LATAM→US y casi nadie la resuelve. Guion sugerido: 20s quién sos + posicionamiento (el copy del hero ya lo tiene), 90s recorriendo `no-handoff` (el arco de la TOC es el guion: problema → 3 constraints → resultado indistinguible → 4 capacidades nuevas), 30s cierre con el +221% de ecommerce. Subirlo a Loom/YouTube unlisted; después decidimos dónde linkearlo (hero o cases).
+3. **Figma Community como canal**: agregar el link del portfolio en la descripción del plugin de webp export y en tu perfil de Community. Cada instalación es distribución gratis frente a diseñadores y sus managers.
+4. **LinkedIn alineado**: titular = el del hero ("Senior Product Designer · AI Adoption Lead"); About de LinkedIn con el +221% y los 77 minutos; y pedirle a la lead del endorsement de Slack una **recomendación formal en LinkedIn** (mismo contenido, mucha más credibilidad).
+5. **Un ref por empresa al aplicar**: usar `go.html?ref=<empresa>` en cada aplicación (el tracking ya existe); saber quién visitó define a quién hacerle follow-up.
+6. **Dónde aplicar** (banda 6k+/mes contratando LATAM): startups US serie A-C en Wellfound/Otta, búsquedas "AI-native designer"/"design engineer" (tu nicho, poca competencia), y outreach directo a design managers usando `no-handoff` como pitch de productividad de equipo.
 
 ### Assets faltantes (completar 1 por 1, por caso)
 
@@ -38,12 +42,7 @@ Auditoría original (contra disco): 14 assets faltaban en 2 casos v3. **Ambos re
 
 Routing en `js/app.js:13`: cualquier caso sin `template: 'v3'` cae a `case-v2`.
 
-- `no-handoff` (ya en v3)
-- `figma-webp-export` (ya en v3)
-- `ecommerce-conversion` (ya en v3)
-- `telecom-legacy-refactor` (ya en v3)
-- `khatu` (ya en v3)
-- `fintech-ecosystem` — **único pendiente** de migrar v2 → v3 (al migrarlo: `node scripts/seo-build.js` regenera la sitemap con la URL nueva)
+**✅ Completa (2026-07-05)** — los 6 cases están en v3 (`fintech-ecosystem` fue el último; sitemap regenerada). `cases/case-v2.html` y su CSS quedan sin uso: candidatos a archivar/borrar en una limpieza futura (verificar antes que nada más los referencie).
 
 ## Menor / continuo
 

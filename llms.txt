@@ -22,19 +22,21 @@ Figma doesn't export .webp natively, and every plugin that does sits behind a pa
 
 Story arc: A friction that costs an hour per delivery. → Every existing solution either costs money or costs time. → One conversation with Claude.ai. No prior plugin development experience. → What used to take an hour now takes under a minute. → A fix that works across teams, projects, and delivery cadences. → Published and available to both teams.
 
-### [Zero-to-one: Connected Payment Ecosystem](https://lenincuadra.github.io/portfolio/cases/case-v2.html?slug=fintech-ecosystem)
+### [Zero-to-one: Connected Payment Ecosystem](https://lenincuadra.github.io/portfolio/cases/case-v3.html?slug=fintech-ecosystem)
 
-Zero-to-one creation of a connected payment ecosystem. A case study by Lenin Cuadra.
+Zero-to-one design of Naranja X's connected payment ecosystem: embedded checkout, merchant tools and payment flows shipped as one coherent system, so merchants could start collecting payments without leaving their platform.
+
+Story arc: Three surfaces, one design owner, six months: Naranja X's first connected payment ecosystem. → Three products, three sets of friction, and no shared language between them. → The gateway allowed CSS only, links died after one failed payment, and merchants flew blind. → The Happy Path came first; the polish came later. → I designed inside the constraints instead of escalating them. → 5 of 7 users created a payment link; the failures pointed at status communication. → Naranja X went from zero to a working payment ecosystem across three surfaces. → Constraint-driven execution, ecosystem thinking and ownership, in one project.
 
 ### [221% Q1 Revenue Increase Driven Purely by UX Intervention](https://lenincuadra.github.io/portfolio/cases/case-v3.html?slug=ecommerce-conversion)
 
-221% Q1 revenue increase driven purely by UX intervention. A case study by Lenin Cuadra.
+221% Q1 revenue growth for an automotive dealer, with UX as the only variable: I rebuilt a leaking tire inquiry flow and moved the handoff to WhatsApp. No pricing changes, no campaigns.
 
 Story arc: A conversion problem disguised as a sales problem. → Lift conversion without touching price, campaigns, or inventory. → Friction was hiding revenue. → Simplify the path. Change the channel. → From an open-ended form that asked for everything to a one-tap WhatsApp handoff. → 221% revenue growth, with UX as the only variable. → A revenue problem solved through UX, not just an interface redesign.
 
 ### [Refactoring a Legacy Telecom Platform for Structural Clarity](https://lenincuadra.github.io/portfolio/cases/case-v3.html?slug=telecom-legacy-refactor)
 
-Refactoring a legacy telecom platform for structural clarity and system consistency. A case study by Lenin Cuadra.
+I led the structural refactor of a live telecom platform: a full IA restructure and design-system alignment shipped as one v1-to-v2 jump, with higher task success and navigation clarity confirmed post-launch.
 
 Story arc: A live telecom platform had outgrown its original architecture. → The system made users guess instead of recognize. → A live system, no staging, one v1-to-v2 jump. → Restructure the IA, standardize on the Design System, then validate. → A full v2 jump, not incremental patching. → Higher task success and navigation clarity, confirmed post-launch. → Structural refactoring is a design discipline, not just a dev one.
 

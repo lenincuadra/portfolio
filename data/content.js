@@ -62,13 +62,15 @@ const PORTFOLIO_DATA = {
         "paragraphs": [
           "I'm a product designer focused on complex systems, platforms, and flows where clarity and structure matter most. My work typically involves redesigning fragmented experiences into coherent, scalable solutions.",
           "I approach design through constraints. Instead of treating limitations as blockers, I use them to shape decisions early, ensuring what gets designed can actually be built and maintained over time.",
-          "I work closely with engineering and product teams to define systems, not just screens. This includes interaction patterns, state models, and the logic behind the UI, aiming for consistency across surfaces and long-term scalability."
+          "I work closely with engineering and product teams to define systems, not just screens. This includes interaction patterns, state models, and the logic behind the UI, aiming for consistency across surfaces and long-term scalability.",
+          "Lately I also lead AI adoption for my design team: prompt-driven workflows that take a design from Figma to production-ready code, with guardrails that make the output match the real product. It's the same constraint-driven thinking, applied to a new set of tools."
         ],
         "skills": [
           "Zero-to-one product design",
           "Legacy system refactoring",
           "Design systems",
           "UX research & validation",
+          "AI-assisted design workflows",
           "Product thinking"
         ],
         "vennCenter": "Me"
@@ -151,7 +153,7 @@ const PORTFOLIO_DATA = {
                   "type": "callout",
                   "variant": "warning",
                   "title": "Confidentiality note",
-                  "text": "The program shown is fictional — the real brand, client, and design system are protected by NDA and don't appear in any screenshot or recording."
+                  "text": "The program shown is fictional: the real brand, client, and design system are protected by NDA and don't appear in any screenshot or recording."
                 },
                 {
                   "type": "video",
@@ -171,7 +173,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "Design in Figma, document redlines, hand off to developers, iterate with QA. What I built in 2 days was built on top of that process — the Figma work made it possible."
+                  "text": "Design in Figma, document redlines, hand off to developers, iterate with QA. What I built in 2 days was built on top of that process. The Figma work made it possible."
                 }
               ]
             },
@@ -184,7 +186,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "One wrong component propagates to every screen that uses it — the output looks close, but it's not trustworthy enough to show anyone."
+                  "text": "One wrong component propagates to every screen that uses it: the output looks close, but it's not trustworthy enough to show anyone."
                 }
               ]
             },
@@ -201,7 +203,7 @@ const PORTFOLIO_DATA = {
                 },
                 {
                   "type": "body",
-                  "text": "Only the components this MVP needed — not the full design system. One project, one scope, reusable later."
+                  "text": "Only the components this MVP needed, not the full design system. One project, one scope, reusable later."
                 },
                 {
                   "type": "image",
@@ -227,7 +229,7 @@ const PORTFOLIO_DATA = {
                 },
                 {
                   "type": "body",
-                  "text": "A .md file with every component and its Figma link. I instructed Claude to check the original automatically if something looked off — no resharing links manually."
+                  "text": "A .md file with every component and its Figma link. I instructed Claude to check the original automatically if something looked off, with no resharing links manually."
                 },
                 {
                   "type": "image",
@@ -260,7 +262,7 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "heading",
                   "level": 5,
-                  "text": "Expand and drag to compare — Figma vs Code"
+                  "text": "Expand and drag to compare: Figma vs Code"
                 },
                 {
                   "type": "row",
@@ -376,7 +378,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "Exporting images to .webp is a routine part of design-to-dev handoff. Figma doesn't support it natively, and every plugin that does hides behind a paywall. The workaround was manual: export as jpg or png, convert one by one in an external tool. A small friction that adds up fast — and affects every designer delivering to dev, regardless of project or team."
+                  "text": "Exporting images to .webp is a routine part of design-to-dev handoff. Figma doesn't support it natively, and every plugin that does hides behind a paywall. The workaround was manual: export as jpg or png, convert one by one in an external tool. A small friction that adds up fast, and it affects every designer delivering to dev, regardless of project or team."
                 }
               ]
             },
@@ -388,7 +390,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "With 20 or 50 credits per plan, paid plugins disappear fast. Export 10 images, make a few adjustments, re-export, and you're out. And the manual workaround isn't free either: a single export takes around 5 minutes. For 12 images across three viewports — desktop, tablet, mobile — that's a full hour. That hour belongs to the designer or it falls on the developer. Either way, someone pays for a problem that shouldn't exist."
+                  "text": "With 20 or 50 credits per plan, paid plugins disappear fast. Export 10 images, make a few adjustments, re-export, and you're out. And the manual workaround isn't free either: a single export takes around 5 minutes. For 12 images across three viewports (desktop, tablet, mobile), that's a full hour. That hour belongs to the designer or it falls on the developer. Either way, someone pays for a problem that shouldn't exist."
                 }
               ]
             },
@@ -400,7 +402,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "A designer on our agency side raised the problem. I told her I could build a plugin to fix it. Using Claude.ai and nothing but vibe coding, I built and tested it locally in 77 minutes — running it in Figma's Developer Mode while iterating. I also added a Spanish/English language toggle — I work for a US client but my agency is based in Argentina, and designers on both sides needed to use it without friction."
+                  "text": "A designer on our agency side raised the problem. I told her I could build a plugin to fix it. Using Claude.ai and nothing but vibe coding, I built and tested it locally in 77 minutes, running it in Figma's Developer Mode while iterating. I also added a Spanish/English language toggle: I work for a US client but my agency is based in Argentina, and designers on both sides needed to use it without friction."
                 },
                 {
                   "type": "video",
@@ -468,7 +470,7 @@ const PORTFOLIO_DATA = {
               "label": "Status",
               "h3": "Published and available to both teams.",
               "content": [
-                { "type": "subheading", "text": "Published and available to both teams — the client's and the agency's" },
+                { "type": "subheading", "text": "Published and available to both teams: the client's and the agency's" },
                 { "type": "body", "text": "and to any Figma user via the Community." },
                 { "type": "subheading", "text": "The designer who raised the problem is the primary user." },
                 { "type": "body", "text": "The client team and I use it as needed." },
@@ -504,26 +506,24 @@ const PORTFOLIO_DATA = {
         // ---------------------------------------------------------------------
         {
           "slug": "fintech-ecosystem",
+          "template": "v3",
+          "featured": false,
           "images": {
             "cover": "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
-            "video": "assets/images/fintech/1-3—web checkout/6-nx-proto-demo.mp4",
-            "hero": "assets/images/telecom/portrait.png",
-            "process1": "assets/images/fintech/1-3—web checkout/1-nx-wireframes.png",
-            "process2": "assets/images/fintech/2-3—Payment link/3-nx-proto-wireframes.gif",
-            "decisions": "assets/images/fintech/3-3—Nshop/3-screens01.png",
+            "video": "assets/images/fintech/1-3—web checkout/6-nx-proto-demo.webm",
             "screens": [
               {
-                "src": "assets/images/fintech/1-3—web checkout/6-nx-proto-demo.mp4",
+                "src": "assets/images/fintech/1-3—web checkout/6-nx-proto-demo.webm",
                 "poster": "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
                 "label": "Web Checkout"
               },
               {
-                "src": "assets/images/fintech/2-3—Payment link/4-nx-Demo-payment-link.mp4",
+                "src": "assets/images/fintech/2-3—Payment link/4-nx-Demo-payment-link.webm",
                 "poster": "assets/images/fintech/2-3—Payment link/0-nx-description.png",
                 "label": "Payment Link"
               },
               {
-                "src": "assets/images/fintech/3-3—Nshop/9-financial-dashboard.mp4",
+                "src": "assets/images/fintech/3-3—Nshop/9-financial-dashboard.webm",
                 "poster": "assets/images/fintech/3-3—Nshop/3-screens01.png",
                 "label": "Financial Dashboard"
               }
@@ -540,15 +540,11 @@ const PORTFOLIO_DATA = {
           },
           "meta": {
             "title": "Naranja X — Fintech Ecosystem · Lenin Cuadra",
-            "description": "Zero-to-one creation of a connected payment ecosystem. A case study by Lenin Cuadra."
+            "description": "Zero-to-one design of Naranja X's connected payment ecosystem: embedded checkout, merchant tools and payment flows shipped as one coherent system, so merchants could start collecting payments without leaving their platform."
           },
           "hero": {
-            "tags": [
-              "Fintech",
-              "Payments — Product Architecture",
-              "Naranja X"
-            ],
-            "title": "Zero-to-one creation of a connected payment ecosystem under technical and business constraints."
+            "title": "Zero-to-one Creation of a Connected Payment Ecosystem.",
+            "subtitle": "Naranja X: embedded checkout, payment links and a financial dashboard, designed as one system under hard technical constraints."
           },
           "quickScan": {
             "role": "Sole Product Designer across three product surfaces",
@@ -561,17 +557,16 @@ const PORTFOLIO_DATA = {
               "id": "section-overview",
               "tocLabel": "Overview",
               "label": "Overview",
-              "heading": "A payment ecosystem built from scratch.",
+              "h3": "Three surfaces, one design owner, six months: Naranja X's first connected payment ecosystem.",
               "layout": "overview",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "numbered",
-                  "items": [
-                    "3 connected product surfaces: Checkout · Payment Link · NShops",
-                    "Sole design owner across all three products",
-                    "Zero-to-one under technical and business constraints"
-                  ]
+                  "type": "body",
+                  "text": "Naranja X needed merchants to collect payments without leaving the platform, and nothing existed yet. The answer was three product surfaces working as one ecosystem: Web Checkout for buyers, Payment Link for merchants, and NShops for financial visibility."
+                },
+                {
+                  "type": "body",
+                  "text": "I was the sole designer across the three surfaces for six months. My job was translating business requirements and backend realities into one coherent system: interaction models, information architecture, and the operational logic that let buyers, merchants and the business read the same state."
                 },
                 {
                   "type": "image",
@@ -585,15 +580,15 @@ const PORTFOLIO_DATA = {
               "id": "section-problem",
               "tocLabel": "Problem",
               "label": "Problem",
-              "heading": "Three products, three sets of friction.",
+              "h3": "Three products, three sets of friction, and no shared language between them.",
               "content": [
                 {
                   "type": "body",
-                  "text": "Web Checkout faced slow backend response times and severe UI customization limits imposed by Payment Gateway Lyra. Payment Link had single-attempt MVP logic: once a link expired after a failed payment, it was gone permanently. NShops had no centralized financial visibility and weak status communication — leaving merchants unable to understand the state of their operations."
+                  "text": "Web Checkout suffered slow backend response times and hard UI limits imposed by the payment gateway. Payment Link ran on single-attempt MVP logic: once a link expired after a failed payment, it was gone for good. NShops had no centralized financial visibility and weak status communication, so merchants couldn't tell what state their operations were in."
                 },
                 {
                   "type": "quote",
-                  "text": "\"The challenge was not just UI. It was balancing Buyer Experience, Merchant Operations, and Business Visibility — simultaneously.\"",
+                  "text": "\"The challenge was not just UI. It was balancing buyer experience, merchant operations and business visibility, all at once.\"",
                   "attr": "Design framing, project kickoff"
                 }
               ]
@@ -602,14 +597,14 @@ const PORTFOLIO_DATA = {
               "id": "section-constraints",
               "tocLabel": "Constraints",
               "label": "Constraints",
-              "heading": "Real technical constraints.",
+              "h3": "The gateway allowed CSS only, links died after one failed payment, and merchants flew blind.",
               "content": [
                 {
                   "type": "steps",
                   "variant": "bullet",
                   "items": [
-                    "CSS-only — Payment Gateway (Lyra) imposed zero JavaScript access to the checkout interface. All customization through CSS alone.",
-                    "Single-attempt — Payment Link expiry logic meant links expired permanently after a failed payment. No recovery path for merchants.",
+                    "CSS-only — the payment gateway (Lyra) gave zero JavaScript access to the checkout interface. Every customization had to happen through CSS alone.",
+                    "Single-attempt — payment links expired permanently after a failed payment. Merchants had no recovery path.",
                     "No visibility — NShops had no centralized status communication across surfaces. Merchants couldn't track the state of their operations."
                   ]
                 }
@@ -619,39 +614,51 @@ const PORTFOLIO_DATA = {
               "id": "section-process",
               "tocLabel": "Process",
               "label": "Process",
-              "heading": "From paper to production in structure.",
+              "h3": "The Happy Path came first; the polish came later.",
               "content": [
                 {
                   "type": "subheading",
-                  "text": "Phase 1 — Paper → Mid-Fi → Hi-Fi in under 3 days"
+                  "text": "Phase 1: Paper to Mid-Fi to Hi-Fi in under 3 days"
                 },
                 {
                   "type": "body",
-                  "text": "Defined the Happy Path early to align engineering and prioritized functional clarity over surface polish. Speed came from structure, not from skipping steps."
+                  "text": "For the initial checkout I defined the Happy Path early to align engineering, and prioritized functional clarity over surface polish. The speed came from structure, not from skipping steps."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/fintech/1-3—web checkout/1-nx-wireframes.png",
+                  "alt": "Web Checkout wireframes: the flow moving from paper to mid-fi",
+                  "loading": "lazy"
                 },
                 {
                   "type": "subheading",
-                  "text": "Phase 2 — Rebuilding within a CSS-only gateway"
+                  "text": "Phase 2: Rebuilding inside a CSS-only gateway"
                 },
                 {
                   "type": "body",
-                  "text": "The Payment Gateway (Lyra) allowed only CSS customization. I rebuilt the non-branded card flow entirely within those limits, preserving usability despite severe technical restrictions."
+                  "text": "Lyra allowed CSS customization and nothing else. I mapped what was possible within that limit and rebuilt the non-branded card flow inside it, preserving usability despite the restriction."
+                },
+                {
+                  "type": "video",
+                  "src": "assets/images/fintech/1-3—web checkout/6-nx-proto-demo.webm",
+                  "poster": "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
+                  "label": "Checkout Prototype",
+                  "alt": "Interactive prototype of the rebuilt checkout flow running end to end"
                 },
                 {
                   "type": "subheading",
-                  "text": "Phase 3 — Detecting cascading friction"
+                  "text": "Phase 3: Turning a dead end into a recovery path"
                 },
                 {
                   "type": "body",
-                  "text": "Identified that Payment Link expiration was creating cascading operational friction. The solution — Duplicate Payment Link — eliminated full manual recreation, enabling faster recovery after failed payments and improving operational scalability."
+                  "text": "Payment Link expiration was creating cascading operational friction: every failed payment forced merchants to recreate the link from scratch. The fix, Duplicate Payment Link, removed the manual recreation entirely and made recovery fast."
                 },
                 {
-                  "type": "subheading",
-                  "text": "Phase 4 — 7-user usability test with interactive prototypes"
-                },
-                {
-                  "type": "body",
-                  "text": "5 out of 7 users completed Payment Link creation via the Happy Path. 3 out of 7 completed payment confirmation. Core insight: status communication across surfaces was unclear, directly informing Sprint priorities."
+                  "type": "video",
+                  "src": "assets/images/fintech/2-3—Payment link/4-nx-Demo-payment-link.webm",
+                  "poster": "assets/images/fintech/2-3—Payment link/0-nx-description.png",
+                  "label": "Payment Link Demo",
+                  "alt": "Payment Link creation and duplication flow in the merchant tool"
                 }
               ]
             },
@@ -659,31 +666,49 @@ const PORTFOLIO_DATA = {
               "id": "section-decisions",
               "tocLabel": "Decisions",
               "label": "Decisions",
-              "heading": "Decisions that shaped the system.",
+              "h3": "I designed inside the constraints instead of escalating them.",
               "content": [
                 {
                   "type": "subheading",
-                  "text": "Prioritize Happy Path definition before visual refinement"
+                  "text": "The Happy Path before visual refinement"
                 },
                 {
                   "type": "body",
-                  "text": "Engineering alignment needed a clear functional flow first. Defining the Happy Path early allowed frontend and backend to move in parallel while visual polish came later — reducing costly rework."
+                  "text": "Engineering alignment needed a clear functional flow first. Defining the Happy Path early let frontend and backend move in parallel while the visual polish came later, cutting costly rework."
                 },
                 {
                   "type": "subheading",
-                  "text": "Design within CSS-only gateway constraints instead of requesting exceptions"
+                  "text": "CSS-only treated as the brief, not as a blocker"
                 },
                 {
                   "type": "body",
-                  "text": "Rather than escalating to push back on the Lyra integration, I mapped what was possible within CSS-only limits and rebuilt the non-branded card flow accordingly. This maintained momentum and delivered a working checkout without delay."
+                  "text": "Escalating to push back on the Lyra integration would have stalled the launch. Accepting the constraint and designing inside it kept the momentum and delivered a working checkout without delay."
                 },
                 {
                   "type": "subheading",
-                  "text": "Introduce Duplicate Payment Link as a structural fix, not just a feature"
+                  "text": "Duplicate Payment Link framed as infrastructure, not convenience"
                 },
                 {
                   "type": "body",
-                  "text": "After detecting that link expiration was creating cascading operational friction, I framed Duplicate Payment Link as a systemic recovery mechanism. This positioned it as infrastructure, not convenience — which accelerated stakeholder buy-in."
+                  "text": "I pitched the duplicate action as a systemic recovery mechanism rather than a nice-to-have feature. That framing is what accelerated stakeholder buy-in."
+                }
+              ]
+            },
+            {
+              "id": "section-validation",
+              "tocLabel": "Validation",
+              "label": "Validation",
+              "h3": "5 of 7 users created a payment link; the failures pointed at status communication.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "I tested with 7 users on interactive prototypes. Five completed Payment Link creation through the Happy Path; only three completed payment confirmation. The flows worked, but status communication across surfaces didn't, and that finding went straight into the Sprint priorities."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/fintech/3-3—Nshop/5-nx-research.png",
+                  "alt": "Usability test synthesis: completion rates and friction points across the seven sessions",
+                  "loading": "lazy"
                 }
               ]
             },
@@ -691,21 +716,23 @@ const PORTFOLIO_DATA = {
               "id": "section-impact",
               "tocLabel": "Impact",
               "label": "Impact",
-              "heading": "A payment ecosystem where none previously existed.",
+              "h3": "Naranja X went from zero to a working payment ecosystem across three surfaces.",
               "content": [
                 {
                   "type": "steps",
                   "variant": "numbered",
                   "items": [
-                    "3 connected product surfaces launched: Checkout · Payment Link · NShops",
-                    "5/7 users completed Payment Link creation — 7-user usability study, Happy Path",
-                    "3/7 users completed payment confirmation — identified status ambiguity as key friction",
-                    "Zero → One: first connected payment ecosystem at Naranja X"
+                    "3 connected surfaces launched — Checkout, Payment Link and NShops shipped as one system",
+                    "Duplicate Payment Link — recovery after failed payments without recreating anything by hand",
+                    "Clearer status hierarchy — buyers, merchants and the business finally read the same state"
                   ]
                 },
                 {
-                  "type": "body",
-                  "text": "After launch, structural optimization followed: Duplicate Payment Link eliminated full manual recreation after payment failure, and a clearer cross-surface status hierarchy reduced systemic friction and increased operational coherence."
+                  "type": "video",
+                  "src": "assets/images/fintech/3-3—Nshop/9-financial-dashboard.webm",
+                  "poster": "assets/images/fintech/3-3—Nshop/3-screens01.png",
+                  "label": "Financial Dashboard",
+                  "alt": "NShops financial dashboard showing centralized operation status"
                 }
               ]
             },
@@ -713,16 +740,11 @@ const PORTFOLIO_DATA = {
               "id": "section-learnings",
               "tocLabel": "What This Demonstrates",
               "label": "What This Demonstrates",
-              "heading": "What This Demonstrates.",
+              "h3": "Constraint-driven execution, ecosystem thinking and ownership, in one project.",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "numbered",
-                  "items": [
-                    "Strong execution under constraints — able to move fast without losing coherence across a complex system.",
-                    "Ecosystem impact thinking — design decisions evaluated based on how they balance multiple dimensions simultaneously.",
-                    "Business-aware product ownership — from zero-to-one creation to post-launch structural optimization."
-                  ]
+                  "type": "body",
+                  "text": "This case is what my execution under constraints looks like: fast without losing coherence, decisions evaluated by their effect on the whole ecosystem rather than a single screen, and ownership that runs from zero-to-one creation through post-launch structural optimization."
                 }
               ]
             }
@@ -745,10 +767,23 @@ const PORTFOLIO_DATA = {
         {
           "slug": "ecommerce-conversion",
           "template": "v3",
-          "featured": false,
+          "featured": true,
           "images": {
             "cover": "assets/images/ecommerce/cover.webp",
-            "screens": []
+            "screens": [
+              {
+                "src": "assets/images/ecommerce/intervention-progression.webm",
+                "label": "Flow Evolution"
+              },
+              {
+                "src": "assets/images/ecommerce/smart-suggestions.webm",
+                "label": "Smart Suggestions"
+              },
+              {
+                "src": "assets/images/ecommerce/whatsapp-flow.webm",
+                "label": "WhatsApp Handoff"
+              }
+            ]
           },
           "card": {
             "tags": [
@@ -761,7 +796,7 @@ const PORTFOLIO_DATA = {
           },
           "meta": {
             "title": "Montironi Automotive — 221% Revenue · Lenin Cuadra",
-            "description": "221% Q1 revenue increase driven purely by UX intervention. A case study by Lenin Cuadra."
+            "description": "221% Q1 revenue growth for an automotive dealer, with UX as the only variable: I rebuilt a leaking tire inquiry flow and moved the handoff to WhatsApp. No pricing changes, no campaigns."
           },
           "hero": {
             "title": "221% Q1 Revenue Increase Driven Purely by UX Intervention.",
@@ -976,7 +1011,7 @@ const PORTFOLIO_DATA = {
           },
           "meta": {
             "title": "Telecom Legacy Refactor · Lenin Cuadra",
-            "description": "Refactoring a legacy telecom platform for structural clarity and system consistency. A case study by Lenin Cuadra."
+            "description": "I led the structural refactor of a live telecom platform: a full IA restructure and design-system alignment shipped as one v1-to-v2 jump, with higher task success and navigation clarity confirmed post-launch."
           },
           "hero": {
             "tags": [
@@ -1115,7 +1150,7 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "image",
                   "ratio": "wide",
-                  "src": "assets/images/telecom/mockup-overview.png",
+                  "src": "assets/images/telecom/mockup-overview.webp",
                   "alt": "The refactored platform: call transfer, in-call participants, and the recordings library, all built on Design System components",
                   "loading": "lazy"
                 },
@@ -1483,13 +1518,15 @@ const PORTFOLIO_DATA = {
         "paragraphs": [
           "Soy product designer especializado en sistemas complejos, plataformas y flujos donde la claridad y la estructura son lo que más importa. Mi trabajo típicamente implica rediseñar experiencias fragmentadas en soluciones coherentes y escalables.",
           "Abordo el diseño a través de las restricciones. En lugar de tratar las limitaciones como bloqueos, las uso para dar forma a las decisiones temprano, asegurando que lo que se diseña pueda construirse y mantenerse en el tiempo.",
-          "Trabajo estrechamente con equipos de ingeniería y producto para definir sistemas, no solo pantallas. Esto incluye patrones de interacción, modelos de estado y la lógica detrás de la UI, apuntando a la consistencia entre superficies y la escalabilidad a largo plazo."
+          "Trabajo estrechamente con equipos de ingeniería y producto para definir sistemas, no solo pantallas. Esto incluye patrones de interacción, modelos de estado y la lógica detrás de la UI, apuntando a la consistencia entre superficies y la escalabilidad a largo plazo.",
+          "Últimamente también lidero la adopción de IA en mi equipo de diseño: flujos guiados por prompts que llevan un diseño de Figma a código listo para producción, con reglas que hacen que el resultado coincida con el producto real. Es el mismo pensamiento guiado por restricciones, aplicado a un set de herramientas nuevo."
         ],
         "skills": [
           "Diseño de zero-to-one",
           "Refactorización de System Legacy",
           "Design Systems",
           "Research UX y validación de usabilidad",
+          "Flujos de diseño asistidos por IA",
           "Product thinking"
         ],
         "vennCenter": "Yo"
@@ -1569,7 +1606,7 @@ const PORTFOLIO_DATA = {
                   "type": "callout",
                   "variant": "warning",
                   "title": "Nota de confidencialidad",
-                  "text": "El programa mostrado es ficticio — la marca, el cliente y el design system reales están protegidos por NDA y no aparecen en ninguna captura ni grabación."
+                  "text": "El programa mostrado es ficticio: la marca, el cliente y el design system reales están protegidos por NDA y no aparecen en ninguna captura ni grabación."
                 },
                 {
                   "type": "video",
@@ -1589,7 +1626,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "Diseñar en Figma, documentar redlines, hacer handoff a los desarrolladores, iterar con QA. Lo que construí en 2 días se apoyó en ese proceso — el trabajo en Figma lo hizo posible."
+                  "text": "Diseñar en Figma, documentar redlines, hacer handoff a los desarrolladores, iterar con QA. Lo que construí en 2 días se apoyó en ese proceso. El trabajo en Figma lo hizo posible."
                 }
               ]
             },
@@ -1602,7 +1639,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "Un componente equivocado se propaga a cada pantalla que lo usa — el resultado se ve parecido, pero no es lo suficientemente confiable para mostrárselo a alguien."
+                  "text": "Un componente equivocado se propaga a cada pantalla que lo usa: el resultado se ve parecido, pero no es lo suficientemente confiable para mostrárselo a alguien."
                 }
               ]
             },
@@ -1619,7 +1656,7 @@ const PORTFOLIO_DATA = {
                 },
                 {
                   "type": "body",
-                  "text": "Solo los componentes que necesitaba este MVP — no el design system completo. Un proyecto, un alcance, reutilizable después."
+                  "text": "Solo los componentes que necesitaba este MVP, no el design system completo. Un proyecto, un alcance, reutilizable después."
                 },
                 {
                   "type": "image",
@@ -1645,7 +1682,7 @@ const PORTFOLIO_DATA = {
                 },
                 {
                   "type": "body",
-                  "text": "Un archivo .md con cada componente y su enlace de Figma. Le instruí a Claude para que revisara el original automáticamente si algo parecía mal — sin reenviar links manualmente."
+                  "text": "Un archivo .md con cada componente y su enlace de Figma. Le instruí a Claude para que revisara el original automáticamente si algo parecía mal, sin reenviar links manualmente."
                 },
                 {
                   "type": "image",
@@ -1678,7 +1715,7 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "heading",
                   "level": 5,
-                  "text": "Expandí y arrastrá para comparar — Figma vs Code"
+                  "text": "Expandí y arrastrá para comparar: Figma vs Code"
                 },
                 {
                   "type": "row",
@@ -1794,7 +1831,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "Exportar imágenes a .webp es una parte rutinaria del handoff de diseño a desarrollo. Figma no lo soporta de forma nativa, y cada plugin que lo hace está detrás de un muro de pago. El workaround era manual: exportar como jpg o png, convertir uno por uno en una herramienta externa. Una fricción pequeña que se acumula rápido — y afecta a todo diseñador que entrega a desarrollo, sin importar el proyecto o el equipo."
+                  "text": "Exportar imágenes a .webp es una parte rutinaria del handoff de diseño a desarrollo. Figma no lo soporta de forma nativa, y cada plugin que lo hace está detrás de un muro de pago. El workaround era manual: exportar como jpg o png, convertir uno por uno en una herramienta externa. Una fricción pequeña que se acumula rápido, y afecta a todo diseñador que entrega a desarrollo, sin importar el proyecto o el equipo."
                 }
               ]
             },
@@ -1806,7 +1843,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "Con 20 o 50 créditos por plan, los plugins de pago se agotan rápido. Exportá 10 imágenes, hacé algunos ajustes, volvé a exportar, y se terminaron. Y el workaround manual tampoco es gratis: una sola exportación tarda alrededor de 5 minutos. Para 12 imágenes en tres viewports — desktop, tablet, mobile — es una hora completa. Esa hora la paga el diseñador o cae sobre el desarrollador. De cualquier forma, alguien paga por un problema que no debería existir."
+                  "text": "Con 20 o 50 créditos por plan, los plugins de pago se agotan rápido. Exportá 10 imágenes, hacé algunos ajustes, volvé a exportar, y se terminaron. Y el workaround manual tampoco es gratis: una sola exportación tarda alrededor de 5 minutos. Para 12 imágenes en tres viewports (desktop, tablet, mobile), es una hora completa. Esa hora la paga el diseñador o cae sobre el desarrollador. De cualquier forma, alguien paga por un problema que no debería existir."
                 }
               ]
             },
@@ -1818,7 +1855,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "Una diseñadora del lado de la agencia planteó el problema. Le dije que podía construir un plugin para resolverlo. Usando Claude.ai y nada más que vibe coding, lo construí y probé localmente en 77 minutos — ejecutándolo en el Developer Mode de Figma mientras iteraba. También agregué un toggle de idioma español/inglés — trabajo para un cliente de EE.UU. pero mi agencia está en Argentina, y los diseñadores de ambos lados necesitaban usarlo sin fricción."
+                  "text": "Una diseñadora del lado de la agencia planteó el problema. Le dije que podía construir un plugin para resolverlo. Usando Claude.ai y nada más que vibe coding, lo construí y probé localmente en 77 minutos, ejecutándolo en el Developer Mode de Figma mientras iteraba. También agregué un toggle de idioma español/inglés: trabajo para un cliente de EE.UU. pero mi agencia está en Argentina, y los diseñadores de ambos lados necesitaban usarlo sin fricción."
                 },
                 {
                   "type": "video",
@@ -1886,7 +1923,7 @@ const PORTFOLIO_DATA = {
               "label": "Estado",
               "h3": "Publicado y disponible para ambos equipos.",
               "content": [
-                { "type": "subheading", "text": "Publicado y disponible para ambos equipos — el del cliente y el de la agencia" },
+                { "type": "subheading", "text": "Publicado y disponible para ambos equipos: el del cliente y el de la agencia" },
                 { "type": "body", "text": "y para cualquier usuario de Figma via la Community." },
                 { "type": "subheading", "text": "La diseñadora que planteó el problema es la usuaria principal." },
                 { "type": "body", "text": "El equipo del cliente y yo lo usamos según necesidad." },
@@ -1922,26 +1959,24 @@ const PORTFOLIO_DATA = {
         // ---------------------------------------------------------------------
         {
           "slug": "fintech-ecosystem",
+          "template": "v3",
+          "featured": false,
           "images": {
             "cover": "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
-            "video": "assets/images/fintech/1-3—web checkout/6-nx-proto-demo.mp4",
-            "hero": "assets/images/telecom/portrait.png",
-            "process1": "assets/images/fintech/1-3—web checkout/1-nx-wireframes.png",
-            "process2": "assets/images/fintech/2-3—Payment link/3-nx-proto-wireframes.gif",
-            "decisions": "assets/images/fintech/3-3—Nshop/3-screens01.png",
+            "video": "assets/images/fintech/1-3—web checkout/6-nx-proto-demo.webm",
             "screens": [
               {
-                "src": "assets/images/fintech/1-3—web checkout/6-nx-proto-demo.mp4",
+                "src": "assets/images/fintech/1-3—web checkout/6-nx-proto-demo.webm",
                 "poster": "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
                 "label": "Web Checkout"
               },
               {
-                "src": "assets/images/fintech/2-3—Payment link/4-nx-Demo-payment-link.mp4",
+                "src": "assets/images/fintech/2-3—Payment link/4-nx-Demo-payment-link.webm",
                 "poster": "assets/images/fintech/2-3—Payment link/0-nx-description.png",
                 "label": "Payment Link"
               },
               {
-                "src": "assets/images/fintech/3-3—Nshop/9-financial-dashboard.mp4",
+                "src": "assets/images/fintech/3-3—Nshop/9-financial-dashboard.webm",
                 "poster": "assets/images/fintech/3-3—Nshop/3-screens01.png",
                 "label": "Financial Dashboard"
               }
@@ -1958,15 +1993,11 @@ const PORTFOLIO_DATA = {
           },
           "meta": {
             "title": "Naranja X — Ecosistema Fintech · Lenin Cuadra",
-            "description": "Creación de cero a uno de un ecosistema de pagos conectado. Un caso de estudio de Lenin Cuadra."
+            "description": "Diseño de cero a uno del ecosistema de pagos conectado de Naranja X: checkout embebido, herramientas de comercio y flujos de pago entregados como un sistema coherente, para que los comercios cobraran sin salir de su plataforma."
           },
           "hero": {
-            "tags": [
-              "Fintech",
-              "Pagos — Arquitectura de Producto",
-              "Naranja X"
-            ],
-            "title": "Creación de cero a uno de un ecosistema de pagos conectado bajo restricciones técnicas y de negocio."
+            "title": "Creación de Cero a Uno de un Ecosistema de Pagos Conectado.",
+            "subtitle": "Naranja X: checkout embebido, links de pago y un dashboard financiero, diseñados como un solo sistema bajo restricciones técnicas duras."
           },
           "quickScan": {
             "role": "Product Designer único en tres superficies de producto",
@@ -1979,17 +2010,16 @@ const PORTFOLIO_DATA = {
               "id": "section-overview",
               "tocLabel": "Panorama",
               "label": "Panorama",
-              "heading": "Un ecosistema de pagos construido desde cero.",
+              "h3": "Tres superficies, un solo responsable de diseño, seis meses: el primer ecosistema de pagos conectado de Naranja X.",
               "layout": "overview",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "numbered",
-                  "items": [
-                    "3 superficies de producto conectadas: Checkout · Payment Link · NShops",
-                    "Único responsable de diseño en los tres productos",
-                    "Zero-to-one bajo restricciones técnicas y de negocio"
-                  ]
+                  "type": "body",
+                  "text": "Naranja X necesitaba que los comercios cobraran sin salir de la plataforma, y todavía no existía nada. La respuesta fueron tres superficies de producto funcionando como un ecosistema: Web Checkout para compradores, Payment Link para comercios y NShops para la visibilidad financiera."
+                },
+                {
+                  "type": "body",
+                  "text": "Fui el único diseñador en las tres superficies durante seis meses. Mi trabajo fue traducir requerimientos de negocio y realidades del backend en un sistema coherente: modelos de interacción, arquitectura de información y la lógica operativa que dejaba a compradores, comercios y negocio leyendo el mismo estado."
                 },
                 {
                   "type": "image",
@@ -2003,15 +2033,15 @@ const PORTFOLIO_DATA = {
               "id": "section-problem",
               "tocLabel": "Problema",
               "label": "Problema",
-              "heading": "Tres productos, tres fuentes de fricción.",
+              "h3": "Tres productos, tres fuentes de fricción, y ningún lenguaje compartido entre ellos.",
               "content": [
                 {
                   "type": "body",
-                  "text": "Web Checkout enfrentaba tiempos de respuesta lentos y severas limitaciones de UI impuestas por el Payment Gateway Lyra. Payment Link tenía lógica de intento único: una vez que el link expiraba tras un pago fallido, desaparecía permanentemente. NShops no tenía visibilidad financiera centralizada ni comunicación de estado efectiva — dejando a los comerciantes sin capacidad de entender sus operaciones."
+                  "text": "Web Checkout sufría tiempos de respuesta lentos del backend y límites duros de UI impuestos por el payment gateway. Payment Link corría con lógica MVP de intento único: cuando un link expiraba tras un pago fallido, desaparecía para siempre. NShops no tenía visibilidad financiera centralizada ni comunicación de estado efectiva, así que los comercios no podían saber en qué estado estaban sus operaciones."
                 },
                 {
                   "type": "quote",
-                  "text": "\"El desafío no era solo la UI. Era equilibrar la Experiencia del Comprador, las Operaciones del Comerciante y la Visibilidad del Negocio — simultáneamente.\"",
+                  "text": "\"El desafío no era solo la UI. Era equilibrar la experiencia del comprador, las operaciones del comercio y la visibilidad del negocio, todo a la vez.\"",
                   "attr": "Encuadre de diseño, kickoff del proyecto"
                 }
               ]
@@ -2020,15 +2050,15 @@ const PORTFOLIO_DATA = {
               "id": "section-constraints",
               "tocLabel": "Restricciones",
               "label": "Restricciones",
-              "heading": "Restricciones técnicas reales.",
+              "h3": "El gateway solo permitía CSS, los links morían tras un pago fallido, y los comercios operaban a ciegas.",
               "content": [
                 {
                   "type": "steps",
                   "variant": "bullet",
                   "items": [
-                    "Solo CSS — el Payment Gateway (Lyra) no permitía acceso JavaScript a la interfaz de checkout. Toda la personalización debía hacerse únicamente con CSS.",
-                    "Intento único — la lógica de expiración del Payment Link eliminaba los links permanentemente tras un pago fallido. Sin camino de recuperación para los comerciantes.",
-                    "Sin visibilidad — NShops no tenía comunicación de estado centralizada entre superficies. Los comerciantes no podían rastrear el estado de sus operaciones."
+                    "Solo CSS — el payment gateway (Lyra) no daba ningún acceso JavaScript a la interfaz de checkout. Toda personalización debía hacerse únicamente con CSS.",
+                    "Intento único — los links de pago expiraban permanentemente tras un pago fallido. Los comercios no tenían camino de recuperación.",
+                    "Sin visibilidad — NShops no tenía comunicación de estado centralizada entre superficies. Los comercios no podían rastrear el estado de sus operaciones."
                   ]
                 }
               ]
@@ -2037,39 +2067,51 @@ const PORTFOLIO_DATA = {
               "id": "section-process",
               "tocLabel": "Proceso",
               "label": "Proceso",
-              "heading": "Del papel a producción con estructura.",
+              "h3": "Primero el Happy Path; el pulido llegó después.",
               "content": [
                 {
                   "type": "subheading",
-                  "text": "Fase 1 — Papel → Mid-Fi → Hi-Fi en menos de 3 días"
+                  "text": "Fase 1: de papel a Mid-Fi y Hi-Fi en menos de 3 días"
                 },
                 {
                   "type": "body",
-                  "text": "Definí el Happy Path temprano para alinear con ingeniería y prioricé la claridad funcional sobre el pulido visual. La velocidad vino de la estructura, no de saltarse pasos."
+                  "text": "Para el checkout inicial definí el Happy Path temprano para alinear con ingeniería, y prioricé la claridad funcional sobre el pulido visual. La velocidad vino de la estructura, no de saltear pasos."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/fintech/1-3—web checkout/1-nx-wireframes.png",
+                  "alt": "Wireframes del Web Checkout: el flujo pasando de papel a mid-fi",
+                  "loading": "lazy"
                 },
                 {
                   "type": "subheading",
-                  "text": "Fase 2 — Reconstruyendo dentro de un gateway solo con CSS"
+                  "text": "Fase 2: reconstruir dentro de un gateway de solo CSS"
                 },
                 {
                   "type": "body",
-                  "text": "El Payment Gateway (Lyra) solo permitía personalización CSS. Reconstruí el flujo de tarjeta sin marca completamente dentro de esos límites, preservando la usabilidad pese a las severas restricciones técnicas."
+                  "text": "Lyra permitía personalización con CSS y nada más. Mapeé lo posible dentro de ese límite y reconstruí el flujo de tarjeta sin marca adentro, preservando la usabilidad a pesar de la restricción."
+                },
+                {
+                  "type": "video",
+                  "src": "assets/images/fintech/1-3—web checkout/6-nx-proto-demo.webm",
+                  "poster": "assets/images/fintech/1-3—web checkout/0-nx-portada.png",
+                  "label": "Prototipo del Checkout",
+                  "alt": "Prototipo interactivo del flujo de checkout reconstruido, de punta a punta"
                 },
                 {
                   "type": "subheading",
-                  "text": "Fase 3 — Detectando fricción en cascada"
+                  "text": "Fase 3: convertir un callejón sin salida en un camino de recuperación"
                 },
                 {
                   "type": "body",
-                  "text": "Identifiqué que la expiración del Payment Link estaba generando fricción operacional en cascada. La solución — Duplicar Payment Link — eliminó la recreación manual completa, habilitando una recuperación más rápida tras pagos fallidos y mejorando la escalabilidad operacional."
+                  "text": "La expiración del Payment Link generaba fricción operativa en cascada: cada pago fallido obligaba al comercio a recrear el link desde cero. El fix, Duplicar Payment Link, eliminó por completo la recreación manual e hizo rápida la recuperación."
                 },
                 {
-                  "type": "subheading",
-                  "text": "Fase 4 — Test de usabilidad con 7 usuarios y prototipos interactivos"
-                },
-                {
-                  "type": "body",
-                  "text": "5 de 7 usuarios completaron la creación del Payment Link por el Happy Path. 3 de 7 completaron la confirmación de pago. Insight clave: la comunicación de estado entre superficies era poco clara, lo que informó directamente las prioridades del Sprint."
+                  "type": "video",
+                  "src": "assets/images/fintech/2-3—Payment link/4-nx-Demo-payment-link.webm",
+                  "poster": "assets/images/fintech/2-3—Payment link/0-nx-description.png",
+                  "label": "Demo de Payment Link",
+                  "alt": "Flujo de creación y duplicación del Payment Link en la herramienta del comercio"
                 }
               ]
             },
@@ -2077,31 +2119,49 @@ const PORTFOLIO_DATA = {
               "id": "section-decisions",
               "tocLabel": "Decisiones",
               "label": "Decisiones",
-              "heading": "Decisiones que moldearon el sistema.",
+              "h3": "Diseñé dentro de las restricciones en lugar de escalarlas.",
               "content": [
                 {
                   "type": "subheading",
-                  "text": "Priorizar la definición del Happy Path antes del refinamiento visual"
+                  "text": "El Happy Path antes del refinamiento visual"
                 },
                 {
                   "type": "body",
-                  "text": "La alineación con ingeniería necesitaba primero un flujo funcional claro. Definir el Happy Path temprano permitió que frontend y backend avanzaran en paralelo mientras el pulido visual llegaba después — reduciendo costosos retrabados."
+                  "text": "La alineación con ingeniería necesitaba primero un flujo funcional claro. Definir el Happy Path temprano dejó a frontend y backend avanzar en paralelo mientras el pulido visual llegaba después, recortando retrabajo costoso."
                 },
                 {
                   "type": "subheading",
-                  "text": "Diseñar dentro de las restricciones de solo CSS en lugar de pedir excepciones"
+                  "text": "El solo-CSS tratado como brief, no como bloqueo"
                 },
                 {
                   "type": "body",
-                  "text": "En lugar de escalar para cuestionar la integración de Lyra, mapeé lo posible dentro de los límites de solo CSS y reconstruí el flujo sin marca en consecuencia. Esto mantuvo el impulso y entregó un checkout funcional sin demoras."
+                  "text": "Escalar para cuestionar la integración con Lyra habría frenado el lanzamiento. Aceptar la restricción y diseñar adentro mantuvo el impulso y entregó un checkout funcionando sin demora."
                 },
                 {
                   "type": "subheading",
-                  "text": "Introducir Duplicar Payment Link como solución estructural, no solo una funcionalidad"
+                  "text": "Duplicar Payment Link encuadrado como infraestructura, no conveniencia"
                 },
                 {
                   "type": "body",
-                  "text": "Al detectar que la expiración del link generaba fricción operacional en cascada, encuadré Duplicar Payment Link como un mecanismo de recuperación sistémica. Esto lo posicionó como infraestructura, no conveniencia — acelerando la aprobación de los stakeholders."
+                  "text": "Presenté la acción de duplicar como un mecanismo de recuperación sistémica y no como una funcionalidad agradable de tener. Ese encuadre fue lo que aceleró la aprobación de los stakeholders."
+                }
+              ]
+            },
+            {
+              "id": "section-validation",
+              "tocLabel": "Validación",
+              "label": "Validación",
+              "h3": "5 de 7 usuarios crearon un link de pago; los fallos señalaron la comunicación de estado.",
+              "content": [
+                {
+                  "type": "body",
+                  "text": "Testeé con 7 usuarios sobre prototipos interactivos. Cinco completaron la creación del Payment Link por el Happy Path; solo tres completaron la confirmación de pago. Los flujos funcionaban, pero la comunicación de estado entre superficies no, y ese hallazgo fue directo a las prioridades del Sprint."
+                },
+                {
+                  "type": "image",
+                  "src": "assets/images/fintech/3-3—Nshop/5-nx-research.png",
+                  "alt": "Síntesis del test de usabilidad: tasas de completitud y puntos de fricción en las siete sesiones",
+                  "loading": "lazy"
                 }
               ]
             },
@@ -2109,21 +2169,23 @@ const PORTFOLIO_DATA = {
               "id": "section-impact",
               "tocLabel": "Impacto",
               "label": "Impacto",
-              "heading": "Un ecosistema de pagos donde antes no existía ninguno.",
+              "h3": "Naranja X pasó de cero a un ecosistema de pagos funcionando en tres superficies.",
               "content": [
                 {
                   "type": "steps",
                   "variant": "numbered",
                   "items": [
-                    "3 superficies de producto conectadas lanzadas: Checkout · Payment Link · NShops",
-                    "5/7 usuarios completaron la creación del Payment Link — estudio de usabilidad con 7 usuarios",
-                    "3/7 usuarios completaron la confirmación de pago — identificó la ambigüedad de estado como fricción clave",
-                    "Cero → Uno: primer ecosistema de pagos conectado en Naranja X"
+                    "3 superficies conectadas lanzadas — Checkout, Payment Link y NShops entregados como un solo sistema",
+                    "Duplicar Payment Link — recuperación tras pagos fallidos sin recrear nada a mano",
+                    "Jerarquía de estado más clara — compradores, comercios y negocio por fin leen el mismo estado"
                   ]
                 },
                 {
-                  "type": "body",
-                  "text": "Tras el lanzamiento, la optimización estructural continuó: Duplicar Payment Link eliminó la recreación manual completa tras pagos fallidos, y una jerarquía de estado más clara entre superficies redujo la fricción sistémica y aumentó la coherencia operacional."
+                  "type": "video",
+                  "src": "assets/images/fintech/3-3—Nshop/9-financial-dashboard.webm",
+                  "poster": "assets/images/fintech/3-3—Nshop/3-screens01.png",
+                  "label": "Dashboard Financiero",
+                  "alt": "Dashboard financiero de NShops mostrando el estado centralizado de las operaciones"
                 }
               ]
             },
@@ -2131,16 +2193,11 @@ const PORTFOLIO_DATA = {
               "id": "section-learnings",
               "tocLabel": "Qué demuestra esto",
               "label": "Qué demuestra esto",
-              "heading": "Qué demuestra esto.",
+              "h3": "Ejecución guiada por restricciones, pensamiento de ecosistema y ownership, en un mismo proyecto.",
               "content": [
                 {
-                  "type": "steps",
-                  "variant": "numbered",
-                  "items": [
-                    "Sólida ejecución bajo restricciones — capacidad de avanzar rápido sin perder coherencia en un sistema complejo.",
-                    "Pensamiento de impacto en el ecosistema — las decisiones de diseño se evalúan según cómo equilibran múltiples dimensiones simultáneamente.",
-                    "Liderazgo de producto con consciencia de negocio — desde la creación zero-to-one hasta la optimización estructural post-lanzamiento."
-                  ]
+                  "type": "body",
+                  "text": "Este caso muestra cómo es mi ejecución bajo restricciones: rápida sin perder coherencia, con decisiones evaluadas por su efecto en el ecosistema completo y no en una pantalla, y un ownership que va de la creación de cero a uno hasta la optimización estructural post-lanzamiento."
                 }
               ]
             }
@@ -2163,10 +2220,23 @@ const PORTFOLIO_DATA = {
         {
           "slug": "ecommerce-conversion",
           "template": "v3",
-          "featured": false,
+          "featured": true,
           "images": {
             "cover": "assets/images/ecommerce/cover.webp",
-            "screens": []
+            "screens": [
+              {
+                "src": "assets/images/ecommerce/intervention-progression.webm",
+                "label": "Evolución del flujo"
+              },
+              {
+                "src": "assets/images/ecommerce/smart-suggestions.webm",
+                "label": "Sugerencias inteligentes"
+              },
+              {
+                "src": "assets/images/ecommerce/whatsapp-flow.webm",
+                "label": "Handoff a WhatsApp"
+              }
+            ]
           },
           "card": {
             "tags": [
@@ -2179,7 +2249,7 @@ const PORTFOLIO_DATA = {
           },
           "meta": {
             "title": "Montironi Automotive — 221% en Ingresos · Lenin Cuadra",
-            "description": "Incremento del 221% en ingresos Q1 impulsado únicamente por intervención UX. Un caso de estudio de Lenin Cuadra."
+            "description": "221% de crecimiento de ingresos en Q1 para una concesionaria automotriz, con UX como única variable: reconstruí un flujo de consulta que perdía compradores y moví el handoff a WhatsApp. Sin cambios de precios ni campañas."
           },
           "hero": {
             "title": "Incremento del 221% en Ingresos Q1 Impulsado Únicamente por Intervención UX.",
@@ -2394,7 +2464,7 @@ const PORTFOLIO_DATA = {
           },
           "meta": {
             "title": "Refactoring Telecom Legado · Lenin Cuadra",
-            "description": "Refactoring de una plataforma telecom legada para claridad estructural y consistencia del sistema. Un caso de estudio de Lenin Cuadra."
+            "description": "Lideré el refactor estructural de una plataforma telecom en producción: reestructura completa de la IA y alineación al design system, entregadas como un salto v1 a v2, con mayor éxito de tarea confirmado post-lanzamiento."
           },
           "hero": {
             "tags": [
@@ -2533,7 +2603,7 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "image",
                   "ratio": "wide",
-                  "src": "assets/images/telecom/mockup-overview.png",
+                  "src": "assets/images/telecom/mockup-overview.webp",
                   "alt": "La plataforma refactorizada: transferencia de llamada, participantes en llamada y la biblioteca de grabaciones, todo sobre componentes del Design System",
                   "loading": "lazy"
                 },
