@@ -1,21 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cp \"/Users/psh/Desktop/_desktop/PP/_L/VCV/CVs/Ready2Send/EN/Lenin_Cuadra__Product_UX_UI_Designer_CV.pdf\" /Users/psh/Desktop/new/portfolio/assets/cv/)",
-      "Bash(cp \"/Users/psh/Desktop/_desktop/PP/_L/VCV/CVs/Ready2Send/ES/Lenin_Cuadra__Product_UX_UI_Designer_CV_ES.pdf\" /Users/psh/Desktop/new/portfolio/assets/cv/)",
-      "Bash(node --check /Users/psh/Desktop/new/portfolio/data/content.js)",
-      "Bash(node --check /Users/psh/Desktop/new/portfolio/js/app.js)",
-      "Bash(git init:*)",
-      "Bash(git add:*)",
-      "Bash(git commit:*)",
-      "Bash(git remote:*)",
-      "Bash(git push:*)",
-      "Bash(find /Users/psh/Desktop/new/portfolio -not -path */.git/* -not -path */.DS_Store -type f)",
-      "Bash(file /Users/psh/Desktop/new/portfolio/assets/images/fintech/3-3—Nshop/*.png /Users/psh/Desktop/new/portfolio/assets/images/fintech/3-3—Nshop/*.gif /Users/psh/Desktop/new/portfolio/assets/images/fintech/3-3—Nshop/*.jpg)",
-      "Bash(file /Users/psh/Desktop/new/portfolio/assets/images/*.jpeg)",
-      "Bash(git checkout:*)",
-      "Bash(git restore:*)",
-      "Bash(claude --enable-auto-mode --help)"
+      "Bash(git --no-pager diff -- cases/case-v3.html styles/case.css styles/tokens.css)",
+      "Bash(awk '/^@@ -143,9/{f=1} f{print} /^@@ -173,6/{if\\(f\\)exit}' /tmp/cv3.full.patch)",
+      "Bash(git commit -m 'Case images: silent on-brand placeholder fallback' -m 'Every case image slot shows the image when it loads and degrades to a *)",
+      "Bash(git commit -m 'Theme: respect OS preference on case pages, fix load flash' -m 'Case pages only honored a stored theme, so a home shown dark via the OS *)",
+      "Bash(grep -nE \"^\\\\s{2,6}'[a-z0-9-]+':\\\\s*\\\\{|cases:\\\\s*\\\\{|heroTitle|hero_title|pageTitle|page_title\" data/content.js)"
     ]
   }
 }
