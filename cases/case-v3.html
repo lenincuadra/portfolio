@@ -308,6 +308,23 @@
       document.getElementById('og-desc').content    = c.meta?.description || '';
       document.getElementById('tw-title').content   = c.meta?.title || '';
 
+      // SEO: JSON-LD del case (Google ejecuta JS; crawlers de IA no → llms.txt)
+      const ld = document.createElement('script');
+      ld.type = 'application/ld+json';
+      ld.textContent = JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Article',
+        headline: c.card?.title || c.meta?.title || slug,
+        description: c.meta?.description || '',
+        inLanguage: lang === 'es' ? 'es' : 'en',
+        author: {
+          '@type': 'Person',
+          name: 'Lenin Cuadra',
+          url: 'https://lenincuadra.github.io/portfolio/'
+        }
+      });
+      document.head.appendChild(ld);
+
       // Bilingual text wrapper — always emits data-en + data-es so applyLang() can update
       function t(enVal, esVal) {
         const en  = String(enVal  ?? '').replace(/"/g, '&quot;');

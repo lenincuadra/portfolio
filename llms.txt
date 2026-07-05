@@ -1,0 +1,45 @@
+# Lenin Cuadra — Senior Product Designer · AI Adoption Lead
+
+> Product designer specializing in zero-to-one fintech ecosystems, legacy system refactoring, and conversion optimization. 5+ years of experience.
+
+Portfolio: https://lenincuadra.github.io/portfolio/ (English and Spanish; this file summarizes the English version).
+The case study pages render their content with client-side JavaScript; the
+summaries below carry each case's full narrative arc for non-JS readers.
+
+Contact: leninxperience@gmail.com · https://www.linkedin.com/in/lenincuadra/
+
+## Case studies
+
+### [No Handoff: Closing the Design-Dev Gap](https://lenincuadra.github.io/portfolio/cases/case-v3.html?slug=no-handoff)
+
+I found a way to have working code in 2 days, not by replacing the process, but by fixing how I talked to the AI. The result unlocked 4 capabilities the design team didn't have before.
+
+Story arc: Our standard delivery at PSH takes 2 weeks → Every time I tried to generate code from Figma designs, the AI hallucinated. → Three constraints that eliminated the hallucinations. → The output was indistinguishable from the real product → 4 use cases the team didn't have before. → Scaling the new design process
+
+### [77 Minutes to Fix a 1-Hour Recurring Problem](https://lenincuadra.github.io/portfolio/cases/case-v3.html?slug=figma-webp-export)
+
+Figma doesn't export .webp natively, and every plugin that does sits behind a paywall. I built a free batch export plugin using nothing but Claude.ai — in 77 minutes. It's now published on the Figma Community and available to any designer.
+
+Story arc: A friction that costs an hour per delivery. → Every existing solution either costs money or costs time. → One conversation with Claude.ai. No prior plugin development experience. → What used to take an hour now takes under a minute. → A fix that works across teams, projects, and delivery cadences. → Published and available to both teams.
+
+### [Zero-to-one: Connected Payment Ecosystem](https://lenincuadra.github.io/portfolio/cases/case-v2.html?slug=fintech-ecosystem)
+
+Zero-to-one creation of a connected payment ecosystem. A case study by Lenin Cuadra.
+
+### [221% Q1 Revenue Increase Driven Purely by UX Intervention](https://lenincuadra.github.io/portfolio/cases/case-v3.html?slug=ecommerce-conversion)
+
+221% Q1 revenue increase driven purely by UX intervention. A case study by Lenin Cuadra.
+
+Story arc: A conversion problem disguised as a sales problem. → Lift conversion without touching price, campaigns, or inventory. → Friction was hiding revenue. → Simplify the path. Change the channel. → From an open-ended form that asked for everything to a one-tap WhatsApp handoff. → 221% revenue growth, with UX as the only variable. → A revenue problem solved through UX, not just an interface redesign.
+
+### [Refactoring a Legacy Telecom Platform for Structural Clarity](https://lenincuadra.github.io/portfolio/cases/case-v3.html?slug=telecom-legacy-refactor)
+
+Refactoring a legacy telecom platform for structural clarity and system consistency. A case study by Lenin Cuadra.
+
+Story arc: A live telecom platform had outgrown its original architecture. → The system made users guess instead of recognize. → A live system, no staging, one v1-to-v2 jump. → Restructure the IA, standardize on the Design System, then validate. → A full v2 jump, not incremental patching. → Higher task success and navigation clarity, confirmed post-launch. → Structural refactoring is a design discipline, not just a dev one.
+
+### [Khatu: Rethinking an Internal Dev Platform](https://lenincuadra.github.io/portfolio/cases/case-v3.html?slug=khatu)
+
+A research-driven redesign of Khatu, Naranja X's internal developer platform. Interviews, an empathy map, a persona and a card sort reframed a visual refresh into a redesign built around discovery.
+
+Story arc: Khatu could spin up a full project in minutes, but most engineers never opened it. → The brief was a visual refresh. We pushed to learn why adoption was low first. → Interviews with the platform's own engineers became an empathy map and a persona we named Mate. → Engineers never heard Khatu changed, so they pinged a teammate instead of opening it. → A card sort turned a wall of templates into three groups, and that reshaped v2.0. → Research turned a reskin into a platform people could actually navigate.

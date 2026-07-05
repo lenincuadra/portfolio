@@ -1,6 +1,7 @@
 #!/bin/sh
 # Pre-commit: bloquea el commit si se rompe una invariante verificable del sitio.
-# Chequeos (docs/a11y.md): contraste WCAG AA + lint estático de a11y.
+# Chequeos: contraste WCAG AA + lint estático de a11y (docs/a11y.md)
+# + sync de sitemap/robots/llms.txt con data/content.js (docs/seo.md).
 # Setup (una vez por clone): git config core.hooksPath .githooks
 # Nota: valida el working tree (lo que está en disco, no lo stageado).
 
@@ -27,7 +28,9 @@ run_check "contraste WCAG AA roto (docs/a11y.md)" \
   node "$root/scripts/a11y-contrast.js"
 run_check "lint estático de a11y (tokens, --ink-4, invariantes de página, alt)" \
   node "$root/scripts/a11y-static.js"
+run_check "SEO/GEO desincronizado: sitemap/robots/llms.txt no reflejan data/content.js (docs/seo.md)" \
+  node "$root/scripts/seo-build.js" --check
 
 [ "$fail" -eq 0 ] && exit 0
-echo "Corregir y volver a commitear. Reglas: docs/a11y.md." >&2
+echo "Corregir y volver a commitear. Reglas: docs/a11y.md y docs/seo.md." >&2
 exit 1

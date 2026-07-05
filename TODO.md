@@ -29,9 +29,10 @@ Routing en `js/app.js:13`: cualquier caso sin `template: 'v3'` cae a `case-v2`.
 
 - `no-handoff` (ya en v3)
 - `figma-webp-export` (ya en v3)
-- `ecommerce-conversion` — migrar v2 → v3
-- `fintech-ecosystem` — migrar v2 → v3
-- `telecom-legacy-refactor` — migrar v2 → v3
+- `ecommerce-conversion` (ya en v3)
+- `telecom-legacy-refactor` (ya en v3)
+- `khatu` (ya en v3)
+- `fintech-ecosystem` — **único pendiente** de migrar v2 → v3 (al migrarlo: `node scripts/seo-build.js` regenera la sitemap con la URL nueva)
 
 ## Menor / continuo
 
