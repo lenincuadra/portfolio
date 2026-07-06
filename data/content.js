@@ -756,7 +756,7 @@ const PORTFOLIO_DATA = {
         {
           "slug": "ecommerce-conversion",
           "template": "v3",
-          "featured": true,
+          "featured": false,
           "images": {
             "cover": "assets/images/ecommerce/cover.webp",
             "screens": [
@@ -2198,7 +2198,7 @@ const PORTFOLIO_DATA = {
         {
           "slug": "ecommerce-conversion",
           "template": "v3",
-          "featured": true,
+          "featured": false,
           "images": {
             "cover": "assets/images/ecommerce/cover.webp",
             "screens": [
