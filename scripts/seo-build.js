@@ -96,9 +96,35 @@ Contact: ${en.site.email} · ${en.site.linkedinUrl}
 ${cases.map(caseEntry).join('\n\n')}
 `;
 
+// --- link-spec.json (contrato para cbuilder) ------------------------------------
+// cbuilder (la app externa que genera los CVs) arma los links trackeados
+// leyendo este spec: base URL, formato del código opaco, templates y perfiles
+// de personalización. Cambio de dominio o perfil nuevo → regenerar → cbuilder
+// se actualiza solo. NO poner acá nada que delate empresas target.
+
+const profilesData = new Function(read('data/profiles.js') + '; return PORTFOLIO_PROFILES;')();
+const linkSpec = JSON.stringify({
+  version: 1,
+  base: BASE,
+  tracking: {
+    codeFormat: '^\\d{4}[a-z][2-9]$',
+    codeHint: 'MMDD + letra a-z + dígito 2-9; único por empresa, nunca reusar',
+    refSuffix: { P: 'link al portfolio (en el CV)', L: 'link a LinkedIn (en el CV)' },
+    reservedRefs: ['me', 'organic', 'li-profile', 'li-cv', 'web-cv'],
+    links: {
+      portfolio: '{base}go.html?ref={code}P',
+      portfolioFocused: '{base}go.html?ref={code}P&focus={focus}',
+      linkedin: '{base}go.html?ref={code}L&dest=linkedin'
+    }
+  },
+  profiles: Object.fromEntries(
+    Object.entries(profilesData.profiles).map(([id, p]) => [id, { label: p.label }])
+  )
+}, null, 2) + '\n';
+
 // --- write / check --------------------------------------------------------------
 
-const OUT = { 'sitemap.xml': sitemap, 'robots.txt': robots, 'llms.txt': llms };
+const OUT = { 'sitemap.xml': sitemap, 'robots.txt': robots, 'llms.txt': llms, 'link-spec.json': linkSpec };
 const checkMode = process.argv.includes('--check');
 let drift = 0;
 

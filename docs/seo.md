@@ -21,6 +21,7 @@ Sin dependencias. Lee `data/content.js` (la misma fuente que renderiza el sitio)
 - **`sitemap.xml`** — URLs absolutas; replica el routing real de `js/app.js` (`template: "v3"` → `case-v3.html`, si no `case-v2.html`). Agregar/renombrar/migrar un case actualiza la sitemap con solo re-correr el script.
 - **`robots.txt`** — allow general + puntero absoluto a la sitemap y a `llms.txt`.
 - **`llms.txt`** — el resumen del sitio para modelos de IA: posicionamiento, contacto, y por case: título, link, `meta.description` y el **arco narrativo** (los `h3` de sus secciones unidos con `→`). Esto reaprovecha el principio del template ("la TOC es el resumen del caso", ver `CLAUDE.md`): si los `h3` están bien escritos, `llms.txt` cuenta cada caso completo sin JS. Escribir buenos `h3` ahora también es GEO.
+- **`link-spec.json`** — el contrato para **cbuilder** (la app externa que genera los CVs con links trackeados): base URL, formato del código opaco, templates de links (`{base}go.html?ref={code}P&focus={focus}`) y perfiles de personalización disponibles (desde `data/profiles.js`). cbuilder lo fetchea al generar un CV → dominio nuevo o perfil nuevo no requieren tocar cbuilder. No lleva empresas (privacidad).
 
 La salida es **determinística** (sin fechas): si el contenido no cambió, no hay diff. El pre-commit hook corre `--check` y bloquea el commit si hay drift; el fix es correr el script y commitear los archivos regenerados.
 
@@ -38,7 +39,7 @@ La salida es **determinística** (sin fechas): si el contenido no cambió, no ha
 
 1. **Todo case necesita `meta.title` y `meta.description`** en `content.js` (alimentan title, OG, JSON-LD y `llms.txt`).
 2. Al **agregar, renombrar o migrar** un case: `node scripts/seo-build.js` y commitear lo regenerado (el hook avisa si te olvidás).
-3. Si cambia el **dominio** (ej. dominio propio en vez de github.io): actualizar `BASE` en `seo-build.js` **y en `scripts/new-link.js`**, el canonical/OG/JSON-LD de `index.html`, la URL del autor en `case-v3.html` y los `DESTINATIONS` de `go.html`; regenerar.
+3. Si cambia el **dominio** (ej. dominio propio en vez de github.io): actualizar `BASE` en `seo-build.js`, el canonical/OG/JSON-LD de `index.html`, la URL del autor en `case-v3.html` y los `DESTINATIONS` de `go.html`; regenerar (la sitemap, `llms.txt` y `link-spec.json` salen solos, y cbuilder toma el dominio nuevo del spec sin cambios).
 4. La descripción del sitio vive en el `<meta name="description">` de `index.html`; `llms.txt` la lee de ahí (no duplicarla en el script).
 
 ## Limitaciones conocidas

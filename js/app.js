@@ -268,16 +268,6 @@
     // Work
     setText('work-heading', home.work.heading);
 
-    // Capabilities
-    if (home.capabilities) {
-      setText('capabilities-label',   home.capabilities.label);
-      setText('capabilities-heading', home.capabilities.heading);
-      const capList = document.getElementById('capabilities-list');
-      if (capList) {
-        capList.innerHTML = home.capabilities.items.map(item => `<li class="capabilities__item">${item}</li>`).join('');
-      }
-    }
-
     // Perfil por link (data/profiles.js): puede overridear el featured, el orden
     // de la grilla y el label. Sin perfil activo, todo se comporta como siempre.
     const profile = (typeof resolveActiveProfile === 'function') ? resolveActiveProfile() : null;

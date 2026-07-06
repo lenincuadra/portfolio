@@ -79,17 +79,6 @@ const PORTFOLIO_DATA = {
         "heading": "I'm open to product design roles...",
         "body": "Collaborations, and conversations around complex systems, platform design, and scalable experiences."
       },
-      "capabilities": {
-        "label": "Capabilities",
-        "heading": "What I bring to a product team.",
-        "items": [
-          "Zero-to-one product creation",
-          "Legacy system refactoring",
-          "Conversion and growth optimization",
-          "Design systems integration",
-          "UX research and usability validation"
-        ]
-      }
     }
   ,
 
@@ -1535,17 +1524,6 @@ const PORTFOLIO_DATA = {
         "heading": "Construyamos algo con sentido.",
         "body": "Estoy abierto a roles de product design, colaboraciones y conversaciones sobre sistemas complejos, diseño de plataformas y experiencias escalables."
       },
-      "capabilities": {
-        "label": "Capacidades",
-        "heading": "Lo que aporto a un equipo de producto.",
-        "items": [
-          "Creación de producto de cero a uno",
-          "Refactorización de sistemas legacy",
-          "Optimización de conversión y crecimiento",
-          "Integración de design systems",
-          "Investigación UX y validación de usabilidad"
-        ]
-      }
     }
   ,
 

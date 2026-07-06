@@ -1,0 +1,44 @@
+{
+  "version": 1,
+  "base": "https://lenincuadra.github.io/portfolio/",
+  "tracking": {
+    "codeFormat": "^\\d{4}[a-z][2-9]$",
+    "codeHint": "MMDD + letra a-z + dígito 2-9; único por empresa, nunca reusar",
+    "refSuffix": {
+      "P": "link al portfolio (en el CV)",
+      "L": "link a LinkedIn (en el CV)"
+    },
+    "reservedRefs": [
+      "me",
+      "organic",
+      "li-profile",
+      "li-cv",
+      "web-cv"
+    ],
+    "links": {
+      "portfolio": "{base}go.html?ref={code}P",
+      "portfolioFocused": "{base}go.html?ref={code}P&focus={focus}",
+      "linkedin": "{base}go.html?ref={code}L&dest=linkedin"
+    }
+  },
+  "profiles": {
+    "payments": {
+      "label": {
+        "en": "For payment platforms",
+        "es": "Para plataformas de pagos"
+      }
+    },
+    "ai": {
+      "label": {
+        "en": "For AI-forward teams",
+        "es": "Para equipos que adoptan IA"
+      }
+    },
+    "conversion": {
+      "label": {
+        "en": "For growth & e-commerce teams",
+        "es": "Para equipos de growth y e-commerce"
+      }
+    }
+  }
+}
