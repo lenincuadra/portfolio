@@ -34,19 +34,158 @@
       "label": {
         "en": "For payment platforms",
         "es": "Para plataformas de pagos"
-      }
+      },
+      "featured": "fintech-ecosystem",
+      "order": [
+        "fintech-ecosystem",
+        "no-handoff",
+        "ecommerce-conversion",
+        "telecom-legacy-refactor",
+        "figma-webp-export",
+        "khatu"
+      ],
+      "proofs": [
+        {
+          "id": "fintech-ecosystem",
+          "en": "launched Naranja X's first connected payment ecosystem: 3 surfaces, zero-to-one",
+          "es": "lanzó el primer ecosistema de pagos conectado de Naranja X: 3 superficies, de cero a uno"
+        },
+        {
+          "id": "ecommerce-conversion",
+          "en": "+221% Q1 revenue from a UX redesign",
+          "es": "+221% en ingresos Q1 con un rediseño UX"
+        }
+      ]
     },
     "ai": {
       "label": {
         "en": "For AI-forward teams",
         "es": "Para equipos que adoptan IA"
-      }
+      },
+      "featured": "no-handoff",
+      "order": [
+        "no-handoff",
+        "figma-webp-export",
+        "ecommerce-conversion",
+        "fintech-ecosystem",
+        "telecom-legacy-refactor",
+        "khatu"
+      ],
+      "proofs": [
+        {
+          "id": "no-handoff",
+          "en": "closed the design-dev gap: Figma to production-ready components in 2 days",
+          "es": "cerró la brecha diseño-dev: de Figma a componentes listos para producción en 2 días"
+        },
+        {
+          "id": "figma-webp-export",
+          "en": "Figma plugin shipped in 77 minutes",
+          "es": "plugin de Figma publicado en 77 minutos"
+        }
+      ]
     },
     "conversion": {
       "label": {
         "en": "For growth & e-commerce teams",
         "es": "Para equipos de growth y e-commerce"
-      }
+      },
+      "featured": "ecommerce-conversion",
+      "order": [
+        "ecommerce-conversion",
+        "no-handoff",
+        "fintech-ecosystem",
+        "telecom-legacy-refactor",
+        "figma-webp-export",
+        "khatu"
+      ],
+      "proofs": [
+        {
+          "id": "ecommerce-conversion",
+          "en": "+221% Q1 revenue from a UX redesign",
+          "es": "+221% en ingresos Q1 con un rediseño UX"
+        },
+        {
+          "id": "fintech-ecosystem",
+          "en": "launched Naranja X's first connected payment ecosystem: 3 surfaces, zero-to-one",
+          "es": "lanzó el primer ecosistema de pagos conectado de Naranja X: 3 superficies, de cero a uno"
+        }
+      ]
+    }
+  },
+  "defaultOrder": [
+    "no-handoff",
+    "figma-webp-export",
+    "fintech-ecosystem",
+    "ecommerce-conversion",
+    "telecom-legacy-refactor",
+    "khatu"
+  ],
+  "cases": {
+    "no-handoff": {
+      "title": {
+        "en": "No Handoff: Closing the Design-Dev Gap",
+        "es": "No Handoff: Closing the Design-Dev Gap"
+      },
+      "description": {
+        "en": "I found a way to have working code in 2 days, not by replacing the process, but by fixing how I talked to the AI. The result unlocked 4 capabilities the design team didn't have before.",
+        "es": "Encontré la forma de tener código funcional en 2 días, no reemplazando el proceso, sino corrigiendo cómo me comunicaba con la IA. El resultado desbloqueó 4 capacidades que el equipo de diseño no tenía antes."
+      },
+      "url": "https://lenincuadra.com/cases/case-v3.html?slug=no-handoff"
+    },
+    "figma-webp-export": {
+      "title": {
+        "en": "77 Minutes to Fix a 1-Hour Recurring Problem",
+        "es": "77 Minutes to Fix a 1-Hour Recurring Problem"
+      },
+      "description": {
+        "en": "Figma doesn't export .webp natively, and every plugin that does sits behind a paywall. I built a free batch export plugin using nothing but Claude.ai — in 77 minutes. It's now published on the Figma Community and available to any designer.",
+        "es": "Figma no exporta .webp de forma nativa, y cada plugin que lo hace está detrás de un muro de pago. Construí un plugin de exportación por lotes usando solo Claude.ai — en 77 minutos. Está publicado en la Figma Community y disponible para cualquier diseñador."
+      },
+      "url": "https://lenincuadra.com/cases/case-v3.html?slug=figma-webp-export"
+    },
+    "fintech-ecosystem": {
+      "title": {
+        "en": "Zero-to-one: Connected Payment Ecosystem",
+        "es": "De cero a uno: Ecosistema de Pagos Conectado"
+      },
+      "description": {
+        "en": "Zero-to-one design of Naranja X's connected payment ecosystem: embedded checkout, merchant tools and payment flows shipped as one coherent system, so merchants could start collecting payments without leaving their platform.",
+        "es": "Diseño de cero a uno del ecosistema de pagos conectado de Naranja X: checkout embebido, herramientas de comercio y flujos de pago entregados como un sistema coherente, para que los comercios cobraran sin salir de su plataforma."
+      },
+      "url": "https://lenincuadra.com/cases/case-v3.html?slug=fintech-ecosystem"
+    },
+    "ecommerce-conversion": {
+      "title": {
+        "en": "221% Q1 Revenue Increase Driven Purely by UX Intervention",
+        "es": "Incremento del 221% en Ingresos Q1 Impulsado Únicamente por Intervención UX"
+      },
+      "description": {
+        "en": "221% Q1 revenue growth for an automotive dealer, with UX as the only variable: I rebuilt a leaking tire inquiry flow and moved the handoff to WhatsApp. No pricing changes, no campaigns.",
+        "es": "221% de crecimiento de ingresos en Q1 para una concesionaria automotriz, con UX como única variable: reconstruí un flujo de consulta que perdía compradores y moví el handoff a WhatsApp. Sin cambios de precios ni campañas."
+      },
+      "url": "https://lenincuadra.com/cases/case-v3.html?slug=ecommerce-conversion"
+    },
+    "telecom-legacy-refactor": {
+      "title": {
+        "en": "Refactoring a Legacy Telecom Platform for Structural Clarity",
+        "es": "Refactoring de una Plataforma Telecom Legada para Claridad Estructural"
+      },
+      "description": {
+        "en": "I led the structural refactor of a live telecom platform: a full IA restructure and design-system alignment shipped as one v1-to-v2 jump, with higher task success and navigation clarity confirmed post-launch.",
+        "es": "Lideré el refactor estructural de una plataforma telecom en producción: reestructura completa de la IA y alineación al design system, entregadas como un salto v1 a v2, con mayor éxito de tarea confirmado post-lanzamiento."
+      },
+      "url": "https://lenincuadra.com/cases/case-v3.html?slug=telecom-legacy-refactor"
+    },
+    "khatu": {
+      "title": {
+        "en": "Khatu: Rethinking an Internal Dev Platform",
+        "es": "Khatu: Repensar una Plataforma Interna para Devs"
+      },
+      "description": {
+        "en": "A research-driven redesign of Khatu, Naranja X's internal developer platform. Interviews, an empathy map, a persona and a card sort reframed a visual refresh into a redesign built around discovery.",
+        "es": "Rediseño research-driven de Khatu, la plataforma interna de developers de Naranja X. Entrevistas, un mapa de empatía, una persona y un card sorting convirtieron un refresh visual en un rediseño construido alrededor del descubrimiento."
+      },
+      "url": "https://lenincuadra.com/cases/case-v3.html?slug=khatu"
     }
   }
 }

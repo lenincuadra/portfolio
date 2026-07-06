@@ -103,6 +103,17 @@ ${cases.map(caseEntry).join('\n\n')}
 // se actualiza solo. NO poner acá nada que delate empresas target.
 
 const profilesData = new Function(read('data/profiles.js') + '; return PORTFOLIO_PROFILES;')();
+const proofPool = JSON.parse(read('cases.json'));
+
+// Índice bilingüe de cases (para que cbuilder muestre previews y ordene el CV
+// igual que el portfolio, sin duplicar textos ni lógica).
+const esCases = data.es.cases;
+const caseIndex = Object.fromEntries(cases.map((c, i) => [c.slug, {
+  title: { en: c.card?.title || '', es: esCases[i]?.card?.title || c.card?.title || '' },
+  description: { en: c.meta?.description || '', es: esCases[i]?.meta?.description || '' },
+  url: caseUrl(c)
+}]));
+
 const linkSpec = JSON.stringify({
   version: 1,
   base: BASE,
@@ -125,9 +136,24 @@ const linkSpec = JSON.stringify({
   focusLetters: Object.fromEntries(
     Object.keys(profilesData.profiles).map((id) => [id, id[0]])
   ),
+  // Qué hace cada perfil en el portfolio (datos, no lógica): el case que queda
+  // como Featured, el orden completo de lectura (featured primero, luego la
+  // grilla) y las 2 pruebas que fija el hero. cbuilder los usa para (a) preview
+  // al elegir perfil y (b) ordenar/destacar los mismos cases en el CV.
   profiles: Object.fromEntries(
-    Object.entries(profilesData.profiles).map(([id, p]) => [id, { label: p.label }])
-  )
+    Object.entries(profilesData.profiles).map(([id, p]) => [id, {
+      label: p.label,
+      featured: p.featured,
+      order: [p.featured, ...p.order],
+      proofs: p.proofs.map((pid) => {
+        const entry = proofPool.find((x) => x.id === pid) || {};
+        return { id: pid, en: entry.proof || '', es: entry.proof_es || entry.proof || '' };
+      })
+    }])
+  ),
+  // Sin perfil: no hay Featured y la grilla muestra todos en este orden.
+  defaultOrder: cases.map((c) => c.slug),
+  cases: caseIndex
 }, null, 2) + '\n';
 
 // --- write / check --------------------------------------------------------------
