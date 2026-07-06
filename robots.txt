@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lenincuadra.github.io/portfolio/sitemap.xml
+Sitemap: https://lenincuadra.com/sitemap.xml
 
-# GEO: resumen del sitio para modelos de IA (no ejecutan JS) → https://lenincuadra.github.io/portfolio/llms.txt
+# GEO: resumen del sitio para modelos de IA (no ejecutan JS) → https://lenincuadra.com/llms.txt

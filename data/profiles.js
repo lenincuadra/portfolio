@@ -72,6 +72,11 @@ function resolveActiveProfile() {
       if (!ref) { try { ref = sessionStorage.getItem('portfolio_ref'); } catch (e) {} }
       if (ref) id = P.refToProfile[String(ref).toLowerCase()];
     }
+    // Letra de perfil de los links cortos /r/ (p/a/c): expandir por inicial.
+    if (id && !P.profiles[id]) {
+      const matches = Object.keys(P.profiles).filter((k) => k.indexOf(id) === 0);
+      if (matches.length === 1) id = matches[0];
+    }
     if (id && P.profiles[id]) return Object.assign({ id: id }, P.profiles[id]);
   } catch (e) {}
   return null;

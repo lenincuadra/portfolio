@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://lenincuadra.github.io/portfolio/</loc>
+    <loc>https://lenincuadra.com/</loc>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://lenincuadra.github.io/portfolio/cases/case-v3.html?slug=no-handoff</loc>
+    <loc>https://lenincuadra.com/cases/case-v3.html?slug=no-handoff</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lenincuadra.github.io/portfolio/cases/case-v3.html?slug=figma-webp-export</loc>
+    <loc>https://lenincuadra.com/cases/case-v3.html?slug=figma-webp-export</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lenincuadra.github.io/portfolio/cases/case-v3.html?slug=fintech-ecosystem</loc>
+    <loc>https://lenincuadra.com/cases/case-v3.html?slug=fintech-ecosystem</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lenincuadra.github.io/portfolio/cases/case-v3.html?slug=ecommerce-conversion</loc>
+    <loc>https://lenincuadra.com/cases/case-v3.html?slug=ecommerce-conversion</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lenincuadra.github.io/portfolio/cases/case-v3.html?slug=telecom-legacy-refactor</loc>
+    <loc>https://lenincuadra.com/cases/case-v3.html?slug=telecom-legacy-refactor</loc>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://lenincuadra.github.io/portfolio/cases/case-v3.html?slug=khatu</loc>
+    <loc>https://lenincuadra.com/cases/case-v3.html?slug=khatu</loc>
     <priority>0.8</priority>
   </url>
 </urlset>

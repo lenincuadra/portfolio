@@ -27,7 +27,7 @@ const fs = require('fs');
 const path = require('path');
 
 const ROOT = path.join(__dirname, '..');
-const BASE = 'https://lenincuadra.github.io/portfolio/';
+const BASE = 'https://lenincuadra.com/';
 const read = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
 
 const data = new Function(read('data/content.js') + '; return PORTFOLIO_DATA;')();
@@ -114,9 +114,17 @@ const linkSpec = JSON.stringify({
     links: {
       portfolio: '{base}go.html?ref={code}P',
       portfolioFocused: '{base}go.html?ref={code}P&focus={focus}',
-      linkedin: '{base}go.html?ref={code}L&dest=linkedin'
+      linkedin: '{base}go.html?ref={code}L&dest=linkedin',
+      shortPortfolio: '{base}r/{code}P',
+      shortPortfolioFocused: '{base}r/{code}P{focusLetter}',
+      shortLinkedin: '{base}r/{code}L'
     }
   },
+  // focusLetter de los links cortos = inicial del id del perfil (única, la
+  // valida case-check); la expande el resolver del sitio.
+  focusLetters: Object.fromEntries(
+    Object.keys(profilesData.profiles).map((id) => [id, id[0]])
+  ),
   profiles: Object.fromEntries(
     Object.entries(profilesData.profiles).map(([id, p]) => [id, { label: p.label }])
   )

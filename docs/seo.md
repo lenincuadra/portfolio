@@ -1,6 +1,6 @@
 # SEO / GEO
 
-Sistema para que buscadores (SEO) y modelos de IA (GEO) encuentren y entiendan el sitio, y para que **no se desincronice** cuando el contenido cambia. Base URL: `https://lenincuadra.github.io/portfolio/`.
+Sistema para que buscadores (SEO) y modelos de IA (GEO) encuentren y entiendan el sitio, y para que **no se desincronice** cuando el contenido cambia. Base URL: `https://lenincuadra.com/` (dominio propio desde 2026-07-06; `lenincuadra.github.io/portfolio/` redirige con 301).
 
 ## El problema de fondo
 

@@ -235,6 +235,10 @@ if (!fs.existsSync(path.join(ROOT, 'data', 'profiles.js'))) {
         warn(`profiles.${id}: el par de proofs supera el presupuesto de 2 líneas del hero (avoidOverflow va a reemplazar la segunda)`);
       }
     }
+    const initials = Object.keys(P.profiles || {}).map((k) => k[0]);
+    if (new Set(initials).size !== initials.length) {
+      bad('profiles: las iniciales de los ids deben ser únicas (son la letra de perfil de los links cortos /r/)'); pFails++;
+    }
     for (const [ref, prof] of Object.entries(P.refToProfile || {})) {
       if (!P.profiles?.[prof]) { bad(`refToProfile.${ref} → perfil inexistente "${prof}"`); pFails++; }
       if (ref !== ref.toLowerCase()) { bad(`refToProfile."${ref}": las keys van en minúsculas (el resolver baja el ref a minúsculas)`); pFails++; }
