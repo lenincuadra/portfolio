@@ -351,6 +351,11 @@
 }
 
 @media (max-width: 768px) {
+  /* En mobile el contenido del hero supera 100svh: sin padding inferior,
+     el último botón queda pegado al borde de la sección siguiente. */
+  .hero {
+    padding-bottom: var(--sp-16);
+  }
   .hero__inner {
     grid-template-columns: 1fr;
   }
@@ -368,6 +373,11 @@
   .hero__actions .btn,
   .hero__actions .hero__contact-wrap {
     width: 100%;
+  }
+  /* Botones full-width: contenido centrado (View Work quedaba alineado
+     a la izquierda, desparejo con Get in touch) */
+  .hero__actions .btn {
+    justify-content: center;
   }
   .hero__actions .hero__contact-wrap .btn {
     width: 100%;
