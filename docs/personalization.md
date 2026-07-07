@@ -29,7 +29,7 @@ Sin match → `null` → el sitio se comporta exactamente como sin feature.
 ## 3. Dónde vive la lógica (para mantenimiento del portfolio)
 
 - **`data/profiles.js`** — los datos de cada perfil (featured, order, proofs, label) + `resolveActiveProfile()` (el resolver compartido con la precedencia de arriba).
-- **`js/app.js` (renderIndex)** — aplica featured/orden/label.
+- **`js/app.js` (renderIndex)** — aplica orden y label de la grilla.
 - **`hero.js`** — aplica las proofs preferidas.
 - **`go.html`** — persiste `focus` y `ref` en sessionStorage antes de redirigir.
 - **`404.html`** — router de links cortos `/r/`.
