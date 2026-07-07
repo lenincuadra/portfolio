@@ -134,9 +134,7 @@
       setText('footer-built',  ui.footer.builtWith);
       setText('hero-cta',      ui.hero.cta);
       setText('hero-scroll',   ui.hero.scroll);
-      setText('label-featured', ui.case.featuredLabel);
       setText('label-grid',    ui.case.gridLabel);
-      setText('fc-cta-label',  ui.case.readMore);
       setText('label-about',   ui.nav.about);
       setText('label-contact', ui.nav.contact);
     }
@@ -268,48 +266,26 @@
     // Work
     setText('work-heading', home.work.heading);
 
-    // Perfil por link (data/profiles.js): puede overridear el featured, el orden
-    // de la grilla y el label. Sin perfil activo, todo se comporta como siempre.
+    // Perfil por link (data/profiles.js): reordena la grilla (el case del
+    // perfil va primero) y sufija el label de la sección. La sección Featured
+    // se retiró (2026-07-06): mismas señales, menos scroll hasta el trabajo.
     const profile = (typeof resolveActiveProfile === 'function') ? resolveActiveProfile() : null;
 
-    // Featured case
-    const featured = (profile && cases.find(c => c.slug === profile.featured)) || cases.find(c => c.featured);
-    if (featured) {
-      const fcSection = document.getElementById('featured-case');
-      if (fcSection) fcSection.hidden = false;
-      const fcLabel = document.getElementById('label-featured');
-      if (fcLabel && profile && profile.label) {
-        fcLabel.textContent = ui.case.featuredLabel + ' · ' + (getLang() === 'es' ? profile.label.es : profile.label.en);
-      }
-      const fcTags = document.getElementById('fc-tags');
-      if (fcTags) fcTags.innerHTML = buildTags(featured.card.tags);
-      setText('featured-case-title', featured.card.title);
-      setText('fc-excerpt', featured.card.excerpt);
-      const fcCta = document.getElementById('fc-cta');
-      if (fcCta) fcCta.href = caseUrl(featured);
-      const fcScreens = document.getElementById('fc-screens');
-      if (fcScreens && featured.images && featured.images.screens) {
-        fcScreens.innerHTML = featured.images.screens.map(s => {
-          const url = resolveAssetUrl(s.src);
-          const isVideo = s.src.endsWith('.mp4') || s.src.endsWith('.webm');
-          const media = isVideo
-            ? `<video src="${url}" ${s.poster ? `poster="${resolveAssetUrl(s.poster)}"` : ''} autoplay loop muted playsinline></video>`
-            : `<img src="${url}" alt="${s.label}" loading="lazy" />`;
-          return `<div class="fc-screen">${media}<p class="fc-screen__label">${s.label}</p></div>`;
-        }).join('');
-      }
+    const gridLabel = document.getElementById('label-grid');
+    if (gridLabel && profile && profile.label) {
+      gridLabel.textContent = ui.case.gridLabel + ' · ' + (getLang() === 'es' ? profile.label.es : profile.label.en);
     }
 
-    // Case grid — secondary cases only (todos menos el featured ACTIVO, así el
-    // featured por flag vuelve a la grilla cuando un perfil destaca a otro)
-    const secondaryCases = cases.filter(c => c !== featured);
-    if (profile && Array.isArray(profile.order)) {
-      const pos = s => { const i = profile.order.indexOf(s); return i === -1 ? profile.order.length : i; };
-      secondaryCases.sort((a, b) => pos(a.slug) - pos(b.slug));
+    // Case grid — todos los cases; con perfil activo manda su orden
+    const gridCases = cases.slice();
+    if (profile) {
+      const order = [profile.featured].concat(profile.order || []);
+      const pos = s => { const i = order.indexOf(s); return i === -1 ? order.length : i; };
+      gridCases.sort((a, b) => pos(a.slug) - pos(b.slug));
     }
     const grid = document.getElementById('case-grid');
-    if (grid && secondaryCases.length) {
-      grid.innerHTML = secondaryCases.map((c, i) => {
+    if (grid && gridCases.length) {
+      grid.innerHTML = gridCases.map((c, i) => {
         const delay = i > 0 ? ` reveal-delay-${i}` : '';
         return `
           <article class="case-card reveal${delay}">

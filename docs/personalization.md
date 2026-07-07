@@ -8,10 +8,12 @@ El index del portfolio se adapta a quién mira, **sin ocultar nada**:
 
 | | Sin perfil (link pelado) | Con perfil activo |
 |---|---|---|
-| Sección **Featured Work** | **No existe** (oculta) | Aparece, con el case del perfil + sus screens |
-| Label del Featured | — | `Featured Work · <label del perfil>` (ej. "For payment platforms") — señal visible de personalización |
-| Grilla *Selected Work* | Los 6 cases en el orden default | Reordenada según el perfil (el resto baja, nunca desaparece) |
+| Grilla *Selected Work* | Los 6 cases en el orden default | Reordenada: **el case del perfil va primero**, el resto baja (nunca desaparece) |
+| Label de la sección | `Selected Work` | `Selected Work · <label del perfil>` (ej. "For payment platforms") — señal visible de personalización |
 | Highlights del hero | 2 pruebas al azar (ponderadas) | Las 2 pruebas fijas del perfil |
+| Prev/next al pie de cada case | Orden default | El orden del perfil (quien llegó personalizado navega por relevancia) |
+
+> Nota histórica: existió una sección "Featured Work" aparte (un case en grande arriba de la grilla); se retiró el 2026-07-06 porque costaba ~2 pantallas de scroll en mobile antes de mostrar amplitud. El campo `featured` del contrato sigue significando "el case que va primero".
 
 Perfiles actuales: `payments`, `ai`, `conversion` (uno por industria objetivo, no por empresa).
 

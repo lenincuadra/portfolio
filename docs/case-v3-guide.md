@@ -34,13 +34,11 @@ Va en los arrays `cases` de **`en` y `es`** (mismo `slug` en ambos):
   "card": { "tags": ["..."], "title": "...", "excerpt": "..." },  // grid del index.
   "meta": { "title": "... · Lenin Cuadra", "description": "..." }, // <title> + OG + meta description.
   "hero": { "title": "...", "subtitle": "..." },                  // H1 + H2 de la página (SOLO texto).
-  "sections": [ /* ver §2 */ ],
-  "nav": {
-    "prev": { "slug": "caso-anterior", "title": "..." },
-    "next": { "slug": "caso-siguiente", "title": "..." }
-  }
+  "sections": [ /* ver §2 */ ]
 }
 ```
+
+> **Sin campo `nav`** (eliminado 2026-07-06): el prev/next del pie se deriva en runtime del **orden activo** (perfil del link o el orden del array `cases`), con títulos desde `card.title`. La posición del case en el array ES su posición en la navegación default.
 
 Notas fieles al renderer:
 - **`quickScan` no se usa en v3.** El renderer no lo pinta (es vestigial de v2). Podés omitirlo.
@@ -147,7 +145,7 @@ Valida: meta/card completos, estructura v3 (id, h3, par label+h3 de la TOC, type
 - [ ] Cada sección: `id` único + `tocLabel` + `h3` declarativo. **Leés solo los h3 y entendés el caso.**
 - [ ] Todos los `type` existen en el renderer; campos correctos.
 - [ ] Assets existen (img/video + `.mp4` hermano, poster, cover).
-- [ ] `nav.prev/next` apuntan a slugs reales.
+- [ ] El case está en la posición correcta del array `cases` (define grilla y prev/next default).
 - [ ] Prosa lleva la narrativa; bullets solo para listas reales (`docs/case-v3-content-guide.md`).
 - [ ] **Sin em-dashes** en copy (excepto el `" — "` de `steps`/captions, que es sintaxis).
 - [ ] Componente nuevo → documentado en el styleguide (`case-components`).

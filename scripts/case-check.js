@@ -21,7 +21,6 @@
 //     mismos types en el mismo orden) — el error más común y el renderer no avisa
 //   · assets referenciados existen; video .webm con hermano .mp4; themed con
 //     variantes -light/-dark; rutas root-relative (sin ../)
-//   · nav.prev/next apuntan a slugs reales
 //   · cases.json: ids reales, proofs con número (regla de hero.js), ≥2 featured
 //
 // ⚠ Editorial (falla solo con --strict):
@@ -77,10 +76,6 @@ for (const c of scope('en')) {
   if (!c.card?.title?.trim()) bad(`${id}: falta card.title`);
   if (!c.card?.excerpt?.trim()) bad(`${id}: falta card.excerpt`);
   if (!c.card?.tags?.length) bad(`${id}: card.tags vacío`);
-  for (const key of ['prev', 'next']) {
-    const s = c.nav?.[key]?.slug;
-    if (s && !slugs.en.includes(s)) bad(`${id}: nav.${key} apunta a slug inexistente "${s}"`);
-  }
 }
 if (!failures) ok('meta/card/nav completos en los cases evaluados');
 

@@ -1118,7 +1118,16 @@
 }
 .case-nav__inner {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  /* prev | All work | next (el link central orienta de vuelta a la grilla) */
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}
+.case-nav__item--all {
+  justify-content: center;
+  text-align: center;
+}
+.case-nav__item--all .case-nav__label {
+  color: var(--ink-3);
 }
 .case-nav__item {
   display: flex;
@@ -1161,6 +1170,12 @@
 @media (max-width: 600px) {
   .case-nav__inner {
     grid-template-columns: 1fr;
+  }
+  .case-nav__item--all {
+    order: 3; /* en columna: prev, next, y "All work" al final */
+    border-top: 1px solid var(--border);
+    text-align: left;
+    justify-content: flex-start;
   }
   .case-nav__item--next {
     text-align: left;

@@ -196,6 +196,7 @@
   </footer>
 
   <script src="../data/content.js"></script>
+  <script src="../data/profiles.js"></script>
   <script>
     const LANG_KEY = 'portfolio-lang';
 
@@ -643,35 +644,55 @@
         nav.appendChild(list);
       })();
 
-      // Prev / next nav
+      // Prev / next nav — derivado del ORDEN ACTIVO en runtime (perfil del
+      // link o default de content.js), no de data hardcodeada: quien llegó
+      // con un link personalizado navega en su orden de relevancia.
+      // Wrap-around; títulos bilingües desde card.title (data-en/data-es).
       function navCaseUrl(slug) {
         const target = (PORTFOLIO_DATA.en.cases || []).find(x => x.slug === slug);
         return (target?.template === 'v3' ? 'case-v3' : 'case-v2') + '.html?slug=' + slug;
       }
 
-      const nav    = c.nav || {};
-      const inner  = document.getElementById('case-nav-inner');
-      let   navHtml = '';
-
-      if (nav.prev) {
-        navHtml += `<a href="${navCaseUrl(nav.prev.slug)}" class="case-nav__item case-nav__item--prev">
-          <span class="case-nav__label">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
-            <span data-en="Previous" data-es="Anterior">Previous</span>
-          </span>
-          <span class="case-nav__title">${nav.prev.title || ''}</span>
-        </a>`;
-      }
-      if (nav.next) {
-        navHtml += `<a href="${navCaseUrl(nav.next.slug)}" class="case-nav__item case-nav__item--next">
-          <span class="case-nav__label">
-            <span data-en="Next" data-es="Siguiente">Next</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
-          </span>
-          <span class="case-nav__title">${nav.next.title || ''}</span>
-        </a>`;
-      }
-      inner.innerHTML = navHtml;
+      (function buildCaseNav() {
+        const inner = document.getElementById('case-nav-inner');
+        if (!inner) return;
+        const allEn = PORTFOLIO_DATA.en.cases || [];
+        const allEs = PORTFOLIO_DATA.es?.cases || allEn;
+        let order = allEn.map(x => x.slug);
+        const profile = (typeof resolveActiveProfile === 'function') ? resolveActiveProfile() : null;
+        if (profile) {
+          const pOrder = [profile.featured].concat(profile.order || []);
+          const pos = s => { const i = pOrder.indexOf(s); return i === -1 ? pOrder.length : i; };
+          order = order.slice().sort((a, b) => pos(a) - pos(b));
+        }
+        const idx = order.indexOf(slug);
+        if (idx === -1) return;
+        const prevSlug = order[(idx - 1 + order.length) % order.length];
+        const nextSlug = order[(idx + 1) % order.length];
+        const titleFor = (s) => {
+          const en = (allEn.find(x => x.slug === s)?.card?.title || '').replace(/"/g, '&quot;');
+          const es = (allEs.find(x => x.slug === s)?.card?.title || en).replace(/"/g, '&quot;');
+          return `<span class="case-nav__title" data-en="${en}" data-es="${es}">${lang === 'es' ? es : en}</span>`;
+        };
+        inner.innerHTML = `
+          <a href="${navCaseUrl(prevSlug)}" class="case-nav__item case-nav__item--prev">
+            <span class="case-nav__label">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
+              <span data-en="Previous" data-es="Anterior">Previous</span>
+            </span>
+            ${titleFor(prevSlug)}
+          </a>
+          <a href="../index.html#work" class="case-nav__item case-nav__item--all">
+            <span class="case-nav__label"><span data-en="All work" data-es="Todo el trabajo">All work</span></span>
+          </a>
+          <a href="${navCaseUrl(nextSlug)}" class="case-nav__item case-nav__item--next">
+            <span class="case-nav__label">
+              <span data-en="Next" data-es="Siguiente">Next</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+            </span>
+            ${titleFor(nextSlug)}
+          </a>`;
+      })();
     }
 
     applyLang(getLang());

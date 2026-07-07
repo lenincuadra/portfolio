@@ -9,7 +9,6 @@
    3. layout   — container, grids, sección base
    4. header   — skip link, nav, lang switch, theme toggle
    5. hero     — hero index + layout 2 columnas
-   6. featured — featured case + capabilities
    7. cards    — case grid + case card
    8. buttons  — .btn variants + tags
    9. case     — case study page (hero, TOC, componentes)
@@ -22,7 +21,6 @@
 @import "./layout.css";
 @import "./header.css";
 @import "./hero.css";
-@import "./featured.css";
 @import "./cards.css";
 @import "./buttons.css";
 @import "./case.css";

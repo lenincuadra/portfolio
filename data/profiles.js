@@ -77,7 +77,12 @@ function resolveActiveProfile() {
       const matches = Object.keys(P.profiles).filter((k) => k.indexOf(id) === 0);
       if (matches.length === 1) id = matches[0];
     }
-    if (id && P.profiles[id]) return Object.assign({ id: id }, P.profiles[id]);
+    if (id && P.profiles[id]) {
+      // Persistir el perfil resuelto: las páginas de case (sin params) lo
+      // leen de sessionStorage para derivar su nav del mismo orden.
+      try { sessionStorage.setItem('portfolio_focus', id); } catch (e) {}
+      return Object.assign({ id: id }, P.profiles[id]);
+    }
   } catch (e) {}
   return null;
 }

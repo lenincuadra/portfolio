@@ -302,17 +302,7 @@ const PORTFOLIO_DATA = {
                 }
               ]
             }
-          ],
-          "nav": {
-            "prev": {
-              "slug": "khatu",
-              "title": "Khatu: Rethinking an Internal Dev Platform"
-            },
-            "next": {
-              "slug": "figma-webp-export",
-              "title": "77 Minutes to Fix a 1-Hour Recurring Problem"
-            }
-          }
+          ]
         },
 
         // ---------------------------------------------------------------------
@@ -477,17 +467,7 @@ const PORTFOLIO_DATA = {
                 }
               ]
             }
-          ],
-          "nav": {
-            "prev": {
-              "slug": "no-handoff",
-              "title": "No Handoff: Closing the Design-Dev Gap"
-            },
-            "next": {
-              "slug": "fintech-ecosystem",
-              "title": "Zero-to-one: Connected Payment Ecosystem"
-            }
-          }
+          ]
         },
 
         // ---------------------------------------------------------------------
@@ -737,17 +717,7 @@ const PORTFOLIO_DATA = {
                 }
               ]
             }
-          ],
-          "nav": {
-            "prev": {
-              "slug": "no-handoff",
-              "title": "No Handoff: Closing the Design-Dev Gap"
-            },
-            "next": {
-              "slug": "ecommerce-conversion",
-              "title": "221% Q1 Revenue: E-commerce Conversion"
-            }
-          }
+          ]
         },
 
         // ---------------------------------------------------------------------
@@ -964,17 +934,7 @@ const PORTFOLIO_DATA = {
                 }
               ]
             }
-          ],
-          "nav": {
-            "prev": {
-              "slug": "fintech-ecosystem",
-              "title": "Zero-to-one: Connected Payment Ecosystem"
-            },
-            "next": {
-              "slug": "telecom-legacy-refactor",
-              "title": "Telecom Legacy Platform Refactor"
-            }
-          }
+          ]
         },
 
         // ---------------------------------------------------------------------
@@ -1235,17 +1195,7 @@ const PORTFOLIO_DATA = {
                 }
               ]
             }
-          ],
-          "nav": {
-            "prev": {
-              "slug": "ecommerce-conversion",
-              "title": "221% Q1 Revenue: E-commerce Conversion"
-            },
-            "next": {
-              "slug": "khatu",
-              "title": "Khatu: Rethinking an Internal Dev Platform"
-            }
-          }
+          ]
         },
 
         // ---------------------------------------------------------------------
@@ -1436,17 +1386,7 @@ const PORTFOLIO_DATA = {
                 }
               ]
             }
-          ],
-          "nav": {
-            "prev": {
-              "slug": "telecom-legacy-refactor",
-              "title": "Telecom Legacy Platform Refactor"
-            },
-            "next": {
-              "slug": "no-handoff",
-              "title": "No Handoff: Closing the Design-Dev Gap"
-            }
-          }
+          ]
         },
       ], // end cases[]
     },
@@ -1744,17 +1684,7 @@ const PORTFOLIO_DATA = {
                 }
               ]
             }
-          ],
-          "nav": {
-            "prev": {
-              "slug": "khatu",
-              "title": "Khatu: Repensar una Plataforma Interna para Devs"
-            },
-            "next": {
-              "slug": "figma-webp-export",
-              "title": "77 Minutes to Fix a 1-Hour Recurring Problem"
-            }
-          }
+          ]
         },
 
         // ---------------------------------------------------------------------
@@ -1919,17 +1849,7 @@ const PORTFOLIO_DATA = {
                 }
               ]
             }
-          ],
-          "nav": {
-            "prev": {
-              "slug": "no-handoff",
-              "title": "No Handoff: Closing the Design-Dev Gap"
-            },
-            "next": {
-              "slug": "fintech-ecosystem",
-              "title": "Zero-to-one: Connected Payment Ecosystem"
-            }
-          }
+          ]
         },
 
         // ---------------------------------------------------------------------
@@ -2179,17 +2099,7 @@ const PORTFOLIO_DATA = {
                 }
               ]
             }
-          ],
-          "nav": {
-            "prev": {
-              "slug": "no-handoff",
-              "title": "No Handoff: Closing the Design-Dev Gap"
-            },
-            "next": {
-              "slug": "ecommerce-conversion",
-              "title": "221% Q1 en Ingresos: Conversión E-commerce"
-            }
-          }
+          ]
         },
 
         // ---------------------------------------------------------------------
@@ -2406,17 +2316,7 @@ const PORTFOLIO_DATA = {
                 }
               ]
             }
-          ],
-          "nav": {
-            "prev": {
-              "slug": "fintech-ecosystem",
-              "title": "De cero a uno: Ecosistema de Pagos Conectado"
-            },
-            "next": {
-              "slug": "telecom-legacy-refactor",
-              "title": "Refactoring de Plataforma Telecom Legada"
-            }
-          }
+          ]
         },
 
         // ---------------------------------------------------------------------
@@ -2677,17 +2577,7 @@ const PORTFOLIO_DATA = {
                 }
               ]
             }
-          ],
-          "nav": {
-            "prev": {
-              "slug": "ecommerce-conversion",
-              "title": "221% Q1 en Ingresos: Conversión E-commerce"
-            },
-            "next": {
-              "slug": "khatu",
-              "title": "Khatu: Repensar una Plataforma Interna para Devs"
-            }
-          }
+          ]
         },
 
         // ---------------------------------------------------------------------
@@ -2878,17 +2768,7 @@ const PORTFOLIO_DATA = {
                 }
               ]
             }
-          ],
-          "nav": {
-            "prev": {
-              "slug": "telecom-legacy-refactor",
-              "title": "Telecom Legacy Platform Refactor"
-            },
-            "next": {
-              "slug": "no-handoff",
-              "title": "No Handoff: Closing the Design-Dev Gap"
-            }
-          }
+          ]
         },
       ], // end cases[]
     },
