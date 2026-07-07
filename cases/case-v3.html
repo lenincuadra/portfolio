@@ -890,7 +890,9 @@
     // Copy email — nav + CTA
     let toastTimer;
     function handleCopyEmail() {
-      navigator.clipboard.writeText('leninxperience@gmail.com').then(() => {
+      // El mail es por idioma (hi@ EN / hola@ ES): leerlo al momento del click
+      const email = (PORTFOLIO_DATA[getLang()] || PORTFOLIO_DATA.en).site.email;
+      navigator.clipboard.writeText(email).then(() => {
         const toast = document.getElementById('copy-toast');
         if (!toast) return;
         toast.classList.add('copy-toast--visible');

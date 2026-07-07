@@ -564,7 +564,8 @@
     let toastTimer;
 
     ctaCopyBtn.addEventListener('click', () => {
-      navigator.clipboard.writeText('leninxperience@gmail.com').then(() => {
+      const email = (PORTFOLIO_DATA[getLang()] || PORTFOLIO_DATA.en).site.email;
+      navigator.clipboard.writeText(email).then(() => {
         copyToast.classList.add('copy-toast--visible');
         clearTimeout(toastTimer);
         toastTimer = setTimeout(() => copyToast.classList.remove('copy-toast--visible'), 2500);

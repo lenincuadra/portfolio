@@ -13,7 +13,7 @@ const PORTFOLIO_DATA = {
     "site": {
       "designerName": "Lenin Cuadra",
       "role": "Product Designer with 5 years of experience",
-      "email": "leninxperience@gmail.com",
+      "email": "hi@lenincuadra.com",
       "linkedinUrl": "https://www.linkedin.com/in/lenincuadra/",
       "resumeUrl": {
         "en": "assets/cv/Lenin_Cuadra_CV_EN.pdf",
@@ -1399,7 +1399,7 @@ const PORTFOLIO_DATA = {
     "site": {
       "designerName": "Lenin Cuadra",
       "role": "Product Designer",
-      "email": "leninxperience@gmail.com",
+      "email": "hola@lenincuadra.com",
       "linkedinUrl": "https://www.linkedin.com/in/lenincuadra/",
       "resumeUrl": {
         "en": "assets/cv/Lenin_Cuadra_CV_EN.pdf",

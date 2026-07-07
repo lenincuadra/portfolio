@@ -6,7 +6,7 @@ Portfolio: https://lenincuadra.com/ (English and Spanish; this file summarizes t
 The case study pages render their content with client-side JavaScript; the
 summaries below carry each case's full narrative arc for non-JS readers.
 
-Contact: leninxperience@gmail.com · https://www.linkedin.com/in/lenincuadra/
+Contact: hi@lenincuadra.com · https://www.linkedin.com/in/lenincuadra/
 
 ## Case studies
 
