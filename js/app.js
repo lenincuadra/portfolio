@@ -360,14 +360,14 @@
 
     // About
     setText('about-heading', home.about.heading);
-    setText('about-excerpt', home.about.homeExcerpt || (home.about.paragraphs && home.about.paragraphs[0]) || '');
+    const parasEl = document.getElementById('about-paragraphs');
+    if (parasEl && home.about.paragraphs) {
+      parasEl.innerHTML = home.about.paragraphs.map(p => `<p>${p}</p>`).join('');
+    }
     const skillsEl = document.getElementById('about-skills');
     if (skillsEl && home.about.skills) {
       skillsEl.innerHTML = home.about.skills.map(s => `<span class="badge badge--ghost">${s}</span>`).join('');
     }
-
-    // About — Venn center label
-    setText('venn-center-label', home.about.vennCenter || '');
 
     // Contact
     setText('contact-heading', home.contact.heading);
@@ -833,15 +833,12 @@
 
     const clearActive = () => navLinks.forEach(l => l.classList.remove('site-header__nav-link--active'));
 
-    // When the hero (#about) is visible, activate the About link
+    // Hero visible = top de la página: ningún item del nav activo
+    // (About ahora es una sección real después del trabajo)
     const hero = document.querySelector('.hero');
     if (hero) {
       const heroObserver = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) {
-          clearActive();
-          const aboutLink = document.querySelector('.site-header__nav-link[href="#about"]');
-          if (aboutLink) aboutLink.classList.add('site-header__nav-link--active');
-        }
+        if (entry.isIntersecting) clearActive();
       }, { rootMargin: '0px 0px -80% 0px', threshold: 0 });
       heroObserver.observe(hero);
     }

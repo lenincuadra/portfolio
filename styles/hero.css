@@ -56,10 +56,11 @@
 .hero__role {
   font-family: var(--font-display);
   font-size: clamp(1.1rem, 2vw, 1.4rem);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0.01em;
-  color: var(--ink-3);
+  /* Jerarquía (Natoli 2026-07-06): el rol es lo que vende, no puede ser terciario */
+  color: var(--ink-2);
   margin-bottom: var(--sp-10);
 }
 .hero__summary {
@@ -74,10 +75,12 @@
   margin-bottom: var(--sp-4);
 }
 .hero__summary-recent {
-  font-size: var(--text-sm);
+  /* Jerarquía (Natoli 2026-07-06): acá viven las métricas (221%, 2 days) — lo
+     que el recruiter escanea en 10s no puede ser el texto más chico del hero */
+  font-size: var(--text-base);
   line-height: 1.6;
-  color: var(--ink-3);
-  font-weight: 300;
+  color: var(--ink-2);
+  font-weight: 400;
 }
 /* Auto-generated proof links (hero.js). Subtle, not a primary link — but the
    faint underline must exist at rest (a11y 1.4.1: a link can't be identifiable
