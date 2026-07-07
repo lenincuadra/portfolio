@@ -87,6 +87,14 @@ Auditoría hecha (2026-07-04) sobre index + case-v3 + 404, ambos temas e idiomas
 - Al tocar `tokens.css` o agregar componentes con texto: correr **`node scripts/a11y-contrast.js`** (y agregar el par nuevo a su manifest). Debe quedar en verde. **`node scripts/a11y-static.js`** lintea lo mecánico (tokens inexistentes, `--ink-4` como texto, skip links, `alt`, `onclick` inline). El pre-commit hook (`.githooks/pre-commit`) corre ambos y bloquea el commit si algo falla; setup por clone: `git config core.hooksPath .githooks`.
 - Interactivo = `<a>`/`<button>` reales; overlays cierran con Escape y devuelven el foco; media autoplay respeta `prefers-reduced-motion`.
 
+## Email de contacto (por idioma)
+
+El mail visible es **por idioma** y vive únicamente en `site.email` de `data/content.js`: `hi@lenincuadra.com` (EN) y `hola@lenincuadra.com` (ES). Son **alias de forwarding** del dominio (Cloudflare Email Routing) hacia el inbox real de Gmail; en Gmail está configurado "Send mail as" para responder desde ellos.
+
+- **Para cambiar el mail visible**: editar `site.email` en ambos idiomas y correr `node scripts/seo-build.js` (`llms.txt` lo incluye; el hook detecta el drift igual). Todo lo demás lo sigue solo: contact, dropdown del hero, mailto del footer y los botones de copiar de los cases (leen el idioma activo al click).
+- **NO confundir con `TO_EMAIL`** en `go.html` y `tracker.js`: ese es el **destino interno** de las notificaciones de tracking (el inbox real de Gmail), no es user-facing y no se cambia al cambiar el mail visible. Solo se toca si cambia el inbox donde se quieren recibir los avisos (y en ese caso, revisar también la cuenta de EmailJS).
+- **Nunca hardcodear un mail en HTML/JS**: siempre `site.email` del idioma activo (el hardcodeo viejo en los botones de copiar de los cases fue justamente el bug).
+
 ## SEO / GEO
 
 `sitemap.xml`, `robots.txt` y `llms.txt` (resumen del sitio para modelos de IA, que no ejecutan JS) **se generan** con `node scripts/seo-build.js` desde `data/content.js` — no editarlos a mano. El pre-commit hook bloquea si quedan desincronizados. Todo case necesita `meta.title` + `meta.description`; los `h3` de las secciones alimentan el arco narrativo de `llms.txt` (escribir buenos `h3` también es GEO). Detalle y reglas: **`docs/seo.md`**.
