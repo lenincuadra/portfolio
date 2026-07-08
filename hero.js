@@ -9,6 +9,12 @@
 //   3. The positioning sentence (.hero__summary-lead — "I design products that
 //      move business metrics...") is hardcoded in index.html. THIS SCRIPT NEVER
 //      TOUCHES IT. It only rewrites the .hero__summary-recent line.
+//   4. Metric tokens inside each proof ("+221%", "2 days", "77 minutos") are
+//      auto-wrapped in <strong> (see emphasize()). The emphasis is PERSISTENT:
+//      weight + ink only — no marker color, no dissolve animation (emphasis is
+//      information, not an event; reduced-motion users only ever see the end
+//      state). The static fallback in index.html carries the same <strong>
+//      markup by hand, split into leaf spans so the i18n loop can't flatten it.
 //
 // BEHAVIOR:
 //   - On page load: fetch cases.json, keep entries with featured === true.
@@ -118,6 +124,20 @@
       .replace(/"/g, '&quot;');
   }
 
+  // Matches the metric token every proof is curated to contain (rule 2):
+  // a number (optional +/-, decimals) plus its attached unit — "%", a
+  // multiplier ("3x"), or a following EN/ES time word ("2 days", "77 minutos").
+  // Bare counts ("3 surfaces") bold the digit only. Group 1 is the preceding
+  // boundary (kept so "Q1" or "v2" never match); group 2 is the metric.
+  var METRIC_RE = /(^|[^\w%+\-])([+\-]?\d+(?:[.,]\d+)*(?:%|[x×](?!\w)|\s(?:días?|days?|semanas?|weeks?|meses|mes|months?|años?|years?|horas?|hours?|minutos?|minutes?|mins?|min|segundos?|seconds?|secs?)(?!\w))?)/gi;
+
+  // Wraps metric tokens in <strong> for scan emphasis (system rule 4).
+  // Input must already be HTML-escaped (escapeAttr output is digit-free,
+  // so entities can never be mistaken for metrics).
+  function emphasize(escapedText) {
+    return escapedText.replace(METRIC_RE, '$1<strong>$2</strong>');
+  }
+
   // Builds the inner HTML: "Highlights: <a>proof_1</a> · <a>proof_2</a>"
   // Each <a> carries data-en/data-es so the language toggle can swap it in place.
   function buildHtml(proofs, lang) {
@@ -127,8 +147,10 @@
       var en = escapeAttr(p.proof || '');
       var es = escapeAttr(p.proof_es || p.proof || '');
       var text = lang === 'es' ? es : en;
+      // data-en/data-es keep the plain text (source of truth for the toggle);
+      // the visible text gets its metrics bolded.
       return '<a class="hero__proof-link" href="' + escapeAttr(caseHref(p.id)) +
-        '" data-en="' + en + '" data-es="' + es + '">' + text + '</a>';
+        '" data-en="' + en + '" data-es="' + es + '">' + emphasize(text) + '</a>';
     });
     // Prefix is itself language-driven, so stamp it with data-en/data-es too.
     var prefixSpan = '<span class="hero__proof-prefix" data-en="Highlights: " ' +
@@ -205,7 +227,16 @@
           var target = document.querySelector('.hero__summary-recent');
           if (!target) return;
           target.querySelectorAll('[data-en][data-es]').forEach(function (el) {
-            el.textContent = lang === 'es' ? el.dataset.es : el.dataset.en;
+            var text = lang === 'es' ? el.dataset.es : el.dataset.en;
+            // Proof links carry <strong> around their metrics; a textContent
+            // write would flatten it (app.js's generic i18n loop just did,
+            // synchronously on this same click), so re-apply the wrapping.
+            // Everything else (prefix span, fallback leaf segments) is plain.
+            if (el.classList.contains('hero__proof-link')) {
+              el.innerHTML = emphasize(escapeAttr(text));
+            } else {
+              el.textContent = text;
+            }
           });
         }, 0);
       });

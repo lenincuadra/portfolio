@@ -219,12 +219,27 @@
               >I design products that move business metrics, and lead design teams into AI-powered workflows that ship faster.</p>
               <!-- Reemplazada en runtime por hero.js (lee cases.json, elige 2
                    pruebas featured por carga). Este texto es el fallback estático
-                   si cases.json falla o queda vacío. -->
-              <p
-                class="hero__summary-recent"
-                data-en="Highlights: +300% feature subscriptions after a flow redesign · a week of dev work compressed into 2 days."
-                data-es="Highlights: +300% en suscripciones de una funcionalidad tras un rediseño de flujo · una semana de desarrollo comprimida en 2 días."
-              >Highlights: +300% feature subscriptions after a flow redesign · a week of dev work compressed into 2 days.</p>
+                   si cases.json falla o queda vacío. Va segmentado en spans/strong
+                   hoja, cada uno con su data-en/data-es y el <p> sin atributos:
+                   el loop i18n escribe textContent por elemento, así el <strong>
+                   de las métricas sobrevive al toggle EN/ES. Sin whitespace entre
+                   tags (los espacios viven dentro de cada segmento). -->
+              <p class="hero__summary-recent"><span
+                  data-en="Highlights: "
+                  data-es="Highlights: "
+                >Highlights: </span><strong
+                  data-en="+300%"
+                  data-es="+300%"
+                >+300%</strong><span
+                  data-en=" feature subscriptions after a flow redesign · a week of dev work compressed into "
+                  data-es=" en suscripciones de una funcionalidad tras un rediseño de flujo · una semana de desarrollo comprimida en "
+                > feature subscriptions after a flow redesign · a week of dev work compressed into </span><strong
+                  data-en="2 days"
+                  data-es="2 días"
+                >2 days</strong><span
+                  data-en="."
+                  data-es="."
+                >.</span></p>
             </div>
             <div class="hero__actions">
               <a href="#work" class="btn btn--primary btn--md">

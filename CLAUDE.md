@@ -70,7 +70,7 @@ La línea `.hero__summary-recent` se genera en runtime con **`hero.js`** (vanill
 - Inyecta `Recently: {proof_1} · {proof_2}` (EN) / `Recientemente: ...` (ES). Cada prueba es un `<a class="hero__proof-link">` con deep link a su case (`cases/case-v3.html?slug=<id>`), y lleva su propio `data-en`/`data-es`, así el toggle EN/ES la actualiza sin recargar.
 - **Fallback**: si `cases.json` falla, está vacío, o da menos de 2 pruebas, el placeholder estático en `index.html` queda intacto (el script nunca borra el contenido antes de tener el reemplazo listo). Ese placeholder es el texto de respaldo.
 
-**Reglas del sistema** (documentadas como comentario al inicio de `hero.js`): máximo 2 pruebas; cada `proof` debe contener un número o delta temporal (se cura en `cases.json`); la oración de posicionamiento (`.hero__summary-lead`) es hardcodeada y el script **nunca la toca**.
+**Reglas del sistema** (documentadas como comentario al inicio de `hero.js`): máximo 2 pruebas; cada `proof` debe contener un número o delta temporal (se cura en `cases.json`); la oración de posicionamiento (`.hero__summary-lead`) es hardcodeada y el script **nunca la toca**; las métricas de cada proof ("+221%", "2 days") se envuelven en `<strong>` automáticamente (`emphasize()` en `hero.js`) con **énfasis persistente** (peso + `--ink`; sin color de marcador ni animación que se disuelva). El fallback estático lleva el mismo `<strong>` a mano, segmentado en spans hoja con su propio `data-en`/`data-es` para que el loop i18n (que escribe `textContent` por elemento) no lo aplaste.
 
 Para cambiar las pruebas: editar `cases.json` (campos `proof`/`proof_es`, `metric_value`, `featured`, `id` = slug real del case).
 

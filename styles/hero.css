@@ -82,6 +82,15 @@
   color: var(--ink-2);
   font-weight: 400;
 }
+/* Métricas dentro de la línea Highlights (<strong> lo pone hero.js en runtime;
+   el fallback estático lo trae en el HTML). Énfasis persistente por peso +
+   tinta máxima: sin color de marcador ni animación (el énfasis es información,
+   no un evento). 600 existe en Instrument Sans (ver @import en tokens.css);
+   --ink / --bg ya está validado en a11y-contrast.js (par "texto principal"). */
+.hero__summary-recent strong {
+  font-weight: 600;
+  color: var(--ink);
+}
 /* Auto-generated proof links (hero.js). Subtle, not a primary link — but the
    faint underline must exist at rest (a11y 1.4.1: a link can't be identifiable
    only on hover). */
