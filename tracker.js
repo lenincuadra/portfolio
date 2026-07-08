@@ -55,6 +55,18 @@
   var hostname = window.location.hostname;
   if (hostname === "localhost" || hostname === "127.0.0.1" || hostname === "") return;
 
+  // No trackear bots ni navegadores automatizados. Googlebot y otros crawlers
+  // renderizan la página en Chromium headless y ejecutan este script (mail
+  // disparado + cuota de EmailJS quemada), mientras Hotjar los filtra por su
+  // cuenta: esa asimetría era el "registro sin grabación" (diagnóstico
+  // 2026-07-08: ubicaciones de datacenter — Council Bluffs, Manassas, etc.).
+  // navigator.webdriver delata Playwright/Puppeteer y varios renderers; el UA
+  // cubre los bots que se identifican. Misma guarda en go.html.
+  // OJO E2E: un test Playwright del tracking tiene que quitar el flag
+  // webdriver (init script) para poder verificar el envío real.
+  var BOT_UA = /bot|crawl|spider|slurp|headless|lighthouse|prerender|bingpreview|facebookexternalhit/i;
+  if (navigator.webdriver || BOT_UA.test(navigator.userAgent)) return;
+
   // Si go.html ya trackeó esta sesión, no volver a disparar
   try {
     if (sessionStorage.getItem("portfolio_tracked")) {

@@ -36,6 +36,16 @@
   var destKey = params.get("dest") || "portfolio";
   var DEST    = DESTINATIONS[destKey] || DESTINATIONS.portfolio;
 
+  // Bots/headless: redirigir sin trackear (misma guarda y mismo porqué que en
+  // tracker.js — los crawlers ejecutan JS y disparaban mails de EmailJS; los
+  // links de go.html viajan en CVs, DMs y LinkedIn, que los bots también
+  // visitan). El bot llega al destino igual; solo se salta el registro.
+  var BOT_UA = /bot|crawl|spider|slurp|headless|lighthouse|prerender|bingpreview|facebookexternalhit/i;
+  if (navigator.webdriver || BOT_UA.test(navigator.userAgent)) {
+    window.location.replace(DEST);
+    return;
+  }
+
   // Personalización por perfil (data/profiles.js): el link trackeado puede
   // traer &focus=<perfil> (genérico por industria, no delata la empresa: los
   // refs son códigos opacos a propósito). Se guarda SIEMPRE (también en "me")
