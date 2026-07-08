@@ -7,6 +7,9 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 ## [Unreleased]
 
+### Added
+- **Destino `github` en el tracking** — el CV suma un link trackeado al perfil de GitHub: sufijo `G` (`ref=<código>G`), ruteado vía `go.html?dest=github` → `github.com/lenincuadra`. Parsers actualizados (`go.html`, `tracker.js`, router de links cortos en `404.html`: `/r/<código>G`) y contrato en `link-spec.json`.
+
 ---
 
 ## [0.10.0] — 2026-04-16

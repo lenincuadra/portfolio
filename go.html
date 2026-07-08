@@ -18,14 +18,16 @@
   // el comportamiento actual (siempre va al portfolio).
   var DESTINATIONS = {
     portfolio: "https://lenincuadra.com/",
-    linkedin:  "https://www.linkedin.com/in/lenincuadra/"
+    linkedin:  "https://www.linkedin.com/in/lenincuadra/",
+    github:    "https://github.com/lenincuadra"
   };
 
-  // "0628r4P" -> { code:"0628r4", link:"Portfolio" }; "0628r4L" -> LinkedIn.
-  // Reserved/organic (no P/L suffix) pass through unchanged.
+  // "0628r4P" -> { code:"0628r4", link:"Portfolio" }; L -> LinkedIn; G -> GitHub.
+  // Reserved/organic (no P/L/G suffix) pass through unchanged.
+  var LINK_NAMES = { P: "Portfolio", L: "LinkedIn", G: "GitHub" };
   function parseRef(ref) {
-    var m = /^(\d{4}[a-z][2-9])([PL])$/.exec(ref);
-    if (m) return { code: m[1], link: m[2] === "P" ? "Portfolio" : "LinkedIn" };
+    var m = /^(\d{4}[a-z][2-9])([PLG])$/.exec(ref);
+    if (m) return { code: m[1], link: LINK_NAMES[m[2]] };
     return { code: ref, link: "" };
   }
 

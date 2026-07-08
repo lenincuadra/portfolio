@@ -10,11 +10,12 @@
   }
 
   // Split a tracking ref into its base code + the link that was opened.
-  // e.g. "0628r4P" -> { code: "0628r4", link: "Portfolio" }; "0628r4L" -> LinkedIn.
-  // Reserved/organic codes (no P/L suffix) pass through unchanged.
+  // e.g. "0628r4P" -> { code: "0628r4", link: "Portfolio" }; L -> LinkedIn; G -> GitHub.
+  // Reserved/organic codes (no P/L/G suffix) pass through unchanged.
+  var LINK_NAMES = { P: "Portfolio", L: "LinkedIn", G: "GitHub" };
   function parseRef(ref) {
-    var m = /^(\d{4}[a-z][2-9])([PL])$/.exec(ref);
-    if (m) return { code: m[1], link: m[2] === "P" ? "Portfolio" : "LinkedIn" };
+    var m = /^(\d{4}[a-z][2-9])([PLG])$/.exec(ref);
+    if (m) return { code: m[1], link: LINK_NAMES[m[2]] };
     return { code: ref, link: "" };
   }
 

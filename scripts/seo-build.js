@@ -120,15 +120,21 @@ const linkSpec = JSON.stringify({
   tracking: {
     codeFormat: '^\\d{4}[a-z][2-9]$',
     codeHint: 'MMDD + letra a-z + dígito 2-9; único por empresa, nunca reusar',
-    refSuffix: { P: 'link al portfolio (en el CV)', L: 'link a LinkedIn (en el CV)' },
+    refSuffix: {
+      P: 'link al portfolio (en el CV)',
+      L: 'link a LinkedIn (en el CV)',
+      G: 'link a GitHub (en el CV)'
+    },
     reservedRefs: ['me', 'organic', 'li-profile', 'li-cv', 'web-cv'],
     links: {
       portfolio: '{base}go.html?ref={code}P',
       portfolioFocused: '{base}go.html?ref={code}P&focus={focus}',
       linkedin: '{base}go.html?ref={code}L&dest=linkedin',
+      github: '{base}go.html?ref={code}G&dest=github',
       shortPortfolio: '{base}r/{code}P',
       shortPortfolioFocused: '{base}r/{code}P{focusLetter}',
-      shortLinkedin: '{base}r/{code}L'
+      shortLinkedin: '{base}r/{code}L',
+      shortGithub: '{base}r/{code}G'
     }
   },
   // focusLetter de los links cortos = inicial del id del perfil (única, la

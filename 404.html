@@ -3,15 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <script>
-      // Links cortos /r/<código><P|L>[letra-perfil] → go.html (tracking + focus).
+      // Links cortos /r/<código><P|L|G>[letra-perfil] → go.html (tracking + focus).
       // GitHub Pages sirve este 404 para toda ruta desconocida; el router corre
       // antes del primer paint. La letra de perfil es la inicial del id
       // (p/a/c) y la expande resolveActiveProfile() en data/profiles.js.
       (function () {
-        var m = /^\/r\/(\d{4}[a-z][2-9])([PL])([a-z])?$/.exec(location.pathname);
+        var m = /^\/r\/(\d{4}[a-z][2-9])([PLG])([a-z])?$/.exec(location.pathname);
         if (!m) return;
         var q = 'ref=' + m[1] + m[2];
         if (m[2] === 'L') q += '&dest=linkedin';
+        if (m[2] === 'G') q += '&dest=github';
         if (m[3]) q += '&focus=' + m[3];
         location.replace('/go.html?' + q);
       })();
