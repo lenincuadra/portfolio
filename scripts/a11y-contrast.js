@@ -42,6 +42,7 @@ const PAIRS = [
   { name: 'texto principal                   --ink   / --surface',  fg: '--ink',   bg: '--surface', need: 4.5 },
   { name: 'texto principal                   --ink   / --bg-alt',   fg: '--ink',   bg: '--bg-alt',  need: 4.5 },
   { name: 'texto principal                   --ink   / --bg-card',  fg: '--ink',   bg: '--bg-card', need: 4.5 },
+  { name: 'dropdown Get in touch (opción)    --ink-2 / --bg-card',  fg: '--ink-2', bg: '--bg-card', need: 4.5 },
 
   // Acento como texto → --accent-ink (CTAs de cards, phase, media-label, hovers)
   { name: 'acento texto (CTAs, phase)   --accent-ink / --bg',       fg: '--accent-ink', bg: '--bg',      need: 4.5 },
