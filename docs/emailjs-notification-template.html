@@ -1,0 +1,36 @@
+<!--
+  COPIA DE REFERENCIA de la plantilla de notificación de EmailJS.
+
+  ⚠️ NO está sincronizada. La fuente de verdad es el dashboard de EmailJS
+  (template_fhi5v77 en emailjs.com). Este archivo es solo referencia: si cambiás
+  la plantilla allá, actualizá esto A MANO.
+
+  Variables que envían go.html y tracker.js: {{company}} (= "código · destino",
+  ej. "sig-es · Portfolio"), {{timestamp}}, {{location}}, {{code}}, {{link}},
+  {{dest}}, {{to_email}}.
+
+  Última actualización manual: 2026-07-10 (subject/body dejaron de decir
+  "revisó tu CV" porque ahora se trackean varias cosas: portfolio, LinkedIn,
+  GitHub, firmas sig-en/sig-es, links estables, orgánico).
+-->
+<div style="font-family: system-ui, sans-serif, Arial; font-size: 14px; color: #333;">
+<h2 style="color: #1a1a1a;">"{{company}}" ID ha sido abierto por alguien.</h2>
+<table style="width: 100%; border-collapse: collapse; margin-top: 16px;">
+<tbody>
+<tr>
+<td style="padding: 8px 12px; background: #f5f5f5; font-weight: bold; width: 140px;">ID (UTM)</td>
+<td style="padding: 8px 12px; border-bottom: 1px solid #e0e0e0;">{{company}}</td>
+</tr>
+<tr>
+<td style="padding: 8px 12px; background: #f5f5f5; font-weight: bold;">Fecha y hora</td>
+<td style="padding: 8px 12px; border-bottom: 1px solid #e0e0e0;">{{timestamp}}</td>
+</tr>
+<tr>
+<td style="padding: 8px 12px; background: #f5f5f5; font-weight: bold;">Ubicacion</td>
+<td style="padding: 8px 12px; border-bottom: 1px solid #e0e0e0;">{{location}}</td>
+</tr>
+</tbody>
+</table>
+<p style="margin-top: 20px; font-size: 12px; color: #888;">Este mensaje fue generado autom&aacute;ticamente.</p>
+</div>
+<p>&nbsp;</p>
