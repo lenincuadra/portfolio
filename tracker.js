@@ -80,7 +80,11 @@
   if (ref === "me") return;
 
   var parsed  = parseRef(ref);
-  var company = parsed.link ? parsed.code + " · " + parsed.link : parsed.code;
+  // tracker.js only fires on the portfolio index, so a visit here is always a
+  // Portfolio view. Label it "Portfolio" when the ref has no P/L/G suffix
+  // (stable links like sig-es / behance / li-profile, and organic).
+  var link    = parsed.link || "Portfolio";
+  var company = parsed.code + " · " + link;
 
   var timestamp = new Date().toLocaleString("es-AR", {
     timeZone: "America/Argentina/Cordoba",
@@ -89,7 +93,7 @@
   });
 
   getLocation().then(function (location) {
-    saveVisit(company, timestamp, location, parsed.code, parsed.link);
-    sendEmail(company, timestamp, location, parsed.code, parsed.link);
+    saveVisit(company, timestamp, location, parsed.code, link);
+    sendEmail(company, timestamp, location, parsed.code, link);
   });
 })();
