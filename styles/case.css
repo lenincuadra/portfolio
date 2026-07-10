@@ -948,6 +948,44 @@
   }
 }
 
+/* ---- CASE PROSE (steps / subheading del renderer case-v3) ----
+   Movidas desde el <style> de cases/case-v3.html: el styleguide demuestra estos
+   componentes con el estilo real vía el co-scope .sg-case-prose (una sola fuente,
+   sin duplicar reglas en el <style> inline del styleguide). */
+#case-v3-content ul, #case-v3-content ol,
+.sg-case-prose ul, .sg-case-prose ol {
+  margin-block: calc(var(--sp-5) / 2);
+  list-style: none;
+  padding: 0;
+}
+#case-v3-content li + li,
+.sg-case-prose li + li {
+  margin-top: var(--sp-5);
+}
+/* numbered steps (ol) show a hanging mono counter so an ordered list reads as
+   steps; the bullet ul stays marker-less (its items are h4+p) */
+#case-v3-content ol,
+.sg-case-prose ol {
+  counter-reset: case-step;
+}
+#case-v3-content ol > li,
+.sg-case-prose ol > li {
+  counter-increment: case-step;
+  position: relative;
+  padding-left: 2.25rem;
+}
+#case-v3-content ol > li::before,
+.sg-case-prose ol > li::before {
+  content: counter(case-step) ".";
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+
 /* ---- CASE SECTION ---- */
 .case-section {
   padding-block: clamp(3rem, 5vw, 5rem);

@@ -12,43 +12,10 @@
       type="image/svg+xml"
     />
 
-    <script>
-      // tailwind.config — copiá este bloque a cualquier página del proyecto
-      // para tener todos los tokens disponibles como clases de Tailwind
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              accent: { DEFAULT: "#c8602a", dim: "#e8845a", pale: "#f5e0d5" },
-              accent2: { DEFAULT: "#2a5c8f", light: "#5b8fbf" },
-              bg: { DEFAULT: "#f5f3ef", alt: "#eceae5", card: "#ffffff" },
-              surface: "#dedbd4",
-              border: "#d3d0c9",
-              ink: {
-                DEFAULT: "#1a1916",
-                2: "#3d3b36",
-                3: "#706d65",
-                4: "#9c9991",
-              },
-              success: "#2d7a4f",
-              warning: "#b87820",
-              danger: "#c0392b",
-            },
-            fontFamily: {
-              display: ['"Instrument Sans"', "system-ui", "sans-serif"],
-              sans: ['"Instrument Sans"', "system-ui", "sans-serif"],
-              mono: ['"DM Mono"', '"Courier New"', "monospace"],
-            },
-            borderRadius: { sm: "3px", md: "8px", lg: "16px", xl: "24px" },
-            boxShadow: {
-              sm: "0 1px 3px rgba(26,25,22,0.06), 0 1px 2px rgba(26,25,22,0.04)",
-              md: "0 4px 16px rgba(26,25,22,0.08), 0 2px 6px rgba(26,25,22,0.05)",
-              lg: "0 12px 40px rgba(26,25,22,0.1), 0 4px 12px rgba(26,25,22,0.06)",
-            },
-          },
-        },
-      };
-    </script>
+    <!-- Sin duplicados de tokens: los valores se leen en runtime desde
+         styles/tokens.css (ver renderTokenHex al pie). El viejo bloque
+         tailwind.config se eliminó: Tailwind no se carga en ninguna página
+         y sus hex ya habían drifteado respecto de tokens.css. -->
     <style>
       /* Los tokens vienen de main.css — no se duplican aquí */
       html {
@@ -109,7 +76,7 @@
         min-width: 2px;
       }
 
-      /* nav-link: links de la sidebar */
+      /* nav-link: links de la sidebar (la TOC se genera del DOM — ver script al pie) */
       .nav-link {
         display: block;
         padding: 7px 12px;
@@ -126,6 +93,33 @@
         background: var(--accent-pale);
         color: var(--accent);
       }
+      /* sub-items de la TOC: un link por componente (data-toc) */
+      .nav-link--sub {
+        padding: 3px 12px 3px 24px;
+        font-size: 0.75rem;
+        color: var(--ink-3);
+      }
+
+      /* anclas de componentes: que el jump no quede tapado */
+      [data-toc] {
+        scroll-margin-top: 1.5rem;
+      }
+
+      /* sg-grid: empaqueta los demos en columnas (menos scroll, todo visible).
+         Los demos anchos (row, themed) ocupan la fila completa con --full. */
+      .sg-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 36px 32px;
+        align-items: start;
+      }
+      .sg-grid > .sg-item {
+        margin-bottom: 0;
+        min-width: 0;
+      }
+      .sg-item--full {
+        grid-column: 1 / -1;
+      }
 
       /* .btn, .card, .field, .badge — definidos en styles/buttons.css, cards.css y base.css */
     </style>
@@ -133,8 +127,11 @@
   <body>
     <!-- HEADER -->
     <header
-      style="background: var(--bg-card); border-bottom: 1px solid var(--border)"
-      class="px-8 py-8"
+      style="
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border);
+        padding: 2rem;
+      "
     >
       <div style="max-width: 1200px; margin: 0 auto">
         <h1
@@ -183,160 +180,18 @@
           >
             Secciones
           </p>
-          <ul style="list-style: none; padding: 0; margin: 0">
-            <li><a href="#colors" class="nav-link">Colores</a></li>
-            <li><a href="#typography" class="nav-link">Tipografía</a></li>
-            <li><a href="#spacing" class="nav-link">Espaciado</a></li>
-            <li><a href="#layout" class="nav-link">Layout</a></li>
-            <li><a href="#buttons" class="nav-link">Botones</a></li>
-            <li><a href="#inputs" class="nav-link">Inputs</a></li>
-            <li><a href="#cards" class="nav-link">Cards</a></li>
-            <li><a href="#badges" class="nav-link">Badges</a></li>
-            <li><a href="#toast" class="nav-link">Toast</a></li>
-            <li><a href="#utilities" class="nav-link">Utilidades</a></li>
-            <li><a href="#case-components" class="nav-link">Componentes de case</a></li>
-          </ul>
+          <!-- TOC generada del DOM (section[id] + [data-toc]) — no editar a mano -->
+          <ul id="toc-list" style="list-style: none; padding: 0; margin: 0"></ul>
         </nav>
       </aside>
 
       <!-- MAIN -->
       <main style="flex: 1; min-width: 0">
-        <!-- Mobile nav pills -->
+        <!-- Mobile nav pills — generadas del DOM (una por section[id]), no editar a mano -->
         <div
           id="mobile-nav"
           style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 2rem"
-        >
-          <a
-            href="#colors"
-            style="
-              padding: 5px 12px;
-              background: var(--bg-alt);
-              border-radius: 6px;
-              font-size: 0.8125rem;
-              color: var(--ink-2);
-              text-decoration: none;
-            "
-          >
-            Colores
-          </a>
-          <a
-            href="#typography"
-            style="
-              padding: 5px 12px;
-              background: var(--bg-alt);
-              border-radius: 6px;
-              font-size: 0.8125rem;
-              color: var(--ink-2);
-              text-decoration: none;
-            "
-          >
-            Tipografía
-          </a>
-          <a
-            href="#spacing"
-            style="
-              padding: 5px 12px;
-              background: var(--bg-alt);
-              border-radius: 6px;
-              font-size: 0.8125rem;
-              color: var(--ink-2);
-              text-decoration: none;
-            "
-          >
-            Espaciado
-          </a>
-          <a
-            href="#layout"
-            style="
-              padding: 5px 12px;
-              background: var(--bg-alt);
-              border-radius: 6px;
-              font-size: 0.8125rem;
-              color: var(--ink-2);
-              text-decoration: none;
-            "
-          >
-            Layout
-          </a>
-          <a
-            href="#buttons"
-            style="
-              padding: 5px 12px;
-              background: var(--bg-alt);
-              border-radius: 6px;
-              font-size: 0.8125rem;
-              color: var(--ink-2);
-              text-decoration: none;
-            "
-          >
-            Botones
-          </a>
-          <a
-            href="#inputs"
-            style="
-              padding: 5px 12px;
-              background: var(--bg-alt);
-              border-radius: 6px;
-              font-size: 0.8125rem;
-              color: var(--ink-2);
-              text-decoration: none;
-            "
-          >
-            Inputs
-          </a>
-          <a
-            href="#cards"
-            style="
-              padding: 5px 12px;
-              background: var(--bg-alt);
-              border-radius: 6px;
-              font-size: 0.8125rem;
-              color: var(--ink-2);
-              text-decoration: none;
-            "
-          >
-            Cards
-          </a>
-          <a
-            href="#badges"
-            style="
-              padding: 5px 12px;
-              background: var(--bg-alt);
-              border-radius: 6px;
-              font-size: 0.8125rem;
-              color: var(--ink-2);
-              text-decoration: none;
-            "
-          >
-            Badges
-          </a>
-          <a
-            href="#toast"
-            style="
-              padding: 5px 12px;
-              background: var(--bg-alt);
-              border-radius: 6px;
-              font-size: 0.8125rem;
-              color: var(--ink-2);
-              text-decoration: none;
-            "
-          >
-            Toast
-          </a>
-          <a
-            href="#utilities"
-            style="
-              padding: 5px 12px;
-              background: var(--bg-alt);
-              border-radius: 6px;
-              font-size: 0.8125rem;
-              color: var(--ink-2);
-              text-decoration: none;
-            "
-          >
-            Utilidades
-          </a>
-        </div>
+        ></div>
 
         <!-- ── COLORES ─────────────────────────────────── -->
         <section id="colors" style="margin-bottom: 4rem">
@@ -362,6 +217,8 @@
               color: var(--ink-4);
               margin-bottom: 14px;
             "
+            id="colors-marca"
+            data-toc="Marca"
           >
             Marca
           </p>
@@ -457,6 +314,8 @@
               color: var(--ink-4);
               margin-bottom: 14px;
             "
+            id="colors-neutros"
+            data-toc="Neutros"
           >
             Neutros — Light Mode
           </p>
@@ -555,6 +414,8 @@
               color: var(--ink-4);
               margin-bottom: 14px;
             "
+            id="colors-ink"
+            data-toc="Texto (Ink)"
           >
             Texto (Ink)
           </p>
@@ -633,6 +494,8 @@
               color: var(--ink-4);
               margin-bottom: 14px;
             "
+            id="colors-dark"
+            data-toc="Dark Mode"
           >
             Dark Mode
           </p>
@@ -759,6 +622,8 @@
               color: var(--ink-4);
               margin-bottom: 14px;
             "
+            id="colors-semanticos"
+            data-toc="Semánticos"
           >
             Semánticos
           </p>
@@ -823,10 +688,19 @@
               color: var(--ink-4);
               margin-bottom: 14px;
             "
+            id="type-familias"
+            data-toc="Familias"
           >
             Familias
           </p>
-          <div style="display: grid; gap: 12px; margin-bottom: 2rem">
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+              gap: 12px;
+              margin-bottom: 2rem;
+            "
+          >
             <div class="card" style="padding: 24px">
               <span class="token-label">--font-display</span>
               <p
@@ -904,6 +778,8 @@
               color: var(--ink-4);
               margin-bottom: 14px;
             "
+            id="type-escala"
+            data-toc="Escala de tamaños"
           >
             Escala de tamaños
           </p>
@@ -1168,6 +1044,8 @@
               gap: 10px;
               margin-bottom: 2rem;
             "
+            id="spacing-escala"
+            data-toc="Escala --sp-N"
           >
             <!-- Las barras crecen proporcionalmente — se ve el ritmo del sistema de un vistazo -->
             <div style="display: flex; align-items: center; gap: 16px">
@@ -1397,6 +1275,8 @@
               color: var(--ink-4);
               margin-bottom: 14px;
             "
+            id="spacing-radius"
+            data-toc="Border Radius"
           >
             Border Radius
           </p>
@@ -1545,6 +1425,8 @@
               color: var(--ink-4);
               margin-bottom: 14px;
             "
+            id="layout-container"
+            data-toc="Container"
           >
             Container
           </p>
@@ -1603,6 +1485,8 @@
               color: var(--ink-4);
               margin-bottom: 14px;
             "
+            id="layout-grids"
+            data-toc="Grids"
           >
             Grids
           </p>
@@ -1739,6 +1623,8 @@
               color: var(--ink-4);
               margin-bottom: 14px;
             "
+            id="layout-section"
+            data-toc="Section typography"
           >
             Section typography
           </p>
@@ -1779,8 +1665,15 @@
           </h2>
 
           <!-- Cada variante tiene sm/md/lg — así se ven las proporciones juntas -->
-          <div style="display: grid; gap: 12px">
-            <div class="card" style="padding: 24px">
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+              gap: 12px;
+              align-items: start;
+            "
+          >
+            <div class="card" style="padding: 24px" id="btn-primary" data-toc=".btn--primary">
               <p class="token-label" style="margin-bottom: 16px">
                 .btn--primary · background: --accent
               </p>
@@ -1834,7 +1727,7 @@
               </div>
             </div>
 
-            <div class="card" style="padding: 24px">
+            <div class="card" style="padding: 24px" id="btn-secondary" data-toc=".btn--secondary">
               <p class="token-label" style="margin-bottom: 16px">
                 .btn--secondary · border: --border
               </p>
@@ -1888,7 +1781,7 @@
               </div>
             </div>
 
-            <div class="card" style="padding: 24px">
+            <div class="card" style="padding: 24px" id="btn-ghost" data-toc=".btn--ghost">
               <p class="token-label" style="margin-bottom: 16px">
                 .btn--ghost · color: --ink-3 · sin padding
               </p>
@@ -1916,7 +1809,7 @@
               </div>
             </div>
 
-            <div class="card" style="padding: 24px">
+            <div class="card" style="padding: 24px" id="btn-estados" data-toc="Estados (disabled, icon)">
               <p class="token-label" style="margin-bottom: 16px">
                 Estados especiales
               </p>
@@ -1989,7 +1882,18 @@
             Inputs
           </h2>
 
-          <div class="card" style="padding: 24px; display: grid; gap: 20px">
+          <div
+            class="card"
+            style="
+              padding: 24px;
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+              gap: 20px;
+              align-items: start;
+            "
+            id="inputs-field"
+            data-toc=".field (estados)"
+          >
             <div>
               <label
                 style="
@@ -2133,6 +2037,8 @@
               color: var(--ink-4);
               margin-bottom: 14px;
             "
+            id="cards-case-card"
+            data-toc=".case-card"
           >
             Case Card — componente principal del portfolio
           </p>
@@ -2184,6 +2090,8 @@
               color: var(--ink-4);
               margin-bottom: 14px;
             "
+            id="cards-card"
+            data-toc=".card genérica"
           >
             Card genérica — wrapper de contenido
           </p>
@@ -2377,6 +2285,8 @@
                 color: var(--ink-4);
                 margin-bottom: 14px;
               "
+              id="badges-pill"
+              data-toc=".badge (pill)"
             >
               Pill — border-radius: 9999px
             </p>
@@ -2460,6 +2370,8 @@
                 color: var(--ink-4);
                 margin-bottom: 14px;
               "
+              id="badges-sq"
+              data-toc=".badge-sq (square)"
             >
               Square — border-radius: 3px · font-mono
             </p>
@@ -2513,6 +2425,8 @@
                 margin-top: 24px;
                 margin-bottom: 14px;
               "
+              id="badges-ghost"
+              data-toc=".badge--ghost"
             >
               Ghost — .badge--ghost · tags y skills
             </p>
@@ -2602,6 +2516,81 @@
           </div>
         </section>
 
+        <!-- ── DROPDOWN ─────────────────────────────────── -->
+        <section id="dropdown" style="margin-bottom: 4rem">
+          <h2
+            style="
+              font-family: var(--font-display);
+              font-size: 1.75rem;
+              font-weight: 400;
+              border-bottom: 1px solid var(--border);
+              padding-bottom: 12px;
+              margin-bottom: 24px;
+            "
+          >
+            Dropdown
+          </h2>
+          <p style="color: var(--ink-3); font-size: var(--text-sm); margin-bottom: 24px">
+            Menú del botón "Get in touch" del hero (<code>index.html</code>). Superficie
+            <code>--bg-card</code> + borde <code>--border</code> + sombra <code>--shadow-md</code>
+            (theme-aware: en dark la sombra sigue siendo negra — nunca derivar sombras de
+            <code>--ink</code>, en dark se vuelven un glow claro). Abre/cierra con JS
+            (<code>hidden</code> + <code>aria-expanded</code>); Escape cierra y devuelve el foco.
+          </p>
+
+          <!-- Ambos temas lado a lado — el inline style solo neutraliza el
+               position:absolute del componente para poder mostrarlo en flujo -->
+          <div style="display: flex; gap: 32px; flex-wrap: wrap; align-items: flex-start">
+            <div style="flex: 1; min-width: 260px">
+              <p style="font-size: var(--text-xs); color: var(--ink-4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px">Light</p>
+              <div style="background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 24px; display: flex; justify-content: center">
+                <div class="hero__contact-dropdown" style="position: static">
+                  <button class="hero__contact-option" type="button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+                    <span class="hero__contact-option-text">
+                      <span>email@example.com</span>
+                      <span class="hero__contact-option-sublabel">Copy email</span>
+                    </span>
+                  </button>
+                  <button class="hero__contact-option" type="button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.27V1.73C24 .77 23.21 0 22.22 0z"/></svg>
+                    <span class="hero__contact-option-text">
+                      <span>LinkedIn</span>
+                      <span class="hero__contact-option-sublabel">Open in New Tab</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div style="margin-top: 8px; display: flex; gap: 6px; flex-wrap: wrap">
+                <span class="token-label">.hero__contact-dropdown</span>
+                <span class="token-label">.hero__contact-option</span>
+              </div>
+            </div>
+
+            <div style="flex: 1; min-width: 260px">
+              <p style="font-size: var(--text-xs); color: var(--ink-4); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px">Dark</p>
+              <div class="preview-dark" style="background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 24px; display: flex; justify-content: center">
+                <div class="hero__contact-dropdown" style="position: static">
+                  <button class="hero__contact-option" type="button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+                    <span class="hero__contact-option-text">
+                      <span>email@example.com</span>
+                      <span class="hero__contact-option-sublabel">Copy email</span>
+                    </span>
+                  </button>
+                  <button class="hero__contact-option" type="button">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.21 24 24 23.23 24 22.27V1.73C24 .77 23.21 0 22.22 0z"/></svg>
+                    <span class="hero__contact-option-text">
+                      <span>LinkedIn</span>
+                      <span class="hero__contact-option-sublabel">Open in New Tab</span>
+                    </span>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- ── UTILIDADES ───────────────────────────────── -->
         <section id="utilities" style="margin-bottom: 4rem">
           <h2
@@ -2617,8 +2606,15 @@
             Utilidades
           </h2>
 
-          <div style="display: grid; gap: 12px">
-            <div class="card" style="padding: 24px">
+          <div
+            style="
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+              gap: 12px;
+              align-items: start;
+            "
+          >
+            <div class="card" style="padding: 24px" id="util-reveal" data-toc=".reveal">
               <p class="token-label" style="margin-bottom: 16px">
                 .reveal · .reveal.is-visible — animación de entrada
               </p>
@@ -2694,7 +2690,7 @@
               </div>
             </div>
 
-            <div class="card" style="padding: 24px">
+            <div class="card" style="padding: 24px" id="util-placeholder" data-toc=".placeholder-block">
               <p class="token-label" style="margin-bottom: 16px">
                 .placeholder-block — placeholder de contenido pendiente
               </p>
@@ -2718,37 +2714,56 @@
             #case-components .sg-label { font-family: var(--font-mono); font-size: 0.6875rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--ink-3); margin-bottom: 10px; }
           </style>
 
-          <div class="sg-item">
-            <p class="sg-label">alert-callout (NDA / warning)</p>
-            <div class="sg-demo"><div class="alert-callout alert-callout--warning" role="note"><svg class="alert-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div class="alert-callout__body"><p class="alert-callout__title">Confidentiality note</p><p>The program shown is fictional — the real brand, client, and design system are protected by NDA.</p></div></div></div>
+          <!-- Un demo por `type` del renderer (data-type = nombre del type en
+               data/content.js; lo valida scripts/styleguide-check.js) -->
+          <div class="sg-grid">
+
+          <div class="sg-item" id="cc-body" data-toc="body" data-type="body">
+            <p class="sg-label">body — párrafo de prosa (la narrativa del case)</p>
+            <div class="sg-demo"><p>Prosa que lleva la narrativa: primera persona, concreta y breve. Un claim por párrafo, seguido del cómo y la prueba (heading + body + gráfico).</p></div>
           </div>
 
-          <div class="sg-item">
-            <p class="sg-label">heading (h4) + CTA (.case-subcta)</p>
+          <div class="sg-item" id="cc-steps" data-toc="steps (bullet / numbered)" data-type="steps">
+            <p class="sg-label">steps — variant bullet ("label — desc" → h4+p) · variant numbered (contador colgante)</p>
+            <div class="sg-demo sg-case-prose"><ul><li><h4>Audit</h4><p>Relevamiento del flujo actual y sus puntos de fricción.</p></li><li><h4>Prototype</h4><p>Prototipo navegable para validar la hipótesis con usuarios.</p></li></ul><ol><li>Exportar los frames de Figma.</li><li>Correr el plugin sobre la selección.</li><li>Revisar el output en el navegador.</li></ol></div>
+          </div>
+
+          <div class="sg-item" id="cc-subheading" data-toc="subheading" data-type="subheading">
+            <p class="sg-label">subheading — agrupa con el body siguiente en lista h4+p (mismo render que steps bullet)</p>
+            <div class="sg-demo sg-case-prose"><ul><li><h4>Design tokens first</h4><p>Solo tokens existentes del design system, nunca valores sueltos.</p></li><li><h4>Real components only</h4><p>Si el componente no existe en el repo, no se inventa.</p></li></ul></div>
+          </div>
+
+          <div class="sg-item" id="cc-callout" data-toc="callout (note / warning)" data-type="callout">
+            <p class="sg-label">callout — variant note (default) · variant warning (NDA) → .alert-callout</p>
+            <div class="sg-demo"><div class="alert-callout alert-callout--note" role="note"><svg class="alert-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div class="alert-callout__body"><p>Context worth flagging without breaking the narrative flow.</p></div></div><div class="alert-callout alert-callout--warning" role="note" style="margin-top: 12px"><svg class="alert-callout__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg><div class="alert-callout__body"><p class="alert-callout__title">Confidentiality note</p><p>The program shown is fictional — the real brand, client, and design system are protected by NDA.</p></div></div></div>
+          </div>
+
+          <div class="sg-item" id="cc-heading" data-toc="heading (h4 / h5)" data-type="heading">
+            <p class="sg-label">heading — level 4 (.case-subhead) · level 5 = CTA (.case-subcta)</p>
             <div class="sg-demo"><h4 class="case-subhead">Layout and flows matched Figma at 100%</h4><h5 class="case-subcta">Expand and drag to compare — Figma vs Code</h5></div>
           </div>
 
-          <div class="sg-item">
-            <p class="sg-label">image-block — placeholder + caption centrado</p>
+          <div class="sg-item" id="cc-image" data-toc="image" data-type="image">
+            <p class="sg-label">image — placeholder (.image-block--empty) + caption centrado</p>
             <div class="sg-demo"><div class="image-block image-block--wide image-block--empty" role="img" aria-label="Image coming soon"><svg class="image-block__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg></div><figure class="image-block image-block--wide" style="margin-top:12px"><img src="assets/images/no-handoff/screen-app.webp" alt="" loading="lazy" /><figcaption class="image-block__caption">Caption centrado de ejemplo</figcaption></figure></div>
           </div>
 
-          <div class="sg-item">
+          <div class="sg-item" id="cc-video" data-toc="video" data-type="video">
             <p class="sg-label">video (autoplay · loop · muted · ⤢ expand a lightbox)</p>
             <div class="sg-demo"><figure class="demo-figure"><div class="image-block image-block--wide image-block--video"><video autoplay loop muted playsinline controls preload="metadata" aria-label="Demo video"><source src="assets/images/no-handoff/no-handoff-flow.webm" type="video/webm"><source src="assets/images/no-handoff/no-handoff-flow.mp4" type="video/mp4"></video><button class="image-block__expand" aria-label="Expand video" type="button">⤢</button></div><figcaption class="demo-figure__caption"><span class="media-label">App flow</span> — caption con label</figcaption></figure></div>
           </div>
 
-          <div class="sg-item">
+          <div class="sg-item" id="cc-video-canvas" data-toc="video canvas:dark">
             <p class="sg-label">video — "canvas":"dark" + "ratio":"portrait" (mockup mobile sobre escenario oscuro)</p>
             <div class="sg-demo"><figure class="demo-figure"><div class="image-block image-block--portrait image-block--video image-block--canvas-dark"><video autoplay loop muted playsinline preload="metadata" aria-label="Mobile mockup on dark canvas"><source src="assets/images/ecommerce/intervention-wireframes.webm" type="video/webm"><source src="assets/images/ecommerce/intervention-wireframes.mp4" type="video/mp4"></video><button class="image-block__expand" aria-label="Expand video" type="button">⤢</button></div><figcaption class="demo-figure__caption">canvas oscuro + encuadre portrait</figcaption></figure></div>
           </div>
 
-          <div class="sg-item">
+          <div class="sg-item" id="cc-image-phone" data-toc="image device:phone">
             <p class="sg-label">image — "device":"phone" (mockup mobile en bezel, escenario sigue el theme)</p>
             <div class="sg-demo"><figure class="device-figure"><div class="device-stage"><div class="device-phone"><img class="device-phone__screen" src="assets/images/ecommerce/wireframe-MidFi.png" alt="Mobile mockup in a phone bezel" loading="lazy" /></div></div><figcaption class="demo-figure__caption">mockup mobile en bezel</figcaption></figure></div>
           </div>
 
-          <div class="sg-item">
+          <div class="sg-item sg-item--full" id="cc-video-themed" data-toc="video themed">
             <p class="sg-label">video — "themed":true (2 variantes que el JS intercambia por tema; acá se muestran las dos)</p>
             <div class="sg-demo" style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
               <figure class="demo-figure"><div class="image-block image-block--auto image-block--video"><video autoplay loop muted playsinline preload="metadata" aria-label="Themed video, light variant"><source src="assets/images/figma-webp-export/lead-endorsement-light.webm" type="video/webm"><source src="assets/images/figma-webp-export/lead-endorsement-light.mp4" type="video/mp4"></video></div><figcaption class="demo-figure__caption">variante -light (stage --bg-card light)</figcaption></figure>
@@ -2756,37 +2771,49 @@
             </div>
           </div>
 
-          <div class="sg-item">
+          <div class="sg-item" id="cc-slider" data-toc="slider" data-type="slider">
             <p class="sg-label">slider — Figma↔Code wipe (arrastrar · expandir)</p>
             <div class="sg-demo"><figure class="slider-figure"><div class="cslider" style="--pos:50%"><img class="cslider__base" src="assets/images/no-handoff/compare-app-base.webp" alt="" loading="lazy" /><div class="cslider__top"><img src="assets/images/no-handoff/compare-figma-base.webp" alt="" loading="lazy" /></div><div class="cslider__divider"></div><span class="compare__tag compare__tag--figma cslider__tag cslider__tag--left">Figma</span><span class="compare__tag compare__tag--app cslider__tag cslider__tag--right">Code</span><button class="cslider__expand" aria-label="Expand" type="button">⤢</button><span class="cslider__hint">↔ Drag to compare</span><input class="cslider__range" type="range" min="0" max="100" value="50" aria-label="Drag to compare" /></div></figure></div>
           </div>
 
-          <div class="sg-item">
+          <div class="sg-item sg-item--full" id="cc-row" data-toc="row (2-up)" data-type="row">
             <p class="sg-label">row (.content-row) — 2-up responsive</p>
             <div class="sg-demo"><div class="content-row"><figure class="image-block image-block--wide"><img src="assets/images/no-handoff/compare-figma-base.webp" alt="" loading="lazy" /></figure><figure class="image-block image-block--wide"><img src="assets/images/no-handoff/compare-app-base.webp" alt="" loading="lazy" /></figure></div></div>
           </div>
 
-          <div class="sg-item">
-            <p class="sg-label">compare — side-by-side (legacy, no usado en el case)</p>
+          <div class="sg-item" id="cc-compare" data-toc="compare (legacy)" data-type="compare">
+            <p class="sg-label">compare — side-by-side (legacy, sin uso en cases actuales)</p>
             <div class="sg-demo"><figure class="compare-figure"><div class="compare"><div class="compare__cell"><span class="compare__tag compare__tag--figma">Figma</span><img src="assets/images/no-handoff/compare-figma-base.webp" alt="" loading="lazy" /></div><div class="compare__cell"><span class="compare__tag compare__tag--app">Code</span><img src="assets/images/no-handoff/compare-app-base.webp" alt="" loading="lazy" /></div></div></figure></div>
           </div>
 
-          <div class="sg-item">
-            <p class="sg-label">carousel — auto-rotate + dots/flechas (no usado en el case)</p>
+          <div class="sg-item" id="cc-carousel" data-toc="carousel" data-type="carousel">
+            <p class="sg-label">carousel — auto-rotate + dots/flechas (sin uso en cases actuales)</p>
             <div class="sg-demo"><figure class="carousel-figure"><div class="carousel" data-interval="4000"><div class="carousel__track"><figure class="carousel__slide is-active"><img src="assets/images/no-handoff/kitchensink.webp" alt="" loading="lazy" /></figure><figure class="carousel__slide"><img src="assets/images/no-handoff/screen-app.webp" alt="" loading="lazy" /></figure><figure class="carousel__slide"><img src="assets/images/no-handoff/compare-app-base.webp" alt="" loading="lazy" /></figure><button class="carousel__arrow carousel__arrow--prev" aria-label="Previous">‹</button><button class="carousel__arrow carousel__arrow--next" aria-label="Next">›</button></div><div class="carousel__dots"><button class="carousel__dot is-active"></button><button class="carousel__dot"></button><button class="carousel__dot"></button></div></div></figure></div>
           </div>
-          <div class="sg-item">
+          <div class="sg-item" id="cc-table" data-toc="table" data-type="table">
             <p class="sg-label">table — comparación (Before / After)</p>
             <div class="sg-demo"><figure class="case-table"><table><thead><tr><th>Before</th><th>After</th></tr></thead><tbody><tr><td>High cognitive load</td><td>Reduced input fields</td></tr><tr><td>Open-ended form, every detail by hand</td><td>Clearer hierarchy and guidance</td></tr><tr><td>No real-time communication channel</td><td>Integrated WhatsApp high-intent entry point</td></tr></tbody></table></figure></div>
           </div>
-          <div class="sg-item">
+          <div class="sg-item" id="cc-table-metrics" data-toc="table metrics">
             <p class="sg-label">table — variant "metrics" (valor a la derecha, mono)</p>
             <div class="sg-demo"><figure class="case-table case-table--metrics"><table><thead><tr><th>Metric</th><th>Result</th></tr></thead><tbody><tr><td>Q1 tire sales (vs. prior-year Q1)</td><td>+221%</td></tr><tr><td>User acquisition</td><td>+42.65%</td></tr><tr><td>WhatsApp contacts / month</td><td>+54</td></tr><tr><td>Mobile traffic</td><td>93%</td></tr></tbody></table></figure></div>
           </div>
-          <div class="sg-item">
+          <div class="sg-item" id="cc-quote" data-toc="quote" data-type="quote">
             <p class="sg-label">quote — testimonio (type "quote": text + attr → blockquote.case-quote)</p>
             <div class="sg-demo"><blockquote class="case-quote"><p>He listened to a problem our team was running into and created a plugin the UX team can immediately put to use.</p><cite>Product Design Lead</cite></blockquote></div>
           </div>
+
+          <div class="sg-item" id="cc-link" data-toc="link" data-type="link">
+            <p class="sg-label">link — .case-link (externo, abre en tab nueva)</p>
+            <div class="sg-demo"><p><a class="case-link" href="https://www.figma.com/community" target="_blank" rel="noopener noreferrer">Try the plugin in the Figma Community →</a></p></div>
+          </div>
+
+          <div class="sg-item" id="cc-gallery" data-toc="gallery" data-type="gallery">
+            <p class="sg-label">gallery — imágenes apiladas (output crudo del renderer, sin clase propia)</p>
+            <div class="sg-demo"><div><img src="assets/images/no-handoff/kitchensink.webp" alt="" loading="lazy" /><img src="assets/images/no-handoff/screen-app.webp" alt="" loading="lazy" style="margin-top: 12px" /></div></div>
+          </div>
+
+          </div><!-- /.sg-grid -->
         </section>
         <script>
           // Init de los componentes interactivos del styleguide (slider + carousel)
@@ -2851,53 +2878,55 @@
             font-family: var(--font-mono);
           "
         >
-          Generado el 10 de abril de 2026
-        </p>
-      </div>
-      <!-- Tip: cómo reutilizar los tokens en otros archivos del proyecto -->
-      <div
-        style="
-          max-width: 1200px;
-          margin: 16px auto 0;
-          padding: 14px 18px;
-          background: var(--accent-pale);
-          border-left: 3px solid var(--accent);
-          border-radius: 0 6px 6px 0;
-        "
-      >
-        <p style="font-size: 0.8125rem; color: var(--ink-2)">
-          <strong>Tip:</strong>
-          Copiá el bloque
-          <code
-            style="
-              font-family: var(--font-mono);
-              font-size: 0.75rem;
-              background: rgba(200, 96, 42, 0.12);
-              padding: 2px 5px;
-              border-radius: 3px;
-            "
-          >
-            tailwind.config
-          </code>
-          del
-          <code
-            style="
-              font-family: var(--font-mono);
-              font-size: 0.75rem;
-              background: rgba(200, 96, 42, 0.12);
-              padding: 2px 5px;
-              border-radius: 3px;
-            "
-          >
-            &lt;script&gt;
-          </code>
-          de este archivo a cualquier página del proyecto para tener todos los
-          tokens como clases de Tailwind.
+          Fuente de la verdad: styles/*.css · Validador: scripts/styleguide-check.js
         </p>
       </div>
     </footer>
 
     <script>
+      // TOC generada del DOM — no puede driftear respecto del contenido.
+      // Nivel 1: cada section[id] (título = su h2). Nivel 2: cada demo con
+      // [data-toc] + id dentro de la sección. Para que un componente nuevo
+      // aparezca en la TOC alcanza con darle id + data-toc a su demo.
+      const tocList = document.getElementById("toc-list");
+      const mobileNavEl = document.getElementById("mobile-nav");
+      document.querySelectorAll("main > section[id]").forEach((sec) => {
+        const h2 = sec.querySelector("h2");
+        const title = h2 ? h2.textContent.trim() : sec.id;
+
+        const li = document.createElement("li");
+        const a = document.createElement("a");
+        a.href = "#" + sec.id;
+        a.className = "nav-link";
+        a.textContent = title;
+        li.appendChild(a);
+
+        const subs = sec.querySelectorAll("[data-toc][id]");
+        if (subs.length) {
+          const ul = document.createElement("ul");
+          ul.style.cssText = "list-style: none; padding: 0; margin: 0 0 6px";
+          subs.forEach((el) => {
+            const sli = document.createElement("li");
+            const sa = document.createElement("a");
+            sa.href = "#" + el.id;
+            sa.className = "nav-link nav-link--sub";
+            sa.textContent = el.dataset.toc;
+            sli.appendChild(sa);
+            ul.appendChild(sli);
+          });
+          li.appendChild(ul);
+        }
+        tocList.appendChild(li);
+
+        // Pill mobile (solo nivel sección)
+        const pill = document.createElement("a");
+        pill.href = "#" + sec.id;
+        pill.textContent = title;
+        pill.style.cssText =
+          "padding: 5px 12px; background: var(--bg-alt); border-radius: 6px; font-size: 0.8125rem; color: var(--ink-2); text-decoration: none";
+        mobileNavEl.appendChild(pill);
+      });
+
       // Mostrar sidebar en desktop, pills en mobile
       function updateNav() {
         const sidebar = document.getElementById("sidebar");
@@ -2916,7 +2945,7 @@
       // IntersectionObserver: resalta el link activo al scrollear
       // Más eficiente que un scroll event listener clásico
       const sections = document.querySelectorAll("section[id]");
-      const navLinks = document.querySelectorAll("#sidebar a");
+      const navLinks = document.querySelectorAll("#sidebar > nav > ul > li > a.nav-link");
 
       const observer = new IntersectionObserver(
         (entries) => {

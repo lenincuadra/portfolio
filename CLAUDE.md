@@ -8,7 +8,12 @@ Mensajes de commit **en español** (no traducir al inglés), matching el histori
 El styleguide (`styleguide.html`) debe mostrar siempre los componentes reales del proyecto.
 - Las clases, tokens y estilos que se demuestran en el styleguide deben coincidir exactamente con los que están definidos en los archivos CSS (`styles/`).
 - Si hay discrepancia entre el styleguide y el CSS real, corregir el styleguide para que refleje lo que existe, no al revés.
-- Nunca duplicar estilos en el `<style>` inline del styleguide si ya están definidos en los archivos CSS.
+- Nunca duplicar estilos en el `<style>` inline del styleguide si ya están definidos en los archivos CSS (el `<style>` propio es solo chrome de la página: sidebar, grillas de demos, etiquetas).
+- **Cobertura**: todo componente nuevo o variante visual nueva se agrega como demo al crearlo. Los `type` del renderer case-v3 van en la sección `#case-components`, cada uno marcado con `data-type="<type>"` (el validador exige un demo por type).
+- **TOC**: la sidebar y las pills mobile se **generan del DOM** (nivel 1 = cada `section[id]`, nivel 2 = cada demo con `id` + `data-toc`). Nunca editar la TOC a mano: para que un componente aparezca, darle `id` + `data-toc` a su demo.
+- **Una sola página, sin ocultar nada**: todo se muestra a la vez (nada de tabs ni accordions). El anti-scroll es densidad (grillas `auto-fit` como `.sg-grid`; demos anchos con `.sg-item--full`) + la TOC por componente para saltar directo.
+- Los demos de `steps`/`subheading` usan el co-scope `.sg-case-prose` (las reglas viven en `styles/case.css`, compartidas con `#case-v3-content` — una sola fuente).
+- Validador: **`node scripts/styleguide-check.js`** (corre en el pre-commit): clases usadas ↔ definidas en `styles/`, sin duplicados en el `<style>` inline, un demo por `type` del renderer, `id`+`data-toc` en cada demo. Hooks sin CSS propio (ej. `slider-figure`) van en su `ALLOW` con comentario.
 
 ## Case studies (template v3)
 

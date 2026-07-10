@@ -1,7 +1,8 @@
 #!/bin/sh
 # Pre-commit: bloquea el commit si se rompe una invariante verificable del sitio.
 # Chequeos: contraste WCAG AA + lint estático de a11y (docs/a11y.md)
-# + sync de sitemap/robots/llms.txt con data/content.js (docs/seo.md).
+# + sync de sitemap/robots/llms.txt con data/content.js (docs/seo.md)
+# + styleguide en sync con styles/*.css y el renderer case-v3 (CLAUDE.md § Styleguide).
 # Setup (una vez por clone): git config core.hooksPath .githooks
 # Nota: valida el working tree (lo que está en disco, no lo stageado).
 
@@ -32,6 +33,8 @@ run_check "SEO/GEO desincronizado: sitemap/robots/llms.txt no reflejan data/cont
   node "$root/scripts/seo-build.js" --check
 run_check "case study inválido: estructura/EN-ES/assets/cases.json (docs/case-pipeline.md)" \
   node "$root/scripts/case-check.js"
+run_check "styleguide desincronizado: demos/TOC/clases no reflejan styles ni el renderer (CLAUDE.md § Styleguide)" \
+  node "$root/scripts/styleguide-check.js"
 
 [ "$fail" -eq 0 ] && exit 0
 echo "Corregir y volver a commitear. Reglas: docs/a11y.md y docs/seo.md." >&2
