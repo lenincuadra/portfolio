@@ -10,6 +10,14 @@ Format based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ### Added
 - **Destino `github` en el tracking** — el CV suma un link trackeado al perfil de GitHub: sufijo `G` (`ref=<código>G`), ruteado vía `go.html?dest=github` → `github.com/lenincuadra`. Parsers actualizados (`go.html`, `tracker.js`, router de links cortos en `404.html`: `/r/<código>G`) y contrato en `link-spec.json`.
 
+### Changed
+- **Routing de cases unificado a v3** — `caseUrl` (`js/app.js`), `navCaseUrl` (`cases/case-v3.html`) y `caseUrl` de `scripts/seo-build.js` mandan todos los cases a `case-v3.html`. El campo `template: "v3"` en `data/content.js` queda solo como marcador que lee `case-check`, ya no como rama de routing.
+
+### Removed
+- **Plantillas legacy v1 y v2 eliminadas por completo** — `cases/case-v2.html`, `cases/case.html` (v1) y sus 3 stubs de redirect (`ecommerce-conversion`/`fintech-ecosystem`/`telecom-legacy-refactor`.html), más `content/case-schema.yml` (schema v2) y `CASE-STUDY-GUIDE.md` (guía v2 obsoleta). Ningún case los usaba: los 6 son v3.
+- **Código muerto de v1 en `js/app.js`** — `renderCase()` y sus helpers exclusivos (`buildTOC`, `initScrollSpy`, `showCaseNotFound`, `initFactsBar`, `buildProcessStep`, `renderCellValue`, `buildMetricCard`, `getCaseSlug`): 936 → 582 líneas.
+- **CSS de layouts v2 en `styles/case.css`** — `.img-container`, `.img-clip`, `.overview-layout`, `.gallery-grid` (sin uso en v3). Se conservó `.case-content img` y el bloque `.case-nav` (compartidos con v3). Convenciones de assets válidas migradas a `docs/case-v3-guide.md` §5.
+
 ---
 
 ## [0.10.0] — 2026-04-16

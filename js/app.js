@@ -24,8 +24,7 @@
 
   // --- Case URL helper --------------------------------------------------------
   function caseUrl(c) {
-    const tpl = c.template === 'v3' ? 'case-v3' : 'case-v2';
-    return `cases/${tpl}.html?slug=${c.slug}`;
+    return `cases/case-v3.html?slug=${c.slug}`;
   }
 
   // --- Language helpers -------------------------------------------------------
@@ -65,33 +64,6 @@
     document.querySelectorAll(selector).forEach(el => {
       if (value != null) el.setAttribute(attr, value);
     });
-  }
-
-  function renderCellValue(id, value) {
-    const el = document.getElementById(id);
-    if (!el || value == null) return;
-    const parts = value.split(' · ').filter(Boolean);
-    if (parts.length > 1) {
-      el.innerHTML = '<ul class="quick-scan__list">' +
-        parts.map(p => `<li>${p}</li>`).join('') + '</ul>';
-    } else {
-      el.textContent = value;
-    }
-  }
-
-  function buildProcessStep(index, title, body, phase) {
-    const num = String(index + 1).padStart(2, '0');
-    const phaseHtml = phase ? `<p class="process-step__phase">${phase}</p>` : '';
-    const titleHtml = title ? `<h3 class="process-step__title">${title}</h3>` : '';
-    return `
-      <div class="process-step reveal">
-        <span class="process-step__number" aria-hidden="true">${num}</span>
-        <div class="process-step__content">
-          ${phaseHtml}
-          ${titleHtml}
-          <p class="process-step__body">${body}</p>
-        </div>
-      </div>`;
   }
 
   // --- Site-wide elements (header/footer on every page) ----------------------
@@ -202,8 +174,6 @@
         renderSiteWide(content);
         if (isIndexPage()) {
           renderIndex(content);
-        } else {
-          renderCase(content);
         }
       });
     });
@@ -213,16 +183,6 @@
 
   function buildTags(tags) {
     return tags.map(t => `<span class="badge badge--ghost">${t}</span>`).join('');
-  }
-
-  function buildMetricCard(item, i) {
-    const delay = i > 0 ? ` reveal-delay-${i}` : '';
-    return `
-      <div class="metric-card reveal${delay}">
-        <p class="metric-card__value">${item.value}</p>
-        <p class="metric-card__label">${item.label}</p>
-        <p class="metric-card__note">${item.note}</p>
-      </div>`;
   }
 
   // --- INDEX PAGE ------------------------------------------------------------
@@ -439,297 +399,6 @@
     stopAutoplayVideos();
   }
 
-  // --- CASE PAGE -------------------------------------------------------------
-
-  function getCaseSlug() {
-    return new URLSearchParams(window.location.search).get('slug');
-  }
-
-  function renderCase(content) {
-    const slug = getCaseSlug();
-    if (!slug) { showCaseNotFound(); return; }
-
-    const caseData = content.cases.find(c => c.slug === slug);
-    if (!caseData) { showCaseNotFound(); return; }
-
-    // Section labels (i18n)
-    const lang = getLang();
-    document.querySelectorAll('.section__label[data-label-es]').forEach(el => {
-      el.textContent = (lang === 'es') ? el.dataset.labelEs : (el.dataset.labelEn || el.textContent);
-    });
-
-    // Meta
-    document.title = caseData.meta.title;
-    const metaDesc = document.querySelector('meta[name="description"]');
-    if (metaDesc) metaDesc.setAttribute('content', caseData.meta.description);
-
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    const ogDesc = document.querySelector('meta[property="og:description"]');
-    const twTitle = document.querySelector('meta[name="twitter:title"]');
-    const twDesc = document.querySelector('meta[name="twitter:description"]');
-    if (ogTitle) ogTitle.setAttribute('content', caseData.meta.title);
-    if (ogDesc) ogDesc.setAttribute('content', caseData.meta.description);
-    if (twTitle) twTitle.setAttribute('content', caseData.meta.title);
-    if (twDesc) twDesc.setAttribute('content', caseData.meta.description);
-
-    // Hero
-    const heroTags = document.getElementById('case-hero-tags');
-    if (heroTags) heroTags.innerHTML = caseData.hero.tags.map(t => `<span class="case-hero__tag">${t}</span>`).join('');
-    setText('case-title',   caseData.hero.title);
-    setText('case-summary', caseData.hero.summary);
-    if (caseData.images) {
-      setAttr('case-hero-img', 'src', resolveAssetUrl(caseData.images.hero));
-      setAttr('case-hero-img', 'alt', caseData.hero.title);
-    }
-
-    // Quick Scan
-    setText('qs-role',     caseData.quickScan.role);
-    renderCellValue('qs-team',     caseData.quickScan.team);
-    setText('qs-timeline', caseData.quickScan.timeline);
-    renderCellValue('qs-tools',    caseData.quickScan.tools);
-    // Compact bar (in header)
-    const compactRole = document.getElementById('qs-compact-role');
-    if (compactRole) {
-      const parts = caseData.quickScan.role.split(' — ').filter(Boolean);
-      if (parts.length > 1) {
-        compactRole.innerHTML = '<ul class="quick-scan__list">' + parts.map(p => `<li>${p}</li>`).join('') + '</ul>';
-      } else {
-        compactRole.textContent = caseData.quickScan.role;
-      }
-    }
-    setText('qs-compact-title', caseData.hero.title);
-
-    // Overview
-    setText('overview-heading', caseData.overview.subheading);
-
-    const overviewSteps = document.getElementById('overview-steps');
-    if (overviewSteps) {
-      overviewSteps.innerHTML = [caseData.overview.body1, caseData.overview.body2]
-        .map((body, i) => buildProcessStep(i, null, body)).join('');
-    }
-    if (caseData.images && caseData.images.overviewImage) {
-      const ovImgWrap = document.getElementById('overview-img-wrap');
-      const ovImg     = document.getElementById('overview-img');
-      if (ovImgWrap && ovImg) {
-        ovImg.src = resolveAssetUrl(caseData.images.overviewImage);
-        ovImg.alt = caseData.overview.subheading || caseData.hero.title + ' — overview';
-        ovImgWrap.style.display = '';
-      }
-    }
-
-    // Problem
-    setText('problem-heading',   caseData.problem.heading);
-    const problemSteps = document.getElementById('problem-steps');
-    if (problemSteps) {
-      problemSteps.innerHTML = buildProcessStep(0, null, caseData.problem.body);
-    }
-    setText('problem-quote',     '"' + caseData.problem.quote + '"');
-    setText('problem-quote-attr', caseData.problem.quoteAttr);
-
-    // Constraints
-    setText('constraints-heading', caseData.constraints.heading);
-    const constraintsGrid = document.getElementById('constraints-grid');
-    if (constraintsGrid) {
-      constraintsGrid.innerHTML = caseData.constraints.items.map(buildMetricCard).join('');
-    }
-
-    // Role
-    setText('role-heading', caseData.role.subheading);
-    const roleSteps = document.getElementById('role-steps');
-    if (roleSteps) {
-      roleSteps.innerHTML = [caseData.role.body1, caseData.role.body2]
-        .map((body, i) => buildProcessStep(i, null, body)).join('');
-    }
-
-    // Process
-    setText('process-heading', caseData.process.heading);
-    const stepsEl = document.getElementById('process-steps');
-    if (stepsEl) {
-      stepsEl.innerHTML = caseData.process.steps.map((step, i) => `
-        <div class="process-step reveal">
-          <span class="process-step__number" aria-hidden="true">${String(i + 1).padStart(2, '0')}</span>
-          <div class="process-step__content">
-            <p class="process-step__phase">${step.phase}</p>
-            <h3 class="process-step__title">${step.title}</h3>
-            <p class="process-step__body">${step.body}</p>
-          </div>
-        </div>`).join('');
-    }
-
-    // Process images
-    if (caseData.images) {
-      setAttr('process-img1', 'src', resolveAssetUrl(caseData.images.process1));
-      setAttr('process-img1', 'alt', caseData.hero.title + ' — design process');
-      setAttr('process-img2', 'src', resolveAssetUrl(caseData.images.process2));
-      setAttr('process-img2', 'alt', caseData.hero.title + ' — design process');
-    }
-
-    // Demos (videos)
-    if (caseData.images && caseData.images.demos) {
-      const demosGrid = document.getElementById('demos-grid');
-      if (demosGrid) {
-        demosGrid.innerHTML = caseData.images.demos.map((d, i) => `
-          <figure class="demo-figure reveal${i > 0 ? ' reveal-delay-' + i : ''}">
-            <div class="image-block image-block--wide">
-              <video
-                src="${resolveAssetUrl(d.src)}"
-                ${d.poster ? `poster="${resolveAssetUrl(d.poster)}"` : ''}
-                autoplay loop muted playsinline controls
-                aria-label="${d.label}"
-              ></video>
-            </div>
-            ${d.label ? `<figcaption class="demo-figure__caption">${d.label}</figcaption>` : ''}
-          </figure>`).join('');
-        // Observe new reveal elements
-        const obs = new IntersectionObserver(entries => {
-          entries.forEach(e => {
-            if (e.isIntersecting) { e.target.classList.add('is-visible'); obs.unobserve(e.target); }
-          });
-        }, { threshold: 0.05 });
-        demosGrid.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-      }
-    }
-
-    // Key Decisions
-    setText('decisions-heading', caseData.decisions.heading);
-    const decisionsEl = document.getElementById('decisions-list');
-    if (decisionsEl) {
-      decisionsEl.innerHTML = caseData.decisions.items
-        .map((d, i) => buildProcessStep(i, d.title, d.body)).join('');
-    }
-
-    // Decisions image
-    if (caseData.images) {
-      setAttr('decisions-img', 'src', resolveAssetUrl(caseData.images.decisions));
-      setAttr('decisions-img', 'alt', caseData.decisions.heading || caseData.hero.title + ' — key design decisions');
-    }
-
-    // Impact
-    setText('impact-heading',    caseData.impact.heading);
-    setText('impact-statement',  caseData.impact.statement);
-    const impactGrid = document.getElementById('impact-grid');
-    if (impactGrid) {
-      impactGrid.innerHTML = caseData.impact.metrics.map(buildMetricCard).join('');
-    }
-
-    // Learnings
-    setText('learnings-heading', caseData.learnings.heading);
-    const learningsEl = document.getElementById('learnings-list');
-    if (learningsEl) {
-      learningsEl.innerHTML = caseData.learnings.items
-        .map((item, i) => buildProcessStep(i, null, item)).join('');
-    }
-
-    // Case Navigation
-    const prevLink = document.getElementById('case-nav-prev');
-    const nextLink = document.getElementById('case-nav-next');
-    if (prevLink && caseData.nav.prev) {
-      prevLink.href = 'case.html?slug=' + caseData.nav.prev.slug;
-      setText('case-nav-prev-title', caseData.nav.prev.title);
-    }
-    if (nextLink && caseData.nav.next) {
-      nextLink.href = 'case.html?slug=' + caseData.nav.next.slug;
-      setText('case-nav-next-title', caseData.nav.next.title);
-    }
-
-    stopAutoplayVideos();
-
-    // Build TOC from data-toc-label sections
-    buildTOC(getLang());
-
-    // Re-observe reveal elements
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting) { e.target.classList.add('is-visible'); observer.unobserve(e.target); }
-      });
-    }, { threshold: 0.08 });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  }
-
-  // --- Table of Contents ----------------------------------------------------
-
-  function buildTOC(lang) {
-    const sections = document.querySelectorAll('[data-toc-label]');
-    if (!sections.length) return;
-
-    const nav = document.getElementById('toc-nav');
-    if (!nav) return;
-
-    const title = document.createElement('span');
-    title.className = 'toc-nav__title';
-    title.textContent = lang === 'es' ? 'Tabla de Contenido' : 'Table of Contents';
-
-    const list = document.createElement('ul');
-    list.className = 'toc-nav__list';
-
-    sections.forEach(section => {
-      const li = document.createElement('li');
-      const a  = document.createElement('a');
-      a.className         = 'toc-nav__link';
-      a.href              = '#' + section.id;
-      a.dataset.tocTarget = section.id;
-
-      const labelSpan = document.createElement('span');
-      labelSpan.className   = 'toc-nav__link-label';
-      labelSpan.textContent = (lang === 'es' && section.dataset.tocLabelEs) ? section.dataset.tocLabelEs : section.dataset.tocLabel;
-      a.appendChild(labelSpan);
-
-      const h2 = section.querySelector('h2');
-      if (h2) {
-        const subtitleSpan = document.createElement('span');
-        subtitleSpan.className   = 'toc-nav__link-subtitle';
-        subtitleSpan.textContent = h2.textContent.trim();
-        a.appendChild(subtitleSpan);
-      }
-
-      a.addEventListener('click', e => {
-        e.preventDefault();
-        const target = document.getElementById(a.dataset.tocTarget);
-        if (!target) return;
-        const header = document.querySelector('.site-header');
-        const offset = header ? header.offsetHeight + 16 : 80;
-        const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({ top, behavior: 'smooth' });
-        history.pushState(null, '', '#' + a.dataset.tocTarget);
-      });
-
-      li.appendChild(a);
-      list.appendChild(li);
-    });
-
-    nav.appendChild(title);
-    nav.appendChild(list);
-
-    initScrollSpy(sections);
-  }
-
-  function initScrollSpy(sections) {
-    let currentId = null;
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const newId = entry.target.id;
-        if (newId === currentId) return;
-        currentId = newId;
-        document.querySelectorAll('.toc-nav__link').forEach(l => l.classList.remove('is-active'));
-        const active = document.querySelector(`.toc-nav__link[data-toc-target="${newId}"]`);
-        if (active) active.classList.add('is-active');
-      });
-    }, {
-      // Section is "active" when it enters the top 30% of the viewport
-      rootMargin: '-15% 0px -65% 0px',
-      threshold: 0,
-    });
-
-    sections.forEach(s => observer.observe(s));
-  }
-
-  function showCaseNotFound() {
-    const main = document.getElementById('main-content');
-    if (main) main.innerHTML = '<div class="container" style="padding:8rem 0;text-align:center"><p>Case study not found.</p><a href="../index.html">← Back to work</a></div>';
-  }
-
   // --- Theme & mobile nav (shared) -------------------------------------------
 
   function updateFavicon(isDark) {
@@ -836,8 +505,7 @@
 
   // --- Boot ------------------------------------------------------------------
 
-  // Resolves root-relative asset paths (e.g. "assets/cv/file.pdf")
-  // to work correctly from both index.html and cases/case.html
+  // Resolves root-relative asset paths (e.g. "assets/cv/file.pdf") from index.html.
   function buildVideoEl(videoSrc, coverSrc) {
     const src    = resolveAssetUrl(videoSrc);
     const poster = resolveAssetUrl(coverSrc);
@@ -887,24 +555,6 @@
     return path.endsWith('index.html') || path.endsWith('/') || !path.includes('/cases/');
   }
 
-  function initFactsBar() {
-    const bar     = document.getElementById('case-facts-bar');
-    const header  = document.querySelector('.site-header');
-    const compact = document.getElementById('site-header-compact');
-    if (!bar || !header) return;
-    const hero = document.querySelector('.case-hero');
-    if (!hero) return;
-
-    const observer = new IntersectionObserver(([entry]) => {
-      const scrolled = !entry.isIntersecting;
-      bar.classList.toggle('quick-scan--compact', scrolled);
-      header.classList.toggle('site-header--case-scrolled', scrolled);
-      if (compact) compact.setAttribute('aria-hidden', scrolled ? 'false' : 'true');
-    }, { threshold: 0, rootMargin: '-64px 0px 0px 0px' });
-
-    observer.observe(hero);
-  }
-
   function init() {
     initTheme();
     initMobileNav();
@@ -919,9 +569,6 @@
     if (isIndexPage()) {
       renderIndex(content);
       initIndexNavSpy();
-    } else {
-      renderCase(content);
-      initFactsBar();
     }
   }
 

@@ -17,7 +17,6 @@ El portfolio se opera como producto: **subir un case nuevo = dar contexto y asse
 
 - **Contexto**: notas crudas del caso en `content/new/<nn>_<slug>_case.md` (formato libre: qué pasó, rol, decisiones, números, quotes). Es la materia prima de la redacción.
 - **Assets**: `assets/images/<slug>/` — imágenes `.webp`, video `.webm` + `.mp4` (mismo nombre), posters. Convenciones de media theme-aware: `docs/design.md`. Fuentes crudas con datos sensibles (NDA) quedan fuera de git (`.gitignore`).
-- (`content/case-schema.yml` es el flujo v2 **obsoleto**; no usarlo.)
 
 ### 2. Autoría (humano o IA, indistinto para el pipeline)
 

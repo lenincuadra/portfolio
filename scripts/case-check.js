@@ -92,7 +92,7 @@ for (const [i, cEn] of data.en.cases.entries()) {
   if (onlySlug && cEn.slug !== onlySlug) continue;
   const cEs = data.es.cases[i];
   const id = cEn.slug;
-  if (cEn.template !== 'v3') continue; // v2 legacy: sin sections que validar
+  if (cEn.template !== 'v3') continue; // guard: solo cases con marcador v3 tienen sections
 
   const sEn = cEn.sections || [], sEs = cEs?.sections || [];
   if (sEn.length !== sEs.length) { bad(`${id}: ${sEn.length} secciones EN vs ${sEs.length} ES`); structFails++; continue; }

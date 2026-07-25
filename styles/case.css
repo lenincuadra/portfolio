@@ -1051,59 +1051,9 @@
   outline-offset: 2px;
 }
 
-/* ---- IMAGE CONTAINERS (case-v2 layouts) ---- */
+/* ---- CASE CONTENT IMAGES ---- */
 .case-content img {
   margin-inline: auto;
-}
-.img-container {
-  border-radius: var(--r-lg);
-  background: var(--surface);
-  padding: var(--sp-2);
-  min-width: 0;
-  overflow: hidden;
-}
-.img-clip {
-  border-radius: var(--r-md);
-  overflow: hidden;
-  line-height: 0;
-  max-height: 432px;
-}
-.img-clip img {
-  width: 100%;
-  height: auto;
-  max-height: 432px;
-  object-fit: contain;
-  display: block;
-  margin: 0;
-}
-.overview-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--col-gap);
-  align-items: start;
-}
-.overview-layout img {
-  margin-top: 0;
-  width: 100%;
-}
-@media (max-width: 768px) {
-  .overview-layout {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ---- GALLERY GRID ---- */
-.gallery-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-4);
-  margin-top: var(--sp-6);
-  align-items: start;
-}
-@media (max-width: 768px) {
-  .gallery-grid {
-    grid-template-columns: 1fr;
-  }
 }
 
 /* ---- CASE QUOTE ---- */
@@ -1150,7 +1100,7 @@
 }
 .case-quote cite::before { content: "— "; }
 
-/* ---- CASE NAVIGATION (case-v2 variant) ---- */
+/* ---- CASE NAVIGATION ---- */
 .case-nav {
   border-top: 1px solid var(--border);
 }

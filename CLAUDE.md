@@ -17,9 +17,9 @@ El styleguide (`styleguide.html`) debe mostrar siempre los componentes reales de
 
 ## Case studies (template v3)
 
-Los cases con `"template": "v3"` en `data/content.js` se renderizan con `cases/case-v3.html`; los que no, caen a `case-v2` (routing en `js/app.js`). El contenido es bilingüe (el mismo objeto existe en `en` y `es`, alineado por índice; el renderer usa `t(en, es)`).
+Todos los cases se renderizan con `cases/case-v3.html` (el routing en `js/app.js` manda todo a `case-v3`; las plantillas legacy `case-v2`/`case.html` fueron eliminadas). El campo `"template": "v3"` de `data/content.js` queda como marcador que lee `case-check`. El contenido es bilingüe (el mismo objeto existe en `en` y `es`, alineado por índice; el renderer usa `t(en, es)`).
 
-**Para crear o migrar un case v3 de punta a punta** (estructura del objeto, todos los `type` con sus campos derivados del renderer, validación sin navegador y checklist): **`docs/case-v3-guide.md`** — empezá por ahí. (`CASE-STUDY-GUIDE.md` en la raíz es el flujo v2 obsoleto.) El flujo completo input→deploy (el funnel, con qué es script y qué es opcionalmente IA): **`docs/case-pipeline.md`**. Validador: `node scripts/case-check.js <slug> --strict` (el pre-commit hook corre la versión no-strict en cada commit).
+**Para crear o migrar un case v3 de punta a punta** (estructura del objeto, todos los `type` con sus campos derivados del renderer, validación sin navegador y checklist): **`docs/case-v3-guide.md`** — empezá por ahí. El flujo completo input→deploy (el funnel, con qué es script y qué es opcionalmente IA): **`docs/case-pipeline.md`**. Validador: `node scripts/case-check.js <slug> --strict` (el pre-commit hook corre la versión no-strict en cada commit).
 
 ### La TOC es el resumen del caso (principio clave)
 

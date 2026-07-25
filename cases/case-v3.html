@@ -645,8 +645,7 @@
       // con un link personalizado navega en su orden de relevancia.
       // Wrap-around; títulos bilingües desde card.title (data-en/data-es).
       function navCaseUrl(slug) {
-        const target = (PORTFOLIO_DATA.en.cases || []).find(x => x.slug === slug);
-        return (target?.template === 'v3' ? 'case-v3' : 'case-v2') + '.html?slug=' + slug;
+        return 'case-v3.html?slug=' + slug;
       }
 
       (function buildCaseNav() {

@@ -10,7 +10,7 @@
 //
 // POR QUÉ ASÍ (ver docs/seo.md):
 //   · sitemap.xml: URLs absolutas, replica el routing real de js/app.js
-//     (template v3 → case-v3.html, si no case-v2.html).
+//     (todos los cases → case-v3.html).
 //   · llms.txt (GEO): los crawlers de IA no ejecutan JS, así que el contenido
 //     de los cases (client-side) les es invisible. Este archivo les da la
 //     narrativa: por case, título + meta.description + el arco de h3 de sus
@@ -39,7 +39,7 @@ const siteDescription = (read('index.html').match(
 ) || [, ''])[1].replace(/\s+/g, ' ').trim();
 
 // Mismo routing que caseUrl() en js/app.js
-const caseUrl = (c) => `${BASE}cases/case-${c.template === 'v3' ? 'v3' : 'v2'}.html?slug=${c.slug}`;
+const caseUrl = (c) => `${BASE}cases/case-v3.html?slug=${c.slug}`;
 const xmlEscape = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
 // --- sitemap.xml --------------------------------------------------------------

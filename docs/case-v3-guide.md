@@ -7,13 +7,11 @@ Docs hermanos (este los referencia, no los repite):
 - **Decisiones visuales / tokens / espaciado del template**: `docs/design.md`.
 - **El principio de la TOC como resumen**: `CLAUDE.md` (sección Case studies).
 
-> ⚠️ `CASE-STUDY-GUIDE.md` (raíz) y `content/case-schema.yml` son del flujo **v2** (obsoleto): un HTML por caso + YAML aplicado a mano. **No los sigas para v3.**
-
 ---
 
 ## El modelo (importante)
 
-- Un case v3 **no es un archivo HTML**. Es **un objeto JS** que se agrega a `data/content.js`. El renderer único `cases/case-v3.html` lo pinta. El routing está en `js/app.js`: `"template": "v3"` → `case-v3`, si no → `case-v2`.
+- Un case v3 **no es un archivo HTML**. Es **un objeto JS** que se agrega a `data/content.js`. El renderer único `cases/case-v3.html` lo pinta; el routing en `js/app.js` (`caseUrl`) manda **todos** los cases a `case-v3.html`. `"template": "v3"` sigue en cada objeto como marcador (lo lee `case-check` para saber qué validar), no como una rama de routing.
 - El contenido es **bilingüe por duplicación**: el **mismo objeto** existe dos veces, en `PORTFOLIO_DATA.en.cases` y en `PORTFOLIO_DATA.es.cases`, **alineado por índice**. El renderer combina ambos con `t(en, es)`.
 - Deep link a un caso: `cases/case-v3.html?slug=<slug>`.
 
@@ -124,7 +122,7 @@ Romper la alineación por índice es el error más común y el renderer no lo av
 - Video: **`.webm` + `.mp4`** (mismo nombre). El renderer referencia el `.webm` y deriva el `.mp4` como fallback.
 - Mobile: `device: "phone"` (bezel) para un mockup.
 - **Nunca hornear un fondo de un solo tema** dentro de un video/imagen: el fondo de media es theme-aware (`--bg-card`). **Para un crossfade theme-aware entre imágenes** usá el `carousel` (simple) o un **video `themed`** (`"themed": true`: 2 variantes `-light`/`-dark` que el JS intercambia por tema). Convención de nombres y excepción (`canvas:"dark"`): `docs/design.md`.
-- Convenciones de tamaño/formato e ideas de naming: `CASE-STUDY-GUIDE.md` §Imágenes sigue valiendo (es lo único de ese doc que no es v2-específico).
+- Formato: **WebP** para imágenes/screenshots de UI; animaciones y demos van como **video** (`.webm`+`.mp4`), no GIF. Exportar a 2x para pantallas retina cuando se pueda. El tamaño de display lo controla el template (`ratio` del `type` `image`: wide/square/portrait/auto), no un max hardcodeado.
 
 ---
 

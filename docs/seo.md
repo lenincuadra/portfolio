@@ -18,7 +18,7 @@ node scripts/seo-build.js --check  # falla si están desincronizados (lo corre e
 
 Sin dependencias. Lee `data/content.js` (la misma fuente que renderiza el sitio) y la meta description de `index.html`, y genera en la raíz:
 
-- **`sitemap.xml`** — URLs absolutas; replica el routing real de `js/app.js` (`template: "v3"` → `case-v3.html`, si no `case-v2.html`). Agregar/renombrar/migrar un case actualiza la sitemap con solo re-correr el script.
+- **`sitemap.xml`** — URLs absolutas; replica el routing real de `js/app.js` (todos los cases → `case-v3.html`). Agregar/renombrar/migrar un case actualiza la sitemap con solo re-correr el script.
 - **`robots.txt`** — allow general + puntero absoluto a la sitemap y a `llms.txt`.
 - **`llms.txt`** — el resumen del sitio para modelos de IA: posicionamiento, contacto, y por case: título, link, `meta.description` y el **arco narrativo** (los `h3` de sus secciones unidos con `→`). Esto reaprovecha el principio del template ("la TOC es el resumen del caso", ver `CLAUDE.md`): si los `h3` están bien escritos, `llms.txt` cuenta cada caso completo sin JS. Escribir buenos `h3` ahora también es GEO.
 - **`link-spec.json`** — el contrato para **cbuilder** (la app externa que genera los CVs con links trackeados): base URL, formato del código opaco, templates de links (`{base}go.html?ref={code}P&focus={focus}`) y perfiles de personalización disponibles (desde `data/profiles.js`). cbuilder lo fetchea al generar un CV → dominio nuevo o perfil nuevo no requieren tocar cbuilder. No lleva empresas (privacidad).

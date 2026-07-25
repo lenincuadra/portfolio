@@ -18,8 +18,8 @@
 //   4. data/content.js: todo item type:"image" con alt no vacío; todo
 //      images.screens[] con label (app.js lo usa como alt).
 //
-// Páginas internas (styleguide, dashboard, og-*, go) y case-v2 quedan fuera
-// (mismo alcance que la auditoría — case-v2 se cubre con la migración v2→v3).
+// Páginas internas (styleguide, dashboard, og-*, go) quedan fuera
+// (mismo alcance que la auditoría de accesibilidad).
 // =============================================================================
 
 'use strict';
