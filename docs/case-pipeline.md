@@ -54,7 +54,7 @@ Regenera `sitemap.xml` y `llms.txt` con el case nuevo (los `h3` alimentan el arc
 
 | Síntoma | Dónde |
 |---|---|
-| Case no aparece / cae a v2 | `template: "v3"` faltante (routing en `js/app.js`) |
+| Case sin validar por `case-check` | falta `template: "v3"` en el objeto: el guard de `case-check.js` lo saltea (el routing igual lo manda a `case-v3`). Es obligatorio en cada case |
 | TOC vacía o desalineada | secciones sin `id`/`h3` → `case-check` lo marca |
 | Toggle ES muestra inglés | desalineación por índice EN/ES → `case-check` lo marca |
 | Media en negro / sin fallback | falta `.mp4` hermano o variante `-light`/`-dark` → `case-check` |
