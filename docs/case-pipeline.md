@@ -15,8 +15,28 @@ El portfolio se opera como producto: **subir un case nuevo = dar contexto y asse
 
 ### 1. Input (humano)
 
-- **Contexto**: notas crudas del caso en `content/new/<nn>_<slug>_case.md` (formato libre: qué pasó, rol, decisiones, números, quotes). Es la materia prima de la redacción.
-- **Assets**: `assets/images/<slug>/` — imágenes `.webp`, video `.webm` + `.mp4` (mismo nombre), posters. Convenciones de media theme-aware: `docs/design.md`. Fuentes crudas con datos sensibles (NDA) quedan fuera de git (`.gitignore`).
+- **Contexto**: notas crudas del caso en `content/new/<slug>.md` (formato: `content/new/_TEMPLATE.md`). Es la materia prima de la redacción — decisiones, pivotes, citas, números.
+- **Assets** (ver paso 1b abajo antes de escribir el draft).
+
+### 1b. Assets — preparar antes de escribir
+
+Este paso ocurre **entre el input y la autoría**. Si los assets no están listos al empezar el draft, las secciones quedan sin prueba visual y el case no puede publicarse.
+
+**Checklist:**
+
+1. **Cover** — imagen dedicada (no el poster del video, no un loading state). Muestra el artefacto principal en su estado más acabado. Una captura de pantalla de la app real o un frame editado del video. Destino: `assets/images/<slug>/cover.webp`.
+
+2. **Inventario por sección** — completar la tabla de assets en el `_TEMPLATE.md` antes de empezar a escribir. Si una sección necesita imagen y no existe, capturarla ahora.
+
+3. **Renombrar**: nombres semánticos, sin hashes de commit ni números de paso internos.
+   - ✅ `funnel-legend.webp`, `color-rings.webp`
+   - ❌ `08-funnel-legend-real-app-use-01a29b9-playground.png`
+
+4. **Convertir**:
+   - PNG → WebP: `sips -s format webp archivo.png --out nombre.webp`
+   - Video: `ffmpeg -i input.mov -vf scale=1200:-2 -an output.webm` (VP9 crf34) + `.mp4` (h264 crf24 +faststart). Poster del frame más representativo (no el último frame si la escena final no es el artefacto principal).
+
+5. **Mover** a `assets/images/<slug>/`. Las fuentes crudas con datos sensibles (NDA) quedan fuera de git (`.gitignore`). Las fuentes sin NDA pueden vivir en `assets/images/<slug>/raw/` si las querés tener disponibles.
 
 ### 2. Autoría (humano o IA, indistinto para el pipeline)
 

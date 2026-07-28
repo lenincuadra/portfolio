@@ -46,13 +46,26 @@ Escribí en orden cronológico. Para cada momento importante:
 
 ---
 
-## 3. Assets — tabla de capturas
+## 3. Assets — inventario antes de escribir
 
-| Archivo | Qué muestra | Qué prueba en el case |
-|---------|-------------|------------------------|
-| [nombre o ruta] | [descripción visual] | [la afirmación que soporta] |
+Llenás esta tabla **antes de escribir la sección**. Si el asset no existe todavía, es una señal de que falta capturarlo o exportarlo — no de que podés escribir la sección igual y ver después.
 
-> Incluí también el video si lo hay: qué muestra exactamente, cuánto dura, qué momento del arco representa.
+**Cover** (obligatorio):
+- Muestra: [el artefacto principal en su estado más acabado — NO el loading state, NOT el before]
+- Archivo destino: `assets/images/<slug>/cover.webp`
+- Estado: [existe | pendiente exportar | pendiente capturar]
+
+**Secciones** (una fila por sección que necesite imagen o video):
+
+| Sección | Tipo | Qué muestra / qué afirmación prueba | Nombre destino | Estado |
+|---------|------|--------------------------------------|----------------|--------|
+| [id de sección] | image/video/slider | [qué se ve + qué afirmación del h3 soporta] | `<slug>/<nombre-semántico>.webp` | existe / pendiente |
+
+> **Reglas de nombre**: semántico, sin hashes de commit, sin números de paso internos. `funnel-legend.webp`, no `08-funnel-legend-real-app-use-01a29b9-playground.png`. Minúsculas, guiones.
+>
+> **Formatos**: WebP para imágenes/screenshots. Video: `.webm` + `.mp4` (mismo nombre base) + poster `.png`. Si tenés un `.png` crudo, convertí con `sips -s format webp <archivo>.png --out <nombre>.webp` antes de moverlo.
+>
+> **Carpeta destino**: `assets/images/<slug>/` — nunca dejar assets en la carpeta de trabajo cruda.
 
 ---
 

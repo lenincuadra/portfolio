@@ -2,11 +2,17 @@
 // Preview (localhost): cases/case-v3.html?slug=funnel-target
 // Publicar: node scripts/case-publish.js funnel-target
 //
+// ASSETS — estado por sección (actualizar cuando se prepare cada uno)
+// cover        assets/images/funnel-target/cover.webp              [PENDIENTE: capturar diana pintada en la app — no usar el poster del video]
+// s-insight    assets/images/funnel-target/funnel-legend.webp       [PENDIENTE: renombrar + convertir 08-...-playground.png]
+// s-color      assets/images/funnel-target/color-rings.webp         [PENDIENTE: renombrar + convertir 11-...-app.png]
+// s-result     assets/images/funnel-target/reveal.{webm,mp4}        [PENDIENTE: mover desde animation-process/]
+// s-scale      —                                                     [no necesita imagen]
+//
 // TODO antes de publicar:
-//   - Cover image: exportar diana pintada como webp o capturar frame del video.
-//   - Mover assets a assets/images/funnel-target/ y actualizar rutas.
+//   - Completar los assets de arriba y actualizar las rutas del draft.
 //   - Confirmar slug final (propuesto: funnel-target).
-//   - Decidir si va a cases.json (featured en el hero) y con qué proof.
+//   - Decidir si va a cases.json y con qué proof text.
 
 PORTFOLIO_DATA.en.cases.push({
   "slug": "funnel-target",
