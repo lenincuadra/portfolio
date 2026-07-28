@@ -194,6 +194,21 @@
   <script src="../data/content.js"></script>
   <script src="../data/profiles.js"></script>
   <script>
+    // Draft loader — only active on localhost. Uses document.write to inject
+    // the draft script synchronously into the parse stream BEFORE the renderer
+    // runs. In production the block exits immediately (isLocal = false).
+    (function () {
+      var isLocal = ['localhost', '127.0.0.1', ''].includes(location.hostname);
+      if (!isLocal) return;
+      var slug = new URLSearchParams(location.search).get('slug');
+      if (!slug) return;
+      // document.write here is valid: page is still parsing (script is not defer/async).
+      // The inserted <script> executes before the next <script> block.
+      // Draft files must call: PORTFOLIO_DATA.en.cases.push({...}); PORTFOLIO_DATA.es.cases.push({...});
+      document.write('<script src="../content/drafts/' + slug + '.js"><\/script>');
+    })();
+  </script>
+  <script>
     const LANG_KEY = 'portfolio-lang';
 
     // ── Case image placeholder (silent, on-brand fallback) ─────────────────────

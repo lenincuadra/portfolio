@@ -1388,6 +1388,7 @@ const PORTFOLIO_DATA = {
             }
           ]
         },
+        /* @cases-end */
       ], // end cases[]
     },
 
@@ -2770,6 +2771,7 @@ const PORTFOLIO_DATA = {
             }
           ]
         },
+        /* @cases-end */
       ], // end cases[]
     },
 }; // end PORTFOLIO_DATA

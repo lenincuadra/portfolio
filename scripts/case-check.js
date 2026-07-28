@@ -47,6 +47,32 @@ const onlySlug = args.find((a) => !a.startsWith('--')) || null;
 
 const data = new Function(read('data/content.js') + '; return PORTFOLIO_DATA;')();
 
+// --- Draft loading (content/drafts/*.js, merged before all validations) --------
+// Draft files call PORTFOLIO_DATA.en.cases.push({...}) / es.cases.push({...}).
+// We provide a fake PORTFOLIO_DATA that captures the pushes into the real data.
+
+const DRAFTS_DIR = path.join(ROOT, 'content', 'drafts');
+const loadedDrafts = [];
+if (fs.existsSync(DRAFTS_DIR)) {
+  const draftFiles = fs.readdirSync(DRAFTS_DIR).filter((f) => f.endsWith('.js'));
+  for (const file of draftFiles) {
+    const draftSlug = path.basename(file, '.js');
+    if (onlySlug && draftSlug !== onlySlug) continue;
+    const code = fs.readFileSync(path.join(DRAFTS_DIR, file), 'utf8');
+    const fakePD = {
+      en: { cases: { push: (c) => data.en.cases.push(c) } },
+      es: { cases: { push: (c) => data.es.cases.push(c) } },
+    };
+    try {
+      new Function('PORTFOLIO_DATA', code)(fakePD);
+      loadedDrafts.push(draftSlug);
+    } catch (e) {
+      console.log(` ✗  draft ${draftSlug}: error al cargar: ${e.message}`);
+    }
+  }
+}
+if (loadedDrafts.length) console.log(`  [draft] cargados: ${loadedDrafts.join(', ')}\n`);
+
 let failures = 0, warnings = 0;
 const bad = (msg) => { failures++; console.log(` ✗  ${msg}`); };
 const warn = (msg) => { warnings++; console.log(` ⚠  ${msg}`); };
@@ -63,7 +89,7 @@ const dupes = slugs.en.filter((s, i) => slugs.en.indexOf(s) !== i);
 dupes.length ? bad(`slugs duplicados: ${dupes.join(', ')}`) : ok(`${slugs.en.length} slugs únicos`);
 
 const scope = (lang) => data[lang].cases.filter((c) => !onlySlug || c.slug === onlySlug);
-if (onlySlug && !slugs.en.includes(onlySlug)) bad(`slug "${onlySlug}" no existe en content.js`);
+if (onlySlug && !slugs.en.includes(onlySlug)) bad(`slug "${onlySlug}" no existe en content.js ni en content/drafts/`);
 
 for (const c of scope('en')) {
   const id = c.slug;

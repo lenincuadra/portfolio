@@ -30,6 +30,35 @@ La prosa es corta pero fluye, con detalle real: el prompt textual, el "no guessi
 
 ---
 
+## Altitud/audiencia — traducir implementación a decisión de diseño
+
+El lector del case es **designer, alguien de producto/PM, o hiring manager** — no un ingeniero. Cada uno entra con una pregunta distinta:
+
+- **Designer:** ¿cómo tomó las decisiones de craft? ¿qué tradeoffs vio?
+- **Producto/PM:** ¿entendió el problema de negocio? ¿tomó decisiones con contexto de constraints reales?
+- **Hiring/recruiter:** rara vez lee el body en detalle — para ellos es más relevante el card y el hero. Pero si entran, tienen que poder seguir la historia sin entender nada técnico.
+
+Los tres necesitan lo mismo: qué decidiste y por qué importa, sin contexto técnico previo.
+
+**La regla:** si una oración nombra una variable, un método, un framework, un flag o una estructura de datos, reescribila en términos de lo que decidiste y lo que se vio.
+
+**El molde (tres pasos):**
+1. `h3` = afirmación del problema o descubrimiento, en lenguaje visible: "El modo aleatorio no se sentía aleatorio" (no "El algoritmo de `sessionSeed` producía colisiones").
+2. `body` = primera persona, qué hice + qué vi. Concreto pero sin jerga. "Probé diez combinaciones distintas. Todas se veían iguales. La randomness estaba ahí en el código, pero no en la pantalla."
+3. `image`/`video` = la prueba visible (captura, animación, before/after).
+
+**Qué eliminar:** nombres de variables (`sessionSeed`, `restAngle`), siglas técnicas no-visuales (WAAPI, BFF, API), menciones a librerías si no son parte de la historia de diseño.
+
+**Qué queda:** la decisión (qué elegiste), el motivo (qué restricción o insight lo motivó), el resultado (qué vio el usuario).
+
+Ejemplo completo de de-tecnificación:
+
+> **Antes (técnico):** "Implemented a `restAngle` parameter clamped to ±30° from the ring center to prevent arrow overlap in dense `SessionRecord` arrays."
+>
+> **Después (diseño):** h3: "Las flechas se leían raras hasta que miré una diana real." body: "Probé con física — velocidad de entrada, arrastre, rebote. Las flechas se amontonaban. La vuelta vino de una foto: las flechas reales no quedan todas juntas. Les di reposo dentro de su anillo. Con eso alcanzó." + imagen del before/after.
+
+---
+
 ## Reglas
 
 1. **La prosa lleva la narrativa.** Usá `body` (párrafos de 1-2 oraciones) para contar qué pasó, en primera persona y concreto. No trocees la historia en bullets.
@@ -47,6 +76,7 @@ Contexto / hook → el problema concreto → el approach (las decisiones, cada u
 
 ## Checklist antes de dar por listo un case-v3
 
+- [ ] **Altitud:** ninguna oración nombra variables, métodos ni siglas técnicas no-visuales. Todo está en términos de decisión + resultado visible.
 - [ ] Leés **solo los `h3`** (la TOC) y entendés el caso entero.
 - [ ] Cada sección tiene **prosa**, no solo bullets.
 - [ ] Los bullets que quedan son **listas reales** (enumeraciones), no narrativa troceada.
