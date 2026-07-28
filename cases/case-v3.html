@@ -543,9 +543,9 @@
         const sLabel = s.label    ? `<p class="section__label">${t(s.label, esS?.label)}</p>` : '';
         const sH3    = s.h3       ? `<h3>${t(s.h3, esS?.h3)}</h3>` : '';
         const body   = renderContent(s.content || [], esS?.content);
-        const enToc  = (s.tocLabel  || '').replace(/"/g, '&quot;');
-        const esToc  = (esS?.tocLabel || s.tocLabel || '').replace(/"/g, '&quot;');
-        const curToc = lang === 'es' ? (esS?.tocLabel || s.tocLabel || '') : (s.tocLabel || '');
+        const enToc  = (s.tocLabel  || s.label  || '').replace(/"/g, '&quot;');
+        const esToc  = (esS?.tocLabel || s.tocLabel || esS?.label || s.label || '').replace(/"/g, '&quot;');
+        const curToc = lang === 'es' ? (esS?.tocLabel || s.tocLabel || esS?.label || s.label || '') : (s.tocLabel || s.label || '');
         return `<section id="${s.id}" data-toc-label="${curToc}" data-toc-label-en="${enToc}" data-toc-label-es="${esToc}">${sLabel}${sH3}${body}</section>`;
       }).join('<hr>');
 
