@@ -41,6 +41,26 @@ Auditoría original (contra disco): 14 assets faltaban en 2 casos v3. **Ambos re
 
 **✅ Limpieza (2026-07-24)** — eliminadas por completo las plantillas legacy: `cases/case-v2.html`, `cases/case.html` (v1) y sus 3 stubs de redirect, `content/case-schema.yml`, `CASE-STUDY-GUIDE.md`, el CSS `.img-container`/`.img-clip`/`.overview-layout`/`.gallery-grid` de `styles/case.css`, y `renderCase()` + helpers v1 de `js/app.js` (936 → 582 líneas). El routing (`app.js`, `case-v3.html`, `seo-build.js`) manda todo a `case-v3`; `template: "v3"` queda solo como marcador que lee `case-check`.
 
+## Drafts en progreso
+
+### funnel-target — videos pendientes de grabar (playground de cv-builder, localhost)
+
+- [ ] **Video A** → `assets/images/funnel-target/diana-empty.webm` (sección insight)
+  - Playground con `count=0`. Diana con anillos, sin flechas.
+  - Crop: mitad izquierda (sin sliders). Duración: 2-3s. Autoplay loop.
+- [ ] **Video B** → `assets/images/funnel-target/paint-loop.webm` (sección color)
+  - Flechas en gris → pintado simultáneo → todas coloreadas a la vez.
+  - Crop: solo la diana (sin toolbar ni action cards). Duración: ~1-2s loopeable.
+  - El playground permite re-disparar el pintado a voluntad.
+- [ ] **Video C** → `assets/images/funnel-target/playground-controls.webm` (sección playground)
+  - Animación corriendo CON el panel de sliders visible. Sin crop. Duración: 5-8s.
+- [ ] Convertir imágenes `.png` a `.webp` (`brew install webp` → `cwebp`)
+- [ ] Cover definitivo sin chrome del toolbar
+- [ ] Confirmar slug `funnel-target` y decidir si va a `cases.json`
+- [ ] Publicar: `node scripts/case-publish.js funnel-target` (sacar `unlisted:true` al listar en el grid)
+
+> Cuando estén los videos, pasárselos a Claude: los cropea, actualiza el draft y corre `case-check --strict`.
+
 ## Menor / continuo
 
 - **Legibilidad del contenido (**`figma-webp-export`**, y revisar en todos los v3)** — las secciones **Overview, Problem y Process** tienen bloques de texto largos (párrafos densos) que probablemente no se lean. Hacerlo más navegable/escaneable: acortar, partir en bullets/sub-bloques, o destacar la idea clave. Objetivo: que se capte rápido sin leer todo el párrafo.
