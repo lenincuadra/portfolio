@@ -236,8 +236,8 @@
       gridLabel.textContent = ui.case.gridLabel + ' · ' + (getLang() === 'es' ? profile.label.es : profile.label.en);
     }
 
-    // Case grid — todos los cases; con perfil activo manda su orden
-    const gridCases = cases.slice();
+    // Case grid — excluye unlisted; con perfil activo manda su orden
+    const gridCases = cases.filter(c => !c.unlisted);
     if (profile) {
       const order = [profile.featured].concat(profile.order || []);
       const pos = s => { const i = order.indexOf(s); return i === -1 ? order.length : i; };

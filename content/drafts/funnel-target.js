@@ -19,6 +19,7 @@ PORTFOLIO_DATA.en.cases.push({
   "slug": "funnel-target",
   "template": "v3",
   "featured": false,
+  "unlisted": true,
   "images": {
     "cover": "assets/images/funnel-target/cover.png"
   },
@@ -136,6 +137,7 @@ PORTFOLIO_DATA.es.cases.push({
   "slug": "funnel-target",
   "template": "v3",
   "featured": false,
+  "unlisted": true,
   "images": {
     "cover": "assets/images/funnel-target/cover.png"
   },

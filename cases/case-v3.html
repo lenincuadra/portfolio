@@ -668,7 +668,7 @@
         if (!inner) return;
         const allEn = PORTFOLIO_DATA.en.cases || [];
         const allEs = PORTFOLIO_DATA.es?.cases || allEn;
-        let order = allEn.map(x => x.slug);
+        let order = allEn.filter(x => !x.unlisted).map(x => x.slug);
         const profile = (typeof resolveActiveProfile === 'function') ? resolveActiveProfile() : null;
         if (profile) {
           const pOrder = [profile.featured].concat(profile.order || []);

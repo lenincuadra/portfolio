@@ -32,7 +32,7 @@ const read = (f) => fs.readFileSync(path.join(ROOT, f), 'utf8');
 
 const data = new Function(read('data/content.js') + '; return PORTFOLIO_DATA;')();
 const en = data.en;
-const cases = en.cases;
+const cases = en.cases.filter(c => !c.unlisted);
 
 const siteDescription = (read('index.html').match(
   /<meta\s+name="description"\s+content="([^"]+)"/s
