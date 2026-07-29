@@ -3,17 +3,38 @@
 // Publicar: node scripts/case-publish.js funnel-target
 //
 // ASSETS — estado por sección
-// cover        assets/images/funnel-target/cover.png               [OK — crop de 13, top levemente cortado; reemplazar con captura dedicada al publicar]
-// s-insight    assets/images/funnel-target/funnel-legend.png        [OK — crop de 08, sin sliders ni martillo]
-// s-color      assets/images/funnel-target/color-rings.png          [OK — crop de 11, diana pintada centrada]
-// s-result     assets/images/funnel-target/funnel-reveal.webm       [OK]
-// s-scale      —                                                     [no necesita imagen]
+// cover          assets/images/funnel-target/cover.png                  [OK — temporal; reemplazar con captura dedicada]
+// s-insight      assets/images/funnel-target/funnel-legend.png          [TEMPORAL — imagen estática; reemplazar con video A]
+// s-color        assets/images/funnel-target/color-rings.png            [TEMPORAL — imagen estática; reemplazar con video B]
+// s-result       assets/images/funnel-target/funnel-reveal.webm         [OK]
+// s-playground   assets/images/funnel-target/playground-controls.webm  [PENDIENTE — grabar video C]
+// s-scale        —                                                       [no necesita media]
+//
+// GRABACIONES PENDIENTES (todas desde el playground de cv-builder en localhost):
+//
+// VIDEO A — s-insight — diana-empty.webm
+//   Qué: playground con count=0. Solo la diana con anillos sin flechas.
+//   Crop: solo la mitad izquierda (sin el panel de sliders).
+//   Duración: 2-3s. Sin sonido. Autoplay loop.
+//
+// VIDEO B — s-color — paint-loop.webm
+//   Qué: flechas ya aterrizadas en gris → se dispara el pintado → todas cambian de color.
+//   Crop: solo la diana (sin toolbar ni action cards).
+//   Duración: ~1-2s loopeable (el loop crea el efecto de titileo).
+//   Tip: grabarlo en el playground donde podés re-disparar el pintado a voluntad.
+//
+// VIDEO C — s-playground — playground-controls.webm
+//   Qué: animación corriendo CON el panel de sliders visible a la derecha.
+//   Muestra el sistema completo: diana + parámetros configurables.
+//   Duración: 5-8s. Sin crop — mostrar todo el playground.
 //
 // TODO antes de publicar:
-//   - Convertir .png a .webp (requiere libwebp — no disponible en ffmpeg local).
-//   - Cover: reemplazar con captura dedicada sin chrome del toolbar.
-//   - Confirmar slug final (propuesto: funnel-target).
-//   - Decidir si va a cases.json y con qué proof text.
+//   - Grabar A, B, C y mover a assets/images/funnel-target/.
+//   - Reemplazar los image blocks de s-insight y s-color por video.
+//   - Agregar video C a s-playground.
+//   - Convertir .png a .webp (requiere libwebp).
+//   - Cover definitivo sin chrome.
+//   - Confirmar slug y decidir si va a cases.json.
 
 PORTFOLIO_DATA.en.cases.push({
   "slug": "funnel-target",
@@ -112,6 +133,18 @@ PORTFOLIO_DATA.en.cases.push({
           "ratio": "wide",
           "controls": false,
           "alt": "The full reveal: diana loads, arrows fly in gray, land on their rings, pause, all paint at once by stage color, then the real data table appears"
+        }
+      ]
+    },
+    {
+      "id": "section-playground",
+      "label": "The system",
+      "h3": "Every parameter is exposed. The data logic and the visual are two separate layers.",
+      // VIDEO C pendiente: agregar bloque video con playground-controls.webm cuando esté grabado
+      "content": [
+        {
+          "type": "body",
+          "text": "The playground shows what's underneath: timing, trajectory, angle, density, all configurable without touching the data mapping. The rings stay rings. The colors stay colors. The rest is a variable."
         }
       ]
     },
@@ -230,6 +263,18 @@ PORTFOLIO_DATA.es.cases.push({
           "ratio": "wide",
           "controls": false,
           "alt": "El reveal completo: la diana carga, las flechas vuelan en gris, aterrizan en sus anillos, pausa, todas se pintan a la vez por color de etapa, y luego aparece la tabla real de datos"
+        }
+      ]
+    },
+    {
+      "id": "section-playground",
+      "label": "El sistema",
+      "h3": "Cada parámetro está expuesto. La lógica de datos y el visual son dos capas separadas.",
+      "content": [
+        // VIDEO C pendiente: agregar bloque video con playground-controls.webm cuando esté grabado
+        {
+          "type": "body",
+          "text": "El playground muestra lo que hay debajo: timing, trayectoria, ángulo, densidad, todo configurable sin tocar el mapeo de datos. Los anillos siguen siendo anillos. Los colores siguen siendo colores. El resto es una variable."
         }
       ]
     },
