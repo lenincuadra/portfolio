@@ -2,15 +2,16 @@
 // Preview (localhost): cases/case-v3.html?slug=funnel-target
 // Publicar: node scripts/case-publish.js funnel-target
 //
-// ASSETS — estado por sección (actualizar cuando se prepare cada uno)
-// cover        assets/images/funnel-target/cover.webp              [PENDIENTE: capturar diana pintada en la app — no usar el poster del video]
-// s-insight    assets/images/funnel-target/funnel-legend.webp       [PENDIENTE: renombrar + convertir 08-...-playground.png]
-// s-color      assets/images/funnel-target/color-rings.webp         [PENDIENTE: renombrar + convertir 11-...-app.png]
-// s-result     assets/images/funnel-target/reveal.{webm,mp4}        [PENDIENTE: mover desde animation-process/]
+// ASSETS — estado por sección
+// cover        assets/images/funnel-target/cover.png               [OK — crop de 13, top levemente cortado; reemplazar con captura dedicada al publicar]
+// s-insight    assets/images/funnel-target/funnel-legend.png        [OK — crop de 08, sin sliders ni martillo]
+// s-color      assets/images/funnel-target/color-rings.png          [OK — crop de 11, diana pintada centrada]
+// s-result     assets/images/funnel-target/funnel-reveal.webm       [OK]
 // s-scale      —                                                     [no necesita imagen]
 //
 // TODO antes de publicar:
-//   - Completar los assets de arriba y actualizar las rutas del draft.
+//   - Convertir .png a .webp (requiere libwebp — no disponible en ffmpeg local).
+//   - Cover: reemplazar con captura dedicada sin chrome del toolbar.
 //   - Confirmar slug final (propuesto: funnel-target).
 //   - Decidir si va a cases.json y con qué proof text.
 
@@ -19,7 +20,7 @@ PORTFOLIO_DATA.en.cases.push({
   "template": "v3",
   "featured": false,
   "images": {
-    "cover": "assets/images/animation-process/funnel-reveal-poster.png"
+    "cover": "assets/images/funnel-target/cover.png"
   },
   "card": {
     "tags": ["Data Visualization", "Motion Design", "AI Tooling"],
@@ -67,8 +68,8 @@ PORTFOLIO_DATA.en.cases.push({
         },
         {
           "type": "image",
-          "src": "assets/images/animation-process/08-funnel-legend-real-app-use-01a29b9-playground.png",
-          "ratio": "wide",
+          "src": "assets/images/funnel-target/funnel-legend.png",
+          "ratio": "auto",
           "alt": "Diana animation showing the funnel legend: five rings mapped to five stages, from sent (outer white ring) to referral (inner gold ring)"
         }
       ]
@@ -88,8 +89,8 @@ PORTFOLIO_DATA.en.cases.push({
         },
         {
           "type": "image",
-          "src": "assets/images/animation-process/11-color-by-ring-73456a9-app.png",
-          "ratio": "wide",
+          "src": "assets/images/funnel-target/color-rings.png",
+          "ratio": "auto",
           "alt": "Diana in the real app after all arrows have painted: outer ring white, moving inward through dark gray, blue, red, gold"
         }
       ]
@@ -105,8 +106,8 @@ PORTFOLIO_DATA.en.cases.push({
         },
         {
           "type": "video",
-          "src": "assets/images/animation-process/funnel-reveal.webm",
-          "poster": "assets/images/animation-process/funnel-reveal-poster.png",
+          "src": "assets/images/funnel-target/funnel-reveal.webm",
+          "poster": "assets/images/funnel-target/funnel-reveal-poster.png",
           "ratio": "wide",
           "controls": false,
           "alt": "The full reveal: diana loads, arrows fly in gray, land on their rings, pause, all paint at once by stage color, then the real data table appears"
@@ -136,7 +137,7 @@ PORTFOLIO_DATA.es.cases.push({
   "template": "v3",
   "featured": false,
   "images": {
-    "cover": "assets/images/animation-process/funnel-reveal-poster.png"
+    "cover": "assets/images/funnel-target/cover.png"
   },
   "card": {
     "tags": ["Data Visualization", "Motion Design", "AI Tooling"],
@@ -184,8 +185,8 @@ PORTFOLIO_DATA.es.cases.push({
         },
         {
           "type": "image",
-          "src": "assets/images/animation-process/08-funnel-legend-real-app-use-01a29b9-playground.png",
-          "ratio": "wide",
+          "src": "assets/images/funnel-target/funnel-legend.png",
+          "ratio": "auto",
           "alt": "Animación de la diana mostrando la leyenda del funnel: cinco anillos mapeados a cinco etapas, de enviado (anillo exterior blanco) a referido (anillo interior dorado)"
         }
       ]
@@ -205,8 +206,8 @@ PORTFOLIO_DATA.es.cases.push({
         },
         {
           "type": "image",
-          "src": "assets/images/animation-process/11-color-by-ring-73456a9-app.png",
-          "ratio": "wide",
+          "src": "assets/images/funnel-target/color-rings.png",
+          "ratio": "auto",
           "alt": "Diana en la app real después de que todas las flechas se pintaron: anillo exterior blanco, hacia adentro gris oscuro, azul, rojo, dorado"
         }
       ]
@@ -222,8 +223,8 @@ PORTFOLIO_DATA.es.cases.push({
         },
         {
           "type": "video",
-          "src": "assets/images/animation-process/funnel-reveal.webm",
-          "poster": "assets/images/animation-process/funnel-reveal-poster.png",
+          "src": "assets/images/funnel-target/funnel-reveal.webm",
+          "poster": "assets/images/funnel-target/funnel-reveal-poster.png",
           "ratio": "wide",
           "controls": false,
           "alt": "El reveal completo: la diana carga, las flechas vuelan en gris, aterrizan en sus anillos, pausa, todas se pintan a la vez por color de etapa, y luego aparece la tabla real de datos"
