@@ -9,12 +9,21 @@
       // (p/a/c) y la expande resolveActiveProfile() en data/profiles.js.
       (function () {
         var m = /^\/r\/(\d{4}[a-z][2-9])([PLG])([a-z])?$/.exec(location.pathname);
-        if (!m) return;
-        var q = 'ref=' + m[1] + m[2];
-        if (m[2] === 'L') q += '&dest=linkedin';
-        if (m[2] === 'G') q += '&dest=github';
-        if (m[3]) q += '&focus=' + m[3];
-        location.replace('/go.html?' + q);
+        if (m) {
+          var q = 'ref=' + m[1] + m[2];
+          if (m[2] === 'L') q += '&dest=linkedin';
+          if (m[2] === 'G') q += '&dest=github';
+          if (m[3]) q += '&focus=' + m[3];
+          location.replace('/go.html?' + q);
+          return;
+        }
+        // Refs nombrados: /r/web-cvP, /r/li-cvL, etc. (empiezan con letra → sin colisión con el opaco)
+        var mn = /^\/r\/([a-z][a-z0-9-]*)([PLG])?$/.exec(location.pathname);
+        if (!mn) return;
+        var qn = 'ref=' + mn[1] + (mn[2] || '');
+        if (mn[2] === 'L') qn += '&dest=linkedin';
+        if (mn[2] === 'G') qn += '&dest=github';
+        location.replace('/go.html?' + qn);
       })();
     </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

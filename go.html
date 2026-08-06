@@ -28,6 +28,8 @@
   function parseRef(ref) {
     var m = /^(\d{4}[a-z][2-9])([PLG])$/.exec(ref);
     if (m) return { code: m[1], link: LINK_NAMES[m[2]] };
+    var mn = /^([a-z][a-z0-9-]+)([PLG])$/.exec(ref);
+    if (mn) return { code: mn[1], link: LINK_NAMES[mn[2]] };
     return { code: ref, link: "" };
   }
 
