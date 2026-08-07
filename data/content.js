@@ -37,7 +37,7 @@ const PORTFOLIO_DATA = {
       },
       "hero": {
         "cta": "View Work",
-        "scroll": "Scroll"
+        "scroll": "Scroll to View Work"
       },
       "case": {
         "readMore": "Read Case Study",
@@ -1424,7 +1424,7 @@ const PORTFOLIO_DATA = {
       },
       "hero": {
         "cta": "Ver trabajos",
-        "scroll": "Scroll"
+        "scroll": "Desplazate para ver trabajos"
       },
       "case": {
         "readMore": "Ver caso",

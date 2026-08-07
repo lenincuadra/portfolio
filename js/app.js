@@ -123,14 +123,24 @@
       let toastTimer;
       footerEmailBtn.addEventListener('click', () => {
         const { site } = getContent(getLang());
-        navigator.clipboard.writeText(site.email).then(() => {
-          const lang = getLang();
-          const span = copyToast.querySelector('[data-en]');
-          if (span) span.textContent = lang === 'es' ? span.dataset.es : span.dataset.en;
-          copyToast.classList.add('copy-toast--visible');
-          clearTimeout(toastTimer);
-          toastTimer = setTimeout(() => copyToast.classList.remove('copy-toast--visible'), 2500);
-        });
+        if (window.matchMedia('(max-width: 768px)').matches || !navigator.clipboard) {
+          window.location.href = 'mailto:' + site.email;
+          return;
+        }
+        try {
+          navigator.clipboard.writeText(site.email).then(() => {
+            const lang = getLang();
+            const span = copyToast.querySelector('[data-en]');
+            if (span) span.textContent = lang === 'es' ? span.dataset.es : span.dataset.en;
+            copyToast.classList.add('copy-toast--visible');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => copyToast.classList.remove('copy-toast--visible'), 2500);
+          }).catch(() => {
+            window.location.href = 'mailto:' + site.email;
+          });
+        } catch (e) {
+          window.location.href = 'mailto:' + site.email;
+        }
       });
     }
 
@@ -322,19 +332,25 @@
       emailBtn.dataset.bound = 'true';
       emailBtn.addEventListener('click', () => {
         // On mobile view, open the mail app directly; on desktop, copy to clipboard.
-        if (window.matchMedia('(max-width: 768px)').matches) {
+        if (window.matchMedia('(max-width: 768px)').matches || !navigator.clipboard) {
           window.location.href = 'mailto:' + site.email;
           return;
         }
-        navigator.clipboard.writeText(site.email).then(() => {
-          if (!copyToast) return;
-          const lang = getLang();
-          const span = copyToast.querySelector('[data-en]');
-          if (span) span.textContent = lang === 'es' ? span.dataset.es : span.dataset.en;
-          copyToast.classList.add('copy-toast--visible');
-          clearTimeout(toastTimer);
-          toastTimer = setTimeout(() => copyToast.classList.remove('copy-toast--visible'), 2500);
-        });
+        try {
+          navigator.clipboard.writeText(site.email).then(() => {
+            if (!copyToast) return;
+            const lang = getLang();
+            const span = copyToast.querySelector('[data-en]');
+            if (span) span.textContent = lang === 'es' ? span.dataset.es : span.dataset.en;
+            copyToast.classList.add('copy-toast--visible');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => copyToast.classList.remove('copy-toast--visible'), 2500);
+          }).catch(() => {
+            window.location.href = 'mailto:' + site.email;
+          });
+        } catch (e) {
+          window.location.href = 'mailto:' + site.email;
+        }
       });
       }
     }
