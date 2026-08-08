@@ -35,10 +35,6 @@ const PORTFOLIO_DATA = {
         "email": "Email",
         "builtWith": "Designed & built with care."
       },
-      "hero": {
-        "cta": "View Work",
-        "scroll": "Scroll to View Work"
-      },
       "case": {
         "readMore": "Read Case Study",
         "featuredLabel": "Featured Work",
@@ -54,16 +50,14 @@ const PORTFOLIO_DATA = {
         "role": "Senior Product Designer · AI Adoption Lead"
       },
       "work": {
-        "heading": "Selected work focused on systems, clarity, and measurable outcomes."
+        "heading": "Focused on systems, clarity, and measurable outcomes."
       },
       "about": {
         "heading": "I design products where user needs, technical constraints, and business goals align.",
-        "homeExcerpt": "Product designer focused on complex systems, platforms, and flows. I work closely with engineering and product teams — turning technical constraints into coherent, scalable experiences.",
+        "homeExcerpt": "Product designer focused on complex systems, platforms, and flows. I work closely with engineering and product teams, turning technical constraints into coherent, scalable experiences.",
         "paragraphs": [
-          "I'm a product designer focused on complex systems, platforms, and flows where clarity and structure matter most. My work typically involves redesigning fragmented experiences into coherent, scalable solutions.",
-          "I approach design through constraints. Instead of treating limitations as blockers, I use them to shape decisions early, ensuring what gets designed can actually be built and maintained over time.",
-          "I work closely with engineering and product teams to define systems, not just screens. This includes interaction patterns, state models, and the logic behind the UI, aiming for consistency across surfaces and long-term scalability.",
-          "Lately I also lead AI adoption for my design team: prompt-driven workflows that take a design from Figma to production-ready code, with guardrails that make the output match the real product. It's the same constraint-driven thinking, applied to a new set of tools."
+          "Product designer focused on complex systems, platforms, and flows. I use constraints as a design tool: limitations shape decisions early and ensure what gets designed can actually be built.",
+          "I work with engineering and product to define systems, not just screens. Lately, that also means leading AI adoption: workflows that take a design from Figma to production-ready code in days."
         ],
         "skills": [
           "Zero-to-one product design",
@@ -1422,10 +1416,6 @@ const PORTFOLIO_DATA = {
         "email": "Email",
         "builtWith": "Diseñado y construido con cuidado."
       },
-      "hero": {
-        "cta": "Ver trabajos",
-        "scroll": "Desplazate para ver trabajos"
-      },
       "case": {
         "readMore": "Ver caso",
         "featuredLabel": "Destacado",
@@ -1441,15 +1431,13 @@ const PORTFOLIO_DATA = {
         "role": "Senior Product Designer · Líder de Adopción de IA"
       },
       "work": {
-        "heading": "Trabajo seleccionado enfocado en sistemas, claridad y resultados medibles."
+        "heading": "Enfocado en sistemas, claridad y resultados medibles."
       },
       "about": {
         "heading": "Diseño productos donde las necesidades del usuario, las restricciones técnicas y los objetivos de negocio se alinean.",
         "paragraphs": [
-          "Soy product designer especializado en sistemas complejos, plataformas y flujos donde la claridad y la estructura son lo que más importa. Mi trabajo típicamente implica rediseñar experiencias fragmentadas en soluciones coherentes y escalables.",
-          "Abordo el diseño a través de las restricciones. En lugar de tratar las limitaciones como bloqueos, las uso para dar forma a las decisiones temprano, asegurando que lo que se diseña pueda construirse y mantenerse en el tiempo.",
-          "Trabajo estrechamente con equipos de ingeniería y producto para definir sistemas, no solo pantallas. Esto incluye patrones de interacción, modelos de estado y la lógica detrás de la UI, apuntando a la consistencia entre superficies y la escalabilidad a largo plazo.",
-          "Últimamente también lidero la adopción de IA en mi equipo de diseño: flujos guiados por prompts que llevan un diseño de Figma a código listo para producción, con reglas que hacen que el resultado coincida con el producto real. Es el mismo pensamiento guiado por restricciones, aplicado a un set de herramientas nuevo."
+          "Product designer especializado en sistemas complejos, plataformas y flujos. Uso las restricciones como herramienta de diseño: las limitaciones definen las decisiones temprano y garantizan que lo que se diseña pueda construirse.",
+          "Trabajo con ingeniería y producto para definir sistemas, no solo pantallas. Últimamente, eso también implica liderar la adopción de IA: flujos que llevan un diseño de Figma a código listo para producción en días."
         ],
         "skills": [
           "Diseño de zero-to-one",

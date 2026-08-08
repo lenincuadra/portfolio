@@ -104,8 +104,6 @@
       setText('footer-resume', ui.footer.resume);
       setText('footer-email',  ui.footer.email);
       setText('footer-built',  ui.footer.builtWith);
-      setText('hero-cta',      ui.hero.cta);
-      setText('hero-scroll',   ui.hero.scroll);
       setText('label-grid',    ui.case.gridLabel);
       setText('label-about',   ui.nav.about);
       setText('label-contact', ui.nav.contact);
