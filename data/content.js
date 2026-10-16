@@ -30,6 +30,7 @@ const PORTFOLIO_DATA = {
       "footer": {
         "work": "Work",
         "about": "About",
+        "writing": "Writing",
         "linkedin": "LinkedIn",
         "resume": "Resume",
         "email": "Email",
@@ -1411,6 +1412,7 @@ const PORTFOLIO_DATA = {
       "footer": {
         "work": "Trabajos",
         "about": "Sobre mí",
+        "writing": "Escritos",
         "linkedin": "LinkedIn",
         "resume": "CV",
         "email": "Email",

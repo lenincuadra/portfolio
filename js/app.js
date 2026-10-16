@@ -100,6 +100,7 @@
       setText('nav-contact',   ui.nav.contact);
       setText('footer-work',   ui.footer.work);
       setText('footer-about',  ui.footer.about);
+      setText('footer-writing', ui.footer.writing);
       setText('footer-linkedin', ui.footer.linkedin);
       setText('footer-resume', ui.footer.resume);
       setText('footer-email',  ui.footer.email);
