@@ -79,6 +79,12 @@
         : site.resumeUrl
     );
     setAllAttr('a[data-link="resume"]', 'href', resumeUrl);
+    // Writing: the blog opens in the language chosen here (it reads ?lang= and remembers it)
+    document.querySelectorAll('a[href^="https://notes.lenincuadra.com/"]').forEach(link => {
+      const url = new URL(link.href);
+      url.searchParams.set('lang', getLang());
+      link.href = url.toString();
+    });
 
     // <html lang>
     document.documentElement.lang = site.lang;

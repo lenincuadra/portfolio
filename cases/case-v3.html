@@ -296,6 +296,12 @@
       document.querySelectorAll('#cta-resume, #nav-resume, a[data-resume-link]').forEach(el => {
         el.href = RESUME_URLS[lang] || RESUME_URLS.en;
       });
+      // Writing: the blog opens in the language chosen here (it reads ?lang= and remembers it)
+      document.querySelectorAll('a[href^="https://notes.lenincuadra.com/"]').forEach(el => {
+        const url = new URL(el.href);
+        url.searchParams.set('lang', lang);
+        el.href = url.toString();
+      });
     }
 
     document.querySelectorAll('.lang-switch__btn').forEach(btn => {
