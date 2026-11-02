@@ -888,6 +888,190 @@
   background-size: 100% 100%;
 }
 
+/* ---- READING MODE (card flotante) ----
+   Selector entre el case completo y la lectura esencial (oculta los párrafos y
+   deja label + h3, gráficos y alertas). Fija abajo, alineada al borde derecho
+   de la columna de contenido (right lo pone el renderer; nunca tapa la TOC).
+   Expandida: eyebrow + descripción + selector + ⌄. Colapsada (.is-min): una
+   fila con el selector small (solo tiempos) + ⓘ. Ver docs/design.md. */
+.reading-mode {
+  position: fixed;
+  right: var(--sp-4);
+  bottom: var(--sp-5);
+  z-index: 50;
+  box-sizing: border-box;
+  width: min(400px, calc(100vw - 2 * var(--sp-4)));
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "eyebrow toggle" "desc desc" "seg seg";
+  align-items: center;
+  padding: var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--bg-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-lg);
+  animation: reading-mode-in var(--dur-mid) var(--ease-out) 300ms both;
+}
+@keyframes reading-mode-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes reading-mode-fade {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.reading-mode__eyebrow {
+  grid-area: eyebrow;
+  margin: 0;
+  font: 400 var(--text-xs) / 1.2 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-ink);
+}
+.reading-mode__desc {
+  grid-area: desc;
+  margin: var(--sp-2) 0 var(--sp-4);
+  font: 400 var(--text-sm) / 1.5 var(--font-body);
+  color: var(--ink-2);
+}
+/* Botón disclosure: ⌄ (reducir) expandida, ⓘ (¿qué es esto?) colapsada */
+.reading-mode__toggle {
+  grid-area: toggle;
+  display: inline-grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin: -6px -6px -6px 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--ink-3);
+  cursor: pointer;
+}
+.reading-mode__toggle:hover {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+/* Selector: ajustado al contenido; las dos opciones miden lo que la más ancha
+   (1fr en inline-grid). Riel neutro; el indicador (__thumb) es lo único con
+   acento y se desliza al cambiar ([data-active] en el riel). */
+.reading-mode__seg {
+  grid-area: seg;
+  justify-self: start;
+  position: relative;
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  gap: 2px;
+  width: max-content;
+  padding: 3px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 999px;
+  background: var(--surface);
+}
+.reading-mode__thumb {
+  position: absolute;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc(50% - 4px);
+  border-radius: 999px;
+  background: var(--accent);
+  transition: transform 260ms var(--ease-out);
+}
+.reading-mode__seg[data-active="essentials"] .reading-mode__thumb {
+  transform: translateX(calc(100% + 2px));
+}
+.reading-mode__opt {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  align-content: center;
+  column-gap: 6px;
+  min-height: 40px;
+  padding: var(--sp-2) var(--sp-4);
+  border: 0;
+  border-radius: 999px;
+  background: none;
+  color: var(--ink-2);
+  white-space: nowrap;
+  cursor: pointer;
+  font: inherit;
+  transition: color var(--dur-mid) var(--ease-out);
+}
+.reading-mode__opt:hover:not([aria-checked="true"]) {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 6%, transparent);
+}
+.reading-mode__opt[aria-checked="true"] { color: #fff; }
+.reading-mode__name { font: 600 var(--text-sm) / 1.2 var(--font-body); }
+.reading-mode__time {
+  font: 400 var(--text-xs) / 1.2 var(--font-mono);
+  color: var(--ink-3);
+  transition: color var(--dur-mid) var(--ease-out);
+}
+.reading-mode__opt[aria-checked="true"] .reading-mode__time { color: #fff; }
+.reading-mode__toggle:focus-visible,
+.reading-mode__opt:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 2px;
+}
+
+/* Colapsada: una fila, selector small (32px, ≥ 24px de WCAG 2.2 target size).
+   El nombre de cada opción queda solo para lectores de pantalla (mismo patrón
+   que .sr-only) y el tiempo pasa a ser la etiqueta visible. */
+.reading-mode.is-min {
+  width: auto;
+  grid-template-columns: auto auto;
+  grid-template-areas: "seg toggle";
+  column-gap: var(--sp-1);
+  padding: var(--sp-2);
+}
+.reading-mode.is-min .reading-mode__eyebrow,
+.reading-mode.is-min .reading-mode__desc { display: none; }
+.reading-mode.is-min .reading-mode__seg { padding: 2px; }
+.reading-mode.is-min .reading-mode__thumb { top: 2px; bottom: 2px; left: 2px; width: calc(50% - 3px); }
+.reading-mode.is-min .reading-mode__opt { min-height: 32px; padding: var(--sp-1) var(--sp-3); }
+.reading-mode.is-min .reading-mode__toggle { width: 28px; height: 28px; margin: 0; }
+.reading-mode.is-min .reading-mode__name {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+.reading-mode.is-min .reading-mode__time {
+  font: 600 var(--text-sm) / 1.2 var(--font-body);
+  color: inherit;
+}
+
+/* Cambio expandida ↔ colapsada: el renderer anima ancho/alto (FLIP) y, al
+   abrir, eyebrow y descripción entran con fade */
+.reading-mode.is-anim { overflow: hidden; }
+.reading-mode.is-opening .reading-mode__eyebrow,
+.reading-mode.is-opening .reading-mode__desc {
+  animation: reading-mode-fade var(--dur-mid) var(--ease-out) 80ms both;
+}
+
+/* Lectura esencial: el renderer marca con .is-detail lo que se oculta */
+.is-essentials .is-detail { display: none !important; }
+
+@media (max-width: 768px) {
+  .reading-mode { bottom: var(--sp-4); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reading-mode,
+  .reading-mode.is-opening .reading-mode__eyebrow,
+  .reading-mode.is-opening .reading-mode__desc { animation: none; }
+  .reading-mode__thumb,
+  .reading-mode__opt,
+  .reading-mode__time { transition: none; }
+}
+
 /* ---- TOC NAV COMPONENT ---- */
 .toc-nav__title {
   font-family: var(--font-body);

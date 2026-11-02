@@ -619,6 +619,113 @@
         update();
       })();
 
+      // Modo de lectura: card flotante (styles/case.css § READING MODE) que alterna
+      // entre el case completo y la lectura esencial. Esencial oculta todo lo que no
+      // es label + h3, salvo gráficos y alertas (el mensaje es "oculta los párrafos",
+      // no "solo títulos"). Ver docs/design.md.
+      (function readingMode() {
+        const content = document.getElementById('case-v3-content');
+        const sections = [...content.querySelectorAll('section[id]:not(#cta)')];
+        if (!sections.length) return;
+
+        // Tiempo de la lectura esencial: label + h3 a 200 palabras/min, redondeado a 5 s (mínimo 10 s)
+        const headWords = [...content.querySelectorAll('.case-section__head')]
+          .map(h => h.textContent).join(' ').trim().split(/\s+/).filter(Boolean).length;
+        const secs = Math.max(10, Math.ceil((headWords / 200) * 60 / 5) * 5);
+
+        const isGraphic = el => el.matches('figure, table, .image-block, .cslider, .carousel, .compare, .content-row, .demo-figure, .device-figure')
+          || !!el.querySelector('img, video, table');
+        sections.forEach(sec => [...sec.children].forEach(el => {
+          if (el.classList.contains('case-section__head') || el.matches('.alert-callout') || isGraphic(el)) return;
+          el.classList.add('is-detail');
+        }));
+
+        const tx = (en, es) => `<span data-en="${en}" data-es="${es}">${lang === 'es' ? es : en}</span>`;
+        const ICON_COLLAPSE = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>';
+        const ICON_INFO = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M8 7.25v3.5"/><circle cx="8" cy="5.1" r=".6" fill="currentColor" stroke="none"/></svg>';
+        const LBL_COLLAPSE = tx('Hide description', 'Ocultar descripción');
+        const LBL_INFO = tx('What is reading mode?', '¿Qué es el modo de lectura?');
+
+        const card = document.createElement('div');
+        card.className = 'reading-mode';
+        card.setAttribute('role', 'region');
+        card.setAttribute('aria-labelledby', 'reading-mode-title');
+        card.innerHTML = `
+          <p class="reading-mode__eyebrow" id="reading-mode-title">${tx('Reading mode', 'Modo de lectura')}</p>
+          <button class="reading-mode__toggle" type="button" aria-controls="reading-mode-desc" aria-expanded="true"></button>
+          <p class="reading-mode__desc" id="reading-mode-desc">${tx(
+            `The headings tell the whole story. Hide the paragraphs and read it in ${secs} seconds; switch back anytime.`,
+            `Los títulos cuentan el caso por sí solos. Oculta los párrafos y léelo en ${secs} segundos; puedes volver cuando quieras.`)}</p>
+          <div class="reading-mode__seg" role="radiogroup" aria-labelledby="reading-mode-title" data-active="full">
+            <span class="reading-mode__thumb" aria-hidden="true"></span>
+            <button class="reading-mode__opt" type="button" role="radio" data-mode="full"><span class="reading-mode__name">${tx('Full case', 'Completo')}</span> <span class="reading-mode__time">${tx(readMins + ' min', readMins + ' min')}</span></button>
+            <button class="reading-mode__opt" type="button" role="radio" data-mode="essentials"><span class="reading-mode__name">${tx('Essentials', 'Esencial')}</span> <span class="reading-mode__time">${tx(secs + ' s', secs + ' seg')}</span></button>
+          </div>`;
+        document.body.appendChild(card);
+        const seg = card.querySelector('.reading-mode__seg');
+        const opts = [...card.querySelectorAll('.reading-mode__opt')];
+        const toggle = card.querySelector('.reading-mode__toggle');
+
+        // radiogroup: un solo tab stop (el activo); las flechas cambian y seleccionan
+        function select(mode, focus) {
+          seg.dataset.active = mode;
+          opts.forEach(o => {
+            const on = o.dataset.mode === mode;
+            o.setAttribute('aria-checked', String(on));
+            o.tabIndex = on ? 0 : -1;
+            if (on && focus) o.focus();
+          });
+        }
+        function choose(mode, focus) {
+          if (seg.dataset.active === mode) return;
+          // mantiene al lector en la sección en la que estaba
+          const header = document.querySelector('.site-header');
+          const offset = (header ? header.offsetHeight : 64) + 16;
+          const cur = sections.filter(s => s.getBoundingClientRect().top < offset + 60).pop();
+          select(mode, focus);
+          document.body.classList.toggle('is-essentials', mode === 'essentials');
+          if (cur && window.scrollY > 200) window.scrollTo({ top: cur.getBoundingClientRect().top + window.scrollY - offset, behavior: 'instant' });
+        }
+        opts.forEach(o => o.addEventListener('click', () => choose(o.dataset.mode)));
+        seg.addEventListener('keydown', e => {
+          if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
+          e.preventDefault();
+          choose(seg.dataset.active === 'essentials' ? 'full' : 'essentials', true);
+        });
+
+        // Expandida ↔ colapsada. Nunca se colapsa sola: solo con este botón.
+        function setMin(min) {
+          card.classList.toggle('is-min', min);
+          toggle.setAttribute('aria-expanded', String(!min));
+          toggle.innerHTML = (min ? ICON_INFO : ICON_COLLAPSE) + `<span class="sr-only">${min ? LBL_INFO : LBL_COLLAPSE}</span>`;
+        }
+        // FLIP: mide antes y después y anima ancho/alto (anclada abajo a la derecha,
+        // crece hacia la izquierda y hacia arriba)
+        function animateMin(min) {
+          if (REDUCED_MOTION || !card.animate) return setMin(min);
+          const a = card.getBoundingClientRect();
+          setMin(min);
+          const b = card.getBoundingClientRect();
+          card.classList.add('is-anim');
+          card.classList.toggle('is-opening', !min);
+          const anim = card.animate(
+            [{ width: a.width + 'px', height: a.height + 'px' }, { width: b.width + 'px', height: b.height + 'px' }],
+            { duration: 240, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
+          anim.onfinish = anim.oncancel = () => card.classList.remove('is-anim', 'is-opening');
+        }
+        toggle.addEventListener('click', () => animateMin(!card.classList.contains('is-min')));
+
+        select('full');
+        setMin(false);
+
+        // Alineada al borde derecho de la columna de contenido (mobile: gutter del CSS)
+        function place() {
+          card.style.right = window.innerWidth <= 768 ? '' : (window.innerWidth - content.getBoundingClientRect().right) + 'px';
+        }
+        place();
+        window.addEventListener('resize', place);
+      })();
+
       // TOC
       (function buildTOC() {
         const sections = document.querySelectorAll('[data-toc-label]');

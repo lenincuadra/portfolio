@@ -80,6 +80,13 @@ const PAIRS = [
   // Componentes de case
   { name: 'h3 sticky con resaltador    --ink / --mark', fg: '--ink', bg: 'mix(--accent 24%, --bg)', need: 4.5, themes: ['light'] },
   { name: 'h3 sticky con resaltador    --ink / --mark', fg: '--ink', bg: 'mix(--accent 40%, --bg)', need: 4.5, themes: ['dark'] },
+  // Card "modo de lectura" (.reading-mode)
+  { name: 'reading-mode eyebrow   --accent-ink / --bg-card', fg: '--accent-ink', bg: '--bg-card', need: 4.5 },
+  { name: 'reading-mode desc      --ink-2 / --bg-card',      fg: '--ink-2',      bg: '--bg-card', need: 4.5 },
+  { name: 'reading-mode opción    --ink-2 / --surface',      fg: '--ink-2',      bg: '--surface', need: 4.5 },
+  { name: 'reading-mode tiempo    --ink-3 / --surface',      fg: '--ink-3',      bg: '--surface', need: 4.5 },
+  { name: 'reading-mode activa    #fff / --accent',          fg: '#fff',         bg: '--accent',  need: 4.5 },
+  { name: 'reading-mode ícono     --ink-3 / --bg-card',      fg: '--ink-3',      bg: '--bg-card', need: 3 },
   // badge.css: badges con tinte (compartidos con los tags de blog-notes)
   { name: '.badge--violet   --accent-ink / --tint-violet', fg: '--accent-ink', bg: 'mix(--accent 14%, --bg)', need: 4.5 },
   { name: '.badge--green    --accent-3-ink / --tint-green', fg: 'mix(--accent-3 70%, --ink)', bg: 'mix(--accent-3 14%, --bg)', need: 4.5 },

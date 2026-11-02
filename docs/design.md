@@ -51,6 +51,17 @@ La jerarquía vertical es mínima visualmente pero clave para la lectura. Tres r
 - **Resaltador:** cuando el bloque queda pegado, el renderer le pone `.is-stuck` y el h3 se subraya con un trazo de marcador que se dibuja de izquierda a derecha (token `--mark` de `tokens.css`; en dark sube de 24% a 40% de acento para no perderse sobre el fondo casi negro). `--mark`, `--mark-strong` y `--mark-3` son **la única definición**: blog-notes carga `tokens.css` de producción y los usa directo. Cambiarlos o renombrarlos afecta al blog.
 - Es una razón más para h3 cortos: el h3 queda visible todo el tiempo y en mobile cada línea extra quita alto de lectura.
 
+## Modo de lectura (card flotante)
+
+Cada case-v3 tiene una card fija abajo (`.reading-mode` en `styles/case.css`, la crea `readingMode()` del renderer) para elegir entre el **case completo** y la **lectura esencial**. Es la TOC-como-resumen llevada al cuerpo: si los h3 cuentan el arco (ver CLAUDE.md, referencia `no-handoff`), leer solo los encabezados alcanza.
+
+- **Qué oculta la lectura esencial:** todo lo que no es `label` + `h3`, salvo gráficos (imagen, video, slider, carousel, compare, row, tabla) y alertas (`.alert-callout`). El renderer marca lo ocultable con `.is-detail` y `body.is-essentials` lo esconde. Por eso el copy dice "oculta los párrafos" y nunca "solo títulos" (sería falso: quedan los gráficos).
+- **Tiempos:** completo = el `readMins` del case; esencial = palabras de label + h3 a 200 por minuto, redondeado a 5 s (mínimo 10 s). ES abrevia "seg", EN "s"; sin "read" (no mezclar inglés en el copy ES).
+- **Estados:** expandida (eyebrow "Modo de lectura" + descripción con el incentivo + selector + ⌄) y colapsada (`.is-min`: una fila con el selector small, solo tiempos, + ⓘ). Arranca expandida y **nunca se colapsa sola**: colapsar al elegir un modo confundía (cambiaban la página y la card a la vez). Un solo botón disclosure: ⌄ reduce, ⓘ ("¿qué es esto?") vuelve a mostrar la explicación.
+- **Selector:** ajustado al contenido, las dos opciones miden lo que la más ancha (`1fr` en `inline-grid`). Riel neutro (`--surface`); lo único con acento es el indicador (`__thumb`), que se desliza según `[data-active]`. Es un `radiogroup` (un tab stop, flechas para cambiar).
+- **Posición:** alineada al borde derecho de la columna de contenido (nunca tapa la TOC); mobile, gutter de 16px. El paso expandida ↔ colapsada se anima (FLIP de ancho/alto, crece hacia la izquierda y arriba); con `prefers-reduced-motion`, sin animación.
+- Al cambiar de modo, el lector queda en la sección en la que estaba.
+
 ---
 
 ## Componentes compartidos con blog-notes (una sola fuente)

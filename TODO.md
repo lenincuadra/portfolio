@@ -64,7 +64,8 @@ Auditoría original (contra disco): 14 assets faltaban en 2 casos v3. **Ambos re
 ### Card "modo de lectura" (case-v3) — en mockup (`_mockups/skim.html`, v2 segmented)
 
 - [x] **Animar el cambio expandida ↔ colapsada** (en el mockup): FLIP de ancho/alto en 240ms, anclada abajo-derecha (crece hacia la izquierda y arriba), fade de eyebrow + descripción al abrir, sin animación con `prefers-reduced-motion`. Colapsada usa el selector small (32px). Al cambiar de opción, el indicador se desliza; ambas opciones miden lo que la más ancha. **v2 (segmented) es la única card oficial**: la v1 (botón de acción) se eliminó del mockup.
-- [ ] Cerrar variantes abiertas del mockup (colapsada #2 una fila vs #1 con eyebrow; ícono ⓘ vs chevron) y recién ahí implementar en `case-v3.html` + `case.css` + styleguide + `docs/design.md` + pares de `a11y-contrast.js`.
+- [x] Variantes cerradas: colapsada = una fila con solo tiempos + ⓘ; expandida = eyebrow + descripción + selector + ⌄.
+- [x] Implementada (2026-11-02) en `case-v3.html` + `case.css` + styleguide + `docs/design.md` + pares de `a11y-contrast.js`.
 
 ## Menor / continuo
 
