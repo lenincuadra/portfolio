@@ -321,7 +321,9 @@
     const c     = lang === 'es' ? cEs : cEn;
 
     if (!c) {
-      document.getElementById('case-v3-content').textContent = 'Case not found: ' + slug;
+      // Slug inexistente (o sin slug) → la misma página 404 del sitio. replace() para
+      // que "Take me back" vuelva a la página anterior y no a este case roto.
+      location.replace('../404.html');
     } else {
 
       // Page meta
