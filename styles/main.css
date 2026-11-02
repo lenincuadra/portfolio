@@ -10,7 +10,8 @@
    4. header   — skip link, nav, lang switch, theme toggle
    5. hero     — hero index + layout 2 columnas
    7. cards    — case grid + case card
-   8. buttons  — .btn variants + tags
+   8. buttons  — .btn variants
+   8b. badge   — .badge + variantes + .tag-group (compartido con blog-notes)
    9. case     — case study page (hero, TOC, componentes)
    10. about   — bio block, venn, about CTA
    11. footer  — site footer
@@ -23,6 +24,7 @@
 @import "./hero.css";
 @import "./cards.css";
 @import "./buttons.css";
+@import "./badge.css";
 @import "./case.css";
 @import "./about.css";
 @import "./footer.css";

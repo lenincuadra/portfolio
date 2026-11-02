@@ -121,7 +121,7 @@
         grid-column: 1 / -1;
       }
 
-      /* .btn, .card, .field, .badge — definidos en styles/buttons.css, cards.css y base.css */
+      /* .btn, .card, .field, .badge — definidos en styles/buttons.css, badge.css, cards.css y base.css */
     </style>
   </head>
   <body>
@@ -2444,6 +2444,32 @@
               <span class="badge badge--ghost">Fintech</span>
               <span class="badge badge--ghost">Mobile</span>
             </div>
+            <p
+              style="
+                font-family: var(--font-mono);
+                font-size: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                color: var(--ink-4);
+                margin-top: 24px;
+                margin-bottom: 14px;
+              "
+              id="badges-tint"
+              data-toc=".badge--violet / --green"
+            >
+              Tinte — .badge--violet · .badge--green · compartidos con blog-notes (tags personal / practice)
+            </p>
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                align-items: center;
+              "
+            >
+              <span class="badge badge--violet">Personal</span>
+              <span class="badge badge--green">Practice</span>
+            </div>
           </div>
         </section>
 
@@ -2717,6 +2743,11 @@
           <!-- Un demo por `type` del renderer (data-type = nombre del type en
                data/content.js; lo valida scripts/styleguide-check.js) -->
           <div class="sg-grid">
+
+          <div class="sg-item sg-item--full" id="cc-section-head" data-toc="section head (sticky + resaltador)">
+            <p class="sg-label">.case-section__head — label + h3 de cada sección; sticky bajo la navbar en todos los tamaños · .is-stuck (lo pone el renderer al quedar pegado) dibuja el resaltador --mark en el h3</p>
+            <div class="sg-demo"><div class="case-section__head is-stuck"><p class="section__label">Decisions</p><h3><span>Three constraints that eliminated the hallucinations.</span></h3></div></div>
+          </div>
 
           <div class="sg-item" id="cc-body" data-toc="body" data-type="body">
             <p class="sg-label">body — párrafo de prosa (la narrativa del case)</p>

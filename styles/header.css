@@ -31,9 +31,9 @@
   height: 64px;
   display: flex;
   align-items: center;
-  background-color: color-mix(in srgb, var(--bg) 85%, transparent);
-  backdrop-filter: blur(16px) saturate(140%);
-  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  background-color: var(--glass-bg);
+  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--glass-filter);
   border-bottom: 1px solid var(--border-subtle);
   transition:
     background-color var(--dur-mid) var(--ease-out),

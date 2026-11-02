@@ -35,14 +35,15 @@
   <link rel="icon" href="../assets/logo/logo-lc-favicon.svg" type="image/svg+xml" />
   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <style>
-    #case-v3-content .section__label { margin-top: 3rem; margin-bottom: 0; }
+    #case-v3-content .section__label { margin-top: 0; margin-bottom: 0; }
     #case-v3-content h3 { margin-bottom: var(--sp-5); }
-    /* A section that omits its eyebrow label: the h3 is first child and needs the same top
-       breathing room .section__label would have provided, so the section rhythm holds. */
-    #case-v3-content section > h3:first-child { margin-top: 3rem; }
+    /* label + h3 de la sección viven en .case-section__head (sticky, ver styles/case.css):
+       el margen superior de la sección va en el wrapper, así funciona con o sin label. */
+    #case-v3-content .case-section__head { margin-top: 3rem; margin-bottom: var(--sp-5); }
+    #case-v3-content .case-section__head h3 { margin-bottom: 0; }
     /* A subhead directly under the section h3 sits closer — the h3 already opened the topic
        (the standalone .case-subhead top margin is the after-media distance). */
-    #case-v3-content h3 + .case-subhead { margin-top: var(--sp-6); }
+    #case-v3-content .case-section__head + .case-subhead { margin-top: var(--sp-6); }
     /* Las listas de steps/subheading (ul/ol con h4+p, contador colgante) viven en
        styles/case.css (sección CASE PROSE) — compartidas con los demos del styleguide. */
     #case-v3-content hr { border: none; border-top: 1px solid var(--border-subtle); margin-top: 3rem; margin-bottom: 0; }
@@ -83,7 +84,7 @@
     #lightbox.is-single .lightbox-nav { display: none; }
     .toc-nav__title { border-bottom: none !important; padding-bottom: 0 !important; margin-bottom: 0 !important; }
     .toc-nav__reading-time { display: block; font-size: var(--text-xs); color: var(--ink-3); font-weight: 400; padding: 0 var(--sp-3) var(--sp-3); border-bottom: 1px solid var(--border-subtle); margin-bottom: var(--sp-1); }
-    @media (max-width: 1100px) {
+    @media (max-width: 768px) {
       #case-v3-content { padding-inline: clamp(1.25rem, 5vw, 3rem); }
     }
   </style>
@@ -536,7 +537,7 @@
         return Math.max(1, Math.ceil(words / 200));
       }
       const readMins = calcReadingTime(cEn.sections);
-      const readingTimeHTML = `<p><span class="case-hero__tag" data-en="${readMins} min read" data-es="${readMins} min de lectura">${lang === 'es' ? readMins + ' min de lectura' : readMins + ' min read'}</span></p>`;
+      const readingTimeHTML = `<p><span class="badge badge--ghost" data-en="${readMins} min read" data-es="${readMins} min de lectura">${lang === 'es' ? readMins + ' min de lectura' : readMins + ' min read'}</span></p>`;
 
       // Hero
       const heroEn = cEn.hero || {}, heroEs = cEs.hero || {};
@@ -553,7 +554,10 @@
         const enToc  = (s.tocLabel  || s.label  || '').replace(/"/g, '&quot;');
         const esToc  = (esS?.tocLabel || s.tocLabel || esS?.label || s.label || '').replace(/"/g, '&quot;');
         const curToc = lang === 'es' ? (esS?.tocLabel || s.tocLabel || esS?.label || s.label || '') : (s.tocLabel || s.label || '');
-        return `<section id="${s.id}" data-toc-label="${curToc}" data-toc-label-en="${enToc}" data-toc-label-es="${esToc}">${sLabel}${sH3}${body}</section>`;
+        // label + h3 van juntos en .case-section__head: es el bloque que queda sticky
+        // bajo la navbar mientras se lee la sección (la siguiente lo empuja).
+        const sHead  = (sLabel || sH3) ? `<div class="case-section__head">${sLabel}${sH3}</div>` : '';
+        return `<section id="${s.id}" data-toc-label="${curToc}" data-toc-label-en="${enToc}" data-toc-label-es="${esToc}">${sHead}${body}</section>`;
       }).join('<hr>');
 
       // CTA
@@ -593,6 +597,27 @@
         const maxW = Math.max(...Array.from(opts).map(el => el.offsetWidth));
         opts.forEach(el => { el.style.minWidth = maxW + 'px'; });
       });
+
+      // Encabezado sticky: marca .is-stuck mientras flota bajo la navbar (vidrio +
+      // resaltador del h3). Flota = está desplazado de su posición natural dentro
+      // de la sección (incluye cuando la sección siguiente lo empuja hacia afuera).
+      (function stickyHeads() {
+        const heads = [...document.querySelectorAll('.case-section__head')];
+        if (!heads.length) return;
+        let ticking = false;
+        function update() {
+          ticking = false;
+          heads.forEach(h => {
+            const cs = getComputedStyle(h);
+            const top = parseFloat(cs.top) || 0;
+            const hr = h.getBoundingClientRect();
+            const sr = h.parentElement.getBoundingClientRect();
+            h.classList.toggle('is-stuck', hr.top - sr.top > (parseFloat(cs.marginTop) || 0) + 0.5 && sr.bottom > top);
+          });
+        }
+        window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+        update();
+      })();
 
       // TOC
       (function buildTOC() {

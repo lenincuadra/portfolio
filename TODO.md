@@ -61,6 +61,11 @@ Auditoría original (contra disco): 14 assets faltaban en 2 casos v3. **Ambos re
 
 > Cuando estén los videos, pasárselos a Claude: los cropea, actualiza el draft y corre `case-check --strict`.
 
+### Card "modo de lectura" (case-v3) — en mockup (`_mockups/skim.html`, v2 segmented)
+
+- [ ] **Animar el cambio expandida ↔ colapsada**: la card cambia de ancho (colapsada se ajusta a selector + ⓘ; expandida mide 400px) y hoy salta. Anclada abajo a la derecha, así que crece hacia la izquierda y hacia arriba. Probar en el mockup antes de decidir; respetar `prefers-reduced-motion`.
+- [ ] Cerrar variantes abiertas del mockup (colapsada #2 una fila vs #1 con eyebrow; ícono ⓘ vs chevron) y recién ahí implementar en `case-v3.html` + `case.css` + styleguide + `docs/design.md` + pares de `a11y-contrast.js`.
+
 ## Menor / continuo
 
 - **Legibilidad del contenido (**`figma-webp-export`**, y revisar en todos los v3)** — las secciones **Overview, Problem y Process** tienen bloques de texto largos (párrafos densos) que probablemente no se lean. Hacerlo más navegable/escaneable: acortar, partir en bullets/sub-bloques, o destacar la idea clave. Objetivo: que se capte rápido sin leer todo el párrafo.

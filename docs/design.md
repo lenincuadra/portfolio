@@ -35,10 +35,32 @@ La jerarquía vertical es mínima visualmente pero clave para la lectura. Tres r
 
 1. **`.case-subhead` (componente `heading` nivel 4) = apertura de sub-tema.** Lleva `margin-top: var(--sp-10)` (2.5rem): separación clara respecto del media o la prosa de arriba. Es la **distancia "después de media"**.
    - *Bug histórico:* usaba `var(--sp-7)`, que **no existe** en la escala (`tokens.css` salta de `--sp-6` a `--sp-8`). Una `var()` indefinida sin fallback invalida **toda** la declaración `margin` → quedaba en 0 y el subhead se pegaba a la imagen de arriba. Por eso "Add a high-intent channel" no tenía aire.
-2. **Subhead pegado al `h3` de sección** (`#case-v3-content h3 + .case-subhead`): `margin-top: var(--sp-6)`. El `h3` ya abrió la sección; el primer subhead va más cerca (no necesita la distancia completa de "después de media").
-3. **Sección sin `label`** (`#case-v3-content section > h3:first-child`): `margin-top: 3rem`, el mismo aire que habría dado `.section__label`. Mantiene el ritmo entre secciones aunque una omita su eyebrow. *Escalable:* cualquier sección futura sin label queda bien sin tocar nada.
+2. **Subhead pegado al `h3` de sección** (`#case-v3-content .case-section__head + .case-subhead`): `margin-top: var(--sp-6)`. El `h3` ya abrió la sección; el primer subhead va más cerca (no necesita la distancia completa de "después de media").
+3. **Sección sin `label`**: el `margin-top: 3rem` vive en `.case-section__head` (wrapper de label + h3), así que el ritmo entre secciones se mantiene aunque una omita su eyebrow. *Escalable:* cualquier sección futura sin label queda bien sin tocar nada.
 
 **Cómo modelar "dos sub-secciones dentro de una sección"** (ej. Result → *Quantitative* / *Qualitative*): cada grupo se abre con un `heading` (nivel 4 → `.case-subhead`), no con `subheading`. `subheading` está pensado para agrupar con el `body` siguiente (`subheading`+`body` → `<li><h4>+<p>`); usarlo para rotular una lista `steps` lo envuelve en un `<ul><li>` apretado y "amontona". `heading` da el bloque de sub-sección con su `margin-top: var(--sp-10)` y la lista respira debajo.
+
+## Layout responsive y encabezado sticky de sección
+
+**Desktop y tablet son el mismo layout mientras haya espacio.** Contenido + TOC a la derecha desde 769px hacia arriba: entre 769 y 1100px la columna de contenido se achica (`minmax(0, 1fr)`) y la TOC (200px) se mantiene. Solo en **mobile (≤768px)** pasa a una columna y la TOC desaparece. No introducir un layout "tablet" distinto: si algo no entra, se ajusta la columna, no se esconde la TOC. (768px es el breakpoint mobile que ya usa el resto del sitio, ej. `header.css`.)
+
+**Encabezado de sección sticky** (`.case-section__head` en `styles/case.css`): el renderer envuelve `label` + `h3` de cada sección en ese bloque, que queda pegado bajo la navbar (`top: 64px`) mientras se lee la sección; la siguiente lo empuja (sticky se limita a su `<section>`). Vale en **todos los tamaños**, mobile incluido. Mientras está en el flujo se ve como texto normal; **solo cuando flota** (`.is-stuck`) toma el vidrio y la línea divisoria de la navbar. El vidrio son los tokens `--glass-bg` / `--glass-filter` de `tokens.css`, compartidos con `.site-header`: una sola definición, así nunca se ve un tono distinto entre los dos. Consecuencias:
+
+- El margen superior de la sección vive en el wrapper (`#case-v3-content .case-section__head { margin-top: 3rem }`), así una sección con o sin `label` mantiene el ritmo sin reglas extra.
+- Los selectores de adyacencia apuntan al wrapper (`.case-section__head + .case-subhead`), no al `h3`.
+- **Resaltador:** cuando el bloque queda pegado, el renderer le pone `.is-stuck` y el h3 se subraya con un trazo de marcador que se dibuja de izquierda a derecha (token `--mark` de `tokens.css`; en dark sube de 24% a 40% de acento para no perderse sobre el fondo casi negro). `--mark`, `--mark-strong` y `--mark-3` son **la única definición**: blog-notes carga `tokens.css` de producción y los usa directo. Cambiarlos o renombrarlos afecta al blog.
+- Es una razón más para h3 cortos: el h3 queda visible todo el tiempo y en mobile cada línea extra quita alto de lectura.
+
+---
+
+## Componentes compartidos con blog-notes (una sola fuente)
+
+notes.lenincuadra.com (repo `blog-notes`) usa este design system cargando archivos de **producción**: `styles/tokens.css`, `styles/header.css` y `styles/badge.css`. Regla: lo que se ve igual en los dos sitios se define **una vez acá** y el blog lo consume; el blog nunca copia un estilo ni redefine un token del portfolio.
+
+- **Un componente compartido = un archivo propio en `styles/`** (no dentro de un archivo grande): así el blog carga solo lo que usa, sin arrastrar `.btn` ni el resto. `main.css` lo importa igual que a los demás. Para compartir uno nuevo: extraerlo a su archivo, importarlo en `main.css` y agregar el `<link>` en `blog-notes/src/components/BaseHead.astro`.
+- **Tokens compartidos**: `--mark*` (resaltador), `--tint-*` (fondos de badges con tinte) y `--accent-3-ink` (verde para texto, como `--accent-ink` para el violeta). Los que dependen de `--bg` se redeclaran en el bloque dark (por `.preview-dark` del styleguide).
+- **Badges** (`badge.css`): `.badge--ghost` (tags del hero, tiempo de lectura de los cases) y `.badge--violet` / `.badge--green` (los tags personal / practice del blog). El tiempo de lectura de los cases usa `.badge--ghost`; el viejo `.case-hero__tag` se eliminó.
+- **Orden de deploy**: primero el portfolio, después el blog (el blog lee producción; si sale antes, referencia clases o tokens que todavía no existen). Renombrar o borrar algo compartido rompe el blog: buscar el uso en `blog-notes` antes.
 
 ---
 

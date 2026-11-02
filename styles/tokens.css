@@ -38,6 +38,25 @@
   --color-warning: #b87820;
   --color-danger: #c0392b;
   --color-danger-bg: #fef2f2;
+  /* Resaltador (trazo en la mitad inferior del texto, como un marcador).
+     Fuente única: lo usan el portfolio (h3 sticky de los cases) y blog-notes,
+     que carga este archivo. Se declara también en el bloque dark para que
+     .preview-dark (styleguide) lo resuelva con su propio --bg. */
+  --mark: color-mix(in srgb, var(--accent) 24%, var(--bg));
+  --mark-strong: color-mix(in srgb, var(--accent) 45%, var(--bg));
+  --mark-3: color-mix(in srgb, var(--accent-3) 24%, var(--bg));
+  /* Tintes de los badges con color (badge.css: .badge--violet / --green) y
+     --accent-3-ink: el verde hecho para texto (como --accent-ink para el violeta).
+     Fuente única con blog-notes (tags personal / practice y sus notas al margen).
+     Redeclarados en dark. */
+  --tint-violet: color-mix(in srgb, var(--accent) 14%, var(--bg));
+  --tint-green: color-mix(in srgb, var(--accent-3) 14%, var(--bg));
+  --accent-3-ink: color-mix(in srgb, var(--accent-3) 70%, var(--ink));
+  /* Vidrio de la navbar: fondo translúcido + blur. Fuente única para todo lo
+     que flota pegado arriba (.site-header y el h3 sticky de los cases), así
+     se ven idénticos. En el bloque dark se redeclara (depende de --bg). */
+  --glass-bg: color-mix(in srgb, var(--bg) 85%, transparent);
+  --glass-filter: blur(16px) saturate(140%);
   /* Case-study image placeholder, derived from the accent so it tracks the brand.
      Faint accent fill, dashed accent border, dimmed accent icon. */
   --img-ph-fill: color-mix(in srgb, var(--accent) 7%, transparent);
@@ -122,6 +141,14 @@ html.theme-dark,
   --color-warning: #b87820;
   --color-danger: #c0392b;
   --color-danger-bg: #1f0a08;
+  /* En dark el 24% de light se perdía sobre el fondo casi negro: 40% */
+  --mark: color-mix(in srgb, var(--accent) 40%, var(--bg));
+  --mark-strong: color-mix(in srgb, var(--accent) 45%, var(--bg));
+  --mark-3: color-mix(in srgb, var(--accent-3) 40%, var(--bg));
+  --tint-violet: color-mix(in srgb, var(--accent) 14%, var(--bg));
+  --tint-green: color-mix(in srgb, var(--accent-3) 14%, var(--bg));
+  --accent-3-ink: color-mix(in srgb, var(--accent-3) 70%, var(--ink));
+  --glass-bg: color-mix(in srgb, var(--bg) 85%, transparent);
   --img-ph-fill: color-mix(in srgb, var(--accent) 14%, transparent);
   --img-ph-border: color-mix(in srgb, var(--accent-dim) 40%, transparent);
   --img-ph-icon: var(--accent-dim);

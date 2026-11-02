@@ -78,6 +78,11 @@ const PAIRS = [
   { name: 'metric note             --ink-3   / card',    fg: '--ink-3',      bg: '--surface', need: 4.5, themes: ['dark'] },
 
   // Componentes de case
+  { name: 'h3 sticky con resaltador    --ink / --mark', fg: '--ink', bg: 'mix(--accent 24%, --bg)', need: 4.5, themes: ['light'] },
+  { name: 'h3 sticky con resaltador    --ink / --mark', fg: '--ink', bg: 'mix(--accent 40%, --bg)', need: 4.5, themes: ['dark'] },
+  // badge.css: badges con tinte (compartidos con los tags de blog-notes)
+  { name: '.badge--violet   --accent-ink / --tint-violet', fg: '--accent-ink', bg: 'mix(--accent 14%, --bg)', need: 4.5 },
+  { name: '.badge--green    --accent-3-ink / --tint-green', fg: 'mix(--accent-3 70%, --ink)', bg: 'mix(--accent-3 14%, --bg)', need: 4.5 },
   { name: 'compare tag Figma           #fff / #2563eb',   fg: '#fff', bg: '#2563eb', need: 4.5 },
   { name: 'compare tag App             #fff / #047857',   fg: '#fff', bg: '#047857', need: 4.5 },
   { name: 'carousel dot activo  --accent-ink / --bg-card', fg: '--accent-ink', bg: '--bg-card', need: 3 },
