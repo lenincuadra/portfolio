@@ -289,7 +289,7 @@ PORTFOLIO_DATA.es.cases.push({
         },
         {
           "type": "body",
-          "text": "El componente está construido para eso: la lógica de datos y la capa visual están desacopladas. Reemplazá la diana con otro diseño, mantenés la estructura de anillos, y el mapeo sigue funcionando. El sistema está listo para una versión mejor de sí mismo."
+          "text": "El componente está construido para eso: la lógica de datos y la capa visual están desacopladas. Si se reemplaza la diana por otro diseño, la estructura de anillos se mantiene, y el mapeo sigue funcionando. El sistema está listo para una versión mejor de sí mismo."
         }
       ]
     }

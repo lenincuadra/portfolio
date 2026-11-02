@@ -69,6 +69,7 @@ Ejemplo completo de de-tecnificación:
 6. **Voz: primera persona, activa, simple.** "I built", "I told her" — no "The objective was to improve conversion."
 7. **Brevedad.** Los `body` de no-handoff son 1-2 oraciones. Si un párrafo crece, partilo en beats con su propio gráfico.
 8. **Sin em-dashes (`—`) en el copy.** En `body`, `quote`, `heading`, `h3` y captions de prosa usá coma, punto, dos puntos o paréntesis en su lugar, nunca el guion largo. **Excepción (es sintaxis, no copy):** el `" — "` de `steps` variante bullet (`"label — desc"` → `<h4>` + `<p>`) y el que une `label` + `caption` en `video` son delimitadores que lee el renderer; esos no se tocan.
+9. **Español neutro en el copy ES, sin voseo.** Tuteo ("conoces", "muéstranos", "exporta"), nunca "conocés", "mostranos", "exportá". Vale para todo el copy en español del sitio, no solo los cases. `case-check` lo detecta (heurística) y en `--strict` falla.
 
 ## Arco típico
 
@@ -83,5 +84,6 @@ Contexto / hook → el problema concreto → el approach (las decisiones, cada u
 - [ ] Cada **gráfico prueba** lo que dice su sección (sin duplicados, sin "comparación coja").
 - [ ] **Sin frases abstractas/genéricas**; hay detalle concreto (número, nombre, cita).
 - [ ] **Primera persona, activa.**
+- [ ] **Español neutro** en el copy ES (sin voseo).
 - [ ] **Sin em-dashes (`—`)** en la prosa (el `" — "` de `steps`/captions es sintaxis del componente, no copy).
 - [ ] **EN y ES** alineados por índice (mismo objeto, mismos `type`).

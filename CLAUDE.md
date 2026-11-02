@@ -4,6 +4,8 @@
 
 **Sin em-dashes (`—`) en ningún copy del sitio** — esto aplica a `data/content.js` (hero, about, cases, contact), `index.html`, y cualquier texto visible al usuario. Reemplazar siempre con coma, punto, dos puntos o paréntesis según el caso. Excepción: el `" — "` de `steps` (`"label — desc"`) y captions de `video` es sintaxis del renderer, no copy, y se mantiene.
 
+**Español neutro en todo el copy ES** (`data/content.js` `es`, drafts, `data-es` de `index.html`, `hero.js`): tuteo, **nunca voseo** ("conoces/muéstranos/exporta", no "conocés/mostranos/exportá"). `case-check` lo valida en el copy de los cases (heurística; en `--strict` falla). Los comentarios de código y los docs internos no son copy.
+
 ## Commits
 
 Mensajes de commit **en español** (no traducir al inglés), matching el historial: prefijo de área + acción en imperativo/presente. Ej.: `ecommerce: reescribe…`, `case-v3: documenta…`, `Styleguide: …`.

@@ -26,6 +26,7 @@
 // ⚠ Editorial (falla solo con --strict):
 //   · em-dash (—) en copy de secciones (excepto items de steps y captions de
 //     video, que son sintaxis del renderer)
+//   · voseo en el copy ES (regla: español neutro, tú; heurística, ver lintVoseo)
 //   · meta.description corta (<70) o genérica ("A case study by")
 //   · h3 que no parece afirmación declarativa (<20 chars)
 // =============================================================================
@@ -207,6 +208,35 @@ for (const lang of ['en', 'es']) for (const c of scope(lang)) lintCopy(c.section
 dashCount
   ? warn(`${dashCount} em-dashes (—) en copy de secciones (regla: coma/punto/dos puntos/paréntesis; steps y captions no cuentan, son sintaxis)`)
   : ok('sin em-dashes en el copy de secciones');
+
+// Español neutro: el copy ES no usa voseo (tú, no vos). Heurística: presente
+// de vos (-ás/-és/-ís, salvo palabras comunes y futuros -rás), imperativo de
+// -ar (-á, salvo futuros -rá) y una lista de imperativos -er/-ir y enclíticos
+// frecuentes (los -é/-í genéricos chocan con el pretérito: diseñé, construí).
+const VOS_EXCEPT = new Set(('además inglés francés japonés portugués holandés escocés después país través interés ' +
+  'atrás jamás más demás estrés revés compás quizás detrás cortés exprés anís maíz raíz ' +
+  'está acá allá ahí aquí allí así sí ya mamá papá sofá Panamá Canadá Bogotá').split(' ').map((w) => w.toLowerCase()));
+const VOS_LIST = /^(hacé|volvé|poné|tené|decí|vení|sabé|mové|leé|corré|escribime|decime|contame|fijate|avisame|mandame|mostrame|mostranos|contanos|escribinos|hacelo|probalo|miralo|vos)$/i;
+const vosHits = [];
+function lintVoseo(node, where) {
+  if (Array.isArray(node)) return node.forEach((n, i) => lintVoseo(n, `${where}[${i}]`));
+  if (!node || typeof node !== 'object') return;
+  for (const [k, v] of Object.entries(node)) {
+    if (typeof v === 'string' && (COPY_KEYS.has(k) || k === 'description' || k === 'label' || k === 'tocLabel' || k === 'caption')) {
+      for (const w of v.match(/[A-Za-zÁÉÍÓÚáéíóúñÑü]+/g) || []) {
+        const lw = w.toLowerCase();
+        if (VOS_EXCEPT.has(lw)) continue;
+        if ((/(ás|és|ís)$/.test(lw) && !/rás$/.test(lw)) || (/[^r]á$/.test(lw) && lw.length > 3) || VOS_LIST.test(lw)) {
+          vosHits.push(`${where}.${k}: "${w}"`);
+        }
+      }
+    } else if (typeof v === 'object') lintVoseo(v, `${where}.${k}`);
+  }
+}
+for (const c of scope('es')) lintVoseo(c, `es.${c.slug}`);
+vosHits.length
+  ? warn(`${vosHits.length} posible(s) voseo en copy ES (regla: español neutro, tú): ${vosHits.slice(0, 5).join(' · ')}${vosHits.length > 5 ? ' …' : ''}`)
+  : ok('copy ES en español neutro (sin voseo)');
 
 // --- cases.json (pruebas del hero) ---------------------------------------------
 

@@ -1624,7 +1624,7 @@ const PORTFOLIO_DATA = {
                 {
                   "type": "heading",
                   "level": 5,
-                  "text": "Expandí y arrastrá para comparar: Figma vs Code"
+                  "text": "Expande y arrastra para comparar: Figma vs Code"
                 },
                 {
                   "type": "row",
@@ -1742,7 +1742,7 @@ const PORTFOLIO_DATA = {
               "content": [
                 {
                   "type": "body",
-                  "text": "Con 20 o 50 créditos por plan, los plugins de pago se agotan rápido. Exportá 10 imágenes, hacé algunos ajustes, volvé a exportar, y se terminaron. Y el workaround manual tampoco es gratis: una sola exportación tarda alrededor de 5 minutos. Para 12 imágenes en tres viewports (desktop, tablet, mobile), es una hora completa. Esa hora la paga el diseñador o cae sobre el desarrollador. De cualquier forma, alguien paga por un problema que no debería existir."
+                  "text": "Con 20 o 50 créditos por plan, los plugins de pago se agotan rápido. Exportas 10 imágenes, haces algunos ajustes, vuelves a exportar, y se terminaron. Y el workaround manual tampoco es gratis: una sola exportación tarda alrededor de 5 minutos. Para 12 imágenes en tres viewports (desktop, tablet, mobile), es una hora completa. Esa hora la paga el diseñador o cae sobre el desarrollador. De cualquier forma, alguien paga por un problema que no debería existir."
                 }
               ]
             },
