@@ -64,6 +64,28 @@ El renderer lee **solo** `id`, `tocLabel`, `label`, `h3`, `content`. (No usa `la
 - Toda sección debería tener **`tocLabel` + `h3`**. La única que puede omitirlos es la sección **lead/overview**.
 - Si una sección omite `label`, su `h3` igual recibe el espaciado correcto (regla de template; ver `docs/design.md`).
 
+### Jerarquía de encabezados y lectura esencial
+
+Cada case tiene dos lecturas: la **completa** y la **esencial** (la card "Modo de lectura" oculta los párrafos). La esencial funciona solo si los encabezados se escriben para eso: **los títulos (`label` + `h3`) cuentan el caso; los subtítulos (`h4`) dan el contexto de lo que viene debajo**, sobre todo de los gráficos.
+
+| Nivel | Campo en `content.js` | Rol | Ejemplo (`no-handoff`) | En la esencial |
+|---|---|---|---|---|
+| Label | `label` | Rótulo corto de la sección (TOC) | "Result" | Se ve |
+| **h3** | `h3` | **Título**: la afirmación que hace avanzar la historia | "The output was indistinguishable from the real product" | Se ve |
+| **h4** | `heading` (nivel 4) · rótulo de `steps` (`"label — desc"`) · `subheading` | **Subtítulo**: el contexto del gráfico o la lista de abajo | "Layout and flows matched Figma at 100%" · "User testing" | Se ve |
+| h5 | `heading` con `level: 5` | Instrucción de interacción | "Expand and drag to compare" | Oculto |
+| Texto | `body`, `quote`, `link`, descripción de `steps`, `steps` numerado | El detalle | | Oculto |
+
+Además siempre se ven los gráficos (`image`, `video`, `compare`, `slider`, `carousel`, `row`, `gallery`, `table`) y las alertas (`callout`). Los bullets de `steps` **sin** `" — "` se ven enteros: ya son la versión corta.
+
+Al escribir un case:
+- **Solo los h3 en orden** tienen que contar el arco completo (la regla de la TOC).
+- **Cada gráfico con un h4 arriba** que diga qué muestra o qué prueba. Sin h4, en la esencial el gráfico aparece sin contexto.
+- **Las métricas van en un título o en un bullet corto**, nunca solo en la descripción de un `steps` ni en un `body`: en la esencial esos se ocultan.
+- Las instrucciones ("arrastra", "expande") van en h5, no en h4: no son contexto.
+
+Cómo lo decide el renderer y por qué: `docs/design.md` § Modo de lectura.
+
 ---
 
 ## 3. Tipos de bloque (`content[]`) — referencia
@@ -141,6 +163,7 @@ Valida: meta/card completos, estructura v3 (id, h3, par label+h3 de la TOC, type
 - [ ] Objeto en `en.cases` **y** `es.cases`, mismo `slug`, `template:"v3"`.
 - [ ] EN/ES alineados por índice (nº secciones, nº items, tipos en orden).
 - [ ] Cada sección: `id` único + `tocLabel` + `h3` declarativo. **Leés solo los h3 y entendés el caso.**
+- [ ] Lectura esencial: cada gráfico tiene un h4 de contexto arriba y las métricas están en títulos o bullets cortos (ver § Jerarquía de encabezados).
 - [ ] Todos los `type` existen en el renderer; campos correctos.
 - [ ] Assets existen (img/video + `.mp4` hermano, poster, cover).
 - [ ] El case está en la posición correcta del array `cases` (define grilla y prev/next default).
