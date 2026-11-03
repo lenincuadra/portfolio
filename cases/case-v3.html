@@ -630,17 +630,29 @@
         const sections = [...content.querySelectorAll('section[id]:not(#cta)')];
         if (!sections.length) return;
 
-        // Tiempo de la lectura esencial: label + h3 a 200 palabras/min, redondeado a 5 s (mínimo 10 s)
-        const headWords = [...content.querySelectorAll('.case-section__head')]
-          .map(h => h.textContent).join(' ').trim().split(/\s+/).filter(Boolean).length;
-        const secs = Math.max(10, Math.ceil((headWords / 200) * 60 / 5) * 5);
-
         const isGraphic = el => el.matches('figure, table, .image-block, .cslider, .carousel, .compare, .content-row, .demo-figure, .device-figure')
           || !!el.querySelector('img, video, table');
+        // Se quedan además los encabezados de sub-tema (.case-subhead) y las listas en
+        // su versión corta: son el contexto de los gráficos y cuentan la historia como
+        // los h3. Lista con rótulos (h4): se oculta solo la descripción. Bullets sin
+        // rótulo: ya son la versión corta (ej. las métricas de ecommerce) y se quedan.
+        // Numerada sin rótulos: se lee como prosa y se oculta.
         sections.forEach(sec => [...sec.children].forEach(el => {
-          if (el.classList.contains('case-section__head') || el.matches('.alert-callout') || isGraphic(el)) return;
+          if (el.classList.contains('case-section__head') || el.matches('.alert-callout, .case-subhead') || isGraphic(el)) return;
+          if (el.matches('ul, ol') && el.querySelector(':scope > li > h4')) {
+            el.querySelectorAll(':scope > li > h4').forEach(h4 =>
+              [...h4.parentElement.children].forEach(x => { if (x !== h4) x.classList.add('is-detail'); }));
+            return;
+          }
+          if (el.matches('ul')) return;
           el.classList.add('is-detail');
         }));
+
+        // Tiempo de la lectura esencial: el texto que queda visible (encabezados, sub-temas
+        // y listas cortas) a 200 palabras/min, redondeado a 5 s (mínimo 10 s)
+        const kept = content.querySelectorAll('.case-section__head, .case-subhead, li > h4, ul > li:not(.is-detail):not(:has(> h4))');
+        const keptWords = [...kept].map(el => el.textContent).join(' ').trim().split(/\s+/).filter(Boolean).length;
+        const secs = Math.max(10, Math.ceil((keptWords / 200) * 60 / 5) * 5);
 
         const tx = (en, es) => `<span data-en="${en}" data-es="${es}">${lang === 'es' ? es : en}</span>`;
         const ICON_COLLAPSE = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>';
