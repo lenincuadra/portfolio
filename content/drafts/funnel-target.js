@@ -4,36 +4,14 @@
 //
 // ASSETS — estado por sección
 // cover          assets/images/funnel-target/cover.png                  [OK — temporal; reemplazar con captura dedicada]
-// s-insight      assets/images/funnel-target/funnel-legend.png          [TEMPORAL — imagen estática; reemplazar con video A]
-// s-color        assets/images/funnel-target/color-rings.png            [TEMPORAL — imagen estática; reemplazar con video B]
+// s-insight      assets/images/funnel-target/diana-empty.webm           [OK — video A, grabado del playground /dev/animations de cbuilder]
+// s-color        assets/images/funnel-target/paint-loop.webm            [OK — video B]
 // s-result       assets/images/funnel-target/funnel-reveal.webm         [OK]
-// s-playground   assets/images/funnel-target/playground-controls.webm  [PENDIENTE — grabar video C]
+// s-playground   assets/images/funnel-target/playground-controls.webm   [OK — video C]
 // s-scale        —                                                       [no necesita media]
 //
-// GRABACIONES PENDIENTES (todas desde el playground de cv-builder en localhost):
-//
-// VIDEO A — s-insight — diana-empty.webm
-//   Qué: playground con count=0. Solo la diana con anillos sin flechas.
-//   Crop: solo la mitad izquierda (sin el panel de sliders).
-//   Duración: 2-3s. Sin sonido. Autoplay loop.
-//
-// VIDEO B — s-color — paint-loop.webm
-//   Qué: flechas ya aterrizadas en gris → se dispara el pintado → todas cambian de color.
-//   Crop: solo la diana (sin toolbar ni action cards).
-//   Duración: ~1-2s loopeable (el loop crea el efecto de titileo).
-//   Tip: grabarlo en el playground donde podés re-disparar el pintado a voluntad.
-//
-// VIDEO C — s-playground — playground-controls.webm
-//   Qué: animación corriendo CON el panel de sliders visible a la derecha.
-//   Muestra el sistema completo: diana + parámetros configurables.
-//   Duración: 5-8s. Sin crop — mostrar todo el playground.
-//
 // TODO antes de publicar:
-//   - Grabar A, B, C y mover a assets/images/funnel-target/.
-//   - Reemplazar los image blocks de s-insight y s-color por video.
-//   - Agregar video C a s-playground.
-//   - Convertir .png a .webp (requiere libwebp).
-//   - Cover definitivo sin chrome.
+//   - Convertir cover.png a .webp (requiere libwebp) y cover definitivo sin chrome.
 //   - Confirmar slug y decidir si va a cases.json.
 
 PORTFOLIO_DATA.en.cases.push({
@@ -89,10 +67,12 @@ PORTFOLIO_DATA.en.cases.push({
           "text": "A job search has five stages: sent, responded, interview, offer, referral. A diana has five concentric rings. Closer to center means further in the process. I mapped them directly: no new visual element needed, the structure was already there."
         },
         {
-          "type": "image",
-          "src": "assets/images/funnel-target/funnel-legend.png",
-          "ratio": "auto",
-          "alt": "Diana animation showing the funnel legend: five rings mapped to five stages, from sent (outer white ring) to referral (inner gold ring)"
+          "type": "video",
+          "src": "assets/images/funnel-target/diana-empty.webm",
+          "ratio": "square",
+          "size": "half",
+          "controls": false,
+          "alt": "The empty diana before any arrow lands: five rings, from the white outer ring (sent) to the gold center (referral)"
         }
       ]
     },
@@ -110,10 +90,12 @@ PORTFOLIO_DATA.en.cases.push({
           "text": "Every arrow flies gray, lands, pauses. Then all paint at once. That pause is the moment of reading: the color pattern is visible before a single row of data appears."
         },
         {
-          "type": "image",
-          "src": "assets/images/funnel-target/color-rings.png",
-          "ratio": "auto",
-          "alt": "Diana in the real app after all arrows have painted: outer ring white, moving inward through dark gray, blue, red, gold"
+          "type": "video",
+          "src": "assets/images/funnel-target/paint-loop.webm",
+          "ratio": "square",
+          "size": "half",
+          "controls": false,
+          "alt": "Every arrow has landed gray; after a pause, all of them paint at once in the color of the ring they hit"
         }
       ]
     },
@@ -140,11 +122,17 @@ PORTFOLIO_DATA.en.cases.push({
       "id": "section-playground",
       "label": "The system",
       "h3": "Every parameter is exposed. The data logic and the visual are two separate layers.",
-      // VIDEO C pendiente: agregar bloque video con playground-controls.webm cuando esté grabado
       "content": [
         {
           "type": "body",
           "text": "The playground shows what's underneath: timing, trajectory, angle, density, all configurable without touching the data mapping. The rings stay rings. The colors stay colors. The rest is a variable."
+        },
+        {
+          "type": "video",
+          "src": "assets/images/funnel-target/playground-controls.webm",
+          "ratio": "auto",
+          "controls": false,
+          "alt": "The playground running: the diana replays with 14 arrows while the tuning panel exposes timing and trajectory sliders"
         }
       ]
     },
@@ -219,10 +207,12 @@ PORTFOLIO_DATA.es.cases.push({
           "text": "Una búsqueda de trabajo tiene cinco etapas: enviado, respondido, entrevista, oferta, referido. Una diana tiene cinco anillos concéntricos. Más cerca del centro significa más lejos en el proceso. Los mapeé directamente: sin necesidad de inventar un canal visual nuevo, la estructura ya estaba ahí."
         },
         {
-          "type": "image",
-          "src": "assets/images/funnel-target/funnel-legend.png",
-          "ratio": "auto",
-          "alt": "Animación de la diana mostrando la leyenda del funnel: cinco anillos mapeados a cinco etapas, de enviado (anillo exterior blanco) a referido (anillo interior dorado)"
+          "type": "video",
+          "src": "assets/images/funnel-target/diana-empty.webm",
+          "ratio": "square",
+          "size": "half",
+          "controls": false,
+          "alt": "La diana vacía antes de que aterrice una flecha: cinco anillos, del anillo exterior blanco (enviado) al centro dorado (referido)"
         }
       ]
     },
@@ -240,10 +230,12 @@ PORTFOLIO_DATA.es.cases.push({
           "text": "Todas las flechas vuelan en gris, aterrizan, pausa. Y todas se pintan a la vez. Esa pausa es el momento de leer: el patrón de colores es visible antes de que aparezca una sola fila de datos."
         },
         {
-          "type": "image",
-          "src": "assets/images/funnel-target/color-rings.png",
-          "ratio": "auto",
-          "alt": "Diana en la app real después de que todas las flechas se pintaron: anillo exterior blanco, hacia adentro gris oscuro, azul, rojo, dorado"
+          "type": "video",
+          "src": "assets/images/funnel-target/paint-loop.webm",
+          "ratio": "square",
+          "size": "half",
+          "controls": false,
+          "alt": "Todas las flechas ya aterrizaron en gris; tras una pausa, se pintan a la vez con el color del anillo que tocaron"
         }
       ]
     },
@@ -271,10 +263,16 @@ PORTFOLIO_DATA.es.cases.push({
       "label": "El sistema",
       "h3": "Cada parámetro está expuesto. La lógica de datos y el visual son dos capas separadas.",
       "content": [
-        // VIDEO C pendiente: agregar bloque video con playground-controls.webm cuando esté grabado
-        {
+          {
           "type": "body",
           "text": "El playground muestra lo que hay debajo: timing, trayectoria, ángulo, densidad, todo configurable sin tocar el mapeo de datos. Los anillos siguen siendo anillos. Los colores siguen siendo colores. El resto es una variable."
+        },
+        {
+          "type": "video",
+          "src": "assets/images/funnel-target/playground-controls.webm",
+          "ratio": "auto",
+          "controls": false,
+          "alt": "El playground en marcha: la diana se repite con 14 flechas mientras el panel expone los sliders de timing y trayectoria"
         }
       ]
     },
