@@ -61,11 +61,12 @@ Auditoría original (contra disco): 14 assets faltaban en 2 casos v3. **Ambos re
 
 > Cuando estén los videos, pasárselos a Claude: los cropea, actualiza el draft y corre `case-check --strict`.
 
-### Card "modo de lectura" (case-v3) — en mockup (`_mockups/skim.html`, v2 segmented)
+### Modo de lectura (case-v3) — ✅ en la TOC (mockups: `_mockups/skim.html`, `_mockups/reading-position.html`)
 
 - [x] **Animar el cambio expandida ↔ colapsada** (en el mockup): FLIP de ancho/alto en 240ms, anclada abajo-derecha (crece hacia la izquierda y arriba), fade de eyebrow + descripción al abrir, sin animación con `prefers-reduced-motion`. Colapsada usa el selector small (32px). Al cambiar de opción, el indicador se desliza; ambas opciones miden lo que la más ancha. **v2 (segmented) es la única card oficial**: la v1 (botón de acción) se eliminó del mockup.
 - [x] Variantes cerradas: colapsada = una fila con solo tiempos + ⓘ; expandida = eyebrow + descripción + selector + ⌄.
 - [x] Implementada (2026-11-02) en `case-v3.html` + `case.css` + styleguide + `docs/design.md` + pares de `a11y-contrast.js`.
+- [x] (2026-11-03) **La card desaparece: el selector vive en la TOC**, bajo el título y en lugar de "2 min read" (mobile: flotante). Small (26px), solo tiempos `2 min | 30 sec`, opción activa neutra elevada (`--surface-raised`, token nuevo), ⓘ con tooltip que crece desde la ⓘ y se cierra al hacer scroll. Spacing del encabezado de la TOC corregido y bug arreglado: secciones sin label ni h3 dejaban un link vacío de 16px en la TOC. Ver `docs/design.md` § Modo de lectura.
 
 ## Menor / continuo
 

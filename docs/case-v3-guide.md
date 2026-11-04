@@ -66,7 +66,7 @@ El renderer lee **solo** `id`, `tocLabel`, `label`, `h3`, `content`. (No usa `la
 
 ### Jerarquía de encabezados y lectura esencial
 
-Cada case tiene dos lecturas: la **completa** y la **esencial** (la card "Modo de lectura" oculta los párrafos). La esencial funciona solo si los encabezados se escriben para eso: **los títulos (`label` + `h3`) cuentan el caso; los subtítulos (`h4`) dan el contexto de lo que viene debajo**, sobre todo de los gráficos.
+Cada case tiene dos lecturas: la **completa** y la **esencial** (el selector "Modo de lectura" de la TOC oculta los párrafos). La esencial funciona solo si los encabezados se escriben para eso: **los títulos (`label` + `h3`) cuentan el caso; los subtítulos (`h4`) dan el contexto de lo que viene debajo**, sobre todo de los gráficos.
 
 | Nivel | Campo en `content.js` | Rol | Ejemplo (`no-handoff`) | En la esencial |
 |---|---|---|---|---|
