@@ -43,24 +43,6 @@ Auditoría original (contra disco): 14 assets faltaban en 2 casos v3. **Ambos re
 
 ## Drafts en progreso
 
-### funnel-target — videos pendientes de grabar (playground de cv-builder, localhost)
-
-- [ ] **Video A** → `assets/images/funnel-target/diana-empty.webm` (sección insight)
-  - Playground con `count=0`. Diana con anillos, sin flechas.
-  - Crop: mitad izquierda (sin sliders). Duración: 2-3s. Autoplay loop.
-- [ ] **Video B** → `assets/images/funnel-target/paint-loop.webm` (sección color)
-  - Flechas en gris → pintado simultáneo → todas coloreadas a la vez.
-  - Crop: solo la diana (sin toolbar ni action cards). Duración: ~1-2s loopeable.
-  - El playground permite re-disparar el pintado a voluntad.
-- [ ] **Video C** → `assets/images/funnel-target/playground-controls.webm` (sección playground)
-  - Animación corriendo CON el panel de sliders visible. Sin crop. Duración: 5-8s.
-- [ ] Convertir imágenes `.png` a `.webp` (`brew install webp` → `cwebp`)
-- [ ] Cover definitivo sin chrome del toolbar
-- [ ] Confirmar slug `funnel-target` y decidir si va a `cases.json`
-- [ ] Publicar: `node scripts/case-publish.js funnel-target` (sacar `unlisted:true` al listar en el grid)
-
-> Cuando estén los videos, pasárselos a Claude: los cropea, actualiza el draft y corre `case-check --strict`.
-
 ### Card "modo de lectura" (case-v3) — en mockup (`_mockups/skim.html`, v2 segmented)
 
 - [x] **Animar el cambio expandida ↔ colapsada** (en el mockup): FLIP de ancho/alto en 240ms, anclada abajo-derecha (crece hacia la izquierda y arriba), fade de eyebrow + descripción al abrir, sin animación con `prefers-reduced-motion`. Colapsada usa el selector small (32px). Al cambiar de opción, el indicador se desliza; ambas opciones miden lo que la más ancha. **v2 (segmented) es la única card oficial**: la v1 (botón de acción) se eliminó del mockup.
