@@ -26,7 +26,9 @@ Este paso ocurre **entre el input y la autoría**. Si los assets no están listo
 
 1. **Cover** — imagen dedicada (no el poster del video, no un loading state). Muestra el artefacto principal en su estado más acabado. Una captura de pantalla de la app real o un frame editado del video. Destino: `assets/images/<slug>/cover.webp`.
 
-2. **Inventario por sección** — completar la tabla de assets en el `_TEMPLATE.md` antes de empezar a escribir. Si una sección necesita imagen y no existe, capturarla ahora.
+2. **Checklist de assets** — copiar `content/new/_ASSETS_TEMPLATE.md` a `content/drafts/<slug>.assets.md` y llenarlo antes de empezar a escribir: una entrada por asset (cover incluido) con fuente, qué debe mostrar y qué afirmación del `h3` prueba. Es la **fuente única** de la lista (el draft `.js` solo apunta a ella). Estados: `[ ]` pendiente · `[~]` temporal (PNG 1x, placeholder) · `[x]` final. Si una sección necesita imagen y no existe, capturarla ahora.
+   - `case-check` avisa (warning) si un draft no tiene su `.assets.md` y muestra cuántos quedan pendientes/temporales.
+   - `case-publish.js` **no publica** mientras quede algún `[ ]` o `[~]`; al publicar borra el `.assets.md` junto con el draft.
 
 3. **Renombrar**: nombres semánticos, sin hashes de commit ni números de paso internos.
    - ✅ `funnel-legend.webp`, `color-rings.webp`

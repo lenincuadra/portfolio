@@ -9,15 +9,11 @@
 //   - Formato: title + description bullets (steps) en la mayoría de secciones,
 //     con títulos autodescriptivos. Prosa corta solo en overview/problema/impacto.
 //
-// ASSETS — hoy son PLACEHOLDERS SVG (se ven en preview y pasan case-check).
-//   Reemplazar cada uno por su .webp real y cambiar la extensión en el src.
-// cover          assets/images/cbuilder-ai/cover.svg          → cover.webp          [PLACEHOLDER — screenshot del AiContextPanel generando una carta]
-// s-grounding    assets/images/cbuilder-ai/context-pack.svg   → context-pack.webp   [PLACEHOLDER — compartir contexto + botón Detectar la JD]
-// s-hitl         assets/images/cbuilder-ai/draft-editable.svg → draft-editable.webp [PLACEHOLDER — borrador generado y editable]
-// s-architecture assets/images/cbuilder-ai/pipeline.svg       → pipeline.webp       [PLACEHOLDER — diagrama del pipeline (base: ASCII del .md)]
+// ASSETS: checklist en content/drafts/cbuilder-ai.assets.md (fuente única; case-publish
+//   no publica mientras tenga ítems [ ] o [~]).
 //
 // TODO antes de publicar:
-//   - Reemplazar los 4 SVG por .webp reales, actualizar el src (.svg → .webp).
+//   - Completar cbuilder-ai.assets.md (todos en [x], incluida la limpieza).
 //   - Revisar si el diagrama de pipeline y/o el context-pack se ganan su lugar (ver preguntas al usuario).
 //   - Completar rol/timeframe si querés dato duro (hoy el criterio va en el copy).
 //   - Decidir si va a cases.json (necesita proof con número → hoy impacto cualitativo, prob. no).

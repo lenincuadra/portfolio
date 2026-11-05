@@ -6,13 +6,15 @@
 //
 // Flujo:
 //   1. Lee content/drafts/<slug>.js y extrae los objetos EN y ES.
-//   2. Corre `node scripts/case-check.js <slug> --strict` sobre el draft.
+//   2. Gate de assets: content/drafts/<slug>.assets.md tiene que existir y no tener
+//      ítems pendientes ([ ]) ni temporales ([~]). Plantilla: content/new/_ASSETS_TEMPLATE.md.
+//   3. Corre `node scripts/case-check.js <slug> --strict` sobre el draft.
 //      Si falla, aborta sin tocar content.js.
-//   3. Inserta el objeto EN antes de `/* @cases-end */` en data.en.cases
+//   4. Inserta el objeto EN antes de `/* @cases-end */` en data.en.cases
 //      y el objeto ES en data.es.cases (misma anchura de inserción).
-//   4. Borra content/drafts/<slug>.js.
-//   5. Corre `node scripts/seo-build.js` para regenerar sitemap/llms.txt.
-//   6. Imprime un resumen de lo que queda por hacer (commit, reordenar, etc.).
+//   5. Borra content/drafts/<slug>.js y <slug>.assets.md.
+//   6. Corre `node scripts/seo-build.js` para regenerar sitemap/llms.txt.
+//   7. Imprime un resumen de lo que queda por hacer (commit, reordenar, etc.).
 // =============================================================================
 
 'use strict';
@@ -52,6 +54,20 @@ if (!enObj) die(`El draft no empuja ningún objeto a PORTFOLIO_DATA.en.cases`);
 if (!esObj) die(`El draft no empuja ningún objeto a PORTFOLIO_DATA.es.cases`);
 
 console.log(`\n── Publicando draft: ${slug}\n`);
+
+// --- Gate de assets -------------------------------------------------------------
+
+const assetsPath = path.join(ROOT, 'content', 'drafts', `${slug}.assets.md`);
+if (!fs.existsSync(assetsPath)) {
+  die(`Falta el checklist de assets: content/drafts/${slug}.assets.md (plantilla: content/new/_ASSETS_TEMPLATE.md).`);
+}
+const pendingAssets = fs.readFileSync(assetsPath, 'utf8').split('\n')
+  .filter((l) => /^\s*- \[( |~)\]/.test(l))
+  .map((l) => l.trim());
+if (pendingAssets.length) {
+  die(`Assets sin terminar en content/drafts/${slug}.assets.md (${pendingAssets.length}):\n   ${pendingAssets.join('\n   ')}`);
+}
+console.log('✓  Checklist de assets completo\n');
 
 // --- Validación strict ----------------------------------------------------------
 
@@ -104,7 +120,8 @@ console.log(`\n✓  Insertado en data/content.js (EN y ES)`);
 // --- Borrar draft ---------------------------------------------------------------
 
 fs.unlinkSync(draftPath);
-console.log(`✓  Borrado content/drafts/${slug}.js`);
+fs.unlinkSync(assetsPath);
+console.log(`✓  Borrados content/drafts/${slug}.js y ${slug}.assets.md`);
 
 // --- Regenerar SEO --------------------------------------------------------------
 

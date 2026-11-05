@@ -48,18 +48,9 @@ Escribí en orden cronológico. Para cada momento importante:
 
 ## 3. Assets — inventario antes de escribir
 
-Llenás esta tabla **antes de escribir la sección**. Si el asset no existe todavía, es una señal de que falta capturarlo o exportarlo — no de que podés escribir la sección igual y ver después.
+El inventario **no va en esta bitácora**: va en su propio checklist, `content/drafts/<slug>.assets.md` (copiar de `content/new/_ASSETS_TEMPLATE.md`). Es la fuente única de la lista y `case-publish.js` no publica mientras tenga ítems `[ ]` o `[~]`.
 
-**Cover** (obligatorio):
-- Muestra: [el artefacto principal en su estado más acabado — NO el loading state, NOT el before]
-- Archivo destino: `assets/images/<slug>/cover.webp`
-- Estado: [existe | pendiente exportar | pendiente capturar]
-
-**Secciones** (una fila por sección que necesite imagen o video):
-
-| Sección | Tipo | Qué muestra / qué afirmación prueba | Nombre destino | Estado |
-|---------|------|--------------------------------------|----------------|--------|
-| [id de sección] | image/video/slider | [qué se ve + qué afirmación del h3 soporta] | `<slug>/<nombre-semántico>.webp` | existe / pendiente |
+Llenalo **antes de escribir la sección**. Si el asset no existe todavía, es una señal de que falta capturarlo o exportarlo, no de que podés escribir la sección igual y ver después. Cover obligatorio.
 
 > **Reglas de nombre**: semántico, sin hashes de commit, sin números de paso internos. `funnel-legend.webp`, no `08-funnel-legend-real-app-use-01a29b9-playground.png`. Minúsculas, guiones.
 >

@@ -79,6 +79,21 @@ const bad = (msg) => { failures++; console.log(` ✗  ${msg}`); };
 const warn = (msg) => { warnings++; console.log(` ⚠  ${msg}`); };
 const ok = (msg) => console.log(` ✓  ${msg}`);
 
+// --- Checklist de assets de cada draft (content/drafts/<slug>.assets.md) -------
+// El gate duro está en case-publish.js; acá solo se avisa: sin checklist = warning,
+// pendientes = informativo (los assets llegan después del copy, no bloquean el loop).
+for (const draftSlug of loadedDrafts) {
+  const f = path.join(DRAFTS_DIR, `${draftSlug}.assets.md`);
+  if (!fs.existsSync(f)) {
+    warn(`draft ${draftSlug}: falta content/drafts/${draftSlug}.assets.md (plantilla: content/new/_ASSETS_TEMPLATE.md)`);
+    continue;
+  }
+  const lines = fs.readFileSync(f, 'utf8').split('\n');
+  const pending = lines.filter((l) => /^\s*- \[ \]/.test(l)).length;
+  const temp = lines.filter((l) => /^\s*- \[~\]/.test(l)).length;
+  if (pending || temp) console.log(`  [draft] ${draftSlug}: assets ${pending} pendientes, ${temp} temporales (case-publish no publica hasta que estén en [x])\n`);
+}
+
 const assetExists = (p) => /^https?:/.test(p) || fs.existsSync(path.join(ROOT, p.split('?')[0]));
 
 // --- Identidad, meta y card ---------------------------------------------------

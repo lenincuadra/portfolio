@@ -118,6 +118,7 @@ Romper la alineación por índice es el error más común y el renderer no lo av
 
 ## 5. Assets
 
+- Lista y estado de los assets: checklist `content/drafts/<slug>.assets.md` (ver `docs/case-pipeline.md` §1b).
 - Carpeta `assets/images/<slug>/`. Rutas en `content.js` **relativas a la raíz** (`assets/...`), sin `../` (el renderer agrega el prefijo).
 - Video: **`.webm` + `.mp4`** (mismo nombre). El renderer referencia el `.webm` y deriva el `.mp4` como fallback.
 - Mobile: `device: "phone"` (bezel) para un mockup.
@@ -142,7 +143,7 @@ Valida: meta/card completos, estructura v3 (id, h3, par label+h3 de la TOC, type
 - [ ] EN/ES alineados por índice (nº secciones, nº items, tipos en orden).
 - [ ] Cada sección: `id` único + `tocLabel` + `h3` declarativo. **Leés solo los h3 y entendés el caso.**
 - [ ] Todos los `type` existen en el renderer; campos correctos.
-- [ ] Assets existen (img/video + `.mp4` hermano, poster, cover).
+- [ ] Assets existen (img/video + `.mp4` hermano, poster, cover) y `content/drafts/<slug>.assets.md` está todo en `[x]` (plantilla `content/new/_ASSETS_TEMPLATE.md`; `case-publish` lo exige).
 - [ ] El case está en la posición correcta del array `cases` (define grilla y prev/next default).
 - [ ] Prosa lleva la narrativa; bullets solo para listas reales (`docs/case-v3-content-guide.md`).
 - [ ] **Sin em-dashes** en copy (excepto el `" — "` de `steps`/captions, que es sintaxis).

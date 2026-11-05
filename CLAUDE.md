@@ -25,7 +25,7 @@ El styleguide (`styleguide.html`) debe mostrar siempre los componentes reales de
 
 Todos los cases se renderizan con `cases/case-v3.html` (el routing en `js/app.js` manda todo a `case-v3`; las plantillas legacy `case-v2`/`case.html` fueron eliminadas). El campo `"template": "v3"` de `data/content.js` queda como marcador que lee `case-check`. El contenido es bilingüe (el mismo objeto existe en `en` y `es`, alineado por índice; el renderer usa `t(en, es)`).
 
-**Para crear o migrar un case v3 de punta a punta** (estructura del objeto, todos los `type` con sus campos derivados del renderer, validación sin navegador y checklist): **`docs/case-v3-guide.md`** — empezá por ahí. El flujo completo input→deploy (el funnel, con qué es script y qué es opcionalmente IA): **`docs/case-pipeline.md`**. Validador: `node scripts/case-check.js <slug> --strict` (el pre-commit hook corre la versión no-strict en cada commit).
+**Para crear o migrar un case v3 de punta a punta** (estructura del objeto, todos los `type` con sus campos derivados del renderer, validación sin navegador y checklist): **`docs/case-v3-guide.md`** — empezá por ahí. El flujo completo input→deploy (el funnel, con qué es script y qué es opcionalmente IA): **`docs/case-pipeline.md`**. Validador: `node scripts/case-check.js <slug> --strict` (el pre-commit hook corre la versión no-strict en cada commit). **Assets**: cada draft lleva su checklist `content/drafts/<slug>.assets.md` (plantilla `content/new/_ASSETS_TEMPLATE.md`, fuente única de la lista); `case-publish.js` no publica con ítems `[ ]`/`[~]`.
 
 ### La TOC es el resumen del caso (principio clave)
 
