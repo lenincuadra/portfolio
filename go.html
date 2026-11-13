@@ -61,6 +61,8 @@
   // trackeada para que tracker.js no la registre como "organic" al aterrizar.
   if (company === "me") {
     try { sessionStorage.setItem("portfolio_tracked", "1"); } catch (e) {}
+    // Marca el navegador como propio para js/analytics.js (Mixpanel), permanente.
+    try { localStorage.setItem("portfolio_self", "1"); } catch (e) {}
     window.location.replace(DEST);
     return;
   }
