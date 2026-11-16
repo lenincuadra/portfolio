@@ -9,6 +9,7 @@
   --bg-alt: #eceae5;
   --bg-card: #ffffff;
   --surface: #dedbd4;
+  --surface-raised: #ffffff;   /* elemento elevado sobre --surface (opción activa de un selector) */
   --border: #d3d0c9;
   --border-subtle: #e8e5df;
   --ink: #1a1916;
@@ -122,6 +123,7 @@ html.theme-dark,
   --bg-alt: #1c1b18;
   --bg-card: #211f1c;
   --surface: #2c2a26;
+  --surface-raised: #474541;   /* = mix(--ink 14%, --surface): en dark --bg-card es más oscuro que --surface y se leería como hueco */
   --border: #383530;
   --border-subtle: #2a2825;
   --ink: #f0ede8;

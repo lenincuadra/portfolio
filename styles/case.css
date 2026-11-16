@@ -888,155 +888,89 @@
   background-size: 100% 100%;
 }
 
-/* ---- READING MODE (card flotante) ----
+/* ---- READING MODE (selector en la TOC) ----
    Selector entre el case completo y la lectura esencial (oculta los párrafos y
-   deja label + h3, gráficos y alertas). Fija abajo, alineada al borde derecho
-   de la columna de contenido (right lo pone el renderer; nunca tapa la TOC).
-   Expandida: eyebrow + descripción + selector + ⌄. Colapsada (.is-min): una
-   fila con el selector small (solo tiempos) + ⓘ. Ver docs/design.md. */
+   deja label + h3, gráficos y alertas). Vive en la TOC, bajo "Table of Contents",
+   en el lugar del viejo "2 min read": solo tiempos ("2 min | 30 sec") + ⓘ, que
+   abre un tooltip con la explicación. Mobile (sin TOC): el mismo control flotante
+   abajo a la derecha (.is-floating). Lo crea readingMode() del renderer.
+   Ver docs/design.md § Modo de lectura. */
 .reading-mode {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-1);
+  padding: var(--sp-2) var(--sp-3) var(--sp-3);
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: var(--sp-1);
+}
+.reading-mode.is-floating {
   position: fixed;
   right: var(--sp-4);
-  bottom: var(--sp-5);
+  bottom: var(--sp-4);
   z-index: 50;
-  box-sizing: border-box;
-  width: min(400px, calc(100vw - 2 * var(--sp-4)));
-  display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas: "eyebrow toggle" "desc desc" "seg seg";
-  align-items: center;
-  padding: var(--sp-4);
+  padding: var(--sp-2);
+  margin: 0;
   border: 1px solid var(--border);
   border-radius: var(--r-md);
   background: var(--bg-card);
-  color: var(--ink);
   box-shadow: var(--shadow-lg);
-  animation: reading-mode-in var(--dur-mid) var(--ease-out) 300ms both;
 }
-@keyframes reading-mode-in {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: none; }
-}
-@keyframes reading-mode-fade {
-  from { opacity: 0; }
-  to   { opacity: 1; }
-}
-.reading-mode__eyebrow {
-  grid-area: eyebrow;
-  margin: 0;
-  font: 400 var(--text-xs) / 1.2 var(--font-mono);
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--accent-ink);
-}
-.reading-mode__desc {
-  grid-area: desc;
-  margin: var(--sp-2) 0 var(--sp-4);
-  font: 400 var(--text-sm) / 1.5 var(--font-body);
-  color: var(--ink-2);
-}
-/* Botón disclosure: ⌄ (reducir) expandida, ⓘ (¿qué es esto?) colapsada */
-.reading-mode__toggle {
-  grid-area: toggle;
-  display: inline-grid;
-  place-items: center;
-  width: 32px;
-  height: 32px;
-  margin: -6px -6px -6px 0;
-  border: 0;
-  border-radius: 50%;
-  background: none;
-  color: var(--ink-3);
-  cursor: pointer;
-}
-.reading-mode__toggle:hover {
-  color: var(--ink);
-  background: color-mix(in srgb, var(--ink) 8%, transparent);
-}
-/* Selector: ajustado al contenido; las dos opciones miden lo que la más ancha
-   (1fr en inline-grid). Riel neutro; el indicador (__thumb) es lo único con
-   acento y se desliza al cambiar ([data-active] en el riel). */
+/* Selector: ajustado al contenido (no se estira al ancho de la TOC: el espacio de la
+   derecha queda libre); las dos opciones miden lo que la más ancha (1fr en
+   inline-grid). La opción activa es neutra y elevada (__thumb, se desliza según
+   [data-active]): en la TOC el acento queda solo para la sección activa. */
 .reading-mode__seg {
-  grid-area: seg;
-  justify-self: start;
   position: relative;
   display: inline-grid;
   grid-auto-flow: column;
   grid-auto-columns: 1fr;
   gap: 2px;
-  width: max-content;
-  padding: 3px;
+  padding: 2px;
   border: 1px solid var(--border-subtle);
   border-radius: 999px;
   background: var(--surface);
 }
 .reading-mode__thumb {
   position: absolute;
-  top: 3px;
-  bottom: 3px;
-  left: 3px;
-  width: calc(50% - 4px);
+  top: 2px;
+  bottom: 2px;
+  left: 2px;
+  width: calc(50% - 3px);
   border-radius: 999px;
-  background: var(--accent);
+  background: var(--surface-raised);
+  box-shadow: 0 0 0 1px var(--border), var(--shadow-sm);
   transition: transform 260ms var(--ease-out);
 }
+html.theme-dark .reading-mode__thumb,
+.preview-dark .reading-mode__thumb { box-shadow: var(--shadow-sm); }
 .reading-mode__seg[data-active="essentials"] .reading-mode__thumb {
   transform: translateX(calc(100% + 2px));
 }
 .reading-mode__opt {
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
+  display: inline-flex;
   justify-content: center;
-  align-items: baseline;
-  align-content: center;
-  column-gap: 6px;
-  min-height: 40px;
-  padding: var(--sp-2) var(--sp-4);
+  align-items: center;
+  min-height: 26px;
+  padding: 2px var(--sp-2);
   border: 0;
   border-radius: 999px;
   background: none;
   color: var(--ink-2);
   white-space: nowrap;
   cursor: pointer;
-  font: inherit;
+  font: 600 var(--text-xs) / 1.2 var(--font-body);
   transition: color var(--dur-mid) var(--ease-out);
 }
 .reading-mode__opt:hover:not([aria-checked="true"]) {
   color: var(--ink);
   background: color-mix(in srgb, var(--ink) 6%, transparent);
 }
-.reading-mode__opt[aria-checked="true"] { color: #fff; }
-.reading-mode__name { font: 600 var(--text-sm) / 1.2 var(--font-body); }
-.reading-mode__time {
-  font: 400 var(--text-xs) / 1.2 var(--font-mono);
-  color: var(--ink-3);
-  transition: color var(--dur-mid) var(--ease-out);
-}
-.reading-mode__opt[aria-checked="true"] .reading-mode__time { color: #fff; }
-.reading-mode__toggle:focus-visible,
-.reading-mode__opt:focus-visible {
-  outline: 2px solid var(--accent-ink);
-  outline-offset: 2px;
-}
-
-/* Colapsada: una fila, selector small (32px, ≥ 24px de WCAG 2.2 target size).
-   El nombre de cada opción queda solo para lectores de pantalla (mismo patrón
-   que .sr-only) y el tiempo pasa a ser la etiqueta visible. */
-.reading-mode.is-min {
-  width: auto;
-  grid-template-columns: auto auto;
-  grid-template-areas: "seg toggle";
-  column-gap: var(--sp-1);
-  padding: var(--sp-2);
-}
-.reading-mode.is-min .reading-mode__eyebrow,
-.reading-mode.is-min .reading-mode__desc { display: none; }
-.reading-mode.is-min .reading-mode__seg { padding: 2px; }
-.reading-mode.is-min .reading-mode__thumb { top: 2px; bottom: 2px; left: 2px; width: calc(50% - 3px); }
-.reading-mode.is-min .reading-mode__opt { min-height: 32px; padding: var(--sp-1) var(--sp-3); }
-.reading-mode.is-min .reading-mode__toggle { width: 28px; height: 28px; margin: 0; }
-.reading-mode.is-min .reading-mode__name {
+.reading-mode__opt[aria-checked="true"] { color: var(--ink); }
+.reading-mode__time { font-variant-numeric: tabular-nums; }
+/* El nombre de cada opción ("Full case" / "Essentials") queda solo para lectores
+   de pantalla (mismo patrón que .sr-only); el tiempo es la etiqueta visible */
+.reading-mode__name {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -1044,32 +978,80 @@
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
 }
-.reading-mode.is-min .reading-mode__time {
-  font: 600 var(--text-sm) / 1.2 var(--font-body);
-  color: inherit;
+/* ⓘ: abre el tooltip (hover y click en desktop, tap en mobile) */
+.reading-mode__info {
+  display: inline-grid;
+  place-items: center;
+  flex: none;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--ink-3);
+  cursor: pointer;
+}
+.reading-mode__info:hover,
+.reading-mode__info[aria-expanded="true"] {
+  color: var(--ink);
+  background: color-mix(in srgb, var(--ink) 8%, transparent);
+}
+.reading-mode__info:focus-visible,
+.reading-mode__opt:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 2px;
 }
 
-/* Cambio expandida ↔ colapsada: el renderer anima ancho/alto (FLIP) y, al
-   abrir, eyebrow y descripción entran con fade */
-.reading-mode.is-anim { overflow: hidden; }
-.reading-mode.is-opening .reading-mode__eyebrow,
-.reading-mode.is-opening .reading-mode__desc {
-  animation: reading-mode-fade var(--dur-mid) var(--ease-out) 80ms both;
+/* Tooltip de la ⓘ: mismo lenguaje que una card (eyebrow + descripción). Crece desde
+   la ⓘ (scale 0.96 → 1 + fundido, 180ms; sale en 120ms). [data-from] dice de qué
+   lado está la ⓘ: below = abre hacia abajo (TOC), above = hacia arriba (flotante).
+   Se cierra con Escape, click afuera o al hacer scroll. */
+.reading-mode__tip {
+  position: fixed;
+  z-index: 60;
+  box-sizing: border-box;
+  width: min(360px, calc(100vw - 2 * var(--sp-4)));
+  padding: var(--sp-4);
+  border: 1px solid var(--border);
+  border-radius: var(--r-md);
+  background: var(--bg-card);
+  color: var(--ink);
+  box-shadow: var(--shadow-lg);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(0.96);
+  transform-origin: top right;
+  transition: opacity 120ms ease-in, transform 120ms ease-in, visibility 0s linear 120ms;
+}
+.reading-mode__tip[data-from="above"] { transform-origin: bottom right; }
+.reading-mode__tip.is-open {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition: opacity 180ms var(--ease-out), transform 180ms var(--ease-out), visibility 0s;
+}
+.reading-mode__eyebrow {
+  margin: 0;
+  font: 400 var(--text-xs) / 1.2 var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent-ink);
+}
+.reading-mode__desc {
+  margin: var(--sp-2) 0 0;
+  font: 400 var(--text-sm) / 1.5 var(--font-body);
+  color: var(--ink-2);
 }
 
 /* Lectura esencial: el renderer marca con .is-detail lo que se oculta */
 .is-essentials .is-detail { display: none !important; }
 
-@media (max-width: 768px) {
-  .reading-mode { bottom: var(--sp-4); }
-}
 @media (prefers-reduced-motion: reduce) {
-  .reading-mode,
-  .reading-mode.is-opening .reading-mode__eyebrow,
-  .reading-mode.is-opening .reading-mode__desc { animation: none; }
   .reading-mode__thumb,
   .reading-mode__opt,
-  .reading-mode__time { transition: none; }
+  .reading-mode__tip,
+  .reading-mode__tip.is-open { transition: none; }
 }
 
 /* ---- TOC NAV COMPONENT ---- */
@@ -1079,9 +1061,7 @@
   font-weight: 600;
   color: var(--ink-2);
   display: block;
-  padding: var(--sp-3) var(--sp-3) var(--sp-2);
-  border-bottom: 1px solid var(--border-subtle);
-  margin-bottom: var(--sp-1);
+  padding: var(--sp-3) var(--sp-3) 0;   /* el divisor lo pone .reading-mode, debajo */
 }
 .toc-nav__list {
   list-style: none;

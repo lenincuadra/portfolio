@@ -82,8 +82,6 @@
     #lightbox-prev { left: var(--sp-5); }
     #lightbox-next { right: var(--sp-5); }
     #lightbox.is-single .lightbox-nav { display: none; }
-    .toc-nav__title { border-bottom: none !important; padding-bottom: 0 !important; margin-bottom: 0 !important; }
-    .toc-nav__reading-time { display: block; font-size: var(--text-xs); color: var(--ink-3); font-weight: 400; padding: 0 var(--sp-3) var(--sp-3); border-bottom: 1px solid var(--border-subtle); margin-bottom: var(--sp-1); }
     @media (max-width: 768px) {
       #case-v3-content { padding-inline: clamp(1.25rem, 5vw, 3rem); }
     }
@@ -242,6 +240,13 @@
       if (label) block.setAttribute('aria-label', label);
       block.innerHTML = IMG_PH_ICON;
     };
+
+    // URL attributes (src, poster, href) are built by concatenation, never as a
+    // template like src="../{x}" written inline: Google reads those strings in the
+    // HTML as paths and crawls URLs such as /{img.src}, which return 404.
+    function urlAttr(name, url) { return ' ' + name + '="' + url + '"'; }
+    // Case media paths in content.js are relative to the site root; this page lives in /cases/.
+    function mediaAttr(name, path) { return urlAttr(name, '../' + path); }
 
     // Theme: the initial theme is set by the inline script in <head> to avoid a flash. Here we only wire the toggle.
     const html = document.documentElement;
@@ -404,9 +409,9 @@
             const expandBtn = '<button class="image-block__expand" aria-label="Expand image" type="button">⤢</button>';
             if (enItem.device === 'phone') {
               const dCap = enItem.caption ? `<figcaption class="demo-figure__caption">${t(enItem.caption, esItem?.caption)}</figcaption>` : '';
-              return `<figure class="device-figure"><div class="device-stage"><div class="device-phone"><img class="device-phone__screen" src="../${enItem.src}" alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="window.__caseImgFallback(this)" /></div>${expandBtn}</div>${dCap}</figure>`;
+              return `<figure class="device-figure"><div class="device-stage"><div class="device-phone"><img class="device-phone__screen"${mediaAttr('src', enItem.src)} alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="window.__caseImgFallback(this)" /></div>${expandBtn}</div>${dCap}</figure>`;
             }
-            return `<div class="image-block ${ratioClass}${canvasClass}" data-ph-en="${phEn}" data-ph-es="${phEs}"><img src="../${enItem.src}" alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="window.__caseImgFallback(this)" />${expandBtn}</div>`;
+            return `<div class="image-block ${ratioClass}${canvasClass}" data-ph-en="${phEn}" data-ph-es="${phEs}"><img${mediaAttr('src', enItem.src)} alt="${safeAlt}" loading="${enItem.loading || 'lazy'}" onerror="window.__caseImgFallback(this)" />${expandBtn}</div>`;
           }
           case 'video': {
             const desc       = (enItem.alt || '').replace(/"/g, '&quot;');
@@ -414,7 +419,7 @@
             const canvasClass = enItem.canvas === 'dark' ? ' image-block--canvas-dark' : '';
             const webm       = enItem.src;
             const mp4        = webm.replace(/\.webm$/, '.mp4');
-            const poster     = enItem.poster ? ` poster="../${enItem.poster}"` : '';
+            const poster     = enItem.poster ? `${mediaAttr('poster', enItem.poster)}` : '';
             const vLabel     = enItem.label ? `<span class="media-label">${t(enItem.label, esItem?.label)}</span>` : '';
             const vCapText   = enItem.caption ? t(enItem.caption, esItem?.caption) : '';
             const cap        = (vLabel || vCapText) ? `<figcaption class="demo-figure__caption">${vLabel}${vLabel && vCapText ? ' — ' : ''}${vCapText}</figcaption>` : '';
@@ -425,12 +430,12 @@
               const base = ('../' + webm).replace(/-dark\.webm$/, '');
               return `<figure class="demo-figure${enItem.size === 'half' ? ' demo-figure--half' : ''}"><div class="image-block ${ratioClass} image-block--video"><video data-themed-base="${base}"${poster} autoplay loop muted playsinline${enItem.controls === false ? '' : ' controls'} preload="metadata" aria-label="${desc}"></video><button class="image-block__expand" aria-label="Expand video" type="button">⤢</button></div>${cap}</figure>`;
             }
-            return `<figure class="demo-figure${enItem.size === 'half' ? ' demo-figure--half' : ''}"><div class="image-block ${ratioClass} image-block--video${canvasClass}"><video${poster} autoplay loop muted playsinline${enItem.controls === false ? '' : ' controls'} preload="metadata" aria-label="${desc}"><source src="../${webm}" type="video/webm"><source src="../${mp4}" type="video/mp4"></video><button class="image-block__expand" aria-label="Expand video" type="button">⤢</button></div>${cap}</figure>`;
+            return `<figure class="demo-figure${enItem.size === 'half' ? ' demo-figure--half' : ''}"><div class="image-block ${ratioClass} image-block--video${canvasClass}"><video${poster} autoplay loop muted playsinline${enItem.controls === false ? '' : ' controls'} preload="metadata" aria-label="${desc}"><source${mediaAttr('src', webm)} type="video/webm"><source${mediaAttr('src', mp4)} type="video/mp4"></video><button class="image-block__expand" aria-label="Expand video" type="button">⤢</button></div>${cap}</figure>`;
           }
           case 'compare': {
             const cell = (s, fallbackLbl, tagMod) => s
               ? `<div class="compare__cell"><span class="compare__tag compare__tag--${tagMod}">${s.label || fallbackLbl}</span>`
-                + `<img src="../${s.src}" alt="${(s.alt || '').replace(/"/g, '&quot;')}" loading="lazy" /></div>`
+                + `<img${mediaAttr('src', s.src)} alt="${(s.alt || '').replace(/"/g, '&quot;')}" loading="lazy" /></div>`
               : '';
             const cap = enItem.caption ? `<figcaption class="image-block__caption">${t(enItem.caption, esItem?.caption)}</figcaption>` : '';
             return `<figure class="compare-figure"><div class="compare">${cell(enItem.left, 'Figma', 'figma')}${cell(enItem.right, 'App', 'app')}</div><button class="image-block__expand" aria-label="Expand comparison" type="button">⤢</button>${cap}</figure>`;
@@ -447,7 +452,7 @@
             const interval = enItem.interval || 4000;
             const slides = (enItem.images || []).map((img, k) => {
               const a = (img.alt ? t(img.alt, esItem?.images?.[k]?.alt) : '').replace(/"/g, '&quot;');
-              return `<figure class="carousel__slide${k === 0 ? ' is-active' : ''}"><img src="../${img.src}" alt="${a}" loading="lazy" /></figure>`;
+              return `<figure class="carousel__slide${k === 0 ? ' is-active' : ''}"><img${mediaAttr('src', img.src)} alt="${a}" loading="lazy" /></figure>`;
             }).join('');
             const dots = (enItem.images || []).map((_, k) =>
               `<button class="carousel__dot${k === 0 ? ' is-active' : ''}" data-idx="${k}" aria-label="Image ${k + 1}"></button>`
@@ -463,8 +468,8 @@
             const albl = a.label ? `<span class="compare__tag compare__tag--app cslider__tag cslider__tag--right">${t(a.label, esItem?.after?.label)}</span>` : '';
             const cap = enItem.caption ? `<figcaption class="image-block__caption">${t(enItem.caption, esItem?.caption)}</figcaption>` : '';
             return `<figure class="slider-figure"><div class="cslider" style="--pos:50%">`
-              + `<img class="cslider__base" src="../${a.src}" alt="${aalt}" loading="lazy" />`
-              + `<div class="cslider__top"><img src="../${b.src}" alt="${balt}" loading="lazy" /></div>`
+              + `<img class="cslider__base"${mediaAttr('src', a.src)} alt="${aalt}" loading="lazy" />`
+              + `<div class="cslider__top"><img${mediaAttr('src', b.src)} alt="${balt}" loading="lazy" /></div>`
               + `<div class="cslider__divider"></div>${blbl}${albl}`
               + `<button class="cslider__expand" aria-label="Expand comparison" type="button">⤢</button>`
               + `<span class="cslider__hint">↔ Drag to compare</span>`
@@ -481,9 +486,9 @@
             return `<div class="content-row">${inner}</div>`;
           }
           case 'gallery':
-            return `<div>${(enItem.images || []).map(img => `<img src="../${img.src}" alt="${img.alt || ''}" loading="lazy" />`).join('')}</div>`;
+            return `<div>${(enItem.images || []).map(img => `<img${mediaAttr('src', img.src)} alt="${img.alt || ''}" loading="lazy" />`).join('')}</div>`;
           case 'link':
-            return `<p><a class="case-link" href="${enItem.href}" target="_blank" rel="noopener noreferrer">${t(enItem.text, esItem?.text)}</a></p>`;
+            return `<p><a class="case-link"${urlAttr('href', enItem.href)} target="_blank" rel="noopener noreferrer">${t(enItem.text, esItem?.text)}</a></p>`;
           case 'table': {
             const heads = (enItem.headers || []).map((h, k) => `<th>${t(h, esItem?.headers?.[k])}</th>`).join('');
             const rows  = (enItem.rows || []).map((row, ri) => `<tr>${(row || []).map((c, ci) => `<td>${t(c, esItem?.rows?.[ri]?.[ci])}</td>`).join('')}</tr>`).join('');
@@ -621,125 +626,6 @@
         update();
       })();
 
-      // Modo de lectura: card flotante (styles/case.css § READING MODE) que alterna
-      // entre el case completo y la lectura esencial. Esencial oculta todo lo que no
-      // es label + h3, salvo gráficos y alertas (el mensaje es "oculta los párrafos",
-      // no "solo títulos"). Ver docs/design.md.
-      (function readingMode() {
-        const content = document.getElementById('case-v3-content');
-        const sections = [...content.querySelectorAll('section[id]:not(#cta)')];
-        if (!sections.length) return;
-
-        const isGraphic = el => el.matches('figure, table, .image-block, .cslider, .carousel, .compare, .content-row, .demo-figure, .device-figure')
-          || !!el.querySelector('img, video, table');
-        // Se quedan además los encabezados de sub-tema (.case-subhead) y las listas en
-        // su versión corta: son el contexto de los gráficos y cuentan la historia como
-        // los h3. Lista con rótulos (h4): se oculta solo la descripción. Bullets sin
-        // rótulo: ya son la versión corta (ej. las métricas de ecommerce) y se quedan.
-        // Numerada sin rótulos: se lee como prosa y se oculta.
-        sections.forEach(sec => [...sec.children].forEach(el => {
-          if (el.classList.contains('case-section__head') || el.matches('.alert-callout, .case-subhead') || isGraphic(el)) return;
-          if (el.matches('ul, ol') && el.querySelector(':scope > li > h4')) {
-            el.querySelectorAll(':scope > li > h4').forEach(h4 =>
-              [...h4.parentElement.children].forEach(x => { if (x !== h4) x.classList.add('is-detail'); }));
-            return;
-          }
-          if (el.matches('ul')) return;
-          el.classList.add('is-detail');
-        }));
-
-        // Tiempo de la lectura esencial: el texto que queda visible (encabezados, sub-temas
-        // y listas cortas) a 200 palabras/min, redondeado a 5 s (mínimo 10 s)
-        const kept = content.querySelectorAll('.case-section__head, .case-subhead, li > h4, ul > li:not(.is-detail):not(:has(> h4))');
-        const keptWords = [...kept].map(el => el.textContent).join(' ').trim().split(/\s+/).filter(Boolean).length;
-        const secs = Math.max(10, Math.ceil((keptWords / 200) * 60 / 5) * 5);
-
-        const tx = (en, es) => `<span data-en="${en}" data-es="${es}">${lang === 'es' ? es : en}</span>`;
-        const ICON_COLLAPSE = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6l4 4 4-4"/></svg>';
-        const ICON_INFO = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M8 7.25v3.5"/><circle cx="8" cy="5.1" r=".6" fill="currentColor" stroke="none"/></svg>';
-        const LBL_COLLAPSE = tx('Hide description', 'Ocultar descripción');
-        const LBL_INFO = tx('What is reading mode?', '¿Qué es el modo de lectura?');
-
-        const card = document.createElement('div');
-        card.className = 'reading-mode';
-        card.setAttribute('role', 'region');
-        card.setAttribute('aria-labelledby', 'reading-mode-title');
-        card.innerHTML = `
-          <p class="reading-mode__eyebrow" id="reading-mode-title">${tx('Reading mode', 'Modo de lectura')}</p>
-          <button class="reading-mode__toggle" type="button" aria-controls="reading-mode-desc" aria-expanded="true"></button>
-          <p class="reading-mode__desc" id="reading-mode-desc">${tx(
-            `The headings tell the whole story. Hide the paragraphs and read it in ${secs} seconds; switch back anytime.`,
-            `Los títulos cuentan el caso por sí solos. Oculta los párrafos y léelo en ${secs} segundos; puedes volver cuando quieras.`)}</p>
-          <div class="reading-mode__seg" role="radiogroup" aria-labelledby="reading-mode-title" data-active="full">
-            <span class="reading-mode__thumb" aria-hidden="true"></span>
-            <button class="reading-mode__opt" type="button" role="radio" data-mode="full"><span class="reading-mode__name">${tx('Full case', 'Completo')}</span> <span class="reading-mode__time">${tx(readMins + ' min', readMins + ' min')}</span></button>
-            <button class="reading-mode__opt" type="button" role="radio" data-mode="essentials"><span class="reading-mode__name">${tx('Essentials', 'Esencial')}</span> <span class="reading-mode__time">${tx(secs + ' s', secs + ' seg')}</span></button>
-          </div>`;
-        document.body.appendChild(card);
-        const seg = card.querySelector('.reading-mode__seg');
-        const opts = [...card.querySelectorAll('.reading-mode__opt')];
-        const toggle = card.querySelector('.reading-mode__toggle');
-
-        // radiogroup: un solo tab stop (el activo); las flechas cambian y seleccionan
-        function select(mode, focus) {
-          seg.dataset.active = mode;
-          opts.forEach(o => {
-            const on = o.dataset.mode === mode;
-            o.setAttribute('aria-checked', String(on));
-            o.tabIndex = on ? 0 : -1;
-            if (on && focus) o.focus();
-          });
-        }
-        function choose(mode, focus) {
-          if (seg.dataset.active === mode) return;
-          // mantiene al lector en la sección en la que estaba
-          const header = document.querySelector('.site-header');
-          const offset = (header ? header.offsetHeight : 64) + 16;
-          const cur = sections.filter(s => s.getBoundingClientRect().top < offset + 60).pop();
-          select(mode, focus);
-          document.body.classList.toggle('is-essentials', mode === 'essentials');
-          if (cur && window.scrollY > 200) window.scrollTo({ top: cur.getBoundingClientRect().top + window.scrollY - offset, behavior: 'instant' });
-        }
-        opts.forEach(o => o.addEventListener('click', () => choose(o.dataset.mode)));
-        seg.addEventListener('keydown', e => {
-          if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
-          e.preventDefault();
-          choose(seg.dataset.active === 'essentials' ? 'full' : 'essentials', true);
-        });
-
-        // Expandida ↔ colapsada. Nunca se colapsa sola: solo con este botón.
-        function setMin(min) {
-          card.classList.toggle('is-min', min);
-          toggle.setAttribute('aria-expanded', String(!min));
-          toggle.innerHTML = (min ? ICON_INFO : ICON_COLLAPSE) + `<span class="sr-only">${min ? LBL_INFO : LBL_COLLAPSE}</span>`;
-        }
-        // FLIP: mide antes y después y anima ancho/alto (anclada abajo a la derecha,
-        // crece hacia la izquierda y hacia arriba)
-        function animateMin(min) {
-          if (REDUCED_MOTION || !card.animate) return setMin(min);
-          const a = card.getBoundingClientRect();
-          setMin(min);
-          const b = card.getBoundingClientRect();
-          card.classList.add('is-anim');
-          card.classList.toggle('is-opening', !min);
-          const anim = card.animate(
-            [{ width: a.width + 'px', height: a.height + 'px' }, { width: b.width + 'px', height: b.height + 'px' }],
-            { duration: 240, easing: 'cubic-bezier(0.16, 1, 0.3, 1)' });
-          anim.onfinish = anim.oncancel = () => card.classList.remove('is-anim', 'is-opening');
-        }
-        toggle.addEventListener('click', () => animateMin(!card.classList.contains('is-min')));
-
-        select('full');
-        setMin(false);
-
-        // Alineada al borde derecho de la columna de contenido (mobile: gutter del CSS)
-        function place() {
-          card.style.right = window.innerWidth <= 768 ? '' : (window.innerWidth - content.getBoundingClientRect().right) + 'px';
-        }
-        place();
-        window.addEventListener('resize', place);
-      })();
-
       // TOC
       (function buildTOC() {
         const sections = document.querySelectorAll('[data-toc-label]');
@@ -755,6 +641,9 @@
         list.className = 'toc-nav__list';
 
         sections.forEach(section => {
+          // Sección sin label ni h3 (ej. un gráfico suelto): no tiene nada que mostrar en
+          // la TOC; antes dejaba un link vacío de 16px que agrandaba el primer espacio.
+          if (!(section.dataset.tocLabelEn || section.dataset.tocLabel) && !section.querySelector('h3')) return;
           const li = document.createElement('li');
           const a  = document.createElement('a');
           a.className = 'toc-nav__link';
@@ -797,16 +686,148 @@
           list.appendChild(li);
         });
 
-        const readingTimeToc = document.createElement('span');
-        readingTimeToc.className = 'toc-nav__reading-time';
-        readingTimeToc.dataset.en = `${readMins} min read`;
-        readingTimeToc.dataset.es = `${readMins} min de lectura`;
-        readingTimeToc.textContent = `${readMins} min read`;
-
+        // Bajo el título va el selector del modo de lectura (lo inserta readingMode())
         nav.appendChild(title);
-        nav.appendChild(readingTimeToc);
         nav.appendChild(list);
       })();
+
+      // Modo de lectura (styles/case.css § READING MODE): selector entre el case
+      // completo y la lectura esencial, dentro de la TOC (mobile: flotante). Esencial
+      // oculta todo lo que no es label + h3, salvo gráficos y alertas (el mensaje es
+      // "oculta los párrafos", no "solo títulos"). Ver docs/design.md.
+      (function readingMode() {
+        const content = document.getElementById('case-v3-content');
+        const sections = [...content.querySelectorAll('section[id]:not(#cta)')];
+        if (!sections.length) return;
+
+        const isGraphic = el => el.matches('figure, table, .image-block, .cslider, .carousel, .compare, .content-row, .demo-figure, .device-figure')
+          || !!el.querySelector('img, video, table');
+        // Se quedan además los encabezados de sub-tema (.case-subhead) y las listas en
+        // su versión corta: son el contexto de los gráficos y cuentan la historia como
+        // los h3. Lista con rótulos (h4): se oculta solo la descripción. Bullets sin
+        // rótulo: ya son la versión corta (ej. las métricas de ecommerce) y se quedan.
+        // Numerada sin rótulos: se lee como prosa y se oculta.
+        sections.forEach(sec => [...sec.children].forEach(el => {
+          if (el.classList.contains('case-section__head') || el.matches('.alert-callout, .case-subhead') || isGraphic(el)) return;
+          if (el.matches('ul, ol') && el.querySelector(':scope > li > h4')) {
+            el.querySelectorAll(':scope > li > h4').forEach(h4 =>
+              [...h4.parentElement.children].forEach(x => { if (x !== h4) x.classList.add('is-detail'); }));
+            return;
+          }
+          if (el.matches('ul')) return;
+          el.classList.add('is-detail');
+        }));
+
+        // Tiempo de la lectura esencial: el texto que queda visible (encabezados, sub-temas
+        // y listas cortas) a 200 palabras/min, redondeado a 5 s (mínimo 10 s)
+        const kept = content.querySelectorAll('.case-section__head, .case-subhead, li > h4, ul > li:not(.is-detail):not(:has(> h4))');
+        const keptWords = [...kept].map(el => el.textContent).join(' ').trim().split(/\s+/).filter(Boolean).length;
+        const secs = Math.max(10, Math.ceil((keptWords / 200) * 60 / 5) * 5);
+
+        const tx = (en, es) => `<span data-en="${en}" data-es="${es}">${lang === 'es' ? es : en}</span>`;
+        const ICON_INFO = '<svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><circle cx="8" cy="8" r="6.25"/><path d="M8 7.25v3.5"/><circle cx="8" cy="5.1" r=".6" fill="currentColor" stroke="none"/></svg>';
+
+        // Explicación: vive en el tooltip de la ⓘ (y nombra al grupo para lectores de pantalla)
+        const tip = document.createElement('div');
+        tip.className = 'reading-mode__tip';
+        tip.id = 'reading-mode-tip';
+        tip.setAttribute('role', 'tooltip');
+        tip.innerHTML = `
+          <p class="reading-mode__eyebrow" id="reading-mode-title">${tx('Reading mode', 'Modo de lectura')}</p>
+          <p class="reading-mode__desc">${tx(
+            `The headings tell the whole story. Hide the paragraphs and read it in ${secs} seconds; switch back anytime.`,
+            `Los títulos cuentan el caso por sí solos. Oculta los párrafos y léelo en ${secs} segundos; puedes volver cuando quieras.`)}</p>`;
+        document.body.appendChild(tip);
+
+        const ctrl = document.createElement('div');
+        ctrl.className = 'reading-mode';
+        ctrl.setAttribute('role', 'group');
+        ctrl.setAttribute('aria-labelledby', 'reading-mode-title');
+        ctrl.innerHTML = `
+          <div class="reading-mode__seg" role="radiogroup" aria-labelledby="reading-mode-title" data-active="full">
+            <span class="reading-mode__thumb" aria-hidden="true"></span>
+            <button class="reading-mode__opt" type="button" role="radio" data-mode="full"><span class="reading-mode__name">${tx('Full case', 'Completo')}</span> <span class="reading-mode__time">${tx(readMins + ' min', readMins + ' min')}</span></button>
+            <button class="reading-mode__opt" type="button" role="radio" data-mode="essentials"><span class="reading-mode__name">${tx('Essentials', 'Esencial')}</span> <span class="reading-mode__time">${tx(secs + ' sec', secs + ' seg')}</span></button>
+          </div>
+          <button class="reading-mode__info" type="button" aria-expanded="false" aria-controls="reading-mode-tip">${ICON_INFO}<span class="sr-only">${tx('What is reading mode?', '¿Qué es el modo de lectura?')}</span></button>`;
+        const seg = ctrl.querySelector('.reading-mode__seg');
+        const opts = [...ctrl.querySelectorAll('.reading-mode__opt')];
+        const info = ctrl.querySelector('.reading-mode__info');
+
+        // radiogroup: un solo tab stop (el activo); las flechas cambian y seleccionan
+        function select(mode, focus) {
+          seg.dataset.active = mode;
+          opts.forEach(o => {
+            const on = o.dataset.mode === mode;
+            o.setAttribute('aria-checked', String(on));
+            o.tabIndex = on ? 0 : -1;
+            if (on && focus) o.focus();
+          });
+        }
+        function choose(mode, focus) {
+          if (seg.dataset.active === mode) return;
+          // mantiene al lector en la sección en la que estaba
+          const header = document.querySelector('.site-header');
+          const offset = (header ? header.offsetHeight : 64) + 16;
+          const cur = sections.filter(s => s.getBoundingClientRect().top < offset + 60).pop();
+          select(mode, focus);
+          document.body.classList.toggle('is-essentials', mode === 'essentials');
+          if (cur && window.scrollY > 200) window.scrollTo({ top: cur.getBoundingClientRect().top + window.scrollY - offset, behavior: 'instant' });
+        }
+        opts.forEach(o => o.addEventListener('click', () => choose(o.dataset.mode)));
+        seg.addEventListener('keydown', e => {
+          if (!['ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown'].includes(e.key)) return;
+          e.preventDefault();
+          choose(seg.dataset.active === 'essentials' ? 'full' : 'essentials', true);
+        });
+        select('full');
+
+        // Tooltip (toggletip): hover o foco con teclado lo muestran mientras duran; click
+        // o tap lo fijan. Se cierra con Escape (devuelve el foco), click afuera, un segundo
+        // click o al hacer scroll (solo si la página se movió: ignora scrolls sin desplazamiento).
+        let pinned = false, openY = 0, openW = 0;
+        const isOpen = () => tip.classList.contains('is-open');
+        function placeTip() {
+          const r = ctrl.getBoundingClientRect();
+          const t = info.getBoundingClientRect();
+          const gap = 8, vw = window.innerWidth;
+          const floating = ctrl.classList.contains('is-floating');
+          const right = floating ? r.right : t.right;
+          tip.style.left = Math.max(16, Math.min(right - tip.offsetWidth, vw - tip.offsetWidth - 16)) + 'px';
+          const below = !floating && t.bottom + gap + tip.offsetHeight < window.innerHeight;
+          tip.style.top = (below ? t.bottom + gap : r.top - gap - tip.offsetHeight) + 'px';
+          tip.dataset.from = below ? 'below' : 'above';
+          void tip.offsetWidth;   // fija el estado inicial antes de .is-open (si no, la 1ª entrada no anima)
+        }
+        function setTip(show, pin) {
+          pinned = show && !!pin;
+          if (show) { openY = window.scrollY; openW = window.innerWidth; placeTip(); }
+          tip.classList.toggle('is-open', show);
+          info.setAttribute('aria-expanded', String(show));
+        }
+        info.addEventListener('click', () => setTip(!pinned, true));   // hover ya lo mostró → el click lo fija
+        info.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') setTip(true, false); });
+        info.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse' && !pinned) setTip(false); });
+        info.addEventListener('focus', () => { if (info.matches(':focus-visible')) setTip(true, false); });
+        info.addEventListener('blur', () => { if (!pinned) setTip(false); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape' && isOpen()) { setTip(false); info.focus(); } });
+        document.addEventListener('pointerdown', e => { if (pinned && !e.target.closest('.reading-mode__tip, .reading-mode__info')) setTip(false); });
+        window.addEventListener('scroll', () => { if (isOpen() && Math.abs(window.scrollY - openY) > 4) setTip(false); }, { passive: true });
+
+        // Dónde vive: en la TOC, bajo el título; mobile (la TOC no se muestra), flotante
+        const mobile = window.matchMedia('(max-width: 768px)');
+        function place() {
+          const title = document.querySelector('#toc-nav .toc-nav__title');
+          const floating = mobile.matches || !title;
+          if (floating) document.body.appendChild(ctrl); else title.after(ctrl);
+          ctrl.classList.toggle('is-floating', floating);
+          if (isOpen()) setTip(false);
+        }
+        place();
+        mobile.addEventListener('change', place);
+        window.addEventListener('resize', () => { if (isOpen() && window.innerWidth !== openW) setTip(false); });
+      })();
+
 
       // Prev / next nav — derivado del ORDEN ACTIVO en runtime (perfil del
       // link o default de content.js), no de data hardcodeada: quien llegó
@@ -838,7 +859,7 @@
           return `<span class="case-nav__title" data-en="${en}" data-es="${es}">${lang === 'es' ? es : en}</span>`;
         };
         inner.innerHTML = `
-          <a href="${navCaseUrl(prevSlug)}" class="case-nav__item case-nav__item--prev">
+          <a${urlAttr('href', navCaseUrl(prevSlug))} class="case-nav__item case-nav__item--prev">
             <span class="case-nav__label">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="15 18 9 12 15 6"/></svg>
               <span data-en="Previous" data-es="Anterior">Previous</span>
@@ -848,7 +869,7 @@
           <a href="../index.html#work" class="case-nav__item case-nav__item--all">
             <span class="case-nav__label"><span data-en="All work" data-es="Todo el trabajo">All work</span></span>
           </a>
-          <a href="${navCaseUrl(nextSlug)}" class="case-nav__item case-nav__item--next">
+          <a${urlAttr('href', navCaseUrl(nextSlug))} class="case-nav__item case-nav__item--next">
             <span class="case-nav__label">
               <span data-en="Next" data-es="Siguiente">Next</span>
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
