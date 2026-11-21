@@ -39,7 +39,7 @@ Cargado con `defer` en `index.html`, `cases/case-v3.html` y `404.html`.
 | `Reading Mode Changed` | `slug`, `mode` | cambio de modo de lectura en case-v3 |
 | `Language Changed` | `to` | toggle EN/ES |
 
-Agregar un evento = sumarlo a `EVENTS` en `js/analytics.js` y a esta tabla.
+Agregar un evento = sumarlo a `EVENTS` en `js/analytics.js`, a esta tabla y a `docs/mixpanel-events.md` (catálogo con cada propiedad).
 
 ## Reportes útiles
 
