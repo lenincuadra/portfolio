@@ -7,7 +7,7 @@ Cargado con `defer` en `index.html`, `cases/case-v3.html` y `404.html`.
 - **Cuenta**: `leninxperience@gmail.com` (login con Google), org "Lenin Cuadra", plan gratis (1M eventos/mes).
 - **Proyecto**: id `4083276`, data center **US** (no se puede cambiar después). Panel: https://mixpanel.com/project/4083276
 - **Token**: `TOKEN` en `js/analytics.js`. Es público por diseño (viaja al navegador, igual que la key de EmailJS).
-- **Librería**: `mixpanel-browser@2.65.0/dist/mixpanel.min.js` por jsDelivr (~77 KB, sin grabador de sesiones). Ese build espera el stub del snippet oficial (`__SV` + `_i`), que arma el script; la UMD pesa ~310 KB porque trae el grabador.
+- **Librería**: `mixpanel-browser@2.65.0/dist/mixpanel.min.js` por jsDelivr (~77 KB). Ese build espera el stub del snippet oficial (`__SV` + `_i`), que arma el script. El grabador de sesiones no viene adentro: lo baja aparte (`recorder_src`, misma versión en jsDelivr) solo cuando `record_sessions_percent > 0`.
 
 ## Reglas
 
@@ -15,7 +15,8 @@ Cargado con `defer` en `index.html`, `cases/case-v3.html` y `404.html`.
 - **Mismas guardas que `tracker.js`**: sin localhost, sin bots/headless (`navigator.webdriver` + UA).
 - **Visitas propias**: `?ref=me` (en el index o vía `go.html`) marca el navegador como propio en `localStorage.portfolio_self`, para siempre. `?ref=notme` lo desmarca.
 - **No toca el DOM ni los handlers existentes**: delegación de clicks en captura + `IntersectionObserver`. Si un adblocker bloquea Mixpanel, el sitio funciona igual.
-- Sin autocapture ni session replay (Hotjar ya graba sesiones).
+- Sin autocapture.
+- **Session replay activo** (`record_sessions_percent: 100`), con las mismas guardas (no graba localhost, bots ni visitas propias). Texto visible sin enmascarar (`record_mask_text_selector: "[data-mp-mask]"`: el default de Mixpanel es `*`, que tapa todo); para ocultar algo, ponerle `data-mp-mask`. Los inputs se enmascaran siempre. Las grabaciones se ven en el panel > Session Replay y desde cada evento del usuario. Plan gratis: cupo mensual de replays limitado; si se llena, bajar el porcentaje.
 
 ## Super-properties (viajan en todos los eventos)
 

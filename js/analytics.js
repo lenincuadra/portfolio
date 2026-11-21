@@ -60,7 +60,7 @@
   var ref = urlRef && urlRef !== "notme" ? baseRef(urlRef) : ssGet("portfolio_ref");
   var focus = getParam("focus") || ssGet("portfolio_focus");
 
-  // mixpanel.min.js es el build liviano (~77 KB, sin grabador de sesiones) que
+  // mixpanel.min.js es el build liviano (~77 KB, grabador aparte, ver abajo) que
   // espera el stub del snippet oficial: un array con __SV y la init en _i.
   // Al cargar reemplaza window.mixpanel por la instancia real y llama loaded().
   window.mixpanel = [];
@@ -69,6 +69,14 @@
     track_pageview: false,
     persistence: "localStorage",
     autocapture: false,
+    // Session replay: el build liviano baja el grabador aparte (lazy) solo si
+    // record_sessions_percent > 0. Misma versión y CDN que la librería.
+    // Por defecto Mixpanel enmascara TODO el texto ("*"); el portfolio es
+    // público, así que solo se enmascara lo marcado con data-mp-mask (los
+    // inputs se enmascaran siempre igual).
+    record_sessions_percent: 100,
+    record_mask_text_selector: "[data-mp-mask]",
+    recorder_src: "https://cdn.jsdelivr.net/npm/mixpanel-browser@2.65.0/dist/mixpanel-recorder.min.js",
     loaded: function (mp) {
       var supers = { lang: lsGet("portfolio-lang") || "en" };
       if (ref) supers.ref = ref;
